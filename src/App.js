@@ -5,7 +5,7 @@ import Home from "./component/Homepage";
 import About from "./component/About";
 import SearchPage from "./component/SearchPage";
 
-// updates nav existence upon entering a new route
+// checks current route to see if nav header should render
 function useNav() {
   let { pathname } = useLocation();
   return pathname === "/" ? null : <Navigation />;
