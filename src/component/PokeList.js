@@ -1,3 +1,5 @@
+import PokeImage from "./pokeImage";
+
 export default function PokeList({ pokemon }) {
   const urlList = pokemon.map(url => url[1]);
   console.log(urlList, 'hello world')
@@ -10,9 +12,9 @@ export default function PokeList({ pokemon }) {
           style={{ width: "8rem", height: "8rem" }}
         >
           {p[0]}
+          <PokeImage url={p[1]} />
         </div>
       ))}
-      {/* <PokeList urls={[urlList]} /> */}
     </div>
   );
 }

@@ -5,7 +5,7 @@ import Pagination from "./Pagination";
 function PokeLookUp() {
   const [pokemon, setPokemon] = useState([]);
   const [currentPageURL, setCurrentPageURL] = useState(
-    "https://pokeapi.co/api/v2/pokemon?limit=50"
+    "http://localhost:3001/pokemon"
   );
   const [prevPageURL, setPrevPageURL] = useState();
   const [nextPageURL, setNextPageURL] = useState();
