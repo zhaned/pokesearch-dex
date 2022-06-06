@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { useRoutes, useLocation } from "react-router-dom";
 
 import Navigation from "./component/Navigation";
 import Home from "./routes/Homepage";
@@ -11,17 +11,17 @@ function useNav() {
   let { pathname } = useLocation();
   return pathname === "/" ? null : <Navigation />;
 }
-
+const RouteList = () => useRoutes([
+{path: '/', element: <Home />},
+{path: '/About', element: <About />},
+{path: '/Search', element: <SearchPage />},
+{path: '/Favorites', element: <Favorites />},
+])
 function App() {
   return (
     <div className="container">
       {useNav()}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/Search" element={<SearchPage />} />
-        <Route path="/Favorites" element={<Favorites />} /> 
-      </Routes>
+      {RouteList()}
     </div>
   );
 }
