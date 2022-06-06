@@ -6,9 +6,11 @@ export default function Pagination({ goPrevPage, goNextPage }) {
           Previous page
         </button>
       )}
-      <button onClick={goNextPage} className="btn btn-warning">
-        Next page
-      </button>
+      {goNextPage && (
+        <button onClick={goNextPage} className="btn btn-warning">
+          Next page
+        </button>
+      )}
     </div>
   );
 }

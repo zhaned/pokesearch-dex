@@ -5,7 +5,7 @@ import Pagination from "./Pagination";
 function PokeLookUp() {
   const [pokemon, setPokemon] = useState([]);
   const [currentPageURL, setCurrentPageURL] = useState(
-    "https://pokeapi.co/api/v2/pokemon"
+    "https://pokeapi.co/api/v2/pokemon?limit=50"
   );
   const [prevPageURL, setPrevPageURL] = useState();
   const [nextPageURL, setNextPageURL] = useState();
@@ -19,7 +19,7 @@ function PokeLookUp() {
         setLoading(false);
         setNextPageURL(data.next);
         setPrevPageURL(data.previous);
-        setPokemon(data.results.map((p) => [p.name, p.]));
+        setPokemon(data.results.map((p) => [p.name, p.url]));
       });
 
   }, [currentPageURL]);
