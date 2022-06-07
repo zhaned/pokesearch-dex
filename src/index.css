@@ -5,6 +5,7 @@ body {
   background-size: 70% 100vh;
   background-attachment: fixed;
   background-position: center;
+  background-color: slategray;
 }
 /* body {
   margin: 0;
