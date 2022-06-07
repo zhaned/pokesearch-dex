@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./PokeCycler.css";
 
 const PokeCycler = () => {
   /* 
@@ -13,18 +14,14 @@ ok so what you needa do here is:
   const [artUrl, setArtUrl] = useState({
     number1: 25,
     url1: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png`,
-    number2: 26,
-    url2: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/26.png`,
+    number2: 898,
+    url2: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/157.png`,
   });
   let pokeNumber, pokeNumber2, art;
 
-  useEffect(() => {
-
-  },[])
-
   function urlMaker() {
-    pokeNumber = Math.floor(Math.random() * 897);
-    pokeNumber2 = Math.floor(Math.random() * 897);
+    pokeNumber = Math.floor(Math.random() * 897 + 1);
+    pokeNumber2 = Math.floor(Math.random() * 897 + 1);
     art = {
       number1: pokeNumber,
       url1: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber}.png`,
@@ -37,18 +34,28 @@ ok so what you needa do here is:
   useEffect(() => {
     const intervalId = setInterval(() => {
       setArtUrl(urlMaker());
-    }, 8000);
+    }, 6000);
 
     return () => clearInterval(intervalId);
   }, []);
 
   return (
-    <div>
-      <img src={artUrl.url1} alt={artUrl.number1} />
-      <img src={artUrl.url2} alt={artUrl.number2} />
+    <div className="d-flex justify-content-between">
+      <img
+        key={artUrl.number1}
+        src={artUrl.url1}
+        alt={artUrl.number1}
+        className="fade-in-left"
+      />
+      <img
+        key={artUrl.number2}
+        src={artUrl.url2}
+        alt={artUrl.number2}
+        className="fade-in-right"
+      />
     </div>
   );
-  
+
   //   const [artUrl1, setArtUrl1] = useState();
   //   const [artUrl2, setArtUrl2] = useState();
   //   let pokeNumber, art;

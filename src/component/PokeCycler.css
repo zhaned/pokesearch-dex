@@ -1,0 +1,17 @@
+.fade-in-left{
+    animation: fadeinleft .5s linear forwards;
+}
+
+@keyframes fadeinleft {
+  0% { opacity: 0.25; transform: translateX(-20px);}
+  100% { opacity: 1;transform: translateX(0px);}
+}
+
+.fade-in-right{
+    animation: fadeinright .5s linear forwards;
+}
+
+@keyframes fadeinright {
+  0% { opacity: 0.25; transform: translateX(20px);}
+  100% { opacity: 1;transform: translateX(0px);}
+}
