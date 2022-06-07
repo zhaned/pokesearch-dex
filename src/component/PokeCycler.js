@@ -10,8 +10,17 @@ ok so what you needa do here is:
 5. [optional] animate fade in fade out image
 */
 
-  const [artUrl, setArtUrl] = useState({});
+  const [artUrl, setArtUrl] = useState({
+    number1: 25,
+    url1: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png`,
+    number2: 26,
+    url2: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/26.png`,
+  });
   let pokeNumber, pokeNumber2, art;
+
+  useEffect(() => {
+
+  },[])
 
   function urlMaker() {
     pokeNumber = Math.floor(Math.random() * 897);
@@ -22,26 +31,24 @@ ok so what you needa do here is:
       number2: pokeNumber2,
       url2: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber2}.png`,
     };
-    console.log(art);
     return art;
   }
 
-
   useEffect(() => {
     const intervalId = setInterval(() => {
-        const pokeArt = urlMaker()
-      setArtUrl(pokeArt);
-    }, 5000);
+      setArtUrl(urlMaker());
+    }, 8000);
 
     return () => clearInterval(intervalId);
   }, []);
 
   return (
-      <div>
-          <img src={artUrl.url1} alt={artUrl.number1} />
-          <img src={artUrl.url2} alt={artUrl.number2} />
-      </div>
+    <div>
+      <img src={artUrl.url1} alt={artUrl.number1} />
+      <img src={artUrl.url2} alt={artUrl.number2} />
+    </div>
   );
+  
   //   const [artUrl1, setArtUrl1] = useState();
   //   const [artUrl2, setArtUrl2] = useState();
   //   let pokeNumber, art;
