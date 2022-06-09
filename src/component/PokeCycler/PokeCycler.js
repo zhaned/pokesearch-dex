@@ -11,13 +11,15 @@ ok so what you needa do here is:
 5. [optional] animate fade in fade out image
 */
 
+let pokeNumber = Math.floor(Math.random() * 897 + 1);
+let pokeNumber2= Math.floor(Math.random() * 897 + 1);
+let art;
   const [artUrl, setArtUrl] = useState({
-    number1: 25,
-    url1: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png`,
-    number2: 898,
-    url2: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/157.png`,
+    number1: pokeNumber,
+    url1: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber}.png`,
+    number2: pokeNumber2,
+    url2: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber2}.png`,
   });
-  let pokeNumber, pokeNumber2, art;
 
   function urlMaker() {
     pokeNumber = Math.floor(Math.random() * 897 + 1);

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import PokeCycler from "../component/PokeCycler";
+import PokeCycler from "../component/PokeCycler/PokeCycler";
 
 const Homepage = () => {
 
