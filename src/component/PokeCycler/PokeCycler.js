@@ -43,18 +43,22 @@ let art;
 
   return (
     <div className="d-flex justify-content-between">
-      <img
-        key={artUrl.number1}
-        src={artUrl.url1}
-        alt={artUrl.number1}
-        className="fade-in-left"
-      />
-      <img
-        key={artUrl.number2}
-        src={artUrl.url2}
-        alt={artUrl.number2}
-        className="fade-in-right"
-      />
+      <div className='image1'>
+        <img
+          key={artUrl.number1}
+          src={artUrl.url1}
+          alt={artUrl.number1}
+          className="fade-in-left"
+        />
+      </div>
+      <div className="image2">
+        <img
+          key={artUrl.number2}
+          src={artUrl.url2}
+          alt={artUrl.number2}
+          className="fade-in-right"
+        />
+      </div>
     </div>
   );
 

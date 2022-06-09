@@ -1,17 +1,43 @@
-.fade-in-left{
-    animation: fadeinleft .5s linear forwards;
+.image1 {
+  height: 300px;
+  width: 330px;
+}
+
+.image2 {
+  height: 300px;
+  width: 330px;
+}
+
+.fade-in-left {
+  animation: fadeinleft 0.5s linear forwards;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 @keyframes fadeinleft {
-  0% { opacity: 0.25; transform: translateX(-20px);}
-  100% { opacity: 1;transform: translateX(0px);}
+  0% {
+    opacity: 0.25;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
 
-.fade-in-right{
-    animation: fadeinright .5s linear forwards;
+.fade-in-right {
+  animation: fadeinright 0.5s linear forwards;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 @keyframes fadeinright {
-  0% { opacity: 0.25; transform: translateX(20px);}
-  100% { opacity: 1;transform: translateX(0px);}
+  0% {
+    opacity: 0.25;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
