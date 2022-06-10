@@ -3,8 +3,10 @@ import { useRoutes, useLocation } from "react-router-dom";
 import Navigation from "./component/Navigation";
 import Home from "./routes/Homepage";
 import About from "./routes/About";
-import Search from "./routes/SearchPage";
 import Favorites from "./routes/Favorites";
+import Search from "./routes/SearchPage";
+import Pokemon from "./routes/Pokemon";
+import Error from "./routes/Error";
 
 // checks current route to see if nav header should render
 function useNav() {
@@ -15,8 +17,10 @@ const RouteList = () =>
   useRoutes([
     { path: "/", element: <Home /> },
     { path: "/About", element: <About /> },
-    { path: "/Search", element: <Search /> },
     { path: "/Favorites", element: <Favorites /> },
+    { path: "/Search", element: <Search /> },
+    { path: "/Search/:type", element: <Search /> },
+    { path: "/*", element: <Error /> },
   ]);
 
 function App() {
