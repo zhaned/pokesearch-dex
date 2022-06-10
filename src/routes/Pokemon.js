@@ -4,7 +4,7 @@ import Results from "../component/Results";
 
 const Pokemon = () => {
   const { id } = useParams();
-    const [pokemon, setPokemon] = useState({});
+    const [pokemon, setPokemon] = useState();
 //   const data = fetchData();
   function fetchData() {
     return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -27,8 +27,7 @@ const Pokemon = () => {
   //   .catch((err) => {
   //     console.log(err);
   //   });
-
-  return <Results data={pokemon} id={id} />;
+  return pokemon && <Results data={pokemon} id={id} />;
 };
 
 export default Pokemon;
