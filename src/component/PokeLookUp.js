@@ -12,7 +12,7 @@ function PokeLookUp() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
+    setLoading(false);
     fetch(currentPageURL)
       .then((res) => res.json())
       .then((data) => {

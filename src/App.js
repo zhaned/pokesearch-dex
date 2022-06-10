@@ -13,14 +13,15 @@ function useNav() {
   let { pathname } = useLocation();
   return pathname === "/" ? null : <Navigation />;
 }
+
 const RouteList = () =>
   useRoutes([
     { path: "/", element: <Home /> },
-    { path: "/About", element: <About /> },
-    { path: "/Favorites", element: <Favorites /> },
-    { path: "/Search", element: <Search /> },
-    { path: "/Search/:type", element: <Search /> },
-    { path: "/*", element: <Error /> },
+    { path: "About", element: <About /> },
+    { path: "Favorites", element: <Favorites /> },
+    { path: "Search", element: <Search /> },
+    { path: "Search/:id", element: <Pokemon  /> },
+    { path: "*", element: <Error /> },
   ]);
 
 function App() {
