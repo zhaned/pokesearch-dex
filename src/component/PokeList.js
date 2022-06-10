@@ -10,7 +10,7 @@ export default function PokeList({ pokemon }) {
           className="card "
           style={{ width: "8rem", height: "8rem" }}
         >
-          <Link to={`/Search/${p[0]}`}>
+          <Link to={{ pathname: `/Search/${p[0]}`}}>
             {p[0]}
             <PokeImage url={p[1]} />
           </Link>
