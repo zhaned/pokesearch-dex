@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./PokeCycler.css";
 
 const PokeCycler = () => {
-  
+
 let pokeNumber = Math.floor(Math.random() * 897 + 1);
 let pokeNumber2= Math.floor(Math.random() * 897 + 1);
 let art;
@@ -28,70 +29,35 @@ let art;
   useEffect(() => {
     const intervalId = setInterval(() => {
       setArtUrl(urlMaker());
-    }, 6000);
+    }, 4000);
 
     return () => clearInterval(intervalId);
   }, []);
 
   return (
     <div className="d-flex justify-content-between">
-      <div className='image1'>
-        <img
-          key={artUrl.number1}
-          src={artUrl.url1}
-          alt={artUrl.number1}
-          className="fade-in-left"
-        />
+      <div className='img-container'>
+        <Link to={`/search/${artUrl.number1}`}>
+          <img
+            key={artUrl.number1}
+            src={artUrl.url1}
+            alt={artUrl.number1}
+            className="fade-in-left"
+          />
+        </Link>
       </div>
-      <div className="image2">
-        <img
-          key={artUrl.number2}
-          src={artUrl.url2}
-          alt={artUrl.number2}
-          className="fade-in-right"
-        />
+      <div className="img-container">
+        <Link to={`/Search/${artUrl.number2}`}>
+          <img
+            key={artUrl.number2}
+            src={artUrl.url2}
+            alt={artUrl.number2}
+            className="fade-in-right"
+          />
+        </Link>
       </div>
     </div>
   );
-
-  //   const [artUrl1, setArtUrl1] = useState();
-  //   const [artUrl2, setArtUrl2] = useState();
-  //   let pokeNumber, art;
-
-  //   function urLMaker() {
-  //     pokeNumber = Math.floor(Math.random() * 897);
-  //     return {
-  //       number: pokeNumber,
-  //       url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber}.png`,
-  //     };
-  //   }
-
-  //   function GeneratePoke() {
-  //     art = urLMaker();
-  //     return <img src={art.url} alt={art.number} />;
-  //   }
-
-  //   function twoPokes() {
-  //     return (
-  //       <>
-  //         <div>{GeneratePoke()}</div>
-  //         <div>{GeneratePoke()}</div>
-  //       </>
-  //     );
-  //   }
-
-  //   useEffect(() => {
-  //     let interval = setInterval(() => {
-  //         twoPokes();
-  //         setArtUrl1(art.url);
-  //         setArtUrl2(art.url);
-  //     }, 2000);
-  //     return () => {
-  //       clearInterval(interval);
-  //     };
-  //   }, []);
-
-  //   return <>{twoPokes()}</>;
 };
 
 export default PokeCycler;

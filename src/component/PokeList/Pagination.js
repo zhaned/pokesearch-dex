@@ -1,6 +1,6 @@
 export default function Pagination({ goPrevPage, goNextPage }) {
   return (
-    <div>
+    <div className="d-flex justify-content-between">
       {goPrevPage && (
         <button onClick={goPrevPage} className="btn btn-warning">
           Previous page

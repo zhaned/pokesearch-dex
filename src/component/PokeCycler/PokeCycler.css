@@ -1,11 +1,6 @@
-.image1 {
-  height: 300px;
-  width: 330px;
-}
-
-.image2 {
-  height: 300px;
-  width: 330px;
+.img-container {
+  height: 350px;
+  width: 350px;
 }
 
 .fade-in-left {

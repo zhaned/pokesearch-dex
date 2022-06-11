@@ -21,7 +21,6 @@ function PokeLookUp() {
         setPrevPageURL(data.previous);
         setPokemon(data.results.map((p) => [p.name, p.url]));
       });
-
   }, [currentPageURL]);
 
   function goPrevPage() {
@@ -35,11 +34,11 @@ function PokeLookUp() {
 
   return (
     <div>
-      <PokeList pokemon={pokemon} />
       <Pagination
         goPrevPage={prevPageURL ? goPrevPage : null}
         goNextPage={nextPageURL ? goNextPage : null}
       />
+      <PokeList pokemon={pokemon} />
     </div>
   );
 }

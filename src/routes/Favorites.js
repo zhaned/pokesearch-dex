@@ -1,10 +1,6 @@
-//For later, needs auth 
+//For later, needs auth
 const Favorites = () => {
-    return ( 
-        <div>
-            Favorites page over here.
-        </div>
-     );
-}
- 
+  return <div>Favorites page over here.</div>;
+};
+
 export default Favorites;
