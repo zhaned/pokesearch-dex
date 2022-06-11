@@ -26,10 +26,12 @@ const RouteList = () =>
 
 function App() {
   return (
+    <>
+    <div className="container mb-2">{useNav()}</div>
     <div className="container fade-in-above">
-      {useNav()}
       {RouteList()}
     </div>
+    </>
   );
 }
 

@@ -15,7 +15,7 @@ export default function PokeList({ pokemon }) {
           style={{ textDecoration: "none" }}
         >
           <div
-            className="card m-3 align-content-center shadow"
+            className="card m-2 align-content-center shadow"
             style={{
               width: "9rem",
               height: "12rem",
@@ -25,7 +25,7 @@ export default function PokeList({ pokemon }) {
               color: "#f7f7f7",
             }}
           >
-            {p[0]}
+            <div className="mt-2">{p[0].charAt(0).toUpperCase() + p[0].slice(1)}</div>
             <PokeImage url={p[1]} />
           </div>
         </Link>
