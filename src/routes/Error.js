@@ -6,7 +6,7 @@ export default function Error() {
       style={{ height: "70vh" }}
     >
       <h1
-        className="display-4 m-3"
+        className="display-3 m-3"
         style={{
           color: "#eded1b",
           textShadow: "2px 2px #851bed",

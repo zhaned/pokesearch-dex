@@ -5,10 +5,13 @@ const Navigation = () => {
   return (
     <nav className="navbar">
       <div
-        className="border rounded-pill px-2"
-        style={{ backgroundColor: "rgb(245, 245, 245)" }}
+        className="rounded-pill px-2"
+        style={{
+          backgroundColor: "rgb(240, 240, 240)",
+          border: ".2rem solid #851bed",
+        }}
       >
-        <Link to="/">
+        <Link to="/" style={{ textDecoration: "none" }}>
           <img
             src="pokeapi-dex-icon.ico"
             alt="icon"
@@ -20,19 +23,19 @@ const Navigation = () => {
       </div>
 
       <div>
-        {location.pathname !== "/About" && (
-          <Link to="/About">
-            <button className="btn btn-info">About</button>
-          </Link>
-        )}
         {location.pathname !== "/Search" && (
           <Link to="/Search">
-            <button className="btn btn-info">Search Page</button>
+            <button className="btn btn-info mx-1">Search</button>
+          </Link>
+        )}
+        {location.pathname !== "/About" && (
+          <Link to="/About">
+            <button className="btn btn-success mx-1">About</button>
           </Link>
         )}
         {location.pathname !== "/Favorites" && (
           <Link to="/Favorites">
-            <button className="btn btn-danger">Favorites Page</button>
+            <button className="btn btn-danger m-1">Favorites Page</button>
           </Link>
         )}
       </div>

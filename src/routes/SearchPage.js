@@ -4,13 +4,13 @@ const SearchPage = () => {
   return (
     <div>
       <h1
-        className="display-2"
+        className="display-3"
         style={{
-          color: "#edb81b",
+          color: "#f0f0f0",
           textShadow: "2px 2px #851bed",
         }}
       >
-        <p className="">Search Page</p>
+        <p className="text-center">Search Page</p>
       </h1>
       <PokeLookUp />
     </div>

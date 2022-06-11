@@ -1,8 +1,23 @@
+import './Results.css'
 const Results = (props) => {
   return (
-    <div>
-      <img src={props.data.sprites.other['official-artwork'].front_default} alt={props.id} className='img-fluid' />
-      {props.data.name}
+    <div className="fade-in-above">
+      <h1
+        className="display-3 text-center"
+        style={{
+          color: "#ffffff",
+          textShadow: "2px 2px #851bed",
+        }}
+      >
+        {props.data.name.charAt(0).toUpperCase() + props.data.name.slice(1)}
+      </h1>
+      <div className="d-flex justify-content-center">
+        <img
+          src={props.data.sprites.other["official-artwork"].front_default}
+          alt={props.id}
+          className="img-fluid"
+        />
+      </div>
     </div>
   );
 };

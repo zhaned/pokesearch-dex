@@ -26,7 +26,7 @@ const RouteList = () =>
 
 function App() {
   return (
-    <div className="container">
+    <div className="container fade-in-above">
       {useNav()}
       {RouteList()}
     </div>

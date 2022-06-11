@@ -29,13 +29,13 @@ let art;
   useEffect(() => {
     const intervalId = setInterval(() => {
       setArtUrl(urlMaker());
-    }, 4000);
+    }, 5000);
 
     return () => clearInterval(intervalId);
   }, []);
 
   return (
-    <div className="d-flex justify-content-between">
+    <div className="d-flex justify-content-between align-items-center" style={{marginTop:"10%"}}>
       <div className='img-container'>
         <Link to={`/search/${artUrl.number1}`}>
           <img

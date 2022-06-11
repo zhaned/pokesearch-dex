@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import PokeList from "./PokeList";
 import Pagination from "./Pagination";
+import Loading from "../Loading";
 
 function PokeLookUp() {
-  const [pokemon, setPokemon] = useState([]);
+  const [pokemon, setPokemon] = useState();
   const [currentPageURL, setCurrentPageURL] = useState(
     "http://localhost:3001/pokemon"
   );
@@ -30,15 +31,13 @@ function PokeLookUp() {
     setCurrentPageURL(nextPageURL);
   }
 
-  if (loading) return "loading .... temporary loading ... gif";
-
   return (
     <div>
       <Pagination
         goPrevPage={prevPageURL ? goPrevPage : null}
         goNextPage={nextPageURL ? goNextPage : null}
       />
-      <PokeList pokemon={pokemon} />
+      {pokemon ? <PokeList pokemon={pokemon} /> : <Loading />}
     </div>
   );
 }
