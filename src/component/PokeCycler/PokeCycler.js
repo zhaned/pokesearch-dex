@@ -2,15 +2,7 @@ import { useEffect, useState } from "react";
 import "./PokeCycler.css";
 
 const PokeCycler = () => {
-  /* 
-ok so what you needa do here is:
-1. pick a random number from 1-900
-2. insert that number to this url: https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/[NUMBER GOES HERE].png
-3. after 6 seconds, remove the image
-4. repeat step 1-3
-5. [optional] animate fade in fade out image
-*/
-
+  
 let pokeNumber = Math.floor(Math.random() * 897 + 1);
 let pokeNumber2= Math.floor(Math.random() * 897 + 1);
 let art;

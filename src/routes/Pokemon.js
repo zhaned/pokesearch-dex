@@ -4,8 +4,7 @@ import Results from "../component/Results";
 
 const Pokemon = () => {
   const { id } = useParams();
-    const [pokemon, setPokemon] = useState();
-//   const data = fetchData();
+  const [pokemon, setPokemon] = useState();
   function fetchData() {
     return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then((res) => res.json())
@@ -14,19 +13,8 @@ const Pokemon = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  // async function getJSON(id) {
-  //   let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-  //   var json = await response.json();
-  //   return json
-  // }
 
-  // getJSON(id)
-  //   .then((data) => {
-  //     console.log(data);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+  //stops the component from rendering until data is fetched
   return pokemon && <Results data={pokemon} id={id} />;
 };
 

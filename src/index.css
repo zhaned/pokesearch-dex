@@ -1,11 +1,11 @@
 body {
   font-family: "Lexend Deca", sans-serif;
-  background-image: url("./images/background.jpg");
+  background-image: url("./images/background.png");
   background-repeat: no-repeat;
-  background-size: 100% 100vh;
+  background-size: 100vw 100%;
   background-attachment: fixed;
   background-position: center;
-  background-color: slategray;
+  background-color: rgb(133, 27, 237);
 }
 /* body {
   margin: 0;
