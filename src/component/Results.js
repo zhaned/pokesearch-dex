@@ -1,6 +1,7 @@
 import './Results.css'
 
 //fix: convert the number into a name so the search url is more consistent
+//fix: dynamic background based on type
 const Results = (props) => {
   return (
     <div className="fade-in-above">

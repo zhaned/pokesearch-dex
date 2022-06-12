@@ -14,7 +14,7 @@ const Navigation = () => {
       >
         <Link to="/" style={{ textDecoration: "none" }}>
           <img
-            src="pokeapi-dex-icon.ico"
+            src={require("../images/pokeapi-dex-icon.png")}
             alt=""
             className="m-1"
             style={{ height: "2rem" }}
