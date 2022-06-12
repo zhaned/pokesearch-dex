@@ -1,4 +1,6 @@
 import './Results.css'
+
+//fix: convert the number into a name so the search url is more consistent
 const Results = (props) => {
   return (
     <div className="fade-in-above">
