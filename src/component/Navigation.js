@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
 
-//fix: figure out why icon doesn't load when clicking a pokemon from homepage
 const Navigation = () => {
   const location = useLocation();
   return (

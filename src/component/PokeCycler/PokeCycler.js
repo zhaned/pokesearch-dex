@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import "./PokeCycler.css";
 
 const PokeCycler = () => {
-
-let pokeNumber = Math.floor(Math.random() * 897 + 1);
-let pokeNumber2= Math.floor(Math.random() * 897 + 1);
-let art;
+  let pokeNumber = Math.floor(Math.random() * 897 + 1);
+  let pokeNumber2 = Math.floor(Math.random() * 897 + 1);
+  let art;
   const [artUrl, setArtUrl] = useState({
     number1: pokeNumber,
     url1: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber}.png`,
@@ -35,8 +34,11 @@ let art;
   }, []);
 
   return (
-    <div className="d-flex justify-content-between align-items-center" style={{marginTop:"10%"}}>
-      <div className='img-container'>
+    <div
+      className="d-flex justify-content-between align-items-center"
+      style={{ marginTop: "10%" }}
+    >
+      <div className="img-container">
         <Link to={`/search/${artUrl.number1}`}>
           <img
             key={artUrl.number1}

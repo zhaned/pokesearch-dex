@@ -3,6 +3,11 @@ import PokeImage from "./pokeImage";
 import "./pokeList.css";
 
 export default function PokeList({ pokemon }) {
+
+  function urlToNumber (url) {
+    const num = url.slice(34).split("/");
+    return num[0];
+  }
   return (
     <div
       className="d-flex flex-wrap justify-content-center text-center fade-in-above shadow rounded"
@@ -11,7 +16,7 @@ export default function PokeList({ pokemon }) {
       {pokemon.map((p) => (
         <Link
           key={p}
-          to={{ pathname: `/Search/${p[0]}` }}
+          to={{ pathname: `/Search/${urlToNumber(p[1])}` }}
           style={{ textDecoration: "none" }}
         >
           <div

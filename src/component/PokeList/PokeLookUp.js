@@ -10,14 +10,14 @@ function PokeLookUp() {
   );
   const [prevPageURL, setPrevPageURL] = useState();
   const [nextPageURL, setNextPageURL] = useState();
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(false);
+    // setLoading(false);
     fetch(currentPageURL)
       .then((res) => res.json())
       .then((data) => {
-        setLoading(false);
+        // setLoading(false);
         setNextPageURL(data.next);
         setPrevPageURL(data.previous);
         setPokemon(data.results.map((p) => [p.name, p.url]));
