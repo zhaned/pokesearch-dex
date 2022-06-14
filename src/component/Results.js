@@ -14,6 +14,7 @@ const Results = (props) => {
       >
         {props.data.name.charAt(0).toUpperCase() + props.data.name.slice(1)}
       </h1>
+      <hr style={{border: "1px solid #f0f0f0",borderRadius: "2px", opacity: '1'}} />
       <div className="d-flex justify-content-center">
         <img
           src={props.data.sprites.other["official-artwork"].front_default}

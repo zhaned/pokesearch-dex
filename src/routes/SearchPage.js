@@ -12,6 +12,7 @@ const SearchPage = () => {
       >
         <p className="text-center">Search Page</p>
       </h1>
+      <hr style={{border: "1px solid #f0f0f0",borderRadius: "2px", opacity: '1'}} />
       <PokeLookUp />
     </div>
   );

@@ -37,7 +37,7 @@ function PokeLookUp() {
         goPrevPage={prevPageURL ? goPrevPage : null}
         goNextPage={nextPageURL ? goNextPage : null}
       />
-      {!pokemon ? <PokeList pokemon={pokemon} /> : <Loading />}
+      {pokemon ? <PokeList pokemon={pokemon} /> : <Loading />}
     </div>
   );
 }

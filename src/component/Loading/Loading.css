@@ -10,3 +10,15 @@
     transform: rotate(360deg);
   }
 }
+
+.blinking {
+  display: inline-block;
+  clip-path: inset(0 2.4ch 0 0);
+  animation: blinking 2s steps(4) infinite;
+}
+
+@keyframes blinking {
+  to {
+    clip-path: inset(0 -.8ch 0 0)
+  }
+}
