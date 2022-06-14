@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PokeList from "./PokeList";
 import Pagination from "./Pagination";
-import Loading from "../Loading";
+import Loading from "../Loading/Loading";
 
 function PokeLookUp() {
   const [pokemon, setPokemon] = useState();
@@ -37,7 +37,7 @@ function PokeLookUp() {
         goPrevPage={prevPageURL ? goPrevPage : null}
         goNextPage={nextPageURL ? goNextPage : null}
       />
-      {pokemon ? <PokeList pokemon={pokemon} /> : <Loading />}
+      {!pokemon ? <PokeList pokemon={pokemon} /> : <Loading />}
     </div>
   );
 }
