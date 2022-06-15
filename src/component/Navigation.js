@@ -5,7 +5,7 @@ const Navigation = () => {
   return (
     <nav className="navbar">
       <div
-        className="rounded-pill px-2"
+        className="rounded-pill pe-2"
         style={{
           backgroundColor: "rgb(240, 240, 240)",
           border: ".2rem solid #851bed",
