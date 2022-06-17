@@ -3,7 +3,7 @@ import PokeCycler from "../component/PokeCycler/PokeCycler";
 
 const Homepage = () => {
   return (
-    <div>
+    <div >
       <h1
         className="display-3 text-center"
         style={{

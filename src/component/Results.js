@@ -3,9 +3,16 @@ import './Results.css';
 //fix: convert the number into a name so the search url is more consistent
 //fix: dynamic background based on type
 const Results = (props) => {
-  console.log(props.data);
+  const type = props.data.types[0].type.name;
   return (
-    <div className="fade-in-above" style={{backgroundImage: `url('./water-type-bg.png')`}}>
+    <div
+      className="fade-in-above"
+      style={{
+        background:
+          'url(' + require(`../images/types/${type}-bg.png`) + ') no-repeat ',
+        backgroundPosition: 'center',
+        backgroundSize: '100% 100%'}}
+    >
       <h1
         className="display-3 text-center"
         style={{
