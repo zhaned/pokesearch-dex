@@ -8,7 +8,7 @@ export default function Error() {
       <h1
         className="display-3 m-3"
         style={{
-          color: "#eded1b",
+          color: "#f0f0f0",
           textShadow: "2px 2px #851bed",
         }}
       >

@@ -5,7 +5,7 @@ import './Results.css';
 const Results = (props) => {
   console.log(props.data);
   return (
-    <div className="fade-in-above">
+    <div className="fade-in-above" style={{backgroundImage: `url('./water-type-bg.png')`}}>
       <h1
         className="display-3 text-center"
         style={{
