@@ -16,7 +16,7 @@ const Pokemon = () => {
   }, []);
 
   //stops the component from rendering until data is fetched
-  return pokemon ? <Results data={pokemon} id={id} /> : <Loading />;
+  return pokemon ? <Results data={pokemon} /> : <Loading />;
 };
 
 export default Pokemon;
