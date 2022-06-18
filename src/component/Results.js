@@ -1,11 +1,13 @@
 import './Results.css';
 
 //fix: convert the number into a name so the search url is more consistent
-//fix: dynamic background based on type
+//fixed: dynamic background based on type
+//fix: refactor this place holy
 const Results = (props) => {
   const type = props.data.types[0].type.name;
-  const heightM = props.data.height/10;
-  const weightKg = 2.205*(props.data.weight/10);
+  const heightM = props.data.height / 10; //will need more conversions to get feet'inches
+  const weightLbs = Math.round(2.20462 * (props.data.weight / 10) * 10) / 10;
+  const type2 = props.data.types.length;
   return (
     <div
       className="fade-in-above"
@@ -23,7 +25,9 @@ const Results = (props) => {
       <h1 className="display-3 text-center pt-1">
         {props.data.name.charAt(0).toUpperCase() + props.data.name.slice(1)}
       </h1>
-      <p className="text-light">{props.data.types[0].type.name}</p>
+      <p className="text-light">
+        {type} {type2 === 2 ? props.data.types[1].type.name : null}
+      </p>
       <hr
         style={{
           border: '1px solid #f0f0f0',
@@ -46,7 +50,7 @@ const Results = (props) => {
               </tr>
               <tr>
                 <th>Weight</th>
-                <td>{weightKg} kg</td>
+                <td>{weightLbs} lbs</td>
               </tr>
             </tbody>
           </table>
