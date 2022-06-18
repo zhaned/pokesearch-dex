@@ -32,20 +32,12 @@ const Navigation = () => {
             <button className="btn btn-success mx-1">About</button>
           </Link>
         )}
-        <div
-          style={{
-            display: 'inline-block',
-            width: '1px' /* Line width */,
-            backgroundColor: 'black' /* Line color */,
-            height: '45px' /* Override in-line if you want specific height. */,
-            float: 'left',
-          }}
-        ></div>
-        {location.pathname !== '/Favorites' && ( //fix: add user auth later
-          <Link to="/Favorites">
-            <button className="btn btn-danger m-1">Favorites Page</button>
-          </Link>
-        )}
+        <Link
+          to="/Favorites"
+          style={{ borderLeft: '1px solid white', padding: '12px 0px' }}
+        >
+          <button className="btn btn-danger m-1">Favorites</button>
+        </Link>
       </div>
     </nav>
   );

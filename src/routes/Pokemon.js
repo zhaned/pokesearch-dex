@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Loading from '../component/Loading/Loading';
-import Results from '../component/Results';
+import Results from '../component/Results/Results';
 
 const Pokemon = () => {
   const { id } = useParams();
@@ -16,7 +16,7 @@ const Pokemon = () => {
   }, []);
 
   //stops the component from rendering until data is fetched
-  return pokemon ? <Results data={pokemon} /> : <Loading />;
+  return pokemon ? <Results pokemon={pokemon} /> : <Loading />;
 };
 
 export default Pokemon;

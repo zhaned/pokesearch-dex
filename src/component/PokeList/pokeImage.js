@@ -9,9 +9,9 @@ const PokeImage = (url) => {
       src={imageUrl}
       alt={pokeId[0]}
       style={{
-        border: '1px solid black',
+        border: '1px solid #f0f0f0',
         background:
-          'linear-gradient(rgba(240, 240, 240, 0.3),rgba(240, 240, 240, 0.2) )',
+          'linear-gradient(rgba(245, 245, 245, 0.7),rgba(245, 245, 245, 0.4) )',
       }}
     />
   );
