@@ -1,13 +1,15 @@
 import './Results.css';
-
+import { Moveset } from './Tables';
 //fix: convert the number into a name so the search url is more consistent
 //fixed: dynamic background based on type
 //fix: refactor this place holy
 const Results = ({ pokemon }) => {
   const type = pokemon.types[0].type.name;
+  const type2 = pokemon.types.length;
+  const ability = pokemon.abilities[0].ability.name;
+  const ability2 = pokemon.abilities.length;
   const heightM = pokemon.height / 10; //needs more conversions to get ft'in
   const weightLbs = Math.round(2.20462 * (pokemon.weight / 10) * 10) / 10;
-  const type2 = pokemon.types.length;
   return (
     <div className="fade-in-above text-light">
       <div className='d-flex justify-content-center'>
@@ -44,8 +46,8 @@ const Results = ({ pokemon }) => {
             <tbody>
               <tr>
                 <th>Ablities</th>
-                <td>1st ability</td>
-                <td>2nd ability</td>
+                <td>{ability}</td>
+                <td>{ability2 > 1 ? pokemon.abilities[1].ability.name : null}</td>
               </tr>
               <tr>
                 <th>Height</th>
@@ -104,6 +106,9 @@ const Results = ({ pokemon }) => {
             }}
           />
         </div>
+      <div>
+          <Moveset moves={pokemon.moves}/>
+      </div>
       </div>
     </div>
   );
