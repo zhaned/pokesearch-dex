@@ -12,13 +12,13 @@ const Results = ({ pokemon }) => {
   const weightLbs = Math.round(2.20462 * (pokemon.weight / 10) * 10) / 10;
   return (
     <div className="fade-in-above text-light">
-      <div className='d-flex justify-content-center'>
-        <h1 className="display-3 text-center pt-1 pe-1"> 
-          #{pokemon.id} {/*fix: change this to get the id from species.url later*/}
-          {' '}
+      <div className="d-flex justify-content-center">
+        <h1 className="display-3 text-center pt-1 pe-1">
+          #{pokemon.id}{' '}
+          {/*fix: change this to get the id from species.url later*/}{' '}
           {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
         </h1>
-        <p className='d-flex align-items-end px-1'>
+        <p className="d-flex align-items-end px-1">
           {type} {type2 === 2 ? pokemon.types[1].type.name : null}
         </p>
       </div>
@@ -47,7 +47,9 @@ const Results = ({ pokemon }) => {
               <tr>
                 <th>Ablities</th>
                 <td>{ability}</td>
-                <td>{ability2 > 1 ? pokemon.abilities[1].ability.name : null}</td>
+                <td>
+                  {ability2 > 1 ? pokemon.abilities[1].ability.name : null}
+                </td>
               </tr>
               <tr>
                 <th>Height</th>
@@ -106,10 +108,8 @@ const Results = ({ pokemon }) => {
             }}
           />
         </div>
-      <div>
-          <Moveset moves={pokemon.moves}/>
       </div>
-      </div>
+        <Moveset moves={pokemon.moves} />
     </div>
   );
 };
