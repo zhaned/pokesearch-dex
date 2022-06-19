@@ -11,7 +11,9 @@ const Results = ({ pokemon }) => {
   return (
     <div className="fade-in-above text-light">
       <div className='d-flex justify-content-center'>
-        <h1 className="display-3 text-center pt-1 pe-1">
+        <h1 className="display-3 text-center pt-1 pe-1"> 
+          #{pokemon.id} {/*fix: change this to get the id from species.url later*/}
+          {' '}
           {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
         </h1>
         <p className='d-flex align-items-end px-1'>
