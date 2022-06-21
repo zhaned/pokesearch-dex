@@ -1,15 +1,12 @@
 import './Results.css';
-import { Moveset } from './Tables';
+import { Moveset, Stats, Traits } from './Tables';
 //fix: convert the number into a name so the search url is more consistent
 //fixed: dynamic background based on type
 //fix: refactor this place holy
 const Results = ({ pokemon }) => {
   const type = pokemon.types[0].type.name;
   const type2 = pokemon.types.length;
-  const ability = pokemon.abilities[0].ability.name;
-  const ability2 = pokemon.abilities.length;
-  const heightM = pokemon.height / 10; //needs more conversions to get ft'in
-  const weightLbs = Math.round(2.20462 * (pokemon.weight / 10) * 10) / 10;
+
   return (
     <div className="fade-in-above text-light">
       <div className="d-flex justify-content-center">
@@ -41,55 +38,8 @@ const Results = ({ pokemon }) => {
           textShadow: '2px 2px #851bed',
         }}
       >
-        <div>
-          <table>
-            <tbody>
-              <tr>
-                <th>Ablities</th>
-                <td>{ability}</td>
-                <td>
-                  {ability2 > 1 ? pokemon.abilities[1].ability.name : null}
-                </td>
-              </tr>
-              <tr>
-                <th>Height</th>
-                <td>{heightM} m</td>
-              </tr>
-              <tr>
-                <th>Weight</th>
-                <td>{weightLbs} lbs</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <table>
-          <tbody>
-            <tr>
-              <th>{pokemon.stats[0].stat.name}</th>
-              <td>{pokemon.stats[0].base_stat}</td>
-            </tr>
-            <tr>
-              <th>{pokemon.stats[1].stat.name}</th>
-              <td>{pokemon.stats[1].base_stat}</td>
-            </tr>
-            <tr>
-              <th>{pokemon.stats[2].stat.name}</th>
-              <td>{pokemon.stats[2].base_stat}</td>
-            </tr>
-            <tr>
-              <th>{pokemon.stats[3].stat.name}</th>
-              <td>{pokemon.stats[3].base_stat}</td>
-            </tr>
-            <tr>
-              <th>{pokemon.stats[4].stat.name}</th>
-              <td>{pokemon.stats[4].base_stat}</td>
-            </tr>
-            <tr>
-              <th>{pokemon.stats[5].stat.name}</th>
-              <td>{pokemon.stats[5].base_stat}</td>
-            </tr>
-          </tbody>
-        </table>
+        <Traits traits={pokemon}/>
+        <Stats stats={pokemon.stats}/>
         <div
           className="d-flex rounded-circle justify-content-center align-items-center"
           style={{
