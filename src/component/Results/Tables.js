@@ -1,6 +1,7 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 export const Moveset = ({ moves }) => {
+  const [moveInfo, setMoveInfo] = useState([]);
   const moveList = moves
     .filter((move) => move.version_group_details[0].level_learned_at !== 0)
     .sort((a, b) => {
@@ -9,37 +10,48 @@ export const Moveset = ({ moves }) => {
         b.version_group_details[0].level_learned_at
       );
     });
-  // moves.map((move) => move.version_group_details[0].level_learned_at === 0 ? null : {
-  //   name: move.move.name,
-  //   level: move.version_group_details[0].level_learned_at
-  // });
-  console.log(moveList);
+  const funcThing = async () => {
+    const url = moveList.map((move) => fetch(move.move.url).then(res => res.json()))
+    const responses = await Promise.all(url);
+    console.log(responses)
+    setMoveInfo(responses)
+  };
+  useEffect(() => {
+    funcThing();
+  },[])
   //fix: get moves from a single generation
   //fix: order moves via level up
   return (
-    <table>
-      <thead>
+    <table className="table table-dark table-hover">
+      <thead className="text-center">
         <tr>
-          <th>Moves</th>
+          <th>
+            <h4>Moves</h4>
+          </th>
         </tr>
-        <tr>
+        <tr className='text-start'>
           <th>Level</th>
           <th>Name</th>
+          <th>Category</th>
+          <th>Type</th>
+          <th>Atk</th>
+          <th>Acc</th>
+          <th>PP</th>
         </tr>
       </thead>
       <tbody>
-        {moveList.map((move) =>
-            <Fragment key={move.move.name}>
-              <tr>
-                <td>
-                  {move.version_group_details[0].level_learned_at === 1
-                    ? '-'
-                    : move.version_group_details[0].level_learned_at}
-                </td>
-                <td>{move.move.name}</td>
-              </tr>
-            </Fragment>
-        )}
+        {moveList.map((move) => (
+          <Fragment key={move.move.name}>
+            <tr>
+              <td>
+                {move.version_group_details[0].level_learned_at === 1
+                  ? '-'
+                  : move.version_group_details[0].level_learned_at}
+              </td>
+              <td>{move.move.name}</td>
+            </tr>
+          </Fragment>
+        ))}
       </tbody>
     </table>
   );
@@ -51,7 +63,7 @@ export const Traits = ({ traits }) => {
 
   const stats = traits.stats;
   return (
-    <table>
+    <table className='col'>
       <tbody>
         <tr>
           <th>Ablities</th>
@@ -77,7 +89,7 @@ export const Stats = ({ species, traits }) => {
   const heightM = traits.height / 10; //needs more conversions to get ft'in
   const weightLbs = Math.round(2.20462 * (traits.weight / 10) * 10) / 10;
   return (
-    <table>
+    <table className='col'>
       <tbody>
         <tr>
           <th>Description: </th>

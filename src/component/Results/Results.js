@@ -31,18 +31,21 @@ const Results = ({ pokemon, species }) => {
         }}
       />
       <div>
-        <div className="d-flex justify-content-between"         style={{
-          background:
-            'linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url(' +
-            require(`../../images/types/${type}-bg.png`) +
-            ') no-repeat ',
-          backgroundPosition: 'center',
-          backgroundSize: '100% 100%',
-        }}>
+        <div
+          className="d-flex justify-content-between"
+          style={{
+            background:
+              'linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url(' +
+              require(`../../images/types/${type}-bg.png`) +
+              ') no-repeat ',
+            backgroundPosition: 'center',
+            backgroundSize: '100% 100%',
+          }}
+        >
           <Stats species={species} traits={pokemon} />
           <Traits traits={pokemon} />
           <div
-            className="d-flex rounded-circle justify-content-center align-items-center"
+            className="d-flex rounded-circle justify-content-center align-items-center col"
             style={{
               objectFit: 'contain',
               border: '1px solid #851bed',
