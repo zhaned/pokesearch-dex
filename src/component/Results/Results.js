@@ -39,7 +39,7 @@ const Results = ({ pokemon, species }) => {
           backgroundPosition: 'center',
           backgroundSize: '100% 100%',
         }}>
-          <Stats species={species} />
+          <Stats species={species} traits={pokemon} />
           <Traits traits={pokemon} />
           <div
             className="d-flex rounded-circle justify-content-center align-items-center"
