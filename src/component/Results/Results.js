@@ -3,10 +3,9 @@ import { Moveset, Stats, Traits } from './Tables';
 //fix: convert the number into a name so the search url is more consistent
 //fixed: dynamic background based on type
 //fix: refactor this place holy
-const Results = ({ pokemon }) => {
+const Results = ({ pokemon, species }) => {
   const type = pokemon.types[0].type.name;
   const type2 = pokemon.types.length;
-
   return (
     <div
       className="fade-in-above text-light"
@@ -17,7 +16,7 @@ const Results = ({ pokemon }) => {
       <div className="d-flex justify-content-center">
         <h1 className="display-3 text-center pt-1 pe-1">
           #{pokemon.id}{' '}
-          {/*fix: change this to get the id from species.url later*/}{' '}
+          {/*fix: change this to get the id from species.url later*/}
           {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
         </h1>
         <p className="d-flex align-items-end px-1">
@@ -34,14 +33,14 @@ const Results = ({ pokemon }) => {
       <div>
         <div className="d-flex justify-content-between"         style={{
           background:
-            'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url(' +
+            'linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url(' +
             require(`../../images/types/${type}-bg.png`) +
             ') no-repeat ',
           backgroundPosition: 'center',
           backgroundSize: '100% 100%',
         }}>
+          <Stats species={species} />
           <Traits traits={pokemon} />
-          <Stats stats={pokemon.stats} />
           <div
             className="d-flex rounded-circle justify-content-center align-items-center"
             style={{

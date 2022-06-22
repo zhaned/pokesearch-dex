@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import "./PokeCycler.css";
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import './PokeCycler.css';
 
 const PokeCycler = () => {
   let pokeNumber = Math.floor(Math.random() * 897 + 1);
@@ -36,7 +36,7 @@ const PokeCycler = () => {
   return (
     <div
       className="d-flex justify-content-between align-items-center"
-      style={{ marginTop: "10%" }}
+      style={{ marginTop: '10%' }}
     >
       <div className="img-container">
         <Link to={`/search/${artUrl.number1}`}>

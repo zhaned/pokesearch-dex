@@ -12,7 +12,7 @@ export default function Error() {
           textShadow: "2px 2px #851bed",
         }}
       >
-        Sorry, But this page does not exist.
+        Sorry, but this page does not exist.
       </h1>
       <Link to={`/`}>
         <p className="btn btn-outline-info">Back to Homepage!</p>
