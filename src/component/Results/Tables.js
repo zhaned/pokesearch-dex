@@ -1,7 +1,8 @@
 import { Fragment, useEffect, useState } from 'react';
+import Loading from '../Loading/Loading';
 
 export const Moveset = ({ moves }) => {
-  const [moveInfo, setMoveInfo] = useState([]);
+  const [moveInfo, setMoveInfo] = useState();
   const moveList = moves
     .filter((move) => move.version_group_details[0].level_learned_at !== 0)
     .sort((a, b) => {
@@ -24,7 +25,7 @@ export const Moveset = ({ moves }) => {
   //fix: get moves from a single generation
   //fix: order moves via level up
   return (
-    <table className="table table-dark table-hover">
+    moveInfo ? <table className="table table-dark table-hover">
       <thead className="text-center">
         <tr>
           <th>
@@ -60,7 +61,7 @@ export const Moveset = ({ moves }) => {
           </Fragment>
         ))}
       </tbody>
-    </table>
+    </table> : <Loading />
   );
 };
 

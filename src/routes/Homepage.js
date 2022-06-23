@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import PokeCycler from '../component/PokeCycler/PokeCycler';
 
 const Homepage = () => {
+  let pokeNumber = Math.floor(Math.random() * 897 + 1);
+  let pokeNumber2 = Math.floor(Math.random() * 897 + 1);
   return (
     <div>
       <h1
@@ -9,21 +11,28 @@ const Homepage = () => {
         style={{
           color: '#f0f0f0',
           textShadow: '2px 2px #851bed',
+          marginTop: '5%',
         }}
       >
         Welcome to PokeAPI Dex!
       </h1>
-      <PokeCycler/>
       <div
-        style={{
-          verticalAlign: 'middle',
-          textAlign: 'center',
-          textShadow: '2px 2px #851bed',
-        }}
+        className="d-flex justify-content-between align-items-center"
+        style={{ marginTop: '5%' }}
       >
-        <Link to="/Search" style={{ color: '#f0f0f0' }}>
-          Look up Pokemon now!
-        </Link>
+        <PokeCycler pokeNumber={pokeNumber} side={'left'} />
+        <div
+          style={{
+            // verticalAlign: 'middle',
+            // textAlign: 'center',
+            textShadow: '2px 2px #851bed',
+          }}
+        >
+          <Link to="/Search" style={{ color: '#f0f0f0' }}>
+            <button className="btn btn-secondary btn-lg" style={{color: '#f0f0f0', textShadow: '2px 2px #851bed'}}>Look up Pokemon now!</button>
+          </Link>
+        </div>
+        <PokeCycler pokeNumber={pokeNumber2} side={'right'}/>
       </div>
     </div>
   );

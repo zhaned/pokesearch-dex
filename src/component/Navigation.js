@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 const Navigation = () => {
   const location = useLocation();
   return (
-    <nav className="navbar">
+    <nav className="navbar border-bottom border-2">
       <div
         className="rounded-pill pe-2"
         style={{
@@ -34,7 +34,8 @@ const Navigation = () => {
         )}
         <Link
           to="/Favorites"
-          style={{ borderLeft: '1px solid white', padding: '12px 0px' }}
+          className="border-start border-2"
+          style={{ padding: '16px 0px' }}
         >
           <button className="btn btn-danger m-1">Favorites</button>
         </Link>
