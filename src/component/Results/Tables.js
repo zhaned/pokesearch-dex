@@ -28,7 +28,7 @@ export const Moveset = ({ moves }) => {
     <table className="table table-dark table-hover">
       <thead className="text-center">
         <tr>
-          <th>
+          <th className="border">
             <h4>Moves</h4>
           </th>
         </tr>
@@ -69,24 +69,30 @@ export const Moveset = ({ moves }) => {
 
 export const Traits = ({ traits }) => {
   const ability = traits.abilities;
-  // const ability2 = traits.abilities.length;
-
-  const stats = traits.stats;
+  const stats = traits.stats.map((stat) => {
+    if (stat.stat.name === 'special-attack') stat.stat.name = 'sp-atk';
+    if (stat.stat.name === 'special-defense') stat.stat.name = 'sp-def';
+    return stat;
+  });
   return (
     <table className="col">
       <tbody>
         <tr>
           <th>Ablities</th>
-          {/* <td>{ability}</td>
-          <td>{ability2 > 1 ? traits.abilities[1].ability.name : null}</td> */}
+        </tr>
+        <tr>
           {ability.map((ability) =>
             ability.is_hidden === false ? (
-              <td>{ability.ability.name}</td>
+              <Fragment key={ability.ability.name}>
+                <td>{ability.ability.name}</td>
+              </Fragment>
             ) : (
-              <td>
-                <tr>hidden:</tr>
-                <tr>{ability.ability.name}</tr>
-              </td>
+              <Fragment key={ability.ability.name}>
+                <td>
+                  hidden:
+                  {ability.ability.name}
+                </td>
+              </Fragment>
             )
           )}
         </tr>
@@ -95,8 +101,28 @@ export const Traits = ({ traits }) => {
         {stats.map((stat) => (
           <Fragment key={stat.stat.name}>
             <tr>
-              <th>{stat.stat.name}</th>
-              <td>{stat.base_stat}</td>
+              <th className='border px-1' style={{backgroundColor: 'rgba(0,0,0,.15)'}}>
+                <div >{stat.stat.name}</div>
+              </th>
+              <td className='span-1'
+                style={{
+                  width: '100%',
+                }}
+              >
+                <div
+                  className="rounded-end border border-start-0"
+                  style={{
+                    width: `${stat.base_stat / 2}%`,
+                    maxWidth: '100%',
+                    minWidth: '5%',
+                    backgroundColor: 'rgb(133, 27, 237)',
+                    textAlign: 'start',
+                    paddingLeft: '2px'
+                  }}
+                >
+                  {stat.base_stat}
+                </div>
+              </td>
             </tr>
           </Fragment>
         ))}
@@ -138,9 +164,7 @@ export const Stats = ({ species, traits }) => {
         </tr>
         <tr>
           <th>Egg Groups: </th>
-          {species.egg_groups.map((group) => (
-            <td>{group.name}</td>
-          ))}
+          <td>{species.egg_groups.map((group) => group.name + ' ')}</td>
         </tr>
         <tr>
           <th>Base Egg Cycle: </th>

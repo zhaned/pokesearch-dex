@@ -32,7 +32,7 @@ const Results = ({ pokemon, species }) => {
       />
       <div>
         <div
-          className="d-flex justify-content-between"
+          className="d-flex justify-content-between border"
           style={{
             background:
               'linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url(' +
