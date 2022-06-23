@@ -24,8 +24,8 @@ export const Moveset = ({ moves }) => {
   }, []);
   //fix: get moves from a single generation
   //fix: order moves via level up
-  return (
-    moveInfo ? <table className="table table-dark table-hover">
+  return moveInfo ? (
+    <table className="table table-dark table-hover">
       <thead className="text-center">
         <tr>
           <th>
@@ -61,13 +61,15 @@ export const Moveset = ({ moves }) => {
           </Fragment>
         ))}
       </tbody>
-    </table> : <Loading />
+    </table>
+  ) : (
+    <Loading />
   );
 };
 
 export const Traits = ({ traits }) => {
-  const ability = traits.abilities[0].ability.name;
-  const ability2 = traits.abilities.length;
+  const ability = traits.abilities;
+  // const ability2 = traits.abilities.length;
 
   const stats = traits.stats;
   return (
@@ -75,8 +77,18 @@ export const Traits = ({ traits }) => {
       <tbody>
         <tr>
           <th>Ablities</th>
-          <td>{ability}</td>
-          <td>{ability2 > 1 ? traits.abilities[1].ability.name : null}</td>
+          {/* <td>{ability}</td>
+          <td>{ability2 > 1 ? traits.abilities[1].ability.name : null}</td> */}
+          {ability.map((ability) =>
+            ability.is_hidden === false ? (
+              <td>{ability.ability.name}</td>
+            ) : (
+              <td>
+                <tr>hidden:</tr>
+                <tr>{ability.ability.name}</tr>
+              </td>
+            )
+          )}
         </tr>
       </tbody>
       <tbody>
@@ -94,8 +106,8 @@ export const Traits = ({ traits }) => {
 };
 
 export const Stats = ({ species, traits }) => {
-  const height = (traits.height * 10) / 2.54 / 12; //needs more conversions to get ft'in
-  const weight = Math.round(2.20462 * traits.weight) / 10;
+  const height = (traits.height * 10) / 2.54 / 12; // in ft
+  const weight = Math.round(2.20462 * traits.weight) / 10; // in lbs
   return (
     <table className="col">
       <tbody>
@@ -123,6 +135,12 @@ export const Stats = ({ species, traits }) => {
         <tr>
           <th>Capture Rate: </th>
           <td>{species.capture_rate}</td>
+        </tr>
+        <tr>
+          <th>Egg Groups: </th>
+          {species.egg_groups.map((group) => (
+            <td>{group.name}</td>
+          ))}
         </tr>
         <tr>
           <th>Base Egg Cycle: </th>
