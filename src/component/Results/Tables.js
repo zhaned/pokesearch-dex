@@ -15,7 +15,6 @@ export const Moveset = ({ moves }) => {
       fetch(move.move.url).then((res) => res.json())
     );
     const responses = await Promise.all(url);
-    console.log(responses);
     setMoveInfo(responses);
   };
 
@@ -94,8 +93,8 @@ export const Traits = ({ traits }) => {
 };
 
 export const Stats = ({ species, traits }) => {
-  const heightM = traits.height / 10; //needs more conversions to get ft'in
-  const weightLbs = Math.round(2.20462 * (traits.weight / 10) * 10) / 10;
+  const height = (traits.height * 10) / 2.54 / 12; //needs more conversions to get ft'in
+  const weight = Math.round(2.20462 * traits.weight) / 10;
   return (
     <table className="col">
       <tbody>
@@ -105,11 +104,20 @@ export const Stats = ({ species, traits }) => {
         </tr>
         <tr>
           <th>Height</th>
-          <td>{heightM} m</td>
+          <td>
+            {`${Math.floor(height)}'${
+              Math.round((height % 1) * 12) < 10
+                ? '0' + Math.round((height % 1) * 12) + '"'
+                : Math.round((height % 1) * 12) + '"'
+            }`}{' '}
+            ({(height * 12 * 2.54) / 100} m)
+          </td>
         </tr>
         <tr>
           <th>Weight</th>
-          <td>{weightLbs} lbs</td>
+          <td>
+            {weight} lbs ({traits.weight / 10} kg)
+          </td>
         </tr>
         <tr>
           <th>Capture Rate: </th>
