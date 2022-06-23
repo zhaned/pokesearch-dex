@@ -10,15 +10,18 @@ export const Moveset = ({ moves }) => {
         b.version_group_details[0].level_learned_at
       );
     });
-  const funcThing = async () => {
-    const url = moveList.map((move) => fetch(move.move.url).then(res => res.json()))
+  const getMoveInfo = async () => {
+    const url = moveList.map((move) =>
+      fetch(move.move.url).then((res) => res.json())
+    );
     const responses = await Promise.all(url);
-    console.log(responses)
-    setMoveInfo(responses)
+    console.log(responses);
+    setMoveInfo(responses);
   };
+
   useEffect(() => {
-    funcThing();
-  },[])
+    getMoveInfo();
+  }, []);
   //fix: get moves from a single generation
   //fix: order moves via level up
   return (
@@ -29,7 +32,7 @@ export const Moveset = ({ moves }) => {
             <h4>Moves</h4>
           </th>
         </tr>
-        <tr className='text-start'>
+        <tr className="text-start">
           <th>Level</th>
           <th>Name</th>
           <th>Category</th>
@@ -40,15 +43,20 @@ export const Moveset = ({ moves }) => {
         </tr>
       </thead>
       <tbody>
-        {moveList.map((move) => (
-          <Fragment key={move.move.name}>
+        {moveInfo.map((move, index) => (
+          <Fragment key={move.name}>
             <tr>
               <td>
-                {move.version_group_details[0].level_learned_at === 1
+                {moveList[index].version_group_details[0].level_learned_at === 1
                   ? '-'
-                  : move.version_group_details[0].level_learned_at}
+                  : moveList[index].version_group_details[0].level_learned_at}
               </td>
-              <td>{move.move.name}</td>
+              <td>{move.name}</td>
+              <td>{move.damage_class.name}</td>
+              <td>{move.type.name}</td>
+              <td>{move.power ? move.power : '-'}</td>
+              <td>{move.accuracy ? `${move.accuracy}%` : '-'}</td>
+              <td>{move.pp}</td>
             </tr>
           </Fragment>
         ))}
@@ -63,7 +71,7 @@ export const Traits = ({ traits }) => {
 
   const stats = traits.stats;
   return (
-    <table className='col'>
+    <table className="col">
       <tbody>
         <tr>
           <th>Ablities</th>
@@ -89,7 +97,7 @@ export const Stats = ({ species, traits }) => {
   const heightM = traits.height / 10; //needs more conversions to get ft'in
   const weightLbs = Math.round(2.20462 * (traits.weight / 10) * 10) / 10;
   return (
-    <table className='col'>
+    <table className="col">
       <tbody>
         <tr>
           <th>Description: </th>
