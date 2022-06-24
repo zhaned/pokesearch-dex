@@ -1,5 +1,7 @@
 import './Results.css';
 import { Moveset, Stats, Traits } from './Tables';
+import Type from '../Type';
+
 //fix: convert the number into a name so the search url is more consistent
 //fixed: dynamic background based on type
 //fix: refactor this place holy
@@ -20,7 +22,20 @@ const Results = ({ pokemon, species }) => {
           {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
         </h1>
         <p className="d-flex align-items-end px-1">
-          {type} {type2 === 2 ? pokemon.types[1].type.name : null}
+          <span
+            className="border rounded px-1 me-1"
+            style={{ backgroundColor: Type(type) }}
+          >
+            {type}
+          </span>{' '}
+          {type2 === 2 ? 
+          <span
+            className="border rounded px-1"
+            style={{ backgroundColor: Type(pokemon.types[1].type.name) }}
+          >
+          {pokemon.types[1].type.name} 
+          </span>
+          : null}
         </p>
       </div>
       <hr
@@ -32,7 +47,7 @@ const Results = ({ pokemon, species }) => {
       />
       <div>
         <div
-          className="d-flex justify-content-between border"
+          className="d-flex justify-content-between border rounded"
           style={{
             background:
               'linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url(' +

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 const Navigation = () => {
   const location = useLocation();
   return (
-    <nav className="navbar border-bottom border-2">
+    <nav className="navbar border-bottom border-2" style={{ backgroundColor: 'rgba(0,0,0,.15)' }}>
       <div
         className="rounded-pill pe-2"
         style={{

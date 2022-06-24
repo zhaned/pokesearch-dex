@@ -28,11 +28,13 @@ export const Moveset = ({ moves }) => {
     <table className="table table-dark table-hover">
       <thead className="text-center">
         <tr>
-          <th className="border">
+          <th className="">
             <h4>Moves</h4>
           </th>
         </tr>
-        <tr className="text-start">
+      </thead>
+      <tbody>
+        <tr className="text-start border-bottom">
           <th>Level</th>
           <th>Name</th>
           <th>Category</th>
@@ -41,8 +43,6 @@ export const Moveset = ({ moves }) => {
           <th>Acc</th>
           <th>PP</th>
         </tr>
-      </thead>
-      <tbody>
         {moveInfo.map((move, index) => (
           <Fragment key={move.name}>
             <tr>
@@ -78,22 +78,21 @@ export const Traits = ({ traits }) => {
     <table className="col">
       <tbody>
         <tr>
-          <th>Ablities</th>
+          <th>Abilities</th>
         </tr>
         <tr>
+        {ability.map((ability) =>
+          ability.is_hidden === false ? (
+              <td className='text-center' key={ability.ability.name}>{ability.ability.name}</td>
+          ) : null
+        )}
+            </tr>
+        <tr>
+          <td>Hidden:</td>
           {ability.map((ability) =>
-            ability.is_hidden === false ? (
-              <Fragment key={ability.ability.name}>
-                <td>{ability.ability.name}</td>
-              </Fragment>
-            ) : (
-              <Fragment key={ability.ability.name}>
-                <td>
-                  hidden:
-                  {ability.ability.name}
-                </td>
-              </Fragment>
-            )
+            ability.is_hidden === true ? (
+              <td key={ability.ability.name}>{ability.ability.name}</td>
+            ) : null
           )}
         </tr>
       </tbody>
@@ -101,10 +100,14 @@ export const Traits = ({ traits }) => {
         {stats.map((stat) => (
           <Fragment key={stat.stat.name}>
             <tr>
-              <th className='border px-1' style={{backgroundColor: 'rgba(0,0,0,.15)'}}>
-                <div >{stat.stat.name}</div>
+              <th
+                className="border px-1"
+                style={{ backgroundColor: 'rgba(0,0,0,.15)' }}
+              >
+                <div>{stat.stat.name}</div>
               </th>
-              <td className='span-1'
+              <td
+                className="span-1"
                 style={{
                   width: '100%',
                 }}
@@ -117,7 +120,7 @@ export const Traits = ({ traits }) => {
                     minWidth: '5%',
                     backgroundColor: 'rgb(133, 27, 237)',
                     textAlign: 'start',
-                    paddingLeft: '2px'
+                    paddingLeft: '2px',
                   }}
                 >
                   {stat.base_stat}
@@ -142,7 +145,7 @@ export const Stats = ({ species, traits }) => {
           <td>{species.flavor_text_entries[0].flavor_text}</td>
         </tr>
         <tr>
-          <th>Height</th>
+          <th>Height:</th>
           <td>
             {`${Math.floor(height)}'${
               Math.round((height % 1) * 12) < 10
@@ -153,7 +156,7 @@ export const Stats = ({ species, traits }) => {
           </td>
         </tr>
         <tr>
-          <th>Weight</th>
+          <th>Weight:</th>
           <td>
             {weight} lbs ({traits.weight / 10} kg)
           </td>
