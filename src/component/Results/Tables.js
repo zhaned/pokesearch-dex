@@ -2,29 +2,33 @@ import { Fragment, useEffect, useState } from 'react';
 import Loading from '../Loading/Loading';
 import './Results.css';
 
+function capsChecker(text) {
+  const oldText = text
+    .replace(/\u000c/g, ' ')
+    .replace(/\n/g, ' ')
+    .split(' ');
+  const capText = [];
+  oldText.map((word) =>
+    word.charAt(0) === word.charAt(0).toUpperCase()
+      ? capText.push(word.charAt(0).toUpperCase() + word.toLowerCase().slice(1))
+      : capText.push(word)
+  );
+  return capText.join(' ');
+}
+
+function capitalizer(text) {
+  const oldText = text.replace('-', ' ').split(' ');
+  let newText = [];
+  oldText.map((word) =>(  
+    newText.push(word.charAt(0).toUpperCase() + word.toLowerCase().slice(1))
+  ));
+  return newText.join(' ');
+}
 export const Stats = ({ species, traits }) => {
   //fix: height near 12 inches aren't converted (.3m becomes 0"12)
   const height = (traits.height * 10) / 2.54 / 12; // in ft
   const weight = Math.round(2.20462 * traits.weight) / 10; // in lbs
-  const texttest = species.flavor_text_entries[0].flavor_text;
-
-  function capsChecker(text) {
-    const oldText = text
-      .replace(/\u000c/g, ' ')
-      .replace(/\n/g, ' ')
-      .split(' ');
-    const capText = [];
-    let newText;
-    oldText.map((word) => {
-      word.charAt(0) === word.charAt(0).toUpperCase()
-        ? capText.push(
-            word.charAt(0).toUpperCase() + word.toLowerCase().slice(1)
-          )
-        : capText.push(word);
-    });
-    newText = capText.join(' ');
-    return newText;
-  }
+  const description = species.flavor_text_entries[0].flavor_text;
 
   return (
     <table className="col border-end">
@@ -33,7 +37,7 @@ export const Stats = ({ species, traits }) => {
           <th>Description: </th>
           <td>
             {
-              capsChecker(texttest)
+              capsChecker(description)
               // species.flavor_text_entries[0].flavor_text
             }
           </td>
@@ -92,7 +96,7 @@ export const Traits = ({ traits }) => {
             ability.is_hidden === false ? (
               <td className="pe-1" key={ability.ability.name}>
                 {ability.ability.name.charAt(0).toUpperCase() +
-                  ability.ability.name.slice(1)}
+                  ability.ability.name.slice(1).replace('-', ' ')}
               </td>
             ) : null
           )}
@@ -103,7 +107,7 @@ export const Traits = ({ traits }) => {
             ability.is_hidden === true ? (
               <td key={ability.ability.name}>
                 {ability.ability.name.charAt(0).toUpperCase() +
-                  ability.ability.name.slice(1)}
+                  ability.ability.name.slice(1).replace('-', ' ')}
               </td>
             ) : null
           )}
@@ -195,7 +199,7 @@ export const Moveset = ({ moves }) => {
                   ? '-'
                   : moveList[index].version_group_details[0].level_learned_at}
               </td>
-              <td>{move.name}</td>
+              <td>{capitalizer(move.name)}</td>
               <td>{move.damage_class.name}</td>
               <td>{move.type.name}</td>
               <td>{move.power ? move.power : '-'}</td>
