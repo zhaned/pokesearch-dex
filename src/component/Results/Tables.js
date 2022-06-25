@@ -6,6 +6,7 @@ export const Stats = ({ species, traits }) => {
   //fix: height near 12 inches aren't converted (.3m becomes 0"12)
   const height = (traits.height * 10) / 2.54 / 12; // in ft
   const weight = Math.round(2.20462 * traits.weight) / 10; // in lbs
+
   return (
     <table className="col border-end">
       <tbody>
@@ -80,7 +81,7 @@ export const Traits = ({ traits }) => {
                 {ability.ability.name.charAt(0).toUpperCase() +
                   ability.ability.name.slice(1)}
               </td>
-            ) : <td key={'HA'}>None</td>
+            ) : null
           )}
         </tr>
       </tbody>
