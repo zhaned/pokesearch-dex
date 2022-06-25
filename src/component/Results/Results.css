@@ -1,7 +1,6 @@
 .fade-in-above > * {
-      animation: fadeinabove .25s linear forwards;
+  animation: fadeinabove 0.25s linear forwards;
 }
-
 
 @keyframes fadeinabove {
   0% {
@@ -14,20 +13,46 @@
   }
 }
 
+.stat-visuals {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 100%;
+  height: 100%;
+  background-color: rgb(133, 27, 237);
+  text-align: start;
+  padding-left: 2px;
+  animation: progressBar 1s ease-in-out;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
 
+@keyframes progressBar {
+  0% {
+    width: 10%;
+  }
+}
 
-thead th:first-child {
-  border-top-left-radius: 9px;
- }
- 
- thead th:last-child {
-  border-top-right-radius: 9px;
- }
- 
- tbody tr:last-child :first-child {
-  border-bottom-left-radius: 9px;
- }
- 
- tbody tr:last-child :last-child {
-  border-bottom-right-radius: 9px;
- }
+th {
+  padding-left: 0.25rem;
+}
+
+.move-thead th:first-child {
+  border-top-left-radius: 0.5rem;
+}
+
+.move-thead th:last-child {
+  border-top-right-radius: 0.5rem;
+}
+
+.move-tbody tr:first-child :last-child {
+  border-top-right-radius: 0.5rem;
+}
+
+.move-tbody tr:last-child :first-child {
+  border-bottom-left-radius: 0.5rem;
+}
+
+.move-tbody tr:last-child :last-child {
+  border-bottom-right-radius: 0.5rem;
+}
