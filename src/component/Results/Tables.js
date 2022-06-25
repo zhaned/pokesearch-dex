@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 import './Results.css';
 
@@ -19,9 +20,9 @@ function capsChecker(text) {
 function capitalizer(text) {
   const oldText = text.replace('-', ' ').split(' ');
   let newText = [];
-  oldText.map((word) =>(  
+  oldText.map((word) =>
     newText.push(word.charAt(0).toUpperCase() + word.toLowerCase().slice(1))
-  ));
+  );
   return newText.join(' ');
 }
 export const Stats = ({ species, traits }) => {
@@ -95,8 +96,17 @@ export const Traits = ({ traits }) => {
           {ability.map((ability) =>
             ability.is_hidden === false ? (
               <td className="pe-1" key={ability.ability.name}>
-                {ability.ability.name.charAt(0).toUpperCase() +
-                  ability.ability.name.slice(1).replace('-', ' ')}
+                <Link
+                  to={`/Abilities/${ability.ability.name}`}
+                  style={{
+                    color: '#f0f0f0',
+                    textShadow: '2px 2px #851bed',
+                    textDecoration: 'none',
+                  }}
+                >
+                  {ability.ability.name.charAt(0).toUpperCase() +
+                    ability.ability.name.slice(1).replace('-', ' ')}
+                </Link>
               </td>
             ) : null
           )}
@@ -106,8 +116,17 @@ export const Traits = ({ traits }) => {
           {ability.map((ability) =>
             ability.is_hidden === true ? (
               <td key={ability.ability.name}>
-                {ability.ability.name.charAt(0).toUpperCase() +
-                  ability.ability.name.slice(1).replace('-', ' ')}
+                <Link
+                  to={`/Abilities/${ability.ability.name}`}
+                  style={{
+                    color: '#f0f0f0',
+                    textShadow: '2px 2px #851bed',
+                    textDecoration: 'none',
+                  }}
+                >
+                  {ability.ability.name.charAt(0).toUpperCase() +
+                    ability.ability.name.slice(1).replace('-', ' ')}
+                </Link>
               </td>
             ) : null
           )}
@@ -199,7 +218,18 @@ export const Moveset = ({ moves }) => {
                   ? '-'
                   : moveList[index].version_group_details[0].level_learned_at}
               </td>
-              <td>{capitalizer(move.name)}</td>
+              <td>
+                <Link
+                  to={`/Moves/${move.name}`}
+                  style={{
+                    color: '#f0f0f0',
+                    textShadow: '2px 2px #851bed',
+                    textDecoration: 'none',
+                  }}
+                >
+                  {capitalizer(move.name)}
+                </Link>
+              </td>
               <td>{move.damage_class.name}</td>
               <td>{move.type.name}</td>
               <td>{move.power ? move.power : '-'}</td>
