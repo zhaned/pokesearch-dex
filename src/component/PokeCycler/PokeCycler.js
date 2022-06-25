@@ -35,7 +35,7 @@ const PokeCycler = ({pokeNumber, side}) => {
             key={artUrl.number1}
             src={artUrl.url1}
             alt={artUrl.number1}
-            className={`fade-in-${side}`}
+            className={`fade-in-${side} hover-up`}
           />
         </Link>
       </div>

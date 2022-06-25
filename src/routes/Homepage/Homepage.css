@@ -1,0 +1,24 @@
+.sprite-icon {
+  width: 136px;
+  height: 75px;
+  /* overflow: hidden; */
+}
+
+.sprite-ani div img {
+  animation: sprite-animation 1.2s steps(1) infinite;
+}
+
+.sprite-ani:hover div img {
+  animation: sprite-animation2 0.3s steps(1) infinite;
+}
+
+@keyframes sprite-animation {
+  50% {
+    transform: translateY(-15px);
+  }
+}
+@keyframes sprite-animation2 {
+  50% {
+    transform: translateY(-15px);
+  }
+}
