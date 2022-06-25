@@ -6,13 +6,44 @@ export const Stats = ({ species, traits }) => {
   //fix: height near 12 inches aren't converted (.3m becomes 0"12)
   const height = (traits.height * 10) / 2.54 / 12; // in ft
   const weight = Math.round(2.20462 * traits.weight) / 10; // in lbs
-
+  const texttest = species.flavor_text_entries[0].flavor_text;
+  // function capsChecker(text) {
+  //   const oldText = text.split(' ');
+  //   const capText = [];
+  //   let newText;
+  //   oldText.map((word) => {
+  //     word.charAt(0) === word.charAt(0).toUpperCase()
+  //       ? capText.push(
+  //           word.charAt(0).toUpperCase() + word.toLowerCase().slice(1)
+  //         )
+  //       : capText.push(word);
+  //   });
+  //   newText = capText.join(' ');
+  //   return newText;
+  // }
+  function capsChecker(text) {
+    const oldText = text.split(' ');
+    let newText;
+    oldText.map((word, index) => (
+      word.charAt(0) === word.charAt(0).toUpperCase()
+        ? (oldText[index] =
+            word.charAt(0).toUpperCase() + word.toLowerCase().slice(1))
+        : oldText[index] = word
+    ));
+    newText = oldText.join(' ').replace('\u000c', ' ');
+    return newText;
+  }
   return (
     <table className="col border-end">
       <tbody>
         <tr>
           <th>Description: </th>
-          <td>{species.flavor_text_entries[0].flavor_text}</td>
+          <td>
+            {
+              capsChecker(texttest)
+              // species.flavor_text_entries[0].flavor_text
+            }
+          </td>
         </tr>
         <tr>
           <th>Height:</th>
@@ -107,7 +138,7 @@ export const Traits = ({ traits }) => {
                   className="stat-visuals rounded-end border border-start-0"
                   style={{
                     width: `${stat.base_stat / 2}%`,
-                    minWidth: `${stat.base_stat < 10 ? '5%' : '7%'}`
+                    minWidth: `${stat.base_stat < 10 ? '5%' : '7%'}`,
                   }}
                 >
                   {stat.base_stat}
