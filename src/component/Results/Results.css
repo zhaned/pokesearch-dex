@@ -1,5 +1,15 @@
+a {
+  color: #f8f9fa;
+  text-shadow: 2px 2px #851bed;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #f8f9fa;
+}
+
 .fade-in-above > * {
-  animation: fadeinabove 0.25s linear forwards;
+  animation: fadeinabove 0.3s linear forwards;
 }
 
 @keyframes fadeinabove {
@@ -22,9 +32,9 @@
   background-color: rgb(133, 27, 237);
   text-align: start;
   padding-left: 2px;
-  animation: progressBar 1s ease-in-out;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+  animation: progressBar 1s ease-in-out;
 }
 
 @keyframes progressBar {

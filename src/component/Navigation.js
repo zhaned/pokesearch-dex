@@ -1,26 +1,34 @@
 import { Link, useLocation } from 'react-router-dom';
-
+import './navigation.css'
 const Navigation = () => {
   const location = useLocation();
   return (
-    <nav className="navbar border-bottom border-2" style={{ backgroundColor: 'rgba(0,0,0,.15)' }}>
+    <nav
+      className="navbar border-bottom border-2"
+      style={{ backgroundColor: 'rgba(0,0,0,.15)' }}
+    >
+      <Link to="/" className='' style={{ textDecoration: 'none', 
+            textShadow: '0px 0px #f8f9fa'
+          }}>
       <div
-        className="rounded-pill pe-2"
-        style={{
-          backgroundColor: 'rgb(240, 240, 240)',
-          border: '.2rem solid #851bed',
-        }}
+        className="rounded-pill pe-2 home-link"
+        
       >
-        <Link to="/" style={{ textDecoration: 'none' }}>
           <img
             src={require('../images/pokeapi-dex-icon.png')}
             alt=""
             className="m-1"
             style={{ height: '2rem' }}
           />
-          <span style={{ color: 'rgb(133, 27, 237)' }}>PokeAPI Dex</span>
-        </Link>
+          <span
+            // style={{
+            //   color: 'rgb(133, 27, 237)',
+            // }}
+          >
+            PokeAPI Dex
+          </span>
       </div>
+        </Link>
       <div>
         {location.pathname !== '/Search' && (
           <Link to="/Search">

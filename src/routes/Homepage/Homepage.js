@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PokeCycler from '../../component/PokeCycler/PokeCycler';
 import './Homepage.css';
@@ -15,7 +14,7 @@ const Homepage = () => {
       <h1
         className="display-3 text-center"
         style={{
-          color: '#f0f0f0',
+          color: '#f8f9fa',
           textShadow: '2px 2px #851bed',
           marginTop: '5%',
         }}
@@ -33,11 +32,10 @@ const Homepage = () => {
             // verticalAlign: 'middle',
             // textAlign: 'center',
             textShadow: '2px 2px #851bed',
-            
           }}
         >
-          <div className='mb-3 sprite-ani'>
-            <Link to="/Search" style={{ color: '#f0f0f0'}}>
+          <div className="mb-3 sprite-ani">
+            <Link to="/Search" style={{ color: '#f8f9fa' }}>
               <div className="sprite-icon container p-0">
                 <img
                   src={pokeIcon}
@@ -47,20 +45,20 @@ const Homepage = () => {
                     width: '100%',
                     height: 'auto',
                     // objectFit: 'cover',
-                    objectPosition: '0px -37px'
+                    objectPosition: '0px -37px',
                   }}
                 />
               </div>
               <button
                 className="btn btn-danger btn-lg"
-                style={{ color: '#f0f0f0', textShadow: '2px 2px #851bed' }}
+                style={{ color: '#f8f9fa', textShadow: '2px 2px #851bed' }}
               >
                 Look up Pokemon now!
               </button>
             </Link>
           </div>
-          <div className='mb-3 sprite-ani'>
-            <Link to="/Abilities" style={{ color: '#f0f0f0' }}>
+          <div className="mb-3 sprite-ani">
+            <Link to="/Abilities" style={{ color: '#f8f9fa' }}>
               <div className="sprite-icon container p-0">
                 <img
                   src={abilityIcon}
@@ -70,20 +68,20 @@ const Homepage = () => {
                     width: '100%',
                     height: 'auto',
                     // objectFit: 'cover',
-                    objectPosition: '0px -37px'
+                    objectPosition: '0px -37px',
                   }}
                 />
               </div>
               <button
                 className="btn btn-success btn-lg"
-                style={{ color: '#f0f0f0', textShadow: '2px 2px #851bed' }}
+                style={{ color: '#f8f9fa', textShadow: '2px 2px #851bed' }}
               >
                 ... or abilities!
               </button>
             </Link>
           </div>
-          <div className='mb-3 sprite-ani'>
-            <Link to="/Moves" style={{ color: '#f0f0f0' }}>
+          <div className="mb-3 sprite-ani">
+            <Link to="/Moves" style={{ color: '#f8f9fa' }}>
               <div className="sprite-icon container p-0">
                 <img
                   src={moveIcon}
@@ -93,13 +91,13 @@ const Homepage = () => {
                     width: '100%',
                     height: 'auto',
                     // objectFit: 'cover',
-                    objectPosition: '0px -37px'
+                    objectPosition: '0px -37px',
                   }}
                 />
               </div>
               <button
                 className="btn btn-primary btn-lg"
-                style={{ color: '#f0f0f0', textShadow: '2px 2px #851bed' }}
+                style={{ color: '#f8f9fa', textShadow: '2px 2px #851bed' }}
               >
                 ... or even moves!
               </button>

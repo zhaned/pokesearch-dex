@@ -3,7 +3,7 @@ const Moves = () => {
     <div
       className="d-flex align-items-center flex-column"
       style={{
-        color: '#f0f0f0',
+        color: '#f8f9fa',
         textShadow: '2px 2px #851bed',
       }}
     >

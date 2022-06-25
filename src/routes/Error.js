@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 export default function Error() {
   return (
     <div
       className="d-flex flex-column justify-content-center align-items-center"
-      style={{ height: "70vh" }}
+      style={{ height: '70vh' }}
     >
       <h1
         className="display-3 m-3"
         style={{
-          color: "#f0f0f0",
-          textShadow: "2px 2px #851bed",
+          color: '#f8f9fa',
+          textShadow: '2px 2px #851bed',
         }}
       >
         Sorry, but this page does not exist.

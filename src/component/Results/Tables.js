@@ -90,20 +90,13 @@ export const Traits = ({ traits }) => {
     <table className="col border-end">
       <tbody>
         <tr>
-          <th>Abilities</th>
+            <th><Link to={`/Abilities`}>Abilities</Link></th>
         </tr>
         <tr>
           {ability.map((ability) =>
             ability.is_hidden === false ? (
               <td className="pe-1" key={ability.ability.name}>
-                <Link
-                  to={`/Abilities/${ability.ability.name}`}
-                  style={{
-                    color: '#f0f0f0',
-                    textShadow: '2px 2px #851bed',
-                    textDecoration: 'none',
-                  }}
-                >
+                <Link to={`/Abilities/${ability.ability.name}`}>
                   {ability.ability.name.charAt(0).toUpperCase() +
                     ability.ability.name.slice(1).replace('-', ' ')}
                 </Link>
@@ -116,14 +109,7 @@ export const Traits = ({ traits }) => {
           {ability.map((ability) =>
             ability.is_hidden === true ? (
               <td key={ability.ability.name}>
-                <Link
-                  to={`/Abilities/${ability.ability.name}`}
-                  style={{
-                    color: '#f0f0f0',
-                    textShadow: '2px 2px #851bed',
-                    textDecoration: 'none',
-                  }}
-                >
+                <Link to={`/Abilities/${ability.ability.name}`}>
                   {ability.ability.name.charAt(0).toUpperCase() +
                     ability.ability.name.slice(1).replace('-', ' ')}
                 </Link>
@@ -135,7 +121,9 @@ export const Traits = ({ traits }) => {
       <tbody>
         {stats.map((stat) => (
           <Fragment key={stat.stat.name}>
-            <tr>
+            <tr
+            // style={{height: '28px'}}
+            >
               <th
                 className="border border-bottom-0 px-1"
                 style={{ backgroundColor: 'rgba(0,0,0,.15)' }}
@@ -196,7 +184,9 @@ export const Moveset = ({ moves }) => {
       <thead className="text-center move-thead">
         <tr>
           <th>
-            <h4>Moves</h4>
+            <Link to={`/Moves`}>
+              <h4>Moves</h4>
+            </Link>
           </th>
         </tr>
       </thead>
@@ -219,16 +209,7 @@ export const Moveset = ({ moves }) => {
                   : moveList[index].version_group_details[0].level_learned_at}
               </td>
               <td>
-                <Link
-                  to={`/Moves/${move.name}`}
-                  style={{
-                    color: '#f0f0f0',
-                    textShadow: '2px 2px #851bed',
-                    textDecoration: 'none',
-                  }}
-                >
-                  {capitalizer(move.name)}
-                </Link>
+                <Link to={`/Moves/${move.name}`}>{capitalizer(move.name)}</Link>
               </td>
               <td>{move.damage_class.name}</td>
               <td>{move.type.name}</td>

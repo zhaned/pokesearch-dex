@@ -1,4 +1,4 @@
-import PokeLookUp from "../component/PokeList/PokeLookUp";
+import PokeLookUp from '../component/PokeList/PokeLookUp';
 
 const SearchPage = () => {
   return (
@@ -6,13 +6,19 @@ const SearchPage = () => {
       <h1
         className="display-3"
         style={{
-          color: "#f0f0f0",
-          textShadow: "2px 2px #851bed",
+          color: '#f8f9fa',
+          textShadow: '2px 2px #851bed',
         }}
       >
         <p className="text-center">Search Page</p>
       </h1>
-      <hr style={{border: "1px solid #f0f0f0",borderRadius: "2px", opacity: '1'}} />
+      <hr
+        style={{
+          border: '1px solid #f8f9fa',
+          borderRadius: '2px',
+          opacity: '1',
+        }}
+      />
       <PokeLookUp />
     </div>
   );

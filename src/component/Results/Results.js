@@ -28,19 +28,19 @@ const Results = ({ pokemon, species }) => {
           >
             {type}
           </span>{' '}
-          {type2 === 2 ? 
-          <span
-            className="border rounded px-1"
-            style={{ backgroundColor: Type(pokemon.types[1].type.name) }}
-          >
-          {pokemon.types[1].type.name} 
-          </span>
-          : null}
+          {type2 === 2 ? (
+            <span
+              className="border rounded px-1"
+              style={{ backgroundColor: Type(pokemon.types[1].type.name) }}
+            >
+              {pokemon.types[1].type.name}
+            </span>
+          ) : null}
         </p>
       </div>
       <hr
         style={{
-          border: '1px solid #f0f0f0',
+          border: '1px solid #f8f9fa',
           borderRadius: '2px',
           opacity: '1',
         }}
@@ -54,7 +54,7 @@ const Results = ({ pokemon, species }) => {
               require(`../../images/types/${type}-bg.png`) +
               ') no-repeat ',
             backgroundPosition: 'center',
-            backgroundSize: '100% 100%',
+            backgroundSize: '100% 100%'
           }}
         >
           <Stats species={species} traits={pokemon} />
@@ -80,7 +80,7 @@ const Results = ({ pokemon, species }) => {
         </div>
         <hr
           style={{
-            border: '1px solid #f0f0f0',
+            border: '1px solid #f8f9fa',
             borderRadius: '2px',
             opacity: '1',
           }}

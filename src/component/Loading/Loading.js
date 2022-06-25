@@ -7,8 +7,9 @@ export default function Loading() {
       <h1
         className="display-2"
         style={{
-          color: '#f0f0f0',
-          textShadow: '0 0 6px #851bed, 0 0 6px #851bed, 0 0 6px #851bed, 0 0 6px #851bed',
+          color: '#f8f9fa',
+          textShadow:
+            '0 0 6px #851bed, 0 0 6px #851bed, 0 0 6px #851bed, 0 0 6px #851bed',
         }}
       >
         Loading <span className="blinking"> . . .</span>

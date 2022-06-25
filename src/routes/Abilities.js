@@ -3,7 +3,7 @@ const Abilities = () => {
     <div
       className="container d-flex flex-column align-items-center"
       style={{
-        color: '#f0f0f0',
+        color: '#f8f9fa',
         textShadow: '2px 2px #851bed',
       }}
     >
