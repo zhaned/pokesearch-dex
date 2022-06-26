@@ -2,17 +2,20 @@ import { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 import './Results.css';
-import { regionFilter, langFilter, capitalizer, capsChecker } from './TableFunctions';
-
-
-
+import {
+  regionFilter,
+  langFilter,
+  capitalizer,
+  capsChecker,
+  heightConverter,
+} from './TableFunctions';
 
 export const Stats = ({ species, traits }) => {
   //fix: height near 12 inches aren't converted (.3m becomes 0"12)
-  const height = (traits.height * 10) / 2.54 / 12; // in ft
+  // const height = (traits.height * 10) / 2.54 / 12; // in ft
+  const height = traits.height / 10;
   const weight = Math.round(2.20462 * traits.weight) / 10; // in lbs
-  const description = regionFilter(langFilter(species.flavor_text_entries))
-  console.log(height)
+  const description = regionFilter(langFilter(species.flavor_text_entries));
   return (
     <table className="col border-end">
       <tbody>
@@ -20,10 +23,9 @@ export const Stats = ({ species, traits }) => {
           <th>Description: </th>
           <td>
             {
-            `(${capitalizer(description.version.name)}): ${capsChecker(description.flavor_text)} `
-              // regionFilter(langFilter(species.flavor_text_entries))
-              
-              // capsChecker(description)
+              `(${capitalizer(description.version.name)}): ${capsChecker(
+                description.flavor_text
+              )} `
               // species.flavor_text_entries[0].flavor_text
             }
           </td>
@@ -31,12 +33,7 @@ export const Stats = ({ species, traits }) => {
         <tr>
           <th>Height:</th>
           <td>
-            {`${Math.floor(height)}'${
-              Math.round((height % 1) * 12) < 10
-                ? '0' + Math.round((height % 1) * 12) + '"'
-                : Math.round((height % 1) * 12) + '"'
-            }`}{' '}
-            ({(height * 12 * 2.54) / 100} m)
+            {heightConverter(height)} ({height} m)
           </td>
         </tr>
         <tr>
