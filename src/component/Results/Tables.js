@@ -2,35 +2,17 @@ import { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 import './Results.css';
+import { regionFilter, langFilter, capitalizer, capsChecker } from './TableFunctions';
 
-function capsChecker(text) {
-  const oldText = text
-    .replace(/\u000c/g, ' ')
-    .replace(/\n/g, ' ')
-    .split(' ');
-  const capText = [];
-  oldText.map((word) =>
-    word.charAt(0) === word.charAt(0).toUpperCase()
-      ? capText.push(word.charAt(0).toUpperCase() + word.toLowerCase().slice(1))
-      : capText.push(word)
-  );
-  return capText.join(' ');
-}
 
-function capitalizer(text) {
-  const oldText = text.replace('-', ' ').split(' ');
-  let newText = [];
-  oldText.map((word) =>
-    newText.push(word.charAt(0).toUpperCase() + word.toLowerCase().slice(1))
-  );
-  return newText.join(' ');
-}
+
+
 export const Stats = ({ species, traits }) => {
   //fix: height near 12 inches aren't converted (.3m becomes 0"12)
   const height = (traits.height * 10) / 2.54 / 12; // in ft
   const weight = Math.round(2.20462 * traits.weight) / 10; // in lbs
-  const description = species.flavor_text_entries[0].flavor_text;
-
+  const description = regionFilter(langFilter(species.flavor_text_entries))
+  console.log(height)
   return (
     <table className="col border-end">
       <tbody>
@@ -38,7 +20,10 @@ export const Stats = ({ species, traits }) => {
           <th>Description: </th>
           <td>
             {
-              capsChecker(description)
+            `(${capitalizer(description.version.name)}): ${capsChecker(description.flavor_text)} `
+              // regionFilter(langFilter(species.flavor_text_entries))
+              
+              // capsChecker(description)
               // species.flavor_text_entries[0].flavor_text
             }
           </td>
@@ -66,7 +51,7 @@ export const Stats = ({ species, traits }) => {
         </tr>
         <tr>
           <th>Egg Groups: </th>
-          <td>{species.egg_groups.map((group) => group.name + ' ')}</td>
+          <td>{species.egg_groups.map((group) => group.name + ' | ')}</td>
         </tr>
         <tr>
           <th>Base Egg Cycle: </th>
@@ -90,15 +75,16 @@ export const Traits = ({ traits }) => {
     <table className="col border-end">
       <tbody>
         <tr>
-            <th><Link to={`/Abilities`}>Abilities</Link></th>
+          <th>
+            <Link to={`/Abilities`}>Abilities</Link>
+          </th>
         </tr>
         <tr>
           {ability.map((ability) =>
             ability.is_hidden === false ? (
               <td className="pe-1" key={ability.ability.name}>
                 <Link to={`/Abilities/${ability.ability.name}`}>
-                  {ability.ability.name.charAt(0).toUpperCase() +
-                    ability.ability.name.slice(1).replace('-', ' ')}
+                  {capitalizer(ability.ability.name)}
                 </Link>
               </td>
             ) : null
@@ -110,8 +96,7 @@ export const Traits = ({ traits }) => {
             ability.is_hidden === true ? (
               <td key={ability.ability.name}>
                 <Link to={`/Abilities/${ability.ability.name}`}>
-                  {ability.ability.name.charAt(0).toUpperCase() +
-                    ability.ability.name.slice(1).replace('-', ' ')}
+                  {capitalizer(ability.ability.name)}
                 </Link>
               </td>
             ) : null
@@ -211,8 +196,8 @@ export const Moveset = ({ moves }) => {
               <td>
                 <Link to={`/Moves/${move.name}`}>{capitalizer(move.name)}</Link>
               </td>
-              <td>{move.damage_class.name}</td>
-              <td>{move.type.name}</td>
+              <td>{capitalizer(move.damage_class.name)}</td>
+              <td>{capitalizer(move.type.name)}</td>
               <td>{move.power ? move.power : '-'}</td>
               <td>{move.accuracy ? `${move.accuracy}%` : '-'}</td>
               <td>{move.pp}</td>

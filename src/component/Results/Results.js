@@ -16,6 +16,9 @@ const Results = ({ pokemon, species }) => {
       }}
     >
       <div className="d-flex justify-content-center">
+        <div>
+          {/* fix: add the previous pokemon as a link here with a sprite */}
+        </div>
         <h1 className="display-3 text-center pt-1 pe-1">
           #{pokemon.id}{' '}
           {/*fix: change this to get the id from species.url later*/}
@@ -37,6 +40,9 @@ const Results = ({ pokemon, species }) => {
             </span>
           ) : null}
         </p>
+        <div>
+          {/* fix: add the next pokemon as a link here with a sprite */}
+        </div>
       </div>
       <hr
         style={{
@@ -54,7 +60,7 @@ const Results = ({ pokemon, species }) => {
               require(`../../images/types/${type}-bg.png`) +
               ') no-repeat ',
             backgroundPosition: 'center',
-            backgroundSize: '100% 100%'
+            backgroundSize: '100% 100%',
           }}
         >
           <Stats species={species} traits={pokemon} />
