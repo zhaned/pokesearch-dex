@@ -34,6 +34,7 @@ const Homepage = () => {
             textShadow: '2px 2px #851bed',
           }}
         >
+          {/*fix: animations are in the way of the button so you can't click */}
           <div className="mb-3 sprite-ani">
             <Link to="/Search" style={{ color: '#f8f9fa' }}>
               <div className="sprite-icon container p-0">

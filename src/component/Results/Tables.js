@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../Loading/Loading';
-import './Results.css';
+import Type from '../Type';
 import {
   regionFilter,
   langFilter,
@@ -9,6 +9,7 @@ import {
   capsChecker,
   heightConverter,
 } from './TableFunctions';
+import './Results.css';
 
 export const Stats = ({ species, traits }) => {
   //fix: height near 12 inches aren't converted (.3m becomes 0"12)
@@ -166,9 +167,7 @@ export const Moveset = ({ moves }) => {
       <thead className="text-center move-thead">
         <tr>
           <th>
-            <Link to={`/Moves`}>
               <h4>Moves</h4>
-            </Link>
           </th>
         </tr>
       </thead>
@@ -193,8 +192,8 @@ export const Moveset = ({ moves }) => {
               <td>
                 <Link to={`/Moves/${move.name}`}>{capitalizer(move.name)}</Link>
               </td>
-              <td>{capitalizer(move.damage_class.name)}</td>
-              <td>{capitalizer(move.type.name)}</td>
+              <td><img src={require(`../../images/${move.damage_class.name}-icon.png`)} alt=""  title={capitalizer(move.damage_class.name)} /></td>
+              <td><span className="border rounded p-1" style={{backgroundColor: Type(move.type.name)}}>{capitalizer(move.type.name)}</span></td>
               <td>{move.power ? move.power : '-'}</td>
               <td>{move.accuracy ? `${move.accuracy}%` : '-'}</td>
               <td>{move.pp}</td>

@@ -6,10 +6,12 @@
 
 .sprite-ani div img {
   animation: sprite-animation 1.2s steps(1) infinite;
+  z-index: -1;
 }
 
 .sprite-ani:hover div img {
   animation: sprite-animation2 0.3s steps(1) infinite;
+  z-index: -1;
 }
 
 @keyframes sprite-animation {
