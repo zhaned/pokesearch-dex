@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import './navigation.css'
+import './navigation.css';
 const Navigation = () => {
   const location = useLocation();
   return (
@@ -7,13 +7,12 @@ const Navigation = () => {
       className="navbar border-bottom border-2"
       style={{ backgroundColor: 'rgba(0,0,0,.15)' }}
     >
-      <Link to="/" className='' style={{ textDecoration: 'none', 
-            textShadow: '0px 0px #f8f9fa'
-          }}>
-      <div
-        className="rounded-pill pe-2 home-link"
-        
+      <Link
+        to="/"
+        className=""
+        style={{ textDecoration: 'none', textShadow: '0px 0px #f8f9fa' }}
       >
+        <div className="rounded-pill pe-2 home-link">
           <img
             src={require('../images/pokeapi-dex-icon.png')}
             alt=""
@@ -21,14 +20,14 @@ const Navigation = () => {
             style={{ height: '2rem' }}
           />
           <span
-            // style={{
-            //   color: 'rgb(133, 27, 237)',
-            // }}
+          // style={{
+          //   color: 'rgb(133, 27, 237)',
+          // }}
           >
             PokeAPI Dex
           </span>
-      </div>
-        </Link>
+        </div>
+      </Link>
       <div>
         {location.pathname !== '/Search' && (
           <Link to="/Search">

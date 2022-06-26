@@ -91,6 +91,13 @@ const Results = ({ pokemon, species }) => {
             opacity: '1',
           }}
         />
+        <hr
+          style={{
+            border: '1px solid #f8f9fa',
+            borderRadius: '2px',
+            opacity: '1',
+          }}
+        />
         <div>
           <Moveset moves={pokemon.moves} />
         </div>

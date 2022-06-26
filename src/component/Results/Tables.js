@@ -69,6 +69,15 @@ export const Traits = ({ traits }) => {
     if (stat.stat.name === 'special-defense') stat.stat.name = 'sp-def';
     return stat;
   });
+  const ev = capitalizer(
+    stats
+      .filter((stat) => stat.effort > 0)
+      .map((data) => {
+        return data.stat.name + ': ' + data.effort;
+      })
+      .join(', ')
+  );
+
   return (
     <table className="col border-end">
       <tbody>
@@ -102,6 +111,12 @@ export const Traits = ({ traits }) => {
         </tr>
       </tbody>
       <tbody>
+        <tr>
+          <th>Effort Values:</th>
+          <td>{ev}</td>
+        </tr>
+      </tbody>
+      <tbody>
         {stats.map((stat) => (
           <Fragment key={stat.stat.name}>
             <tr
@@ -111,10 +126,7 @@ export const Traits = ({ traits }) => {
                 className="border border-bottom-0 px-1"
                 style={{ backgroundColor: 'rgba(0,0,0,.15)' }}
               >
-                <div>
-                  {stat.stat.name.charAt(0).toUpperCase() +
-                    stat.stat.name.slice(1)}
-                </div>
+                <div>{capitalizer(stat.stat.name)}</div>
               </th>
               <td
                 style={{
@@ -167,7 +179,7 @@ export const Moveset = ({ moves }) => {
       <thead className="text-center move-thead">
         <tr>
           <th>
-              <h4>Moves</h4>
+            <h4>Moves</h4>
           </th>
         </tr>
       </thead>
@@ -192,8 +204,21 @@ export const Moveset = ({ moves }) => {
               <td>
                 <Link to={`/Moves/${move.name}`}>{capitalizer(move.name)}</Link>
               </td>
-              <td><img src={require(`../../images/${move.damage_class.name}-icon.png`)} alt=""  title={capitalizer(move.damage_class.name)} /></td>
-              <td><span className="border rounded p-1" style={{backgroundColor: Type(move.type.name)}}>{capitalizer(move.type.name)}</span></td>
+              <td>
+                <img
+                  src={require(`../../images/damage-classes/${move.damage_class.name}-icon.png`)}
+                  alt=""
+                  title={capitalizer(move.damage_class.name)}
+                />
+              </td>
+              <td>
+                <span
+                  className="border rounded p-1"
+                  style={{ backgroundColor: Type(move.type.name) }}
+                >
+                  {capitalizer(move.type.name)}
+                </span>
+              </td>
               <td>{move.power ? move.power : '-'}</td>
               <td>{move.accuracy ? `${move.accuracy}%` : '-'}</td>
               <td>{move.pp}</td>

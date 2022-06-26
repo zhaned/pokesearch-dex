@@ -8,9 +8,22 @@
   animation: colorchange .25s forwards;
 }
 
+.home-link:hover img {
+  animation: fastspin .25s forwards;
+}
+
+@keyframes fastspin {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes colorchange {
   100%{
-    background-color: #2c3034;
+    background-color: #888b8f;
     color: #f8f9fa;
   }
 }
