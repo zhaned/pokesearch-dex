@@ -50,8 +50,30 @@ export function capsChecker(text) {
   return capText.join(' ');
 }
 
-export function statRenamer (stat) {
+export function statRenamer(stat) {
   if (stat === 'special-attack') stat = 'sp-atk';
   if (stat === 'special-defense') stat = 'sp-def';
-return capitalizer(stat);
+  return capitalizer(stat);
 }
+
+  //fix: dynamically choose learn method and region
+  //this will filter the move list to only a specific region and learn method
+  export const moveFilter = (array) => {
+    const newArr = array
+      .filter((move) => {
+        if (
+          move.version_group_details.some(
+            (method) => method.move_learn_method.name === 'level-up' && method.version_group.name === 'sword-shield'
+          )
+        )
+          return move;
+        return null;
+      })
+      .sort((a, b) => {
+        return (
+          a.version_group_details[0].level_learned_at -
+          b.version_group_details[0].level_learned_at
+        );
+      });
+    return newArr;
+  };
