@@ -9,7 +9,8 @@ import {
   capsChecker,
   heightConverter,
   statRenamer,
-  moveFilter
+  moveFilter,
+  levelGetter
 } from './TableFunctions';
 import './Results.css';
 
@@ -149,8 +150,9 @@ export const Traits = ({ traits }) => {
 
 export const Moveset = ({ moves }) => {
   const [moveInfo, setMoveInfo] = useState();
-  const moveList = moveFilter(moves);
 
+  //fix: dynamically choose version and learn method
+  const moveList = moveFilter(moves, 'sword-shield', 'level-up');
   const getMoveInfo = async () => {
     const url = moveList.map((move) =>
       fetch(move.move.url).then((res) => res.json())
@@ -159,6 +161,8 @@ export const Moveset = ({ moves }) => {
     setMoveInfo(responses);
   };
 
+
+  // console.log(levelGetter(moveList, 'sword-shield'))
   useEffect(() => {
     getMoveInfo();
   }, []);
@@ -187,9 +191,10 @@ export const Moveset = ({ moves }) => {
           <Fragment key={move.name}>
             <tr>
               <td>
-                {moveList[index].version_group_details[0].level_learned_at === 1
+                {/* {moveList[index].version_group_details[0].level_learned_at === 1
                   ? '-'
-                  : moveList[index].version_group_details[0].level_learned_at}
+                  : moveList[index].version_group_details[0].level_learned_at}{' | '} */}
+                {levelGetter(moveList[index], 'sword-shield') === 1 ? '-' : levelGetter(moveList[index], 'sword-shield')}
               </td>
               <td>
                 <Link to={`/Moves/${move.name}`}>{capitalizer(move.name)}</Link>

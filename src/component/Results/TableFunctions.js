@@ -56,14 +56,13 @@ export function statRenamer(stat) {
   return capitalizer(stat);
 }
 
-  //fix: dynamically choose learn method and region
-  //this will filter the move list to only a specific region and learn method
-  export const moveFilter = (array) => {
+  //this will filter the move list to only a specific version and learn method
+  export const moveFilter = (array, version, learn_method) => {
     const newArr = array
       .filter((move) => {
         if (
           move.version_group_details.some(
-            (method) => method.move_learn_method.name === 'level-up' && method.version_group.name === 'sword-shield'
+            (method) => method.move_learn_method.name === learn_method && method.version_group.name === version
           )
         )
           return move;
@@ -71,9 +70,19 @@ export function statRenamer(stat) {
       })
       .sort((a, b) => {
         return (
-          a.version_group_details[0].level_learned_at -
-          b.version_group_details[0].level_learned_at
+          // a.version_group_details[0].level_learned_at -
+          // b.version_group_details[0].level_learned_at
+          levelGetter(a, version) - levelGetter(b, version)
         );
       });
     return newArr;
+  };
+
+  export const levelGetter = (moves, version) => {
+    for (let index of moves.version_group_details) {
+      console.log('index', index);
+      if (index.version_group.name === version && index.level_learned_at > 0) {
+        return index.level_learned_at;
+      }
+    }
   };
