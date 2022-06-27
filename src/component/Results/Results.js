@@ -1,11 +1,14 @@
 import './Results.css';
 import { Moveset, Stats, Traits } from './Tables';
 import Type from '../Type';
+import { useState } from 'react';
 
 //fix: convert the number into a name so the search url is more consistent
 //fixed: dynamic background based on type
 //fix: refactor this place holy
 const Results = ({ pokemon, species }) => {
+  //this will be pulled from the url of the version group
+  const [version, setVersion] = useState('20')
   const type = pokemon.types[0].type.name;
   const type2 = pokemon.types.length;
   return (
@@ -99,7 +102,7 @@ const Results = ({ pokemon, species }) => {
           }}
         />
         <div>
-          <Moveset moves={pokemon.moves} />
+          <Moveset moves={pokemon.moves} version={version}/>
         </div>
       </div>
     </div>

@@ -62,7 +62,7 @@ export function statRenamer(stat) {
       .filter((move) => {
         if (
           move.version_group_details.some(
-            (method) => method.move_learn_method.name === learn_method && method.version_group.name === version
+            (method) => method.move_learn_method.name === learn_method && method.version_group.url === `https://pokeapi.co/api/v2/version-group/${version}/`
           )
         )
           return move;
@@ -80,8 +80,7 @@ export function statRenamer(stat) {
 
   export const levelGetter = (moves, version) => {
     for (let index of moves.version_group_details) {
-      console.log('index', index);
-      if (index.version_group.name === version && index.level_learned_at > 0) {
+      if (index.version_group.url === `https://pokeapi.co/api/v2/version-group/${version}/` && index.level_learned_at > 0) {
         return index.level_learned_at;
       }
     }
