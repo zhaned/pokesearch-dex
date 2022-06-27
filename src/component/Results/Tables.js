@@ -8,6 +8,7 @@ import {
   capitalizer,
   capsChecker,
   heightConverter,
+  statRenamer
 } from './TableFunctions';
 import './Results.css';
 
@@ -64,11 +65,7 @@ export const Stats = ({ species, traits }) => {
 
 export const Traits = ({ traits }) => {
   const ability = traits.abilities;
-  const stats = traits.stats.map((stat) => {
-    if (stat.stat.name === 'special-attack') stat.stat.name = 'sp-atk';
-    if (stat.stat.name === 'special-defense') stat.stat.name = 'sp-def';
-    return stat;
-  });
+  const stats = traits.stats;
   const ev = capitalizer(
     stats
       .filter((stat) => stat.effort > 0)
@@ -78,12 +75,14 @@ export const Traits = ({ traits }) => {
       .join(', ')
   );
 
+
+
   return (
     <table className="col border-end">
       <tbody>
         <tr>
           <th>
-            <Link to={`/Abilities`}>Abilities</Link>
+            Abilities
           </th>
         </tr>
         <tr>
@@ -109,8 +108,6 @@ export const Traits = ({ traits }) => {
             ) : null
           )}
         </tr>
-      </tbody>
-      <tbody>
         <tr>
           <th>Effort Values:</th>
           <td>{ev}</td>
@@ -126,7 +123,7 @@ export const Traits = ({ traits }) => {
                 className="border border-bottom-0 px-1"
                 style={{ backgroundColor: 'rgba(0,0,0,.15)' }}
               >
-                <div>{capitalizer(stat.stat.name)}</div>
+                <div title={capitalizer(stat.stat.name)}>{statRenamer(stat.stat.name)}</div>
               </th>
               <td
                 style={{
@@ -153,14 +150,27 @@ export const Traits = ({ traits }) => {
 
 export const Moveset = ({ moves }) => {
   const [moveInfo, setMoveInfo] = useState();
-  const moveList = moves
-    .filter((move) => move.version_group_details[0].level_learned_at !== 0)
-    .sort((a, b) => {
-      return (
-        a.version_group_details[0].level_learned_at -
-        b.version_group_details[0].level_learned_at
-      );
-    });
+  // original function to get moves
+  // const moveList = moves
+  //   .filter((move) => move.version_group_details[0].level_learned_at !== 0)
+  //   .sort((a, b) => {
+  //     return (
+  //       a.version_group_details[0].level_learned_at -
+  //       b.version_group_details[0].level_learned_at
+  //     );
+  //   });
+
+
+  
+  const moveList = moves.filter((move) => move.version_group_details[0].move_learn_method.name === 'level-up' ).sort((a, b) => {
+    return (
+      a.version_group_details[0].level_learned_at -
+      b.version_group_details[0].level_learned_at
+    );
+  });
+
+  // moves.filter((move) => move.version_group_details.filter((data) => data.move_learn_method.name === "tutor"))
+  // .filter((data) => data.version_group_details[0].version_group.name === 'ruby-sapphire')
   const getMoveInfo = async () => {
     const url = moveList.map((move) =>
       fetch(move.move.url).then((res) => res.json())

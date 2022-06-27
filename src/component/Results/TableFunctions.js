@@ -49,3 +49,9 @@ export function capsChecker(text) {
   );
   return capText.join(' ');
 }
+
+export function statRenamer (stat) {
+  if (stat === 'special-attack') stat = 'sp-atk';
+  if (stat === 'special-defense') stat = 'sp-def';
+return capitalizer(stat);
+}
