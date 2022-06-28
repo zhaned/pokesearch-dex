@@ -10,7 +10,7 @@ import {
   heightConverter,
   statRenamer,
   moveFilter,
-  levelGetter
+  levelGetter,
 } from './TableFunctions';
 import './Results.css';
 
@@ -161,7 +161,6 @@ export const Moveset = ({ moves, version }) => {
     setMoveInfo(responses);
   };
 
-
   useEffect(() => {
     getMoveInfo();
   }, []);
@@ -193,13 +192,16 @@ export const Moveset = ({ moves, version }) => {
                 {/* {moveList[index].version_group_details[0].level_learned_at === 1
                   ? '-'
                   : moveList[index].version_group_details[0].level_learned_at}{' | '} */}
-                {levelGetter(moveList[index], version) === 1 ? '-' : levelGetter(moveList[index], version)}
+                {levelGetter(moveList[index], version) === 0
+                  ? 'Evolve'
+                  : levelGetter(moveList[index], version) === 1 ? '-' : levelGetter(moveList[index], version)}
               </td>
               <td>
                 <Link to={`/Moves/${move.name}`}>{capitalizer(move.name)}</Link>
               </td>
               <td>
                 <img
+                  className="d-flex"
                   src={require(`../../images/damage-classes/${move.damage_class.name}-icon.png`)}
                   alt=""
                   title={capitalizer(move.damage_class.name)}

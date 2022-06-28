@@ -56,32 +56,37 @@ export function statRenamer(stat) {
   return capitalizer(stat);
 }
 
-  //this will filter the move list to only a specific version and learn method
-  export const moveFilter = (array, version, learn_method) => {
-    const newArr = array
-      .filter((move) => {
-        if (
-          move.version_group_details.some(
-            (method) => method.move_learn_method.name === learn_method && method.version_group.url === `https://pokeapi.co/api/v2/version-group/${version}/`
-          )
+//this will filter the move list to only a specific version and learn method
+export const moveFilter = (array, version, learn_method) => {
+  const newArr = array
+    .filter((move) => {
+      if (
+        move.version_group_details.some(
+          (method) =>
+            method.move_learn_method.name === learn_method &&
+            method.version_group.url ===
+              `https://pokeapi.co/api/v2/version-group/${version}/`
         )
-          return move;
-        return null;
-      })
-      .sort((a, b) => {
-        return (
-          // a.version_group_details[0].level_learned_at -
-          // b.version_group_details[0].level_learned_at
-          levelGetter(a, version) - levelGetter(b, version)
-        );
-      });
-    return newArr;
-  };
+      )
+        return move;
+      return null;
+    })
+    .sort((a, b) => {
+      return (
+        // a.version_group_details[0].level_learned_at -
+        // b.version_group_details[0].level_learned_at
+        levelGetter(a, version) - levelGetter(b, version)
+      );
+    });
+  return newArr;
+};
 
-  export const levelGetter = (moves, version) => {
-    for (let index of moves.version_group_details) {
-      if (index.version_group.url === `https://pokeapi.co/api/v2/version-group/${version}/` && index.level_learned_at > 0) {
-        return index.level_learned_at;
-      }
-    }
-  };
+export const levelGetter = (moves, version) => {
+  for (let index of moves.version_group_details) {
+    if (
+      index.version_group.url ===
+      `https://pokeapi.co/api/v2/version-group/${version}/`
+    )
+      return index.level_learned_at;
+  }
+};

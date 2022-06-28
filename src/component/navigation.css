@@ -1,29 +1,70 @@
 .home-link {
   background-color: rgb(240, 240, 240);
-  border: .2rem solid #851bed;
-  color: rgb(133, 27, 237)
+  border: 0.2rem solid #851bed;
+  color: rgb(133, 27, 237);
 }
 
 .home-link:hover {
-  animation: colorchange .25s forwards;
+  animation: colorchange 0.25s forwards;
+}
+
+@keyframes colorchange {
+  100% {
+    background-color: #888b8f;
+    color: #f8f9fa;
+  }
 }
 
 .home-link:hover img {
-  animation: fastspin .25s forwards;
+  animation: fastspin 0.25s forwards;
 }
 
 @keyframes fastspin {
-  from{
+  from {
     transform: rotate(0deg);
   }
-  to{
+  to {
     transform: rotate(360deg);
   }
 }
 
-@keyframes colorchange {
-  100%{
-    background-color: #888b8f;
-    color: #f8f9fa;
+.scroll-in {
+  position: fixed;
+  right: -72px;
+  bottom: 1rem;
+  animation: fadeinabove 0.3s linear forwards;
+  z-index: 1;
+}
+
+.scroll-in:hover {
+  animation: fadeinabove, slideinright;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideinright {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(-72px);
+  }
+}
+
+.scroll-out {
+  position: fixed;
+  right: 0px;
+  bottom: 1rem;
+  animation: fadeoutabove 0.2s linear forwards;
+}
+
+@keyframes fadeoutabove {
+  99% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    z-index: -2;
+    transform: translateY(-10px);
   }
 }

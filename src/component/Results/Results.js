@@ -8,9 +8,10 @@ import { useState } from 'react';
 //fix: refactor this place holy
 const Results = ({ pokemon, species }) => {
   //this will be pulled from the url of the version group
-  const [version, setVersion] = useState('20')
+  const [version, setVersion] = useState('15');
   const type = pokemon.types[0].type.name;
   const type2 = pokemon.types.length;
+
   return (
     <div
       className="fade-in-above text-light"
@@ -102,7 +103,7 @@ const Results = ({ pokemon, species }) => {
           }}
         />
         <div>
-          <Moveset moves={pokemon.moves} version={version}/>
+          <Moveset moves={pokemon.moves} version={version} />
         </div>
       </div>
     </div>

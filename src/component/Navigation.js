@@ -1,5 +1,34 @@
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './navigation.css';
+
+const ScrollTop = () => {
+  const [visible, setVisible] = useState(false);
+
+  const toggleVisible = () => {
+    const scroll = document.documentElement.scrollTop;
+    if (scroll > 64) {
+      setVisible(true);
+    } else if (scroll <= 64) {
+      setVisible(false);
+    }
+  };
+  function someFunc() {
+    window.scrollTo(0, 0);
+  }
+
+  window.addEventListener('scroll', toggleVisible)
+  return (
+    <input
+      className={visible ? 'scroll-in' : 'scroll-out'}
+      type="image"
+      src={require(`../images/scroll-top.png`)}
+      alt=""
+      onClick={someFunc}
+    />
+  );
+};
+
 const Navigation = () => {
   const location = useLocation();
   return (
@@ -19,11 +48,7 @@ const Navigation = () => {
             className="m-1"
             style={{ height: '2rem' }}
           />
-          <span
-          // style={{
-          //   color: 'rgb(133, 27, 237)',
-          // }}
-          >
+          <span>
             PokeAPI Dex
           </span>
         </div>
@@ -47,6 +72,7 @@ const Navigation = () => {
           <button className="btn btn-danger m-1">Favorites</button>
         </Link>
       </div>
+      <ScrollTop />
     </nav>
   );
 };
