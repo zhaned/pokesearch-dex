@@ -1,6 +1,6 @@
 import { useRoutes, useLocation } from 'react-router-dom';
 
-import Navigation from './component/Navigation';
+import Navigation from './component/Navigation/Navigation';
 import Home from './routes/Homepage/Homepage';
 import About from './routes/About';
 import Favorites from './routes/Favorites';
@@ -20,14 +20,14 @@ function useNav() {
 const RouteList = () =>
   useRoutes([
     { path: '/', element: <Home /> },
-    { path: 'About', element: <About /> },
-    { path: 'Favorites', element: <Favorites /> },
-    { path: 'Search', element: <Search /> },
-    { path: 'Search/:id', element: <Pokemon /> },
-    { path: 'Abilities', element: <Abilities /> },
-    { path: 'Abilities/:id', element: <Abilities /> },
-    { path: 'Moves', element: <Moves /> },
-    { path: 'Moves/:id', element: <Moves /> },
+    { path: 'about', element: <About /> },
+    { path: 'favorites', element: <Favorites /> },
+    { path: 'search', element: <Search /> },
+    { path: 'search/:id', element: <Pokemon /> },
+    { path: 'abilities', element: <Abilities /> },
+    { path: 'abilities/:id', element: <Abilities /> },
+    { path: 'moves', element: <Moves /> },
+    { path: 'moves/:id', element: <Moves /> },
     { path: '*', element: <Error /> },
   ]);
 

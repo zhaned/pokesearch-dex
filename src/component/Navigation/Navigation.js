@@ -1,33 +1,8 @@
-import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './navigation.css';
+import ScrollTop from './NavFunctions';
+import './Navigation.css';
 
-const ScrollTop = () => {
-  const [visible, setVisible] = useState(false);
 
-  const toggleVisible = () => {
-    const scroll = document.documentElement.scrollTop;
-    if (scroll > 64) {
-      setVisible(true);
-    } else if (scroll <= 64) {
-      setVisible(false);
-    }
-  };
-  function someFunc() {
-    window.scrollTo(0, 0);
-  }
-
-  window.addEventListener('scroll', toggleVisible)
-  return (
-    <input
-      className={visible ? 'scroll-in' : 'scroll-out'}
-      type="image"
-      src={require(`../images/scroll-top.png`)}
-      alt=""
-      onClick={someFunc}
-    />
-  );
-};
 
 const Navigation = () => {
   const location = useLocation();
@@ -43,7 +18,7 @@ const Navigation = () => {
       >
         <div className="rounded-pill pe-2 home-link">
           <img
-            src={require('../images/pokeapi-dex-icon.png')}
+            src={require('../../images/pokeapi-dex-icon.png')}
             alt=""
             className="m-1"
             style={{ height: '2rem' }}
@@ -54,18 +29,18 @@ const Navigation = () => {
         </div>
       </Link>
       <div>
-        {location.pathname !== '/Search' && (
-          <Link to="/Search">
+        {location.pathname !== '/search' && (
+          <Link to="/search">
             <button className="btn btn-info mx-1">Search</button>
           </Link>
         )}
-        {location.pathname !== '/About' && (
-          <Link to="/About">
+        {location.pathname !== '/about' && (
+          <Link to="/about">
             <button className="btn btn-success mx-1">About</button>
           </Link>
         )}
         <Link
-          to="/Favorites"
+          to="/favorites"
           className="border-start border-2"
           style={{ padding: '16px 0px' }}
         >

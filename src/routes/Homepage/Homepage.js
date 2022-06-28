@@ -36,7 +36,7 @@ const Homepage = () => {
         >
           {/*fix: animations are in the way of the button so you can't click */}
           <div className="mb-3 sprite-ani">
-            <Link to="/Search" style={{ color: '#f8f9fa' }}>
+            <Link to="/search" style={{ color: '#f8f9fa' }}>
               <div className="sprite-icon container p-0">
                 <img
                   src={pokeIcon}
@@ -59,7 +59,7 @@ const Homepage = () => {
             </Link>
           </div>
           <div className="mb-3 sprite-ani">
-            <Link to="/Abilities" style={{ color: '#f8f9fa' }}>
+            <Link to="/abilities" style={{ color: '#f8f9fa' }}>
               <div className="sprite-icon container p-0">
                 <img
                   src={abilityIcon}
@@ -82,7 +82,7 @@ const Homepage = () => {
             </Link>
           </div>
           <div className="mb-3 sprite-ani">
-            <Link to="/Moves" style={{ color: '#f8f9fa' }}>
+            <Link to="/moves" style={{ color: '#f8f9fa' }}>
               <div className="sprite-icon container p-0">
                 <img
                   src={moveIcon}

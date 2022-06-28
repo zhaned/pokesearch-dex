@@ -66,3 +66,14 @@ th {
 .move-tbody tr:last-child :last-child {
   border-bottom-right-radius: 0.5rem;
 }
+
+.next-sprite:hover img {
+  animation: sprite-animation2 0.3s steps(1) infinite;
+  z-index: -1;
+}
+
+@keyframes sprite-animation {
+  50% {
+    transform: translateY(-15px);
+  }
+}

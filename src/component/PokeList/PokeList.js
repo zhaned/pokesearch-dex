@@ -15,7 +15,7 @@ export default function PokeList({ pokemon }) {
       {pokemon.map((p) => (
         <Link
           key={p}
-          to={{ pathname: `/Search/${urlToNumber(p[1])}` }}
+          to={{ pathname: `/search/${urlToNumber(p[1])}` }}
           style={{ textDecoration: 'none' }}
         >
           <div

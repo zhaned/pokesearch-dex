@@ -87,7 +87,7 @@ export const Traits = ({ traits }) => {
           {ability.map((ability) =>
             ability.is_hidden === false ? (
               <td className="pe-1" key={ability.ability.name}>
-                <Link to={`/Abilities/${ability.ability.name}`}>
+                <Link to={`/abilities/${ability.ability.name}`}>
                   {capitalizer(ability.ability.name)}
                 </Link>
               </td>
@@ -99,7 +99,7 @@ export const Traits = ({ traits }) => {
           {ability.map((ability) =>
             ability.is_hidden === true ? (
               <td key={ability.ability.name}>
-                <Link to={`/Abilities/${ability.ability.name}`}>
+                <Link to={`/abilities/${ability.ability.name}`}>
                   {capitalizer(ability.ability.name)}
                 </Link>
               </td>
@@ -189,15 +189,14 @@ export const Moveset = ({ moves, version }) => {
           <Fragment key={move.name}>
             <tr>
               <td>
-                {/* {moveList[index].version_group_details[0].level_learned_at === 1
-                  ? '-'
-                  : moveList[index].version_group_details[0].level_learned_at}{' | '} */}
                 {levelGetter(moveList[index], version) === 0
                   ? 'Evolve'
-                  : levelGetter(moveList[index], version) === 1 ? '-' : levelGetter(moveList[index], version)}
+                  : levelGetter(moveList[index], version) === 1
+                  ? '-'
+                  : levelGetter(moveList[index], version)}
               </td>
               <td>
-                <Link to={`/Moves/${move.name}`}>{capitalizer(move.name)}</Link>
+                <Link to={`/moves/${move.name}`}>{capitalizer(move.name)}</Link>
               </td>
               <td>
                 <img
