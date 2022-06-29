@@ -87,7 +87,10 @@ export const Traits = ({ traits }) => {
           {ability.map((ability) =>
             ability.is_hidden === false ? (
               <td className="pe-1" key={ability.ability.name}>
-                <Link to={`/abilities/${ability.ability.name}`}>
+                <Link
+                  className="stat-name"
+                  to={`/abilities/${ability.ability.name}`}
+                >
                   {capitalizer(ability.ability.name)}
                 </Link>
               </td>
@@ -95,11 +98,14 @@ export const Traits = ({ traits }) => {
           )}
         </tr>
         <tr>
-          <td>Hidden:</td>
+          <td style={{ fontStyle: 'italic' }}>Hidden:</td>
           {ability.map((ability) =>
             ability.is_hidden === true ? (
               <td key={ability.ability.name}>
-                <Link to={`/abilities/${ability.ability.name}`}>
+                <Link
+                  className="stat-name"
+                  to={`/abilities/${ability.ability.name}`}
+                >
                   {capitalizer(ability.ability.name)}
                 </Link>
               </td>
@@ -196,7 +202,9 @@ export const Moveset = ({ moves, version }) => {
                   : levelGetter(moveList[index], version)}
               </td>
               <td>
-                <Link to={`/moves/${move.name}`}>{capitalizer(move.name)}</Link>
+                <Link className="stat-name" to={`/moves/${move.name}`}>
+                  {capitalizer(move.name)}
+                </Link>
               </td>
               <td>
                 <img

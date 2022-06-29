@@ -10,12 +10,10 @@ import { Link, useNavigate } from 'react-router-dom';
 const Results = ({ pokemon, species }) => {
   //this will be pulled from the url of the version group
   const [version, setVersion] = useState('20');
+  const navigate = useNavigate();
   const type = pokemon.types[0].type.name;
   const type2 = pokemon.types.length;
   const id = parseInt(pokemon.species.url.slice(42).split('/'));
-  console.log('reloaded');
-
-  const navigate = useNavigate();
   //this feels kinda hacky but it works for now.
   //takes you to the new location after clicking one of the links
   //to the previous or next pokemon and refreshes the page.

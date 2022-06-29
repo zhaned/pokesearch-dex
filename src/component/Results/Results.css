@@ -4,8 +4,11 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+a:hover{
   color: #f8f9fa;
+}
+.stat-name:hover {
+  text-decoration: underline;
 }
 
 .fade-in-above > * {
