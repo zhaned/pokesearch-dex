@@ -59,7 +59,7 @@ const Results = ({ pokemon, species }) => {
             #{id} {/*fixed: change this to get the id from species.url later*/}
             {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
           </h1>
-          <p className="d-flex align-items-end px-1">
+          <p className="d-flex align-items-end px-1 mt-3">
             <span
               className="border rounded px-1 me-1"
               style={{ backgroundColor: Type(type) }}
