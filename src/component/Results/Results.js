@@ -7,13 +7,14 @@ import { Link, useNavigate } from 'react-router-dom';
 //fix: convert the number into a name so the search url is more consistent
 //fixed: dynamic background based on type
 //fix: refactor this place holy
-const Results = ({ pokemon, species }) => {
+const Results = ({ pokemon, species, evolution, types }) => {
   //this will be pulled from the url of the version group
   const [version, setVersion] = useState('20');
   const navigate = useNavigate();
   const type = pokemon.types[0].type.name;
   const type2 = pokemon.types.length;
   const id = parseInt(pokemon.species.url.slice(42).split('/'));
+  console.log(evolution, types)
   //this feels kinda hacky but it works for now.
   //takes you to the new location after clicking one of the links
   //to the previous or next pokemon and refreshes the page.
