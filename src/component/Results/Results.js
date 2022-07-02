@@ -14,7 +14,7 @@ const Results = ({ pokemon, species, evolution, types }) => {
   const type = pokemon.types[0].type.name;
   const type2 = pokemon.types.length;
   const id = parseInt(pokemon.species.url.slice(42).split('/'));
-  console.log(evolution, types)
+  console.log(pokemon, species, evolution, types)
   //this feels kinda hacky but it works for now.
   //takes you to the new location after clicking one of the links
   //to the previous or next pokemon and refreshes the page.
@@ -28,7 +28,7 @@ const Results = ({ pokemon, species, evolution, types }) => {
     <div
       className="fade-in-above text-light"
       style={{
-        textShadow: '2px 2px #851bed',
+        textShadow: "2px 2px #851bed",
       }}
     >
       <div className="d-flex justify-content-between">
@@ -40,7 +40,7 @@ const Results = ({ pokemon, species, evolution, types }) => {
               onClick={() => updateLocation(`/search/${id - 1}`)}
             >
               <h3 className="next-sprite">
-                <span style={{ verticalAlign: 'bottom' }}>&lt;</span>
+                <span style={{ verticalAlign: "bottom" }}>&lt;</span>
                 <img
                   className="img-fluid"
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${
@@ -54,7 +54,7 @@ const Results = ({ pokemon, species, evolution, types }) => {
         </div>
         <div
           className="d-flex justify-content-center align-items-center"
-          style={{ margin: '0px' }}
+          style={{ margin: "0px" }}
         >
           <h1 className="display-3 text-center pt-1 pe-1">
             #{id} {/*fixed: change this to get the id from species.url later*/}
@@ -66,7 +66,7 @@ const Results = ({ pokemon, species, evolution, types }) => {
               style={{ backgroundColor: Type(type) }}
             >
               {type}
-            </span>{' '}
+            </span>{" "}
             {type2 === 2 ? (
               <span
                 className="border rounded px-1"
@@ -91,7 +91,7 @@ const Results = ({ pokemon, species, evolution, types }) => {
                   }.png`}
                   alt=""
                 />
-                <span style={{ verticalAlign: 'bottom' }}>&gt;</span>
+                <span style={{ verticalAlign: "bottom" }}>&gt;</span>
               </h3>
             </Link>
           )}
@@ -99,9 +99,9 @@ const Results = ({ pokemon, species, evolution, types }) => {
       </div>
       <hr
         style={{
-          border: '1px solid #f8f9fa',
-          borderRadius: '2px',
-          opacity: '1',
+          border: "1px solid #f8f9fa",
+          borderRadius: "2px",
+          opacity: "1",
         }}
       />
       <div>
@@ -109,11 +109,11 @@ const Results = ({ pokemon, species, evolution, types }) => {
           className="d-flex justify-content-between border rounded"
           style={{
             background:
-              'linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url(' +
+              "linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url(" +
               require(`../../images/types/${type}-bg.png`) +
-              ') no-repeat ',
-            backgroundPosition: 'center',
-            backgroundSize: '100% 100%',
+              ") no-repeat ",
+            backgroundPosition: "center",
+            backgroundSize: "100% 100%",
           }}
         >
           <Stats species={species} traits={pokemon} />
@@ -121,34 +121,35 @@ const Results = ({ pokemon, species, evolution, types }) => {
           <div
             className="d-flex rounded-circle justify-content-center align-items-center col"
             style={{
-              objectFit: 'contain',
-              border: '1px solid #851bed',
+              objectFit: "contain",
+              border: "1px solid #851bed",
               background:
-                'linear-gradient(rgba(240, 240, 240, 0.35),rgba(15,15,15, 0.35) )',
+                "linear-gradient(rgba(240, 240, 240, 0.35),rgba(15,15,15, 0.35) )",
             }}
           >
             <img
-              src={pokemon.sprites.other['official-artwork'].front_default}
+              src={pokemon.sprites.other["official-artwork"].front_default}
               alt={pokemon.id}
               className="img-fluid ms-1"
               style={{
-                maxHeight: '84%',
+                maxHeight: "84%",
               }}
             />
           </div>
         </div>
         <hr
           style={{
-            border: '1px solid #f8f9fa',
-            borderRadius: '2px',
-            opacity: '1',
+            border: "1px solid #f8f9fa",
+            borderRadius: "2px",
+            opacity: "1",
           }}
         />
+        <div>{evolution.chain.species.name} -&gt; {evolution.chain.evolves_to.is_baby}</div>
         <hr
           style={{
-            border: '1px solid #f8f9fa',
-            borderRadius: '2px',
-            opacity: '1',
+            border: "1px solid #f8f9fa",
+            borderRadius: "2px",
+            opacity: "1",
           }}
         />
         <div>
