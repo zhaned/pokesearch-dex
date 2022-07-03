@@ -36,7 +36,6 @@ const Pokemon = () => {
           fetch(data.evolution_chain.url)
             .then((res) => (res.ok ? res.json() : Promise.reject(res)))
             .then((data) => {
-              console.log('look here', data)
               setEvolution(data);
             });
         });

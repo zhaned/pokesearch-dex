@@ -234,3 +234,119 @@ export const Moveset = ({ moves, version }) => {
     <Loading />
   );
 };
+
+export const Evolutions = ({evolution}) => {
+  return (
+    <div className="d-flex flex-wrap align-items-center">
+      {evolution.chain.evolves_to[0] ? (
+        evolution.chain.evolves_to[0].evolves_to[0] ? (
+          <>
+            <div
+              className="d-flex flex-column m-2  text-center"
+              style={{
+                width: "9rem",
+                height: "auto",
+              }}
+            >
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+                  evolution.chain.species.url.slice(42).split("/")
+                )}.png`}
+                alt=""
+              />
+              {capitalizer(evolution.chain.species.name)}
+            </div>
+            {" -> "}
+            <div
+              className="d-flex flex-column m-2  text-center"
+              style={{
+                width: "9rem",
+                height: "auto",
+              }}
+            >
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+                  evolution.chain.evolves_to[0].species.url.slice(42).split("/")
+                )}.png`}
+                alt=""
+              />
+              {capitalizer(evolution.chain.evolves_to[0].species.name)}
+            </div>
+            {" -> "}
+            <div
+              className="d-flex flex-column m-2  text-center"
+              style={{
+                width: "9rem",
+                height: "auto",
+              }}
+            >
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+                  evolution.chain.evolves_to[0].evolves_to[0].species.url
+                    .slice(42)
+                    .split("/")
+                )}.png`}
+                alt=""
+              />
+              {capitalizer(
+                evolution.chain.evolves_to[0].evolves_to[0].species.name
+              )}
+            </div>
+          </>
+        ) : (
+          <>
+            <div
+              className="d-flex flex-column m-2  text-center"
+              style={{
+                width: "9rem",
+                height: "auto",
+              }}
+            >
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+                  evolution.chain.species.url.slice(42).split("/")
+                )}.png`}
+                alt=""
+              />
+              {capitalizer(evolution.chain.species.name)}
+            </div>
+            {" -> "}
+            <div
+              className="d-flex flex-column m-2  text-center"
+              style={{
+                width: "9rem",
+                height: "auto",
+              }}
+            >
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+                  evolution.chain.evolves_to[0].species.url.slice(42).split("/")
+                )}.png`}
+                alt=""
+              />
+              {capitalizer(evolution.chain.evolves_to[0].species.name)}
+            </div>
+          </>
+        )
+      ) : (
+        <div
+          className="d-flex flex-column m-2  text-center"
+          style={{
+            width: "9rem",
+            height: "auto",
+          }}
+        >
+          <img
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+              evolution.chain.species.url.slice(42).split("/")
+            )}.png`}
+            alt=""
+          />
+          {capitalizer(evolution.chain.species.name)}
+          {" does not evolve"}
+        </div>
+      )}
+    </div>
+  );
+}
+ 

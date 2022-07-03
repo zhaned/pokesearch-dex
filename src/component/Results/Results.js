@@ -1,20 +1,19 @@
-import './Results.css';
-import { Moveset, Stats, Traits } from './Tables';
-import Type from '../Type';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import "./Results.css";
+import { Moveset, Stats, Traits, Evolutions } from "./Tables";
+import Type from "../Type";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 //fix: convert the number into a name so the search url is more consistent
 //fixed: dynamic background based on type
 //fix: refactor this place holy
 const Results = ({ pokemon, species, evolution, types }) => {
   //this will be pulled from the url of the version group
-  const [version, setVersion] = useState('20');
+  const [version, setVersion] = useState("20");
   const navigate = useNavigate();
   const type = pokemon.types[0].type.name;
   const type2 = pokemon.types.length;
-  const id = parseInt(pokemon.species.url.slice(42).split('/'));
-  console.log(pokemon, species, evolution, types)
+  const id = parseInt(pokemon.species.url.slice(42).split("/"));
   //this feels kinda hacky but it works for now.
   //takes you to the new location after clicking one of the links
   //to the previous or next pokemon and refreshes the page.
@@ -144,7 +143,7 @@ const Results = ({ pokemon, species, evolution, types }) => {
             opacity: "1",
           }}
         />
-        <div>{evolution.chain.species.name} -&gt; {evolution.chain.evolves_to.is_baby}</div>
+        <Evolutions evolution={evolution} />
         <hr
           style={{
             border: "1px solid #f8f9fa",
