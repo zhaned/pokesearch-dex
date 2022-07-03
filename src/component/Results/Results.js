@@ -12,7 +12,6 @@ const Results = ({ pokemon, species, evolution, types }) => {
   const type2 = pokemon.types.length;
   const id = parseInt(pokemon.species.url.slice(42).split("/"));
 
-
   return (
     <div
       className="fade-in-above text-light"
@@ -68,7 +67,40 @@ const Results = ({ pokemon, species, evolution, types }) => {
             opacity: "1",
           }}
         />
-        <Evolutions evolution={evolution} />
+        <div className="d-flex justify-content-evenly">
+          <Evolutions evolution={evolution} />
+          <div>
+            <table className="">
+              <thead>Type Matchup</thead>
+              <tbody>
+                <tr>
+                  <th>4x damage</th>
+                  <td>somethingosmething</td>
+                </tr>
+                <tr>
+                  <th>2x damage</th>
+                  <td>Fire</td>
+                </tr>
+                <tr>
+                  <th>1x damage</th>
+                  <td>some text </td>
+                </tr>
+                <tr>
+                  <th>1/2 damage</th>
+                  <td>sometype sometype some type 123 1234</td>
+                </tr>
+                <tr>
+                  <th>1/4 damage</th>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th>No damage</th>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <hr
           style={{
             border: "1px solid #f8f9fa",
