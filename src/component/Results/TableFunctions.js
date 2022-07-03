@@ -2,7 +2,7 @@
 export const regionFilter = (arr) => {
   const oldArr = arr;
   let newArr;
-  newArr = oldArr.filter((text) => text.version.name === 'sword');
+  newArr = oldArr.filter((text) => text.version.name === "sword");
   if (newArr.length === 0) return oldArr[oldArr.length - 1];
   return newArr[0];
 };
@@ -10,7 +10,7 @@ export const regionFilter = (arr) => {
 export const langFilter = (arr) => {
   const oldArr = arr;
   let newArr;
-  newArr = oldArr.filter((text) => text.language.name === 'en');
+  newArr = oldArr.filter((text) => text.language.name === "en");
   return newArr;
 };
 
@@ -20,7 +20,7 @@ export const heightConverter = (height) => {
   sample % 1 < 11.5 / 12
     ? (feetIn = `${Math.floor(sample)}'${
         Math.round((sample % 1) * 12) < 10
-          ? '0' + Math.round((sample % 1) * 12) + '"'
+          ? "0" + Math.round((sample % 1) * 12) + '"'
           : Math.round((sample % 1) * 12)
       }`)
     : (feetIn = `${Math.floor(sample) + Math.round(sample % 1)}'00`);
@@ -28,31 +28,31 @@ export const heightConverter = (height) => {
 };
 
 export function capitalizer(text) {
-  const oldText = text.replace(/-/g, ' ').split(' ');
+  const oldText = text.replace(/-/g, " ").split(" ");
   let newText = [];
   oldText.map((word) =>
     newText.push(word.charAt(0).toUpperCase() + word.toLowerCase().slice(1))
   );
-  return newText.join(' ');
+  return newText.join(" ");
 }
 
 export function capsChecker(text) {
   const oldText = text
-    .replace(/\u000c/g, ' ')
-    .replace(/\n/g, ' ')
-    .split(' ');
+    .replace(/\u000c/g, " ")
+    .replace(/\n/g, " ")
+    .split(" ");
   const capText = [];
   oldText.map((word) =>
     word.charAt(0) === word.charAt(0).toUpperCase()
       ? capText.push(word.charAt(0).toUpperCase() + word.toLowerCase().slice(1))
       : capText.push(word)
   );
-  return capText.join(' ');
+  return capText.join(" ");
 }
 
 export function statRenamer(stat) {
-  if (stat === 'special-attack') stat = 'sp-atk';
-  if (stat === 'special-defense') stat = 'sp-def';
+  if (stat === "special-attack") stat = "sp-atk";
+  if (stat === "special-defense") stat = "sp-def";
   return capitalizer(stat);
 }
 
@@ -90,3 +90,13 @@ export const levelGetter = (moves, version) => {
       return index.level_learned_at;
   }
 };
+
+//this feels kinda hacky but it works for now.
+//takes you to the new location after clicking one of the links
+//to the previous or next pokemon and refreshes the page.
+//refresh is somewhat necessary because nothing will render since
+//its the same route
+export function updateLocation(navigate, url) {
+  navigate(url, { replace: true });
+  window.location.reload();
+}

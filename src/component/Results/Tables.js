@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 import Type from '../Type';
 import {
@@ -11,6 +11,7 @@ import {
   statRenamer,
   moveFilter,
   levelGetter,
+  updateLocation
 } from './TableFunctions';
 import './Results.css';
 
@@ -236,12 +237,24 @@ export const Moveset = ({ moves, version }) => {
 };
 
 export const Evolutions = ({evolution}) => {
+  const navigate = useNavigate();
   return (
     <div className="d-flex flex-wrap align-items-center">
       {evolution.chain.evolves_to[0] ? (
         evolution.chain.evolves_to[0].evolves_to[0] ? (
           <>
-            <div
+            <Link
+              to={`/search/${parseInt(
+                evolution.chain.species.url.slice(42).split("/")
+              )}`}
+              onClick={() =>
+                updateLocation(
+                  navigate,
+                  `/search/${parseInt(
+                    evolution.chain.species.url.slice(42).split("/")
+                  )}`
+                )
+              }
               className="d-flex flex-column m-2  text-center"
               style={{
                 width: "9rem",
@@ -255,9 +268,22 @@ export const Evolutions = ({evolution}) => {
                 alt=""
               />
               {capitalizer(evolution.chain.species.name)}
-            </div>
+            </Link>
             {" -> "}
-            <div
+            <Link
+              to={`/search/${parseInt(
+                evolution.chain.evolves_to[0].species.url.slice(42).split("/")
+              )}`}
+              onClick={() =>
+                updateLocation(
+                  navigate,
+                  `/search/${parseInt(
+                    evolution.chain.evolves_to[0].species.url
+                      .slice(42)
+                      .split("/")
+                  )}`
+                )
+              }
               className="d-flex flex-column m-2  text-center"
               style={{
                 width: "9rem",
@@ -271,9 +297,24 @@ export const Evolutions = ({evolution}) => {
                 alt=""
               />
               {capitalizer(evolution.chain.evolves_to[0].species.name)}
-            </div>
+            </Link>
             {" -> "}
-            <div
+            <Link
+              to={`/search/${parseInt(
+                evolution.chain.evolves_to[0].evolves_to[0].species.url
+                  .slice(42)
+                  .split("/")
+              )}`}
+              onClick={() =>
+                updateLocation(
+                  navigate,
+                  `/search/${parseInt(
+                    evolution.chain.evolves_to[0].evolves_to[0].species.url
+                      .slice(42)
+                      .split("/")
+                  )}`
+                )
+              }
               className="d-flex flex-column m-2  text-center"
               style={{
                 width: "9rem",
@@ -291,11 +332,22 @@ export const Evolutions = ({evolution}) => {
               {capitalizer(
                 evolution.chain.evolves_to[0].evolves_to[0].species.name
               )}
-            </div>
+            </Link>
           </>
         ) : (
           <>
-            <div
+            <Link
+              to={`/search/${parseInt(
+                evolution.chain.species.url.slice(42).split("/")
+              )}`}
+              onClick={() =>
+                updateLocation(
+                  navigate,
+                  `/search/${parseInt(
+                    evolution.chain.species.url.slice(42).split("/")
+                  )}`
+                )
+              }
               className="d-flex flex-column m-2  text-center"
               style={{
                 width: "9rem",
@@ -309,9 +361,22 @@ export const Evolutions = ({evolution}) => {
                 alt=""
               />
               {capitalizer(evolution.chain.species.name)}
-            </div>
+            </Link>
             {" -> "}
-            <div
+            <Link
+              to={`/search/${parseInt(
+                evolution.chain.evolves_to[0].species.url.slice(42).split("/")
+              )}`}
+              onClick={() =>
+                updateLocation(
+                  navigate,
+                  `/search/${parseInt(
+                    evolution.chain.evolves_to[0].species.url
+                      .slice(42)
+                      .split("/")
+                  )}`
+                )
+              }
               className="d-flex flex-column m-2  text-center"
               style={{
                 width: "9rem",
@@ -325,11 +390,22 @@ export const Evolutions = ({evolution}) => {
                 alt=""
               />
               {capitalizer(evolution.chain.evolves_to[0].species.name)}
-            </div>
+            </Link>
           </>
         )
       ) : (
-        <div
+        <Link
+          to={`/search/${parseInt(
+            evolution.chain.species.url.slice(42).split("/")
+          )}`}
+          onClick={() =>
+            updateLocation(
+              navigate,
+              `/search/${parseInt(
+                evolution.chain.species.url.slice(42).split("/")
+              )}`
+            )
+          }
           className="d-flex flex-column m-2  text-center"
           style={{
             width: "9rem",
@@ -344,9 +420,81 @@ export const Evolutions = ({evolution}) => {
           />
           {capitalizer(evolution.chain.species.name)}
           {" does not evolve"}
-        </div>
+        </Link>
       )}
     </div>
   );
 }
- 
+
+export const Header = ({id, pokemon, type, type2}) => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="d-flex justify-content-between">
+      <div className="d-flex align-items-center">
+        {/* fix: add the previous pokemon as a link here with a sprite */}
+        {id === 1 ? null : (
+          <Link
+            to={`/search/${id - 1}`}
+            onClick={() => updateLocation(navigate, `/search/${id - 1}`)}
+          >
+            <h3 className="next-sprite">
+              <span style={{ verticalAlign: "bottom" }}>&lt;</span>
+              <img
+                className="img-fluid"
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${
+                  id - 1
+                }.png`}
+                alt=""
+              />
+            </h3>
+          </Link>
+        )}
+      </div>
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ margin: "0px" }}
+      >
+        <h1 className="display-3 text-center pt-1 pe-1">
+          #{id} {/*fixed: change this to get the id from species.url later*/}
+          {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+        </h1>
+        <p className="d-flex align-items-end px-1 mt-3">
+          <span
+            className="border rounded px-1 me-1"
+            style={{ backgroundColor: Type(type) }}
+          >
+            {type}
+          </span>{" "}
+          {type2 === 2 ? (
+            <span
+              className="border rounded px-1"
+              style={{ backgroundColor: Type(pokemon.types[1].type.name) }}
+            >
+              {pokemon.types[1].type.name}
+            </span>
+          ) : null}
+        </p>
+      </div>
+      <div className="d-flex align-items-center">
+        {/* fix: add the next pokemon as a link here with a sprite */}
+        {id === 898 ? null : (
+          <Link
+            to={`/search/${id + 1}`}
+            onClick={() => updateLocation(navigate, `/search/${id + 1}`)}
+          >
+            <h3 className="next-sprite">
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${
+                  id + 1
+                }.png`}
+                alt=""
+              />
+              <span style={{ verticalAlign: "bottom" }}>&gt;</span>
+            </h3>
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+}
