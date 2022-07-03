@@ -237,6 +237,7 @@ export const Moveset = ({ moves, version }) => {
 };
 
 export const Evolutions = ({evolution}) => {
+  //fix: include requirement for evolving b/t species
   const navigate = useNavigate();
   return (
     <div className="d-flex flex-wrap align-items-center">
@@ -495,6 +496,52 @@ export const Header = ({id, pokemon, type, type2}) => {
           </Link>
         )}
       </div>
+    </div>
+  );
+}
+
+export const TypeMatchup = ({types}) => {
+
+  return (
+    <div>
+      <h4 className="text-center">Type Matchup</h4>
+      <table className="table m-0" style={{ color: "#f8f9fa" }}>
+        <tbody>
+          <tr>
+            <th>4x damage</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>2x damage</th>
+            <td>
+              {types.damage_relations.double_damage_from.map((type) => (
+                <span
+                  className="border rounded p-1 me-1"
+                  style={{ backgroundColor: Type(type.name) }}
+                >
+                  {capitalizer(type.name)}
+                </span>
+              ))}
+            </td>
+          </tr>
+          <tr>
+            <th>1x damage</th>
+            <td>some text </td>
+          </tr>
+          <tr>
+            <th>1/2 damage</th>
+            <td>sometype sometype some type 123 1234</td>
+          </tr>
+          <tr>
+            <th>1/4 damage</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>No damage</th>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }
