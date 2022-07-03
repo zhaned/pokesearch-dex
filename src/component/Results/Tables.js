@@ -502,47 +502,98 @@ export const Header = ({ id, pokemon, type, type2 }) => {
 };
 
 export const TypeMatchup = ({ types }) => {
-
+  const matchups = TypeMultiplyer(types, TypeNames);
   return (
     <div>
-      <h4 className="text-center">
-        <TypeMultiplyer types={types} TypeNames={TypeNames}/>
-      </h4>
+      <h4 className="text-center">Type Matchup</h4>
       <table className="table m-0" style={{ color: "#f8f9fa" }}>
         <tbody>
           <tr>
             <th>4x damage</th>
-            <td></td>
+            <td>
+              {matchups.quadruple.map((type) => (
+                <span
+                  className="border rounded p-1 me-1"
+                  style={{ backgroundColor: TypeColor(type) }}
+                  key={type}
+                >
+                  {capitalizer(type)}
+                </span>
+              ))}
+            </td>
           </tr>
           <tr>
             <th>2x damage</th>
             <td>
-              {types[0].damage_relations.double_damage_from.map((type) => (
+              {matchups.double.map((type) => (
                 <span
                   className="border rounded p-1 me-1"
-                  style={{ backgroundColor: TypeColor(type.name) }}
-                  key={type.name}
+                  style={{ backgroundColor: TypeColor(type) }}
+                  key={type}
                 >
-                  {capitalizer(type.name)}
+                  {capitalizer(type)}
                 </span>
               ))}
             </td>
           </tr>
           <tr>
             <th>1x damage</th>
-            <td>some text </td>
+            <td>
+              {matchups.neutral.map((type) => (
+                <span
+                  className="border rounded p-1 me-1"
+                  style={{ backgroundColor: TypeColor(type) }}
+                  key={type}
+                >
+                  {capitalizer(type)}
+                </span>
+              ))}
+            </td>
           </tr>
           <tr>
             <th>1/2 damage</th>
-            <td>sometype sometype some type 123 1234</td>
+            <td>
+              {" "}
+              {matchups.half.map((type) => (
+                <span
+                  className="border rounded p-1 me-1"
+                  style={{ backgroundColor: TypeColor(type) }}
+                  key={type}
+                >
+                  {capitalizer(type)}
+                </span>
+              ))}
+            </td>
           </tr>
           <tr>
             <th>1/4 damage</th>
-            <td></td>
+            <td>
+              {" "}
+              {matchups.quarter.map((type) => (
+                <span
+                  className="border rounded p-1 me-1"
+                  style={{ backgroundColor: TypeColor(type) }}
+                  key={type}
+                >
+                  {capitalizer(type)}
+                </span>
+              ))}
+            </td>
           </tr>
           <tr>
             <th>No damage</th>
-            <td></td>
+            <td>
+              {" "}
+              {matchups.no.map((type) => (
+                <span
+                  className="border rounded p-1 me-1"
+                  style={{ backgroundColor: TypeColor(type) }}
+                  key={type}
+                >
+                  {capitalizer(type)}
+                </span>
+              ))}
+            </td>
           </tr>
         </tbody>
       </table>

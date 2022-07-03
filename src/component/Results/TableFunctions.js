@@ -101,11 +101,18 @@ export function updateLocation(navigate, url) {
   window.location.reload();
 }
 
-export const TypeMultiplyer = ({ types, TypeNames }) => {
+export const TypeMultiplyer = (types, TypeNames) => {
   let allTypes = TypeNames();
   let type1 = [];
   let type2 = [];
-
+  let typeFinal = {
+    quadruple: [],
+    double: [],
+    neutral: [],
+    half: [],
+    quarter: [],
+    no: [],
+  };
   types[0].damage_relations.double_damage_from.forEach((type) => {
     type1.push({
       name: type.name,
@@ -168,5 +175,32 @@ export const TypeMultiplyer = ({ types, TypeNames }) => {
     });
   });
   // console.log("alltypes", allTypes, "\n", "type1", type1, "\n", "type2", type2);
-  return "hello world";
+  for (const type of type1) {
+    let somet = type2.find((obj) => obj.name === type.name);
+    const weakness = type.value * somet.value;
+
+    switch (weakness) {
+      case 4:
+        typeFinal.quadruple.push(type.name)
+        break;
+      case 2:
+        typeFinal.double.push(type.name);
+        break;
+      case 1:
+        typeFinal.neutral.push(type.name);
+        break;
+      case 0.5:
+        typeFinal.half.push(type.name);
+        break;
+      case 0.25:
+        typeFinal.quarter.push(type.name);
+        break;
+      case 0:
+        typeFinal.no.push(type.name);
+        break;
+      default:
+        console.log("error in switch statement");
+    }
+  }
+  return typeFinal;
 };
