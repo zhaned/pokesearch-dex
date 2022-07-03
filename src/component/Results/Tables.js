@@ -1,7 +1,7 @@
-import { Fragment, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Loading from '../Loading/Loading';
-import Type from '../Type';
+import { Fragment, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Loading from "../Loading/Loading";
+import { TypeColor, TypeNames } from "../Type";
 import {
   regionFilter,
   langFilter,
@@ -11,9 +11,10 @@ import {
   statRenamer,
   moveFilter,
   levelGetter,
-  updateLocation
-} from './TableFunctions';
-import './Results.css';
+  updateLocation,
+  TypeMultiplyer
+} from "./TableFunctions";
+import "./Results.css";
 
 export const Stats = ({ species, traits }) => {
   //fix: height near 12 inches aren't converted (.3m becomes 0"12)
@@ -53,7 +54,7 @@ export const Stats = ({ species, traits }) => {
         </tr>
         <tr>
           <th>Egg Groups: </th>
-          <td>{species.egg_groups.map((group) => group.name + ' | ')}</td>
+          <td>{species.egg_groups.map((group) => group.name + " | ")}</td>
         </tr>
         <tr>
           <th>Base Egg Cycle: </th>
@@ -73,9 +74,9 @@ export const Traits = ({ traits }) => {
     stats
       .filter((stat) => stat.effort > 0)
       .map((data) => {
-        return data.stat.name + ': ' + data.effort;
+        return data.stat.name + ": " + data.effort;
       })
-      .join(', ')
+      .join(", ")
   );
 
   return (
@@ -99,7 +100,7 @@ export const Traits = ({ traits }) => {
           )}
         </tr>
         <tr>
-          <td style={{ fontStyle: 'italic' }}>Hidden:</td>
+          <td style={{ fontStyle: "italic" }}>Hidden:</td>
           {ability.map((ability) =>
             ability.is_hidden === true ? (
               <td key={ability.ability.name}>
@@ -126,7 +127,7 @@ export const Traits = ({ traits }) => {
             >
               <th
                 className="border border-bottom-0 px-1"
-                style={{ backgroundColor: 'rgba(0,0,0,.15)' }}
+                style={{ backgroundColor: "rgba(0,0,0,.15)" }}
               >
                 <div title={capitalizer(stat.stat.name)}>
                   {statRenamer(stat.stat.name)}
@@ -134,14 +135,14 @@ export const Traits = ({ traits }) => {
               </th>
               <td
                 style={{
-                  width: '100%',
+                  width: "100%",
                 }}
               >
                 <div
                   className="stat-visuals rounded-end border border-start-0"
                   style={{
                     width: `${stat.base_stat / 2}%`,
-                    minWidth: `${stat.base_stat < 10 ? '5%' : '7%'}`,
+                    minWidth: `${stat.base_stat < 10 ? "5%" : "7%"}`,
                   }}
                 >
                   {stat.base_stat}
@@ -159,7 +160,7 @@ export const Moveset = ({ moves, version }) => {
   const [moveInfo, setMoveInfo] = useState();
 
   //fix: dynamically choose version and learn method
-  const moveList = moveFilter(moves, version, 'level-up');
+  const moveList = moveFilter(moves, version, "level-up");
   const getMoveInfo = async () => {
     const url = moveList.map((move) =>
       fetch(move.move.url).then((res) => res.json())
@@ -197,9 +198,9 @@ export const Moveset = ({ moves, version }) => {
             <tr>
               <td>
                 {levelGetter(moveList[index], version) === 0
-                  ? 'Evolve'
+                  ? "Evolve"
                   : levelGetter(moveList[index], version) === 1
-                  ? '-'
+                  ? "-"
                   : levelGetter(moveList[index], version)}
               </td>
               <td>
@@ -218,13 +219,13 @@ export const Moveset = ({ moves, version }) => {
               <td>
                 <span
                   className="border rounded p-1"
-                  style={{ backgroundColor: Type(move.type.name) }}
+                  style={{ backgroundColor: TypeColor(move.type.name) }}
                 >
                   {capitalizer(move.type.name)}
                 </span>
               </td>
-              <td>{move.power ? move.power : '-'}</td>
-              <td>{move.accuracy ? `${move.accuracy}%` : '-'}</td>
+              <td>{move.power ? move.power : "-"}</td>
+              <td>{move.accuracy ? `${move.accuracy}%` : "-"}</td>
               <td>{move.pp}</td>
             </tr>
           </Fragment>
@@ -236,7 +237,7 @@ export const Moveset = ({ moves, version }) => {
   );
 };
 
-export const Evolutions = ({evolution}) => {
+export const Evolutions = ({ evolution }) => {
   //fix: include requirement for evolving b/t species
   const navigate = useNavigate();
   return (
@@ -425,9 +426,9 @@ export const Evolutions = ({evolution}) => {
       )}
     </div>
   );
-}
+};
 
-export const Header = ({id, pokemon, type, type2}) => {
+export const Header = ({ id, pokemon, type, type2 }) => {
   const navigate = useNavigate();
 
   return (
@@ -463,14 +464,14 @@ export const Header = ({id, pokemon, type, type2}) => {
         <p className="d-flex align-items-end px-1 mt-3">
           <span
             className="border rounded px-1 me-1"
-            style={{ backgroundColor: Type(type) }}
+            style={{ backgroundColor: TypeColor(type) }}
           >
             {type}
           </span>{" "}
           {type2 !== null ? (
             <span
               className="border rounded px-1"
-              style={{ backgroundColor: Type(pokemon.types[1].type.name) }}
+              style={{ backgroundColor: TypeColor(pokemon.types[1].type.name) }}
             >
               {pokemon.types[1].type.name}
             </span>
@@ -498,13 +499,15 @@ export const Header = ({id, pokemon, type, type2}) => {
       </div>
     </div>
   );
-}
+};
 
-export const TypeMatchup = ({types}) => {
+export const TypeMatchup = ({ types }) => {
 
   return (
     <div>
-      <h4 className="text-center">Type Matchup</h4>
+      <h4 className="text-center">
+        <TypeMultiplyer types={types} TypeNames={TypeNames}/>
+      </h4>
       <table className="table m-0" style={{ color: "#f8f9fa" }}>
         <tbody>
           <tr>
@@ -514,15 +517,15 @@ export const TypeMatchup = ({types}) => {
           <tr>
             <th>2x damage</th>
             <td>
-              {/* {types.damage_relations.double_damage_from.map((type) => (
+              {types[0].damage_relations.double_damage_from.map((type) => (
                 <span
                   className="border rounded p-1 me-1"
-                  style={{ backgroundColor: Type(type.name) }}
+                  style={{ backgroundColor: TypeColor(type.name) }}
                   key={type.name}
                 >
                   {capitalizer(type.name)}
                 </span>
-              ))} */}
+              ))}
             </td>
           </tr>
           <tr>
@@ -545,4 +548,4 @@ export const TypeMatchup = ({types}) => {
       </table>
     </div>
   );
-}
+};

@@ -100,3 +100,73 @@ export function updateLocation(navigate, url) {
   navigate(url, { replace: true });
   window.location.reload();
 }
+
+export const TypeMultiplyer = ({ types, TypeNames }) => {
+  let allTypes = TypeNames();
+  let type1 = [];
+  let type2 = [];
+
+  types[0].damage_relations.double_damage_from.forEach((type) => {
+    type1.push({
+      name: type.name,
+      value: 2,
+    });
+    const index = allTypes.indexOf(type.name);
+    if (index > -1) allTypes.splice(index, 1);
+  });
+  types[0].damage_relations.half_damage_from.forEach((type) => {
+    type1.push({
+      name: type.name,
+      value: 0.5,
+    });
+    const index = allTypes.indexOf(type.name);
+    if (index > -1) allTypes.splice(index, 1);
+  });
+  types[0].damage_relations.no_damage_from.forEach((type) => {
+    type1.push({
+      name: type.name,
+      value: 0,
+    });
+    const index = allTypes.indexOf(type.name);
+    if (index > -1) allTypes.splice(index, 1);
+  });
+  allTypes.forEach((type) => {
+    type1.push({
+      name: type,
+      value: 1,
+    });
+  });
+  allTypes = TypeNames();
+  types[1].damage_relations.double_damage_from.forEach((type) => {
+    type2.push({
+      name: type.name,
+      value: 2,
+    });
+    const index = allTypes.indexOf(type.name);
+    if (index > -1) allTypes.splice(index, 1);
+  });
+  types[1].damage_relations.half_damage_from.forEach((type) => {
+    type2.push({
+      name: type.name,
+      value: 0.5,
+    });
+    const index = allTypes.indexOf(type.name);
+    if (index > -1) allTypes.splice(index, 1);
+  });
+  types[1].damage_relations.no_damage_from.forEach((type) => {
+    type2.push({
+      name: type.name,
+      value: 0,
+    });
+    const index = allTypes.indexOf(type.name);
+    if (index > -1) allTypes.splice(index, 1);
+  });
+  allTypes.forEach((type) => {
+    type2.push({
+      name: type,
+      value: 1,
+    });
+  });
+  // console.log("alltypes", allTypes, "\n", "type1", type1, "\n", "type2", type2);
+  return "hello world";
+};

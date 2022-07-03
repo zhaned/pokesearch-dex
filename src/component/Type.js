@@ -1,29 +1,89 @@
 const typeColor = {
-  bug: '#91af08',
-  dark: '#3c3c3c',
-  dragon: '#5000e0',
-  electric: '#d1d000',
-  fighting: '#e63600',
-  fire: '#d55400',
-  fairy: '#e17dee',
-  flying: '#9279c8',
-  ghost: '#59457f',
-  grass: '#29af28',
-  ground: '#8a662d',
-  ice:  '#6bd3e7',
-  normal: '#808080',
-  poison: '#7b00c6',
-  psychic: '#cf3d6e',
-  rock: '#85715c',
-  steel: '#a1a1a1',
-  water: '#1773d8',
+  bug: {
+    name: 'bug',
+    color: '#91af08',
+  },
+  dark: {
+    name: 'dark',
+    color: '#3c3c3c',
+  },
+  dragon: {
+    name: 'dragon',
+    color: '#5000e0',
+  },
+  electric: {
+    name: 'electric',
+    color: '#d1d000',
+  },
+  fighting: {
+    name:'fighting',
+    color: '#e63600',
+  },
+  fire: {
+    name:'fire',
+    color:'#d55400',
+  },
+  fairy: {
+    name: 'fairy',
+    color: '#e17dee',
+  },
+  flying: {
+    name:'flying',
+    color: '#9279c8',
+  },
+  ghost: {
+    name: 'ghost',
+    color:'#59457f',
+  },
+  grass: {
+    name: 'grass',
+    color: '#29af28',
+  },
+  ground: {
+    name: 'ground',
+    color:'#8a662d',
+  },
+  ice: {
+    name:'ice',
+    color:'#6bd3e7',
+  },
+  normal: {
+    name:'normal',
+    color:'#808080',
+  },
+  poison: {
+    name:'poison',
+    color:'#7b00c6',
+  },
+  psychic: {
+    name:'psychic',
+    color:'#cf3d6e',
+  },
+  rock: {
+    name:'rock',
+    color:'#85715c',
+  },
+  steel: {
+    name:'steel',
+    color:'#a1a1a1',
+  },
+  water: {
+    name:'water',
+    color:'#1773d8',
+  }
 }
 
-const Type = (type) => {
+
+export const TypeColor = (type) => {
   const typing = type;
-  const color = typeColor[typing] || 'black';
+  const color = typeColor[typing].color || 'black';
   return color;
 
 }
+
+export const TypeNames = () => {
+  const names = Object.keys(typeColor)
+  return names;
+}
  
-export default Type;
+ 

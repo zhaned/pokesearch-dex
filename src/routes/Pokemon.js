@@ -11,6 +11,7 @@ const Pokemon = () => {
   const [types, setTypes] = useState();
   useEffect(() => {
     function fetchPokemon() {
+      let types = [];
       return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then((res) => (res.ok ? res.json() : Promise.reject(res)))
         .then((data) => {
@@ -18,20 +19,15 @@ const Pokemon = () => {
           return data;
         })
         .then((data) => {
-          let types = [];
           data.types.map((type) =>
             fetch(type.type.url)
               .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-              .then((data) => types.push(data)).then(setTypes(types))
+              .then((data) => {
+                types.push(data);
+                setTypes(types);
+              })
           );
         });
-      // .then((data) => {
-      //   fetch(data.types[0].type.url)
-      //     .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-      //     .then((data) => {
-      //       setTypes(data);
-      //     });
-      // });
     }
     function fetchSpecies() {
       return fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
