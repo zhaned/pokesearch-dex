@@ -18,12 +18,20 @@ const Pokemon = () => {
           return data;
         })
         .then((data) => {
-          fetch(data.types[0].type.url)
-            .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-            .then((data) => {
-              setTypes(data);
-            });
+          let types = [];
+          data.types.map((type) =>
+            fetch(type.type.url)
+              .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+              .then((data) => types.push(data)).then(setTypes(types))
+          );
         });
+      // .then((data) => {
+      //   fetch(data.types[0].type.url)
+      //     .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      //     .then((data) => {
+      //       setTypes(data);
+      //     });
+      // });
     }
     function fetchSpecies() {
       return fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
@@ -40,13 +48,8 @@ const Pokemon = () => {
             });
         });
     }
-
     fetchPokemon();
     fetchSpecies();
-    // Promise.all([fetchPokemon(), fetchSpecies()]);
-
-    // fetchTypes();
-    // fetchEvolution();
   }, []);
 
   //stops the component from rendering until data is fetched

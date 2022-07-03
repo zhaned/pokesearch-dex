@@ -467,7 +467,7 @@ export const Header = ({id, pokemon, type, type2}) => {
           >
             {type}
           </span>{" "}
-          {type2 === 2 ? (
+          {type2 !== null ? (
             <span
               className="border rounded px-1"
               style={{ backgroundColor: Type(pokemon.types[1].type.name) }}
@@ -514,14 +514,15 @@ export const TypeMatchup = ({types}) => {
           <tr>
             <th>2x damage</th>
             <td>
-              {types.damage_relations.double_damage_from.map((type) => (
+              {/* {types.damage_relations.double_damage_from.map((type) => (
                 <span
                   className="border rounded p-1 me-1"
                   style={{ backgroundColor: Type(type.name) }}
+                  key={type.name}
                 >
                   {capitalizer(type.name)}
                 </span>
-              ))}
+              ))} */}
             </td>
           </tr>
           <tr>

@@ -16,8 +16,9 @@ const Results = ({ pokemon, species, evolution, types }) => {
   //this will be pulled from the url of the version group
   const [version, setVersion] = useState("20");
   const type = pokemon.types[0].type.name;
-  const type2 = pokemon.types.length;
+  const type2 = pokemon.types.length > 1 ? pokemon.types[1].type.name : null;
   const id = parseInt(pokemon.species.url.slice(42).split("/"));
+  console.log(types)
   return (
     <div
       className="fade-in-above text-light"
