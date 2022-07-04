@@ -144,30 +144,32 @@ export const TypeMultiplyer = (types, TypeNames) => {
     });
   });
   allTypes = TypeNames();
-  types[1].damage_relations.double_damage_from.forEach((type) => {
-    type2.push({
-      name: type.name,
-      value: 2,
+  if (types.length > 1) {
+    types[1].damage_relations.double_damage_from.forEach((type) => {
+      type2.push({
+        name: type.name,
+        value: 2,
+      });
+      const index = allTypes.indexOf(type.name);
+      if (index > -1) allTypes.splice(index, 1);
     });
-    const index = allTypes.indexOf(type.name);
-    if (index > -1) allTypes.splice(index, 1);
-  });
-  types[1].damage_relations.half_damage_from.forEach((type) => {
-    type2.push({
-      name: type.name,
-      value: 0.5,
+    types[1].damage_relations.half_damage_from.forEach((type) => {
+      type2.push({
+        name: type.name,
+        value: 0.5,
+      });
+      const index = allTypes.indexOf(type.name);
+      if (index > -1) allTypes.splice(index, 1);
     });
-    const index = allTypes.indexOf(type.name);
-    if (index > -1) allTypes.splice(index, 1);
-  });
-  types[1].damage_relations.no_damage_from.forEach((type) => {
-    type2.push({
-      name: type.name,
-      value: 0,
+    types[1].damage_relations.no_damage_from.forEach((type) => {
+      type2.push({
+        name: type.name,
+        value: 0,
+      });
+      const index = allTypes.indexOf(type.name);
+      if (index > -1) allTypes.splice(index, 1);
     });
-    const index = allTypes.indexOf(type.name);
-    if (index > -1) allTypes.splice(index, 1);
-  });
+  }
   allTypes.forEach((type) => {
     type2.push({
       name: type,
@@ -176,12 +178,11 @@ export const TypeMultiplyer = (types, TypeNames) => {
   });
   // console.log("alltypes", allTypes, "\n", "type1", type1, "\n", "type2", type2);
   for (const type of type1) {
-    let somet = type2.find((obj) => obj.name === type.name);
+    let somet = type2.find((obj) => obj.name === type.name) || 1;
     const weakness = type.value * somet.value;
-
     switch (weakness) {
       case 4:
-        typeFinal.quadruple.push(type.name)
+        typeFinal.quadruple.push(type.name);
         break;
       case 2:
         typeFinal.double.push(type.name);

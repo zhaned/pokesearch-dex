@@ -12,7 +12,7 @@ import {
   moveFilter,
   levelGetter,
   updateLocation,
-  TypeMultiplyer
+  TypeMultiplyer,
 } from "./TableFunctions";
 import "./Results.css";
 
@@ -259,7 +259,7 @@ export const Evolutions = ({ evolution }) => {
               }
               className="d-flex flex-column m-2  text-center"
               style={{
-                width: "9rem",
+                width: "10rem",
                 height: "auto",
               }}
             >
@@ -288,7 +288,7 @@ export const Evolutions = ({ evolution }) => {
               }
               className="d-flex flex-column m-2  text-center"
               style={{
-                width: "9rem",
+                width: "10rem",
                 height: "auto",
               }}
             >
@@ -319,7 +319,7 @@ export const Evolutions = ({ evolution }) => {
               }
               className="d-flex flex-column m-2  text-center"
               style={{
-                width: "9rem",
+                width: "10rem",
                 height: "auto",
               }}
             >
@@ -352,7 +352,7 @@ export const Evolutions = ({ evolution }) => {
               }
               className="d-flex flex-column m-2  text-center"
               style={{
-                width: "9rem",
+                width: "10rem",
                 height: "auto",
               }}
             >
@@ -381,7 +381,7 @@ export const Evolutions = ({ evolution }) => {
               }
               className="d-flex flex-column m-2  text-center"
               style={{
-                width: "9rem",
+                width: "10rem",
                 height: "auto",
               }}
             >
@@ -410,7 +410,7 @@ export const Evolutions = ({ evolution }) => {
           }
           className="d-flex flex-column m-2  text-center"
           style={{
-            width: "9rem",
+            width: "10rem",
             height: "auto",
           }}
         >
@@ -502,7 +502,8 @@ export const Header = ({ id, pokemon, type, type2 }) => {
 };
 
 export const TypeMatchup = ({ types }) => {
-  const matchups = TypeMultiplyer(types, TypeNames);
+  const pokemonTypes = types;
+  const matchups = TypeMultiplyer(pokemonTypes, TypeNames);
   return (
     <div>
       <h4 className="text-center">Type Matchup</h4>
@@ -538,10 +539,15 @@ export const TypeMatchup = ({ types }) => {
           </tr>
           <tr>
             <th>1x damage</th>
-            <td>
+            <td
+              className="d-flex flex-wrap"
+              style={{
+                maxWidth: "24vw",
+              }}
+            >
               {matchups.neutral.map((type) => (
                 <span
-                  className="border rounded p-1 me-1"
+                  className="border rounded p-1 mb-1 me-1"
                   style={{ backgroundColor: TypeColor(type) }}
                   key={type}
                 >
