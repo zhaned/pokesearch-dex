@@ -293,8 +293,7 @@ export const Evolutions = ({ evolution }) => {
                     }
                     className="d-flex flex-column m-2  text-center"
                     style={{
-                      minWidth: '8rem',
-                      maxWidth: '10rem',
+                      width: '10rem',
                       height: 'auto',
                     }}
                   >
@@ -405,8 +404,7 @@ export const Evolutions = ({ evolution }) => {
                     }
                     className="d-flex flex-column m-2  text-center"
                     style={{
-                      minWidth: '8rem',
-                      maxWidth: '10rem',
+                      width: '10rem',
                       height: 'auto',
                     }}
                   >
@@ -539,10 +537,10 @@ export const TypeMatchup = ({ types }) => {
   return (
     <div>
       <h4 className="text-center">Type Matchup</h4>
-      <table className="border-top table m-0" style={{ color: '#f8f9fa' }}>
+      <table className="table m-0 tester" style={{ color: '#f8f9fa' }}>
         <tbody>
           <tr>
-            <th>4x damage</th>
+            <th>4x damage:</th>
             <td>
               {matchups.quadruple.map((type) => (
                 <span
@@ -556,7 +554,7 @@ export const TypeMatchup = ({ types }) => {
             </td>
           </tr>
           <tr>
-            <th>2x damage</th>
+            <th>2x damage:</th>
             <td>
               {matchups.double.map((type) => (
                 <span
@@ -570,7 +568,7 @@ export const TypeMatchup = ({ types }) => {
             </td>
           </tr>
           <tr>
-            <th>1x damage</th>
+            <th>1x damage:</th>
             <td
               className="d-flex flex-wrap"
               style={{
@@ -589,7 +587,7 @@ export const TypeMatchup = ({ types }) => {
             </td>
           </tr>
           <tr>
-            <th>1/2 damage</th>
+            <th>1/2 damage:</th>
             <td>
               {' '}
               {matchups.half.map((type) => (
@@ -604,7 +602,7 @@ export const TypeMatchup = ({ types }) => {
             </td>
           </tr>
           <tr>
-            <th>1/4 damage</th>
+            <th>1/4 damage:</th>
             <td>
               {' '}
               {matchups.quarter.map((type) => (
@@ -619,7 +617,7 @@ export const TypeMatchup = ({ types }) => {
             </td>
           </tr>
           <tr>
-            <th>No damage</th>
+            <th>No damage:</th>
             <td>
               {' '}
               {matchups.no.map((type) => (

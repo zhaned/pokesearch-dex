@@ -73,7 +73,7 @@ const Results = ({ pokemon, species, evolution, types }) => {
             opacity: "1",
           }}
         />
-        <div className="d-flex justify-content-evenly">
+        <div className="d-flex justify-content-between">
           <Evolutions evolution={evolution} />
           <TypeMatchup types={types}/>
         </div>

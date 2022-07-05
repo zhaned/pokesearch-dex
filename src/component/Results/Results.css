@@ -1,3 +1,24 @@
+.tester td span{
+  margin-bottom: .25rem;
+}
+.tester tr *{
+  padding: .25rem .25rem;
+  border-bottom: 0px solid;
+}
+.tester td {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 24vw;
+  min-height: 41px;
+}
+
+.tester tr{
+  border-top: 1px solid #dee2e6;
+}
+
+.tester th {
+  vertical-align: middle;
+}
 
 a {
   color: #f8f9fa;
