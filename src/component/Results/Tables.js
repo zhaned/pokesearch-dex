@@ -507,7 +507,7 @@ export const TypeMatchup = ({ types }) => {
   return (
     <div>
       <h4 className="text-center">Type Matchup</h4>
-      <table className="table m-0" style={{ color: "#f8f9fa" }}>
+      <table className="border-top table m-0" style={{ color: "#f8f9fa" }}>
         <tbody>
           <tr>
             <th>4x damage</th>
