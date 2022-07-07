@@ -1,5 +1,6 @@
 .tester td span{
   margin-bottom: .25rem;
+  margin-top: .25rem
 }
 .tester tr *{
   padding: .25rem .25rem;
@@ -9,7 +10,7 @@
   display: flex;
   flex-wrap: wrap;
   max-width: 24vw;
-  min-height: 41px;
+  min-height: 50px;
 }
 
 .tester tr{

@@ -13,6 +13,8 @@ import {
   levelGetter,
   updateLocation,
   TypeMultiplyer,
+  EvoTrigger,
+  EvoDetails,
 } from './TableFunctions';
 import './Results.css';
 
@@ -257,7 +259,7 @@ export const Evolutions = ({ evolution }) => {
                   )}`
                 )
               }
-              className="d-flex flex-column m-2  text-center"
+              className="d-flex flex-column text-center"
               style={{
                 width: '10rem',
                 height: 'auto',
@@ -273,25 +275,30 @@ export const Evolutions = ({ evolution }) => {
             </Link>
             <div className="d-flex align-items-center flex-column">
               {evolution.chain.evolves_to.map((evo) => (
-                <div className="d-flex align-items-center" key={evo.species.name}>
-                  {' -> '}
+                <div
+                  className="d-flex align-items-center"
+                  key={evo.species.name}
+                >
+                  <div className="d-flex flex-column">
+                    <EvoDetails evo={evo} />
+                    <span className="text-center" style={{ fontSize: '2rem' }}>
+                      &#8594;
+                    </span>
+                    <EvoTrigger evo={evo} />
+                  </div>
                   <Link
                     to={`/search/${parseInt(
-                      evo.species.url
-                        .slice(42)
-                        .split('/')
+                      evo.species.url.slice(42).split('/')
                     )}`}
                     onClick={() =>
                       updateLocation(
                         navigate,
                         `/search/${parseInt(
-                          evo.species.url
-                            .slice(42)
-                            .split('/')
+                          evo.species.url.slice(42).split('/')
                         )}`
                       )
                     }
-                    className="d-flex flex-column m-2  text-center"
+                    className="d-flex flex-column text-center"
                     style={{
                       width: '10rem',
                       height: 'auto',
@@ -299,59 +306,56 @@ export const Evolutions = ({ evolution }) => {
                   >
                     <img
                       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
-                        evo.species.url
-                          .slice(42)
-                          .split('/')
+                        evo.species.url.slice(42).split('/')
                       )}.png`}
                       alt=""
                     />
-                    {capitalizer(
-                      evo.species.name
-                    )}
+                    {capitalizer(evo.species.name)}
                   </Link>
                 </div>
               ))}
             </div>
             <div className="d-flex align-items-center flex-column">
-            {evolution.chain.evolves_to[0].evolves_to.map((evo) => (
-            <div className="d-flex align-items-center" key={evo.species.name}>
-              {' -> '}
-              <Link
-                to={`/search/${parseInt(
-                  evo.species.url
-                    .slice(42)
-                    .split('/')
-                )}`}
-                onClick={() =>
-                  updateLocation(
-                    navigate,
-                    `/search/${parseInt(
-                      evo.species.url
-                        .slice(42)
-                        .split('/')
-                    )}`
-                  )
-                }
-                className="d-flex flex-column m-2  text-center"
-                style={{
-                  width: '10rem',
-                  height: 'auto',
-                }}
-              >
-                <img
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
-                    evo.species.url
-                      .slice(42)
-                      .split('/')
-                  )}.png`}
-                  alt=""
-                />
-                {capitalizer(
-                  evo.species.name
-                )}
-              </Link>
-            </div>
-            ))}
+              {evolution.chain.evolves_to[0].evolves_to.map((evo) => (
+                <div
+                  className="d-flex align-items-center"
+                  key={evo.species.name}
+                >
+                  <div className="d-flex flex-column">
+                    <EvoDetails evo={evo} />
+                    <span className="text-center" style={{ fontSize: '2rem' }}>
+                      &#8594;
+                    </span>
+                    <EvoTrigger evo={evo} />
+                  </div>
+                  <Link
+                    to={`/search/${parseInt(
+                      evo.species.url.slice(42).split('/')
+                    )}`}
+                    onClick={() =>
+                      updateLocation(
+                        navigate,
+                        `/search/${parseInt(
+                          evo.species.url.slice(42).split('/')
+                        )}`
+                      )
+                    }
+                    className="d-flex flex-column text-center"
+                    style={{
+                      width: '10rem',
+                      height: 'auto',
+                    }}
+                  >
+                    <img
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+                        evo.species.url.slice(42).split('/')
+                      )}.png`}
+                      alt=""
+                    />
+                    {capitalizer(evo.species.name)}
+                  </Link>
+                </div>
+              ))}
             </div>
           </>
         ) : (
@@ -368,7 +372,7 @@ export const Evolutions = ({ evolution }) => {
                   )}`
                 )
               }
-              className="d-flex flex-column m-2  text-center"
+              className="d-flex flex-column text-center"
               style={{
                 width: '10rem',
                 height: 'auto',
@@ -384,25 +388,30 @@ export const Evolutions = ({ evolution }) => {
             </Link>
             <div className="d-flex align-items-center flex-column">
               {evolution.chain.evolves_to.map((evo) => (
-                <div className="d-flex align-items-center" key={evo.species.name}>
-                  {' -> '}
+                <div
+                  className="d-flex align-items-center"
+                  key={evo.species.name}
+                >
+                  <div className="d-flex flex-column">
+                    <EvoDetails evo={evo} />
+                    <span className="text-center" style={{ fontSize: '2rem' }}>
+                      &#8594;
+                    </span>
+                    <EvoTrigger evo={evo} />
+                  </div>
                   <Link
                     to={`/search/${parseInt(
-                      evo.species.url
-                        .slice(42)
-                        .split('/')
+                      evo.species.url.slice(42).split('/')
                     )}`}
                     onClick={() =>
                       updateLocation(
                         navigate,
                         `/search/${parseInt(
-                          evo.species.url
-                            .slice(42)
-                            .split('/')
+                          evo.species.url.slice(42).split('/')
                         )}`
                       )
                     }
-                    className="d-flex flex-column m-2  text-center"
+                    className="d-flex flex-column text-center"
                     style={{
                       width: '10rem',
                       height: 'auto',
@@ -410,15 +419,11 @@ export const Evolutions = ({ evolution }) => {
                   >
                     <img
                       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
-                        evo.species.url
-                          .slice(42)
-                          .split('/')
+                        evo.species.url.slice(42).split('/')
                       )}.png`}
                       alt=""
                     />
-                    {capitalizer(
-                      evo.species.name
-                    )}
+                    {capitalizer(evo.species.name)}
                   </Link>
                 </div>
               ))}
@@ -438,7 +443,7 @@ export const Evolutions = ({ evolution }) => {
               )}`
             )
           }
-          className="d-flex flex-column m-2  text-center"
+          className="d-flex flex-column text-center"
           style={{
             width: '10rem',
             height: 'auto',
@@ -569,12 +574,7 @@ export const TypeMatchup = ({ types }) => {
           </tr>
           <tr>
             <th>1x damage:</th>
-            <td
-              className="d-flex flex-wrap"
-              style={{
-                maxWidth: '24vw',
-              }}
-            >
+            <td>
               {matchups.neutral.map((type) => (
                 <span
                   className="border rounded p-1 mb-1 me-1"

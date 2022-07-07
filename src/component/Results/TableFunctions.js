@@ -2,7 +2,7 @@
 export const regionFilter = (arr) => {
   const oldArr = arr;
   let newArr;
-  newArr = oldArr.filter((text) => text.version.name === "sword");
+  newArr = oldArr.filter((text) => text.version.name === 'sword');
   if (newArr.length === 0) return oldArr[oldArr.length - 1];
   return newArr[0];
 };
@@ -10,7 +10,7 @@ export const regionFilter = (arr) => {
 export const langFilter = (arr) => {
   const oldArr = arr;
   let newArr;
-  newArr = oldArr.filter((text) => text.language.name === "en");
+  newArr = oldArr.filter((text) => text.language.name === 'en');
   return newArr;
 };
 
@@ -20,7 +20,7 @@ export const heightConverter = (height) => {
   sample % 1 < 11.5 / 12
     ? (feetIn = `${Math.floor(sample)}'${
         Math.round((sample % 1) * 12) < 10
-          ? "0" + Math.round((sample % 1) * 12) + '"'
+          ? '0' + Math.round((sample % 1) * 12) + '"'
           : Math.round((sample % 1) * 12)
       }`)
     : (feetIn = `${Math.floor(sample) + Math.round(sample % 1)}'00`);
@@ -28,31 +28,31 @@ export const heightConverter = (height) => {
 };
 
 export function capitalizer(text) {
-  const oldText = text.replace(/-/g, " ").split(" ");
+  const oldText = text.replace(/-/g, ' ').split(' ');
   let newText = [];
   oldText.map((word) =>
     newText.push(word.charAt(0).toUpperCase() + word.toLowerCase().slice(1))
   );
-  return newText.join(" ");
+  return newText.join(' ');
 }
 
 export function capsChecker(text) {
   const oldText = text
-    .replace(/\u000c/g, " ")
-    .replace(/\n/g, " ")
-    .split(" ");
+    .replace(/\u000c/g, ' ')
+    .replace(/\n/g, ' ')
+    .split(' ');
   const capText = [];
   oldText.map((word) =>
     word.charAt(0) === word.charAt(0).toUpperCase()
       ? capText.push(word.charAt(0).toUpperCase() + word.toLowerCase().slice(1))
       : capText.push(word)
   );
-  return capText.join(" ");
+  return capText.join(' ');
 }
 
 export function statRenamer(stat) {
-  if (stat === "special-attack") stat = "sp-atk";
-  if (stat === "special-defense") stat = "sp-def";
+  if (stat === 'special-attack') stat = 'sp-atk';
+  if (stat === 'special-defense') stat = 'sp-def';
   return capitalizer(stat);
 }
 
@@ -200,8 +200,67 @@ export const TypeMultiplyer = (types, TypeNames) => {
         typeFinal.no.push(type.name);
         break;
       default:
-        console.log("error in switch statement");
+        console.log('error in switch statement');
     }
   }
   return typeFinal;
 };
+
+export const EvoTrigger = ({evo}) => {
+  const trigger = evo.evolution_details[0].trigger.name;
+  let newTrigger;
+  let title;
+  switch (trigger) {
+    case 'level-up':
+      title = 'level up to evolve';
+      newTrigger = 'level';
+      break;
+    case 'trade':
+      title = 'trade to evolve';
+      newTrigger = 'trade';
+      break;
+    case 'use-item':
+      title = 'use an item to evolve';
+      newTrigger = 'item';
+      break;
+    case 'shed':
+      title = 'have an empty slot in party';
+      newTrigger = 'shed';
+      break;
+    case 'spin':
+      title = 'spin while holding a sweet item to evolve';
+      newTrigger = 'spin';
+      break;
+    case 'tower-of-darkness':
+    case 'tower-of-waters':
+      title = 'tower of darkness or tower of water';
+      newTrigger = 'tower';
+      break;
+    case 'three-critical-hits':
+      title = 'land 3 critical hits in one battle';
+      newTrigger = 'crit';
+      break;
+    case 'take-damage':
+      title = 'take 49 damage in one battle';
+      newTrigger = 'damage';
+      break;
+    default:
+      break;
+  }
+  return (
+      <div className="d-flex justify-content-center">
+        <img
+          src={require(`../../images/evolution/${newTrigger}-icon.png`)}
+          alt={newTrigger}
+          title={title}
+          style={{ maxWidth: '24px' }}
+        />
+      </div>
+  );
+};
+
+export const EvoDetails = ({evo}) => {
+  return (
+    <div>placeholder</div>
+  )
+}
