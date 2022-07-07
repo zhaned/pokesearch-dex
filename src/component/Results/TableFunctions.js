@@ -206,8 +206,9 @@ export const TypeMultiplyer = (types, TypeNames) => {
   return typeFinal;
 };
 
-export const EvoTrigger = ({evo}) => {
-  const trigger = evo.evolution_details[0].trigger.name;
+export const EvoTrigger = ({ evo }) => {
+  const trigger =
+    evo.evolution_details[evo.evolution_details.length - 1].trigger.name;
   let newTrigger;
   let title;
   switch (trigger) {
@@ -248,19 +249,153 @@ export const EvoTrigger = ({evo}) => {
       break;
   }
   return (
-      <div className="d-flex justify-content-center">
-        <img
-          src={require(`../../images/evolution/${newTrigger}-icon.png`)}
-          alt={newTrigger}
-          title={title}
-          style={{ maxWidth: '24px' }}
-        />
-      </div>
+    <div className="d-flex justify-content-center">
+      <img
+        src={require(`../../images/evolution/${newTrigger}-icon.png`)}
+        alt={newTrigger}
+        title={title}
+        style={{ maxWidth: '24px' }}
+      />
+    </div>
   );
 };
 
-export const EvoDetails = ({evo}) => {
+export const EvoDetails = ({ evo }) => {
+  const obj = evo.evolution_details[evo.evolution_details.length - 1];
+  let condition = [];
+  let item = [];
+  for (const key in obj) {
+    if (
+      obj[key] !== null &&
+      obj[key] !== false &&
+      obj[key] !== '' &&
+      key !== 'trigger'
+    ) {
+      switch (key) {
+        case 'gender':
+          if (obj[key] === 1) {
+            condition.push('♀');
+          } else {
+            condition.push('♂');
+          }
+          break;
+        case 'held_item':
+          item.push({
+            name: obj[key].name,
+            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${obj[key].name}.png`,
+          });
+          break;
+        case 'item':
+          item.push({
+            name: obj[key].name,
+            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${obj[key].name}.png`,
+          });
+          break;
+        case 'known_move':
+          item.push({
+            name: obj[key].name,
+            image:
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png',
+          });
+          break;
+        case 'known_move_type':
+          item.push({
+            name: `${obj[key].name}-type move`,
+            image:
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-fairy.png',
+          });
+          break;
+        case 'location':
+          item.push({
+            name: obj[key].name,
+            image:
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/old-sea-map.png',
+          });
+          break;
+        case 'min_affection':
+          break;
+        case 'min_beauty':
+          item.push({
+            name: `beauty value of ${obj[key]}`,
+            image:
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/blue-scarf.png',
+          });
+          break;
+        case 'min_happiness':
+          item.push({
+            name: `happiness value of ${obj[key]}`,
+            image:
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/soothe-bell.png',
+          });
+          break;
+        case 'min_level':
+          condition.push(obj[key]);
+          break;
+        case 'needs_overworld_rain':
+          item.push({
+            name: `rain`,
+            image:
+              'https://archives.bulbagarden.net/media/upload/thumb/6/6d/Rain_icon_LA.png/30px-Rain_icon_LA.png',
+          });
+          break;
+        case 'party_species':
+          item.push({
+            name: `${obj[key].name} in the party`,
+            image:
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/223.png',
+          });
+          break;
+        case 'party_type':
+          item.push({
+            name: `${obj[key].name}-type in the party`,
+            image:
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/black-glasses.png',
+          });
+          break;
+        case 'relative_physical_stats':
+          if (obj[key] > 0) {
+            condition.push('Atk↑');
+          } else if (obj[key] < 0) {
+            condition.push('Def↑');
+          } else {
+            condition.push('Atk = Def');
+          }
+          break;
+        case 'time_of_day':
+          condition.push(obj[key]);
+          break;
+        case 'trade_species':
+          item.push({
+            name: `trade with a ${obj[key].name}`,
+            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${parseInt(
+              obj[key].url.slice(42).split('/')
+            )}.png`,
+          });
+          break;
+        case 'turn_upside_down':
+          item.push({
+            name: `hold console upside down`,
+            image:
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/gb-sounds.png',
+          });
+          break;
+        default:
+          break;
+      }
+    }
+  }
   return (
-    <div>placeholder</div>
-  )
-}
+    <div className="d-flex justify-content-center">
+      {condition.map((item) => {
+        return (
+          <div className="me-1" title={item} key={item}>
+            {item}
+          </div>
+        );
+      })}
+      {item.map((item) => {
+        return <img src={item.image} alt={item.name} title={item.name} key={item.name} />;
+      })}
+    </div>
+  );
+};
