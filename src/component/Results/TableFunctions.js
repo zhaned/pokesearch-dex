@@ -207,11 +207,10 @@ export const TypeMultiplyer = (types, TypeNames) => {
 };
 
 export const EvoTrigger = ({ evo }) => {
-  const trigger =
-    evo.evolution_details[evo.evolution_details.length - 1].trigger.name;
+  const trigger = evo.evolution_details[evo.evolution_details.length -1];
   let newTrigger;
   let title;
-  switch (trigger) {
+  if(trigger){switch (trigger.trigger.name) {
     case 'level-up':
       title = 'level up to evolve';
       newTrigger = 'level';
@@ -247,7 +246,10 @@ export const EvoTrigger = ({ evo }) => {
       break;
     default:
       break;
+  }}else{
+    return null
   }
+
   return (
     <div className="d-flex justify-content-center">
       <img
@@ -394,7 +396,14 @@ export const EvoDetails = ({ evo }) => {
         );
       })}
       {item.map((item) => {
-        return <img src={item.image} alt={item.name} title={item.name} key={item.name} />;
+        return (
+          <img
+            src={item.image}
+            alt={item.name}
+            title={item.name}
+            key={item.name}
+          />
+        );
       })}
     </div>
   );
