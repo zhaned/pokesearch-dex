@@ -53,9 +53,13 @@
 
 .scroll-out {
   position: fixed;
-  right: 0px;
+  right: -72px;
   bottom: 1rem;
   animation: fadeoutabove 0.2s linear forwards;
+}
+
+.scroll-out:hover {
+  right: 0px;
 }
 
 @keyframes fadeoutabove {
