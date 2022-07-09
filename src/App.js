@@ -7,6 +7,7 @@ import Favorites from './routes/Favorites';
 import Search from './routes/SearchPage';
 import Pokemon from './routes/Pokemon';
 import Abilities from './routes/Abilities';
+import AbilityPage from './component/Abilities/AbilityPage';
 import Moves from './routes/Moves';
 
 import Error from './routes/Error';
@@ -25,7 +26,7 @@ const RouteList = () =>
     { path: 'search', element: <Search /> },
     { path: 'search/:id', element: <Pokemon /> },
     { path: 'abilities', element: <Abilities /> },
-    { path: 'abilities/:id', element: <Abilities /> },
+    { path: 'abilities/:id', element: <AbilityPage /> },
     { path: 'moves', element: <Moves /> },
     { path: 'moves/:id', element: <Moves /> },
     { path: '*', element: <Error /> },

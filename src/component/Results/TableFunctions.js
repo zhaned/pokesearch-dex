@@ -207,47 +207,49 @@ export const TypeMultiplyer = (types, TypeNames) => {
 };
 
 export const EvoTrigger = ({ evo }) => {
-  const trigger = evo.evolution_details[evo.evolution_details.length -1];
+  const trigger = evo.evolution_details[evo.evolution_details.length - 1];
   let newTrigger;
   let title;
-  if(trigger){switch (trigger.trigger.name) {
-    case 'level-up':
-      title = 'level up to evolve';
-      newTrigger = 'level';
-      break;
-    case 'trade':
-      title = 'trade to evolve';
-      newTrigger = 'trade';
-      break;
-    case 'use-item':
-      title = 'use an item to evolve';
-      newTrigger = 'item';
-      break;
-    case 'shed':
-      title = 'have an empty slot in party';
-      newTrigger = 'shed';
-      break;
-    case 'spin':
-      title = 'spin while holding a sweet item to evolve';
-      newTrigger = 'spin';
-      break;
-    case 'tower-of-darkness':
-    case 'tower-of-waters':
-      title = 'tower of darkness or tower of water';
-      newTrigger = 'tower';
-      break;
-    case 'three-critical-hits':
-      title = 'land 3 critical hits in one battle';
-      newTrigger = 'crit';
-      break;
-    case 'take-damage':
-      title = 'take 49 damage in one battle';
-      newTrigger = 'damage';
-      break;
-    default:
-      break;
-  }}else{
-    return null
+  if (trigger) {
+    switch (trigger.trigger.name) {
+      case 'level-up':
+        title = 'level up to evolve';
+        newTrigger = 'level';
+        break;
+      case 'trade':
+        title = 'trade to evolve';
+        newTrigger = 'trade';
+        break;
+      case 'use-item':
+        title = 'use an item to evolve';
+        newTrigger = 'item';
+        break;
+      case 'shed':
+        title = 'have an empty slot in party';
+        newTrigger = 'shed';
+        break;
+      case 'spin':
+        title = 'spin while holding a sweet item to evolve';
+        newTrigger = 'spin';
+        break;
+      case 'tower-of-darkness':
+      case 'tower-of-waters':
+        title = 'tower of darkness or tower of water';
+        newTrigger = 'tower';
+        break;
+      case 'three-critical-hits':
+        title = 'land 3 critical hits in one battle';
+        newTrigger = 'crit';
+        break;
+      case 'take-damage':
+        title = 'take 49 damage in one battle';
+        newTrigger = 'damage';
+        break;
+      default:
+        break;
+    }
+  } else {
+    return null;
   }
 
   return (
@@ -407,4 +409,17 @@ export const EvoDetails = ({ evo }) => {
       })}
     </div>
   );
+};
+
+export const AbilityFilter = (array, version, language) => {
+  const newArr = language(array.filter((item) => {
+    if (
+      item.version_group.url ===
+      `https://pokeapi.co/api/v2/version-group/${version}/`
+    ) {
+      return item;
+    }
+    return null;
+  }));
+  return newArr
 };

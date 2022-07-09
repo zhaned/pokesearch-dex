@@ -1,3 +1,5 @@
+import AbilityLookUp from '../component/Abilities/AbilityLookUp'
+
 const Abilities = () => {
   return (
     <div
@@ -8,7 +10,7 @@ const Abilities = () => {
       }}
     >
       <h1 className="display-2">Abilities</h1>
-      <h3 className="display-4">Uhh, currently WIP LOL</h3>
+      <AbilityLookUp />
     </div>
   );
 };
