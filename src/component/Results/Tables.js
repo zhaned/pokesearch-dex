@@ -93,7 +93,7 @@ export const Traits = ({ traits }) => {
               <td className="pe-1" key={ability.ability.name}>
                 <Link
                   className="stat-name"
-                  to={`/abilities/${ability.ability.name}`}
+                  to={`/ability/${ability.ability.name}`}
                 >
                   {capitalizer(ability.ability.name)}
                 </Link>
@@ -108,7 +108,7 @@ export const Traits = ({ traits }) => {
               <td key={ability.ability.name}>
                 <Link
                   className="stat-name"
-                  to={`/abilities/${ability.ability.name}`}
+                  to={`/ability/${ability.ability.name}`}
                 >
                   {capitalizer(ability.ability.name)}
                 </Link>
@@ -206,7 +206,7 @@ export const Moveset = ({ moves, version }) => {
                   : levelGetter(moveList[index], version)}
               </td>
               <td>
-                <Link className="stat-name" to={`/moves/${move.name}`}>
+                <Link className="stat-name" to={`/move/${move.name}`}>
                   {capitalizer(move.name)}
                 </Link>
               </td>

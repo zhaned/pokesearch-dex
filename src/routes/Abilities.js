@@ -10,7 +10,7 @@ const Abilities = () => {
       }}
     >
       <h1 className="display-2">Abilities</h1>
-      <AbilityLookUp />
+      <AbilityLookUp test='ability'/>
     </div>
   );
 };

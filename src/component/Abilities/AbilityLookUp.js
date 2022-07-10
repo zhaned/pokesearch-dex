@@ -3,10 +3,11 @@ import Pagination from "../PokeList/Pagination";
 import Loading from "../Loading/Loading";
 import AbilityList from "./AbilityList";
 
-const AbilityLookUp = () => {
+const AbilityLookUp = ({test}) => {
+  
   const [ability, setAbility] = useState();
   const [currentPageURL, setCurrentPageURL] = useState(
-    "http://localhost:3001/ability"
+    `http://localhost:3001/${test}`
   );
   const [prevPageURL, setPrevPageURL] = useState();
   const [nextPageURL, setNextPageURL] = useState();
@@ -34,7 +35,7 @@ const AbilityLookUp = () => {
         goPrevPage={prevPageURL ? goPrevPage : null}
         goNextPage={nextPageURL ? goNextPage : null}
       />
-      {ability ? <AbilityList ability={ability} /> : <Loading />}
+      {ability ? <AbilityList ability={ability} test={test} /> : <Loading />}
     </div>
   );
 }

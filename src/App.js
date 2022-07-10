@@ -11,7 +11,7 @@ import AbilityPage from './component/Abilities/AbilityPage';
 import Moves from './routes/Moves';
 
 import Error from './routes/Error';
-import './App.css'
+import './App.css';
 // checks current route to see if nav header should render
 function useNav() {
   let { pathname } = useLocation();
@@ -25,10 +25,10 @@ const RouteList = () =>
     { path: 'favorites', element: <Favorites /> },
     { path: 'search', element: <Search /> },
     { path: 'search/:id', element: <Pokemon /> },
-    { path: 'abilities', element: <Abilities /> },
-    { path: 'abilities/:id', element: <AbilityPage /> },
-    { path: 'moves', element: <Moves /> },
-    { path: 'moves/:id', element: <Moves /> },
+    { path: 'ability', element: <Abilities /> },
+    { path: 'ability/:id', element: <AbilityPage /> },
+    { path: 'move', element: <Moves /> },
+    { path: 'move/:id', element: <AbilityPage /> },
     { path: '*', element: <Error /> },
   ]);
 

@@ -59,7 +59,7 @@ const Homepage = () => {
             </Link>
           </div>
           <div className="mb-3 sprite-ani">
-            <Link to="/abilities" style={{ color: '#f8f9fa' }}>
+            <Link to="/ability" style={{ color: '#f8f9fa' }}>
               <div className="sprite-icon container p-0">
                 <img
                   src={abilityIcon}
@@ -82,7 +82,7 @@ const Homepage = () => {
             </Link>
           </div>
           <div className="mb-3 sprite-ani">
-            <Link to="/moves" style={{ color: '#f8f9fa' }}>
+            <Link to="/move" style={{ color: '#f8f9fa' }}>
               <div className="sprite-icon container p-0">
                 <img
                   src={moveIcon}
