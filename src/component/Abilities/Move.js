@@ -25,8 +25,12 @@ const Move = ({ ability, version }) => {
   //     `https://pokeapi.co/api/v2/version-group/${version}/`
   // );
   return (
-    <div style={{color: 'white'}}>
-      {ability.name}
+    <div style={{ color: '#f8f9fa', textShadow: '2px 2px #851bed' }}>
+      <h1 className="display-3 text-center pt-1 pe-1">
+        {capitalizer(
+          ability.name.charAt(0).toUpperCase() + ability.name.slice(1)
+        )}
+      </h1>
       <br />
       {effectEntries[0].effect + effectEntries[0].short_effect}
       <br />
@@ -44,13 +48,22 @@ const Move = ({ ability, version }) => {
       <br />
       priority{ability.priority}
       <br />
-      {pokemonList.map((poke) => {
-        return (
-          <div>
-            {poke.number}: {poke.pokemon}
-          </div>
-        )
-      })}
+      <table className="table table-dark table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Pokemon</th>
+          </tr>
+        </thead>
+        <tbody>
+          {pokemonList.map((poke) => (
+            <tr>
+              <td>{poke.number}</td>
+              <td>{poke.pokemon}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
