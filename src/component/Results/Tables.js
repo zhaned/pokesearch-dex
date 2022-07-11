@@ -15,6 +15,8 @@ import {
   TypeMultiplyer,
   EvoTrigger,
   EvoDetails,
+  AbilityFilter,
+  effectEntryAdder,
 } from './TableFunctions';
 import './Results.css';
 
@@ -634,5 +636,83 @@ export const TypeMatchup = ({ types }) => {
         </tbody>
       </table>
     </div>
+  );
+};
+
+export const MoveInfo = ({ ability, version }) => {
+  const effectEntries = effectEntryAdder(
+    langFilter(ability.effect_entries),
+    ability.effect_chance
+  );
+  const flavorText = AbilityFilter(
+    ability.flavor_text_entries,
+    version,
+    langFilter
+  );
+  return (
+    <>
+      <table className="border" style={{ width: '100%' }}>
+        <thead>
+          <tr className="border-bottom">
+            <th>Category</th>
+            <th>Type</th>
+            <th>Atk</th>
+            <th>Acc</th>
+            <th>PP</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <img
+                className="d-flex"
+                src={require(`../../images/damage-classes/${ability.damage_class.name}-icon.png`)}
+                alt=""
+                title={capitalizer(ability.damage_class.name)}
+              />
+            </td>
+            <td>
+              <span
+                className="border rounded px-1"
+                style={{ backgroundColor: TypeColor(ability.type.name) }}
+              >
+                {ability.type.name}
+              </span>
+            </td>
+            <td>{ability.power}</td>
+            <td>{ability.accuracy}%</td>
+            <td>{ability.pp}</td>
+            <td>{ability.priority}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table className="border border-top-0" style={{ width: '100%' }}>
+        <tbody>
+          <tr className="border-bottom">
+            <th>Short Effect:</th>
+            <th>In-Game Description:</th>
+          </tr>
+          <tr>
+            <td
+              style={{ minWidth: '40%' }}
+            >{`${effectEntries.short_effect}`}</td>
+            <td>
+              {`(${flavorText[0].version_group.name}) ${flavorText[0].flavor_text}`}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table className="border border-top-0" style={{ width: '100%' }}>
+        <tbody>
+          <tr className="border-bottom">
+            <th>In-depth Effect:</th>
+          </tr>
+          <tr>
+            <td>{effectEntries.effect}</td>
+          </tr>
+        </tbody>
+      </table>
+    </>
   );
 };

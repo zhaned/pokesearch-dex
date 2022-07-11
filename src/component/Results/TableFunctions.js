@@ -423,3 +423,17 @@ export const AbilityFilter = (array, version, language) => {
   }));
   return newArr
 };
+
+export function effectEntryAdder(entries, effect) {
+  let newEffect, newShortEffect;
+  newEffect = entries[0].effect
+    .split(' ')
+    .map((word) => (word === '$effect_chance%' ? effect + '%' : word));
+  newShortEffect = entries[0].short_effect
+    .split(' ')
+    .map((word) => (word === '$effect_chance%' ? effect + '%' : word));
+  return {
+    effect: newEffect.join(' '),
+    short_effect: newShortEffect.join(' '),
+  };
+}

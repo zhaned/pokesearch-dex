@@ -1,17 +1,11 @@
 import {
-  AbilityFilter,
   capitalizer,
-  langFilter,
 } from '../Results/TableFunctions';
 import { Link } from 'react-router-dom';
+import { MoveInfo } from '../Results/Tables';
 
 const Move = ({ ability, version }) => {
-  const effectEntries = langFilter(ability.effect_entries);
-  const flavorText = AbilityFilter(
-    ability.flavor_text_entries,
-    version,
-    langFilter
-  );
+
   const pokemonList = ability.learned_by_pokemon
     .filter((poke) => parseInt(poke.url.slice(34).split('/')) < 899)
     .map((poke) => {
@@ -33,52 +27,7 @@ const Move = ({ ability, version }) => {
         )}
       </h1>
       <div className="table table-dark">
-        <table className="border" style={{ width: '100%' }}>
-          <thead>
-            <tr className="border-bottom">
-              <th>Category</th>
-              <th>Type</th>
-              <th>Atk</th>
-              <th>Acc</th>
-              <th>PP</th>
-              <th>Priority</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{ability.damage_class.name}</td>
-              <td>{ability.type.name}</td>
-              <td>{ability.power}</td>
-              <td>{ability.accuracy}%</td>
-              <td>{ability.pp}</td>
-              <td>{ability.priority}</td>
-            </tr>
-          </tbody>
-        </table>
-        <table className="border border-top-0" style={{ width: '100%' }}>
-          <tbody>
-            <tr className="border-bottom">
-              <th>Short Effect:</th>
-              <th>In-Game Description:</th>
-            </tr>
-            <tr>
-              <td
-                style={{ minWidth: '40%' }}
-              >{`${effectEntries[0].short_effect}`}</td>
-              <td>
-                {`(${flavorText[0].version_group.name}) ${flavorText[0].flavor_text}`}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <table className="border border-top-0" style={{ width: '100%' }}>
-          <tbody>
-            <tr className="border-bottom">
-              <th>In-depth Effect:</th>
-            </tr>
-            <tr>{effectEntries[0].effect}</tr>
-          </tbody>
-        </table>
+          <MoveInfo ability={ability} version={version}/>
       </div>
       <hr
         style={{
