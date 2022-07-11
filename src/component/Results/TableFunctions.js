@@ -426,12 +426,12 @@ export const AbilityFilter = (array, version, language) => {
 
 export function effectEntryAdder(entries, effect) {
   let newEffect, newShortEffect;
-  newEffect = entries.length > 0 ? entries[0].effect
+  newEffect = entries[0] ? entries[0].effect
     .split(' ')
-    .map((word) => (word === '$effect_chance%' ? effect + '%' : word)) : ['(Currently no description.)'];
-  newShortEffect = entries.length > 0 ? entries[0].short_effect
+    .map((word) => (word === '$effect_chance%' ? effect + '%' : word)) : ['(Currently no description)'];
+  newShortEffect = entries[0] ? entries[0].short_effect
     .split(' ')
-    .map((word) => (word === '$effect_chance%' ? effect + '%' : word)): ['(Currently no description.)'];
+    .map((word) => (word === '$effect_chance%' ? effect + '%' : word)): ['(Currently no description)'];
   return {
     effect: newEffect.join(' '),
     short_effect: newShortEffect.join(' '),

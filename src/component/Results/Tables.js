@@ -245,222 +245,234 @@ export const Evolutions = ({ evolution }) => {
   //fix: include requirement for evolving b/t species
   const navigate = useNavigate();
   return (
-    <div className="d-flex flex-wrap align-items-center">
-      {evolution.chain.evolves_to[0] ? (
-        evolution.chain.evolves_to[0].evolves_to[0] ? (
-          <>
-            <Link
-              to={`/search/${parseInt(
-                evolution.chain.species.url.slice(42).split('/')
-              )}`}
-              onClick={() =>
-                updateLocation(
-                  navigate,
-                  `/search/${parseInt(
-                    evolution.chain.species.url.slice(42).split('/')
-                  )}`
-                )
-              }
-              className="d-flex flex-column text-center"
-              style={{
-                width: '10rem',
-                height: 'auto',
-              }}
-            >
-              <img
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+    <div className='d-flex flex-column' style={{width: '50%'}}>
+      <h4 className='text-center' >Evolution</h4>
+      <div className="d-flex flex-wrap justify-content-center align-items-center">
+        {evolution.chain.evolves_to[0] ? (
+          evolution.chain.evolves_to[0].evolves_to[0] ? (
+            <>
+              <Link
+                to={`/search/${parseInt(
                   evolution.chain.species.url.slice(42).split('/')
-                )}.png`}
-                alt=""
-              />
-              {capitalizer(evolution.chain.species.name)}
-            </Link>
-            <div className="d-flex align-items-center flex-column">
-              {evolution.chain.evolves_to.map((evo) => (
-                <div
-                  className="d-flex align-items-center"
-                  key={evo.species.name}
-                >
-                  <div className="d-flex flex-column">
-                    <EvoDetails evo={evo} />
-                    <span className="text-center" style={{ fontSize: '2rem' }}>
-                      &#8594;
-                    </span>
-                    <EvoTrigger evo={evo} />
-                  </div>
-                  <Link
-                    to={`/search/${parseInt(
-                      evo.species.url.slice(42).split('/')
-                    )}`}
-                    onClick={() =>
-                      updateLocation(
-                        navigate,
-                        `/search/${parseInt(
-                          evo.species.url.slice(42).split('/')
-                        )}`
-                      )
-                    }
-                    className="d-flex flex-column text-center"
-                    style={{
-                      width: '10rem',
-                      height: 'auto',
-                    }}
+                )}`}
+                onClick={() =>
+                  updateLocation(
+                    navigate,
+                    `/search/${parseInt(
+                      evolution.chain.species.url.slice(42).split('/')
+                    )}`
+                  )
+                }
+                className="d-flex flex-column text-center"
+                style={{
+                  width: '10rem',
+                  height: 'auto',
+                }}
+              >
+                <img
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+                    evolution.chain.species.url.slice(42).split('/')
+                  )}.png`}
+                  alt=""
+                />
+                {capitalizer(evolution.chain.species.name)}
+              </Link>
+              <div className="d-flex align-items-center flex-column">
+                {evolution.chain.evolves_to.map((evo) => (
+                  <div
+                    className="d-flex align-items-center"
+                    key={evo.species.name}
                   >
-                    <img
-                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+                    <div className="d-flex flex-column">
+                      <EvoDetails evo={evo} />
+                      <span
+                        className="text-center"
+                        style={{ fontSize: '2rem' }}
+                      >
+                        &#8594;
+                      </span>
+                      <EvoTrigger evo={evo} />
+                    </div>
+                    <Link
+                      to={`/search/${parseInt(
                         evo.species.url.slice(42).split('/')
-                      )}.png`}
-                      alt=""
-                    />
-                    {capitalizer(evo.species.name)}
-                  </Link>
-                </div>
-              ))}
-            </div>
-            <div className="d-flex align-items-center flex-column">
-              {evolution.chain.evolves_to[0].evolves_to.map((evo) => (
-                <div
-                  className="d-flex align-items-center"
-                  key={evo.species.name}
-                >
-                  <div className="d-flex flex-column">
-                    <EvoDetails evo={evo} />
-                    <span className="text-center" style={{ fontSize: '2rem' }}>
-                      &#8594;
-                    </span>
-                    <EvoTrigger evo={evo} />
-                  </div>
-                  <Link
-                    to={`/search/${parseInt(
-                      evo.species.url.slice(42).split('/')
-                    )}`}
-                    onClick={() =>
-                      updateLocation(
-                        navigate,
-                        `/search/${parseInt(
+                      )}`}
+                      onClick={() =>
+                        updateLocation(
+                          navigate,
+                          `/search/${parseInt(
+                            evo.species.url.slice(42).split('/')
+                          )}`
+                        )
+                      }
+                      className="d-flex flex-column text-center"
+                      style={{
+                        width: '10rem',
+                        height: 'auto',
+                      }}
+                    >
+                      <img
+                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
                           evo.species.url.slice(42).split('/')
-                        )}`
-                      )
-                    }
-                    className="d-flex flex-column text-center"
-                    style={{
-                      width: '10rem',
-                      height: 'auto',
-                    }}
+                        )}.png`}
+                        alt=""
+                      />
+                      {capitalizer(evo.species.name)}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+              <div className="d-flex align-items-center flex-column">
+                {evolution.chain.evolves_to[0].evolves_to.map((evo) => (
+                  <div
+                    className="d-flex align-items-center"
+                    key={evo.species.name}
                   >
-                    <img
-                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+                    <div className="d-flex flex-column">
+                      <EvoDetails evo={evo} />
+                      <span
+                        className="text-center"
+                        style={{ fontSize: '2rem' }}
+                      >
+                        &#8594;
+                      </span>
+                      <EvoTrigger evo={evo} />
+                    </div>
+                    <Link
+                      to={`/search/${parseInt(
                         evo.species.url.slice(42).split('/')
-                      )}.png`}
-                      alt=""
-                    />
-                    {capitalizer(evo.species.name)}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </>
+                      )}`}
+                      onClick={() =>
+                        updateLocation(
+                          navigate,
+                          `/search/${parseInt(
+                            evo.species.url.slice(42).split('/')
+                          )}`
+                        )
+                      }
+                      className="d-flex flex-column text-center"
+                      style={{
+                        width: '10rem',
+                        height: 'auto',
+                      }}
+                    >
+                      <img
+                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+                          evo.species.url.slice(42).split('/')
+                        )}.png`}
+                        alt=""
+                      />
+                      {capitalizer(evo.species.name)}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <Link
+                to={`/search/${parseInt(
+                  evolution.chain.species.url.slice(42).split('/')
+                )}`}
+                onClick={() =>
+                  updateLocation(
+                    navigate,
+                    `/search/${parseInt(
+                      evolution.chain.species.url.slice(42).split('/')
+                    )}`
+                  )
+                }
+                className="d-flex flex-column text-center"
+                style={{
+                  width: '10rem',
+                  height: 'auto',
+                }}
+              >
+                <img
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+                    evolution.chain.species.url.slice(42).split('/')
+                  )}.png`}
+                  alt=""
+                />
+                {capitalizer(evolution.chain.species.name)}
+              </Link>
+              <div className="d-flex align-items-center flex-column">
+                {evolution.chain.evolves_to.map((evo) => (
+                  <div
+                    className="d-flex align-items-center"
+                    key={evo.species.name}
+                  >
+                    <div className="d-flex flex-column">
+                      <EvoDetails evo={evo} />
+                      <span
+                        className="text-center"
+                        style={{ fontSize: '2rem' }}
+                      >
+                        &#8594;
+                      </span>
+                      <EvoTrigger evo={evo} />
+                    </div>
+                    <Link
+                      to={`/search/${parseInt(
+                        evo.species.url.slice(42).split('/')
+                      )}`}
+                      onClick={() =>
+                        updateLocation(
+                          navigate,
+                          `/search/${parseInt(
+                            evo.species.url.slice(42).split('/')
+                          )}`
+                        )
+                      }
+                      className="d-flex flex-column text-center"
+                      style={{
+                        width: '10rem',
+                        height: 'auto',
+                      }}
+                    >
+                      <img
+                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+                          evo.species.url.slice(42).split('/')
+                        )}.png`}
+                        alt=""
+                      />
+                      {capitalizer(evo.species.name)}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </>
+          )
         ) : (
-          <>
-            <Link
-              to={`/search/${parseInt(
-                evolution.chain.species.url.slice(42).split('/')
-              )}`}
-              onClick={() =>
-                updateLocation(
-                  navigate,
-                  `/search/${parseInt(
-                    evolution.chain.species.url.slice(42).split('/')
-                  )}`
-                )
-              }
-              className="d-flex flex-column text-center"
-              style={{
-                width: '10rem',
-                height: 'auto',
-              }}
-            >
-              <img
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
-                  evolution.chain.species.url.slice(42).split('/')
-                )}.png`}
-                alt=""
-              />
-              {capitalizer(evolution.chain.species.name)}
-            </Link>
-            <div className="d-flex align-items-center flex-column">
-              {evolution.chain.evolves_to.map((evo) => (
-                <div
-                  className="d-flex align-items-center"
-                  key={evo.species.name}
-                >
-                  <div className="d-flex flex-column">
-                    <EvoDetails evo={evo} />
-                    <span className="text-center" style={{ fontSize: '2rem' }}>
-                      &#8594;
-                    </span>
-                    <EvoTrigger evo={evo} />
-                  </div>
-                  <Link
-                    to={`/search/${parseInt(
-                      evo.species.url.slice(42).split('/')
-                    )}`}
-                    onClick={() =>
-                      updateLocation(
-                        navigate,
-                        `/search/${parseInt(
-                          evo.species.url.slice(42).split('/')
-                        )}`
-                      )
-                    }
-                    className="d-flex flex-column text-center"
-                    style={{
-                      width: '10rem',
-                      height: 'auto',
-                    }}
-                  >
-                    <img
-                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
-                        evo.species.url.slice(42).split('/')
-                      )}.png`}
-                      alt=""
-                    />
-                    {capitalizer(evo.species.name)}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </>
-        )
-      ) : (
-        <Link
-          to={`/search/${parseInt(
-            evolution.chain.species.url.slice(42).split('/')
-          )}`}
-          onClick={() =>
-            updateLocation(
-              navigate,
-              `/search/${parseInt(
-                evolution.chain.species.url.slice(42).split('/')
-              )}`
-            )
-          }
-          className="d-flex flex-column text-center"
-          style={{
-            width: '10rem',
-            height: 'auto',
-          }}
-        >
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+          <Link
+            to={`/search/${parseInt(
               evolution.chain.species.url.slice(42).split('/')
-            )}.png`}
-            alt=""
-          />
-          {capitalizer(evolution.chain.species.name)}
-          {' does not evolve'}
-        </Link>
-      )}
+            )}`}
+            onClick={() =>
+              updateLocation(
+                navigate,
+                `/search/${parseInt(
+                  evolution.chain.species.url.slice(42).split('/')
+                )}`
+              )
+            }
+            className="d-flex flex-column text-center"
+            style={{
+              width: '10rem',
+              height: 'auto',
+            }}
+          >
+            <img
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(
+                evolution.chain.species.url.slice(42).split('/')
+              )}.png`}
+              alt=""
+            />
+            {capitalizer(evolution.chain.species.name)}
+            {' does not evolve'}
+          </Link>
+        )}
+      </div>
     </div>
   );
 };

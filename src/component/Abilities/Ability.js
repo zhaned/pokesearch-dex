@@ -29,7 +29,7 @@ const Ability = ({ ability, version }) => {
                 <th>In-Game Description:</th>
               </tr>
               <tr>
-                <td>{`${effectEntries[0].short_effect}`}</td>
+                <td>{`${effectEntries[0] ? effectEntries[0].short_effect : '-'}`}</td>
                 <td>
                   {`(${flavorText[0].version_group.name}) ${flavorText[0].flavor_text}`}
                 </td>
@@ -42,7 +42,7 @@ const Ability = ({ ability, version }) => {
                 <th>In-Depth Description:</th>
               </tr>
               <tr>
-                <td>{effectEntries[0].effect}</td>
+                <td>{effectEntries[0] ? effectEntries[0].effect : '-'}</td>
               </tr>
             </tbody>
           </table>
@@ -54,6 +54,15 @@ const Ability = ({ ability, version }) => {
             opacity: '1',
           }}
         />
+              <table className="table table-dark m-0">
+        <thead className="text-center move-thead">
+          <tr>
+            <th>
+              <h4>Pokemon With This Ability</h4>
+            </th>
+          </tr>
+        </thead>
+      </table>
         <table className="table table-dark table-hover">
           <thead>
             <tr>

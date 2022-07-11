@@ -1,6 +1,4 @@
-import {
-  capitalizer,
-} from '../Results/TableFunctions';
+import { capitalizer } from '../Results/TableFunctions';
 import { Link } from 'react-router-dom';
 import { MoveInfo } from '../Results/Tables';
 
@@ -26,7 +24,7 @@ const Move = ({ ability, version }) => {
         )}
       </h1>
       <div className="table table-dark">
-          <MoveInfo ability={ability} version={version}/>
+        <MoveInfo ability={ability} version={version} />
       </div>
       <hr
         style={{
@@ -35,6 +33,15 @@ const Move = ({ ability, version }) => {
           opacity: '1',
         }}
       />
+      <table className="table table-dark m-0">
+        <thead className="text-center move-thead">
+          <tr>
+            <th>
+              <h4>Pokemon That Can Learn This Move</h4>
+            </th>
+          </tr>
+        </thead>
+      </table>
       <table className="table table-dark table-hover">
         <thead>
           <tr>
@@ -47,7 +54,14 @@ const Move = ({ ability, version }) => {
             <tr key={poke.number}>
               <td>{poke.number}</td>
               <td>
-                <Link to={`/search/${poke.number[0]}`}>{poke.pokemon}</Link>
+                <Link to={`/search/${poke.number[0]}`}>                    <img
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${poke.number[0]}.png`}
+                      alt=""
+                      style={{
+                        // minHeight: 'auto',
+                        objectPosition: '0px -.5rem',
+                      }}
+                    />{poke.pokemon}</Link>
               </td>
             </tr>
           ))}
