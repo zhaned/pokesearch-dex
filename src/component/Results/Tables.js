@@ -680,8 +680,8 @@ export const MoveInfo = ({ ability, version }) => {
                 {ability.type.name}
               </span>
             </td>
-            <td>{ability.power}</td>
-            <td>{ability.accuracy}%</td>
+            <td>{ability.power ? ability.power : '-'}</td>
+            <td>{ability.accuracy ? ability.accuracy + '%' : '-'}</td>
             <td>{ability.pp}</td>
             <td>{ability.priority}</td>
           </tr>

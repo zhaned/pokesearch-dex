@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { MoveInfo } from '../Results/Tables';
 
 const Move = ({ ability, version }) => {
-
   const pokemonList = ability.learned_by_pokemon
     .filter((poke) => parseInt(poke.url.slice(34).split('/')) < 899)
     .map((poke) => {
