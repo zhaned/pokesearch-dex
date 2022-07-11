@@ -21,7 +21,7 @@ const Ability = ({ ability, version }) => {
         {capitalizer(ability.name.charAt(0).toUpperCase() + ability.name.slice(1))}
       </h1>
       <div>
-        <div style={{ backgroundColor: 'rgba(0,0,0,.15)' }}>
+        <div className='table table-dark'>
           <table className="border" style={{ width: '100%' }}>
             <tbody>
               <tr className="border-bottom">
