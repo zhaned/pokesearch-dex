@@ -707,6 +707,7 @@ export const MoveInfo = ({ ability, version }) => {
           </tr>
           <tr>
             <td
+              className='pe-1'
               style={{ minWidth: '40%' }}
             >{`${effectEntries.short_effect}`}</td>
             <td>

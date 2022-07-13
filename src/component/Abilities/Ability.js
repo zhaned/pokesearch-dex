@@ -25,11 +25,11 @@ const Ability = ({ ability, version }) => {
           <table className="border" style={{ width: '100%' }}>
             <tbody>
               <tr className="border-bottom">
-                <th>Short Description: </th>
+                <th >Short Description: </th>
                 <th>In-Game Description:</th>
               </tr>
               <tr>
-                <td>{`${effectEntries[0] ? effectEntries[0].short_effect : '-'}`}</td>
+                <td className='pe-1'>{`${effectEntries[0] ? effectEntries[0].short_effect : '-'}`}</td>
                 <td>
                   {`(${flavorText[0].version_group.name}) ${flavorText[0].flavor_text}`}
                 </td>
@@ -88,7 +88,7 @@ const Ability = ({ ability, version }) => {
                     {poke.pokemon}
                   </Link>
                 </td>
-                <td>{poke.hidden ? 'yes' : 'no'}</td>
+                <td className='align-middle'>{poke.hidden ? 'yes' : 'no'}</td>
               </tr>
             ))}
           </tbody>

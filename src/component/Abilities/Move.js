@@ -11,11 +11,6 @@ const Move = ({ ability, version }) => {
         number: poke.url.slice(34).split('/'),
       };
     });
-  // const tm = ability.machines.filter(
-  //   (tm) =>
-  //     tm.version_group.url ===
-  //     `https://pokeapi.co/api/v2/version-group/${version}/`
-  // );
   return (
     <div style={{ color: '#f8f9fa', textShadow: '2px 2px #851bed' }}>
       <h1 className="display-3 text-center pt-1 pe-1">
