@@ -207,68 +207,98 @@ export const TypeMultiplyer = (types, TypeNames) => {
 };
 
 export const EvoTrigger = ({ evo }) => {
-  const trigger = evo.evolution_details[evo.evolution_details.length - 1];
-  let newTrigger;
-  let title;
-  if (trigger) {
-    switch (trigger.trigger.name) {
+  const trigger = evo.evolution_details;
+  let newTrigger = [];
+  let test = []
+  trigger.forEach(detail => {if (detail) {
+    switch (detail.trigger.name) {
       case 'level-up':
-        title = 'level up to evolve';
-        newTrigger = 'level';
+        newTrigger.push({
+        title: 'level up to evolve',
+         newTrigger: 'level'
+        })
         break;
       case 'trade':
-        title = 'trade to evolve';
-        newTrigger = 'trade';
+        newTrigger.push({
+          title: 'trade to evolve',
+         newTrigger: 'trade'
+
+        })
         break;
       case 'use-item':
-        title = 'use an item to evolve';
-        newTrigger = 'item';
+        newTrigger.push({
+          title: 'use an item to evolve',
+         newTrigger: 'item'
+        })
         break;
       case 'shed':
-        title = 'have an empty slot in party';
-        newTrigger = 'shed';
+        newTrigger.push({
+          title: 'have an empty slot in party',
+         newTrigger: 'shed'
+
+        })
         break;
       case 'spin':
-        title = 'spin while holding a sweet item to evolve';
-        newTrigger = 'spin';
+        newTrigger.push({
+          title: 'spin while holding a sweet item to evolve',
+         newTrigger: 'spin'
+
+        })
         break;
       case 'tower-of-darkness':
       case 'tower-of-waters':
-        title = 'tower of darkness or tower of water';
-        newTrigger = 'tower';
+        newTrigger.push({
+          title: 'tower of darkness or tower of water',
+         newTrigger: 'tower'
+
+        })
         break;
       case 'three-critical-hits':
-        title = 'land 3 critical hits in one battle';
-        newTrigger = 'crit';
+        newTrigger.push({
+          title: 'land 3 critical hits in one battle',
+         newTrigger: 'crit'
+
+        })
         break;
       case 'take-damage':
-        title = 'take 49 damage in one battle';
-        newTrigger = 'damage';
+        newTrigger.push({
+          title: 'take 49 damage in one battle',
+         newTrigger: 'damage'
+        })
         break;
       default:
         break;
     }
   } else {
     return null;
+  }}
+  )
+  for(const index in newTrigger) {
+    if(index === '0' || newTrigger[index].newTrigger !== newTrigger[index-1].newTrigger) {
+      test.push(newTrigger[index])
+    }
   }
-
   return (
     <div className="d-flex justify-content-center">
-      <img
-        src={require(`../../images/evolution/${newTrigger}-icon.png`)}
-        alt={newTrigger}
-        title={title}
-        style={{ maxWidth: '24px' }}
-      />
+      {test.map(method => (
+        <img
+          src={require(`../../images/evolution/${method.newTrigger}-icon.png`)}
+          alt={method.newTrigger}
+          title={method.title}
+          style={{ maxWidth: '24px' }}
+          key={method.newTrigger}
+        />
+
+      ))}
     </div>
   );
 };
 
 export const EvoDetails = ({ evo }) => {
-  console.log(evo.evolution_details)
   const obj = evo.evolution_details;
   let condition = [];
   let item = [];
+  let finalArr = []
   obj.forEach(detail => {for (const key in detail) {
     if (
       detail[key] !== null &&
@@ -389,6 +419,13 @@ export const EvoDetails = ({ evo }) => {
       }
     }
   }})
+
+  for(const index in item) {
+    if(index === '0' || item[index].name !== item[index-1].name) {
+      finalArr.push(item[index])
+    }
+  }
+
   return (
     <div className="d-flex justify-content-center">
       {condition.map((item) => {
@@ -398,7 +435,7 @@ export const EvoDetails = ({ evo }) => {
           </div>
         );
       })}
-      {item.map((item) => {
+      {finalArr.map((item) => {
         return (
           <img
             src={item.image}
