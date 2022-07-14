@@ -247,7 +247,7 @@ export const Evolutions = ({ evolution }) => {
   return (
     <div className='d-flex flex-column' style={{width: '50%'}}>
       <h4 className='text-center' >Evolution</h4>
-      <div className="d-flex flex-wrap justify-content-center align-items-center">
+      <div className="d-flex flex-wrap justify-content-center align-items-center" style={{height: '100%'}}>
         {evolution.chain.evolves_to[0] ? (
           evolution.chain.evolves_to[0].evolves_to[0] ? (
             <>

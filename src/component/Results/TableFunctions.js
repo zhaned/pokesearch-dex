@@ -265,19 +265,20 @@ export const EvoTrigger = ({ evo }) => {
 };
 
 export const EvoDetails = ({ evo }) => {
-  const obj = evo.evolution_details[evo.evolution_details.length - 1];
+  console.log(evo.evolution_details)
+  const obj = evo.evolution_details;
   let condition = [];
   let item = [];
-  for (const key in obj) {
+  obj.forEach(detail => {for (const key in detail) {
     if (
-      obj[key] !== null &&
-      obj[key] !== false &&
-      obj[key] !== '' &&
+      detail[key] !== null &&
+      detail[key] !== false &&
+      detail[key] !== '' &&
       key !== 'trigger'
     ) {
       switch (key) {
         case 'gender':
-          if (obj[key] === 1) {
+          if (detail[key] === 1) {
             condition.push('♀');
           } else {
             condition.push('♂');
@@ -285,33 +286,33 @@ export const EvoDetails = ({ evo }) => {
           break;
         case 'held_item':
           item.push({
-            name: obj[key].name,
-            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${obj[key].name}.png`,
+            name: detail[key].name,
+            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[key].name}.png`,
           });
           break;
         case 'item':
           item.push({
-            name: obj[key].name,
-            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${obj[key].name}.png`,
+            name: detail[key].name,
+            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[key].name}.png`,
           });
           break;
         case 'known_move':
           item.push({
-            name: obj[key].name,
+            name: detail[key].name,
             image:
               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png',
           });
           break;
         case 'known_move_type':
           item.push({
-            name: `${obj[key].name}-type move`,
+            name: `${detail[key].name}-type move`,
             image:
               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-fairy.png',
           });
           break;
         case 'location':
           item.push({
-            name: obj[key].name,
+            name: detail[key].name,
             image:
               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/old-sea-map.png',
           });
@@ -320,20 +321,20 @@ export const EvoDetails = ({ evo }) => {
           break;
         case 'min_beauty':
           item.push({
-            name: `beauty value of ${obj[key]}`,
+            name: `beauty value of ${detail[key]}`,
             image:
               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/blue-scarf.png',
           });
           break;
         case 'min_happiness':
           item.push({
-            name: `happiness value of ${obj[key]}`,
+            name: `happiness value of ${detail[key]}`,
             image:
               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/soothe-bell.png',
           });
           break;
         case 'min_level':
-          condition.push(obj[key]);
+          condition.push(detail[key]);
           break;
         case 'needs_overworld_rain':
           item.push({
@@ -344,33 +345,33 @@ export const EvoDetails = ({ evo }) => {
           break;
         case 'party_species':
           item.push({
-            name: `${obj[key].name} in the party`,
+            name: `${detail[key].name} in the party`,
             image:
               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/223.png',
           });
           break;
         case 'party_type':
           item.push({
-            name: `${obj[key].name}-type in the party`,
+            name: `${detail[key].name}-type in the party`,
             image:
               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/black-glasses.png',
           });
           break;
         case 'relative_physical_stats':
-          if (obj[key] > 0) {
+          if (detail[key] > 0) {
             condition.push('Atk↑');
-          } else if (obj[key] < 0) {
+          } else if (detail[key] < 0) {
             condition.push('Def↑');
           } else {
             condition.push('Atk = Def');
           }
           break;
         case 'time_of_day':
-          condition.push(obj[key]);
+          condition.push(detail[key]);
           break;
         case 'trade_species':
           item.push({
-            name: `trade with a ${obj[key].name}`,
+            name: `trade with a ${detail[key].name}`,
             image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${parseInt(
               obj[key].url.slice(42).split('/')
             )}.png`,
@@ -387,7 +388,7 @@ export const EvoDetails = ({ evo }) => {
           break;
       }
     }
-  }
+  }})
   return (
     <div className="d-flex justify-content-center">
       {condition.map((item) => {
