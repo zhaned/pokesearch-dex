@@ -209,78 +209,70 @@ export const TypeMultiplyer = (types, TypeNames) => {
 export const EvoTrigger = ({ evo }) => {
   const trigger = evo.evolution_details;
   let newTrigger = [];
-  let test = []
-  trigger.forEach(detail => {if (detail) {
-    switch (detail.trigger.name) {
-      case 'level-up':
-        newTrigger.push({
-        title: 'level up to evolve',
-         newTrigger: 'level'
-        })
-        break;
-      case 'trade':
-        newTrigger.push({
-          title: 'trade to evolve',
-         newTrigger: 'trade'
 
-        })
-        break;
-      case 'use-item':
-        newTrigger.push({
-          title: 'use an item to evolve',
-         newTrigger: 'item'
-        })
-        break;
-      case 'shed':
-        newTrigger.push({
-          title: 'have an empty slot in party',
-         newTrigger: 'shed'
-
-        })
-        break;
-      case 'spin':
-        newTrigger.push({
-          title: 'spin while holding a sweet item to evolve',
-         newTrigger: 'spin'
-
-        })
-        break;
-      case 'tower-of-darkness':
-      case 'tower-of-waters':
-        newTrigger.push({
-          title: 'tower of darkness or tower of water',
-         newTrigger: 'tower'
-
-        })
-        break;
-      case 'three-critical-hits':
-        newTrigger.push({
-          title: 'land 3 critical hits in one battle',
-         newTrigger: 'crit'
-
-        })
-        break;
-      case 'take-damage':
-        newTrigger.push({
-          title: 'take 49 damage in one battle',
-         newTrigger: 'damage'
-        })
-        break;
-      default:
-        break;
-    }
-  } else {
-    return null;
-  }}
-  )
-  for(const index in newTrigger) {
-    if(index === '0' || newTrigger[index].newTrigger !== newTrigger[index-1].newTrigger) {
-      test.push(newTrigger[index])
+  for (const index in trigger) {
+    if (
+      index === '0' ||
+      trigger[index].trigger.name !== trigger[index - 1].trigger.name
+    ) {
+      switch (trigger[index].trigger.name) {
+        case 'level-up':
+          newTrigger.push({
+            title: 'level up to evolve',
+            newTrigger: 'level',
+          });
+          break;
+        case 'trade':
+          newTrigger.push({
+            title: 'trade to evolve',
+            newTrigger: 'trade',
+          });
+          break;
+        case 'use-item':
+          newTrigger.push({
+            title: 'use an item to evolve',
+            newTrigger: 'item',
+          });
+          break;
+        case 'shed':
+          newTrigger.push({
+            title: 'have an empty slot in party',
+            newTrigger: 'shed',
+          });
+          break;
+        case 'spin':
+          newTrigger.push({
+            title: 'spin while holding a sweet item to evolve',
+            newTrigger: 'spin',
+          });
+          break;
+        case 'tower-of-darkness':
+        case 'tower-of-waters':
+          newTrigger.push({
+            title: 'tower of darkness or tower of water',
+            newTrigger: 'tower',
+          });
+          break;
+        case 'three-critical-hits':
+          newTrigger.push({
+            title: 'land 3 critical hits in one battle',
+            newTrigger: 'crit',
+          });
+          break;
+        case 'take-damage':
+          newTrigger.push({
+            title: 'take 49 damage in one battle',
+            newTrigger: 'damage',
+          });
+          break;
+        default:
+          break;
+      }
     }
   }
   return (
     <div className="d-flex justify-content-center">
-      {test.map(method => (
+      {newTrigger.map((method) => (
         <img
           src={require(`../../images/evolution/${method.newTrigger}-icon.png`)}
           alt={method.newTrigger}
@@ -288,7 +280,6 @@ export const EvoTrigger = ({ evo }) => {
           style={{ maxWidth: '24px' }}
           key={method.newTrigger}
         />
-
       ))}
     </div>
   );
@@ -298,131 +289,132 @@ export const EvoDetails = ({ evo }) => {
   const obj = evo.evolution_details;
   let condition = [];
   let item = [];
-  let finalArr = []
-  obj.forEach(detail => {for (const key in detail) {
-    if (
-      detail[key] !== null &&
-      detail[key] !== false &&
-      detail[key] !== '' &&
-      key !== 'trigger'
-    ) {
-      switch (key) {
-        case 'gender':
-          if (detail[key] === 1) {
-            condition.push('♀');
-          } else {
-            condition.push('♂');
-          }
-          break;
-        case 'held_item':
-          item.push({
-            name: detail[key].name,
-            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[key].name}.png`,
-          });
-          break;
-        case 'item':
-          item.push({
-            name: detail[key].name,
-            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[key].name}.png`,
-          });
-          break;
-        case 'known_move':
-          item.push({
-            name: detail[key].name,
-            image:
-              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png',
-          });
-          break;
-        case 'known_move_type':
-          item.push({
-            name: `${detail[key].name}-type move`,
-            image:
-              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-fairy.png',
-          });
-          break;
-        case 'location':
-          item.push({
-            name: detail[key].name,
-            image:
-              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/old-sea-map.png',
-          });
-          break;
-        case 'min_affection':
-          break;
-        case 'min_beauty':
-          item.push({
-            name: `beauty value of ${detail[key]}`,
-            image:
-              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/blue-scarf.png',
-          });
-          break;
-        case 'min_happiness':
-          item.push({
-            name: `happiness value of ${detail[key]}`,
-            image:
-              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/soothe-bell.png',
-          });
-          break;
-        case 'min_level':
-          condition.push(detail[key]);
-          break;
-        case 'needs_overworld_rain':
-          item.push({
-            name: `rain`,
-            image:
-              'https://archives.bulbagarden.net/media/upload/thumb/6/6d/Rain_icon_LA.png/30px-Rain_icon_LA.png',
-          });
-          break;
-        case 'party_species':
-          item.push({
-            name: `${detail[key].name} in the party`,
-            image:
-              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/223.png',
-          });
-          break;
-        case 'party_type':
-          item.push({
-            name: `${detail[key].name}-type in the party`,
-            image:
-              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/black-glasses.png',
-          });
-          break;
-        case 'relative_physical_stats':
-          if (detail[key] > 0) {
-            condition.push('Atk↑');
-          } else if (detail[key] < 0) {
-            condition.push('Def↑');
-          } else {
-            condition.push('Atk = Def');
-          }
-          break;
-        case 'time_of_day':
-          condition.push(detail[key]);
-          break;
-        case 'trade_species':
-          item.push({
-            name: `trade with a ${detail[key].name}`,
-            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${parseInt(
-              obj[key].url.slice(42).split('/')
-            )}.png`,
-          });
-          break;
-        case 'turn_upside_down':
-          item.push({
-            name: `hold console upside down`,
-            image:
-              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/gb-sounds.png',
-          });
-          break;
-        default:
-          break;
+  let finalArr = [];
+  obj.forEach((detail) => {
+    for (const key in detail) {
+      if (
+        detail[key] !== null &&
+        detail[key] !== false &&
+        detail[key] !== '' &&
+        key !== 'trigger'
+      ) {
+        switch (key) {
+          case 'gender':
+            if (detail[key] === 1) {
+              condition.push('♀');
+            } else {
+              condition.push('♂');
+            }
+            break;
+          case 'held_item':
+            item.push({
+              name: detail[key].name,
+              image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[key].name}.png`,
+            });
+            break;
+          case 'item':
+            item.push({
+              name: detail[key].name,
+              image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[key].name}.png`,
+            });
+            break;
+          case 'known_move':
+            item.push({
+              name: detail[key].name,
+              image:
+                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png',
+            });
+            break;
+          case 'known_move_type':
+            item.push({
+              name: `${detail[key].name}-type move`,
+              image:
+                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-fairy.png',
+            });
+            break;
+          case 'location':
+            item.push({
+              name: detail[key].name,
+              image:
+                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/old-sea-map.png',
+            });
+            break;
+          case 'min_affection':
+            break;
+          case 'min_beauty':
+            item.push({
+              name: `beauty value of ${detail[key]}`,
+              image:
+                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/blue-scarf.png',
+            });
+            break;
+          case 'min_happiness':
+            item.push({
+              name: `happiness value of ${detail[key]}`,
+              image:
+                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/soothe-bell.png',
+            });
+            break;
+          case 'min_level':
+            condition.push(detail[key]);
+            break;
+          case 'needs_overworld_rain':
+            item.push({
+              name: `rain`,
+              image:
+                'https://archives.bulbagarden.net/media/upload/thumb/6/6d/Rain_icon_LA.png/30px-Rain_icon_LA.png',
+            });
+            break;
+          case 'party_species':
+            item.push({
+              name: `${detail[key].name} in the party`,
+              image:
+                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/223.png',
+            });
+            break;
+          case 'party_type':
+            item.push({
+              name: `${detail[key].name}-type in the party`,
+              image:
+                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/black-glasses.png',
+            });
+            break;
+          case 'relative_physical_stats':
+            if (detail[key] > 0) {
+              condition.push('Atk↑');
+            } else if (detail[key] < 0) {
+              condition.push('Def↑');
+            } else {
+              condition.push('Atk = Def');
+            }
+            break;
+          case 'time_of_day':
+            condition.push(detail[key]);
+            break;
+          case 'trade_species':
+            item.push({
+              name: `trade with a ${detail[key].name}`,
+              image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${parseInt(
+                obj[key].url.slice(42).split('/')
+              )}.png`,
+            });
+            break;
+          case 'turn_upside_down':
+            item.push({
+              name: `hold console upside down`,
+              image:
+                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/gb-sounds.png',
+            });
+            break;
+          default:
+            break;
+        }
       }
     }
-  }})
-
-  for(const index in item) {
-    if(index === '0' || item[index].name !== item[index-1].name) {
-      finalArr.push(item[index])
+  });
+  for (const index in item) {
+    if (index === '0' || item[index].name !== item[index - 1].name) {
+      finalArr.push(item[index]);
     }
   }
 
@@ -450,26 +442,32 @@ export const EvoDetails = ({ evo }) => {
 };
 
 export const AbilityFilter = (array, version, language) => {
-  const newArr = language(array.filter((item) => {
-    if (
-      item.version_group.url ===
-      `https://pokeapi.co/api/v2/version-group/${version}/`
-    ) {
-      return item;
-    }
-    return null;
-  }));
-  return newArr
+  const newArr = language(
+    array.filter((item) => {
+      if (
+        item.version_group.url ===
+        `https://pokeapi.co/api/v2/version-group/${version}/`
+      ) {
+        return item;
+      }
+      return null;
+    })
+  );
+  return newArr;
 };
 
 export function effectEntryAdder(entries, effect) {
   let newEffect, newShortEffect;
-  newEffect = entries[0] ? entries[0].effect
-    .split(' ')
-    .map((word) => (word === '$effect_chance%' ? effect + '%' : word)) : ['(Currently no description)'];
-  newShortEffect = entries[0] ? entries[0].short_effect
-    .split(' ')
-    .map((word) => (word === '$effect_chance%' ? effect + '%' : word)): ['(Currently no description)'];
+  newEffect = entries[0]
+    ? entries[0].effect
+        .split(' ')
+        .map((word) => (word === '$effect_chance%' ? effect + '%' : word))
+    : ['(Currently no description)'];
+  newShortEffect = entries[0]
+    ? entries[0].short_effect
+        .split(' ')
+        .map((word) => (word === '$effect_chance%' ? effect + '%' : word))
+    : ['(Currently no description)'];
   return {
     effect: newEffect.join(' '),
     short_effect: newShortEffect.join(' '),
