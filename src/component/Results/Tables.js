@@ -15,7 +15,7 @@ import {
   TypeMultiplyer,
   EvoTrigger,
   EvoDetails,
-  AbilityFilter,
+  versionFilter,
   effectEntryAdder,
 } from './TableFunctions';
 import './Results.css';
@@ -656,13 +656,13 @@ export const TypeMatchup = ({ types }) => {
   );
 };
 
-export const MoveInfo = ({ ability, version }) => {
+export const MoveInfo = ({ move, version }) => {
   const effectEntries = effectEntryAdder(
-    langFilter(ability.effect_entries),
-    ability.effect_chance
+    langFilter(move.effect_entries),
+    move.effect_chance
   );
-  const flavorText = AbilityFilter(
-    ability.flavor_text_entries,
+  const flavorText = versionFilter(
+    move.flavor_text_entries,
     version,
     langFilter
   );
@@ -684,23 +684,23 @@ export const MoveInfo = ({ ability, version }) => {
             <td>
               <img
                 className="d-flex"
-                src={require(`../../images/damage-classes/${ability.damage_class.name}-icon.png`)}
+                src={require(`../../images/damage-classes/${move.damage_class.name}-icon.png`)}
                 alt=""
-                title={capitalizer(ability.damage_class.name)}
+                title={capitalizer(move.damage_class.name)}
               />
             </td>
             <td>
               <span
                 className="border rounded px-1"
-                style={{ backgroundColor: TypeColor(ability.type.name) }}
+                style={{ backgroundColor: TypeColor(move.type.name) }}
               >
-                {ability.type.name}
+                {move.type.name}
               </span>
             </td>
-            <td>{ability.power ? ability.power : '-'}</td>
-            <td>{ability.accuracy ? ability.accuracy + '%' : '-'}</td>
-            <td>{ability.pp}</td>
-            <td>{ability.priority}</td>
+            <td>{move.power ? move.power : '-'}</td>
+            <td>{move.accuracy ? move.accuracy + '%' : '-'}</td>
+            <td>{move.pp}</td>
+            <td>{move.priority}</td>
           </tr>
         </tbody>
       </table>

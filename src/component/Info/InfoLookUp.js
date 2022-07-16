@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
-import Pagination from "../PokeList/Pagination";
-import Loading from "../Loading/Loading";
-import AbilityList from "./AbilityList";
+import { useState, useEffect } from 'react';
+import Pagination from '../PokeList/Pagination';
+import Loading from '../Loading/Loading';
+import InfoList from './InfoList';
 
-const AbilityLookUp = ({test}) => {
-  
-  const [ability, setAbility] = useState();
+const InfoLookUp = ({ infoType }) => {
+  const [info, setInfo] = useState();
   const [currentPageURL, setCurrentPageURL] = useState(
-    `http://localhost:3001/${test}`
+    `http://localhost:3001/${infoType}`
   );
   const [prevPageURL, setPrevPageURL] = useState();
   const [nextPageURL, setNextPageURL] = useState();
@@ -18,7 +17,7 @@ const AbilityLookUp = ({test}) => {
       .then((data) => {
         setNextPageURL(data.next);
         setPrevPageURL(data.previous);
-        setAbility(data.results.map((p) => [p.name, p.url]));
+        setInfo(data.results.map((p) => [p.name, p.url]));
       });
   }, [currentPageURL]);
 
@@ -35,9 +34,9 @@ const AbilityLookUp = ({test}) => {
         goPrevPage={prevPageURL ? goPrevPage : null}
         goNextPage={nextPageURL ? goNextPage : null}
       />
-      {ability ? <AbilityList ability={ability} test={test} /> : <Loading />}
+      {info ? <InfoList info={info} infoType={infoType} /> : <Loading />}
     </div>
   );
-}
- 
-export default AbilityLookUp;
+};
+
+export default InfoLookUp;

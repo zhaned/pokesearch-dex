@@ -1,4 +1,4 @@
-import AbilityLookUp from '../component/Abilities/AbilityLookUp';
+import InfoLookUp from '../component/Info/InfoLookUp';
 
 const Moves = () => {
   return (
@@ -10,7 +10,7 @@ const Moves = () => {
       }}
     >
       <h1 className="display-2">Moves</h1>
-      <AbilityLookUp test="move" />
+      <InfoLookUp test="move" />
     </div>
   );
 };

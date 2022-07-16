@@ -440,7 +440,7 @@ export const EvoDetails = ({ evo }) => {
   );
 };
 
-export const AbilityFilter = (array, version, language) => {
+export const versionFilter = (array, version, language) => {
   const newArr = language(
     array.filter((item) => {
       if (
