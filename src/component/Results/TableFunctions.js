@@ -176,7 +176,6 @@ export const TypeMultiplyer = (types, TypeNames) => {
       value: 1,
     });
   });
-  // console.log("alltypes", allTypes, "\n", "type1", type1, "\n", "type2", type2);
   for (const type of type1) {
     let somet = type2.find((obj) => obj.name === type.name) || 1;
     const weakness = type.value * somet.value;
@@ -200,7 +199,7 @@ export const TypeMultiplyer = (types, TypeNames) => {
         typeFinal.no.push(type.name);
         break;
       default:
-        console.log('error in switch statement');
+        break;
     }
   }
   return typeFinal;

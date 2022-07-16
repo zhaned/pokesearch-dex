@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { capitalizer } from "../Results/TableFunctions";
 
 const AbilityList = ({ability, test}) => {
   return ( 
@@ -25,7 +26,7 @@ const AbilityList = ({ability, test}) => {
           }}
         >
           <div>
-            {p[0].charAt(0).toUpperCase() + p[0].slice(1)}
+            {capitalizer(p[0])}
           </div>
         </div>
       </Link>
