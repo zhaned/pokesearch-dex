@@ -212,13 +212,14 @@ export const EvoTrigger = ({ evo }) => {
   for (const index in trigger) {
     if (
       index === '0' ||
-      trigger[index].trigger.name !== trigger[index - 1].trigger.name
+      !newTrigger.find(obj => obj.newTrigger === trigger[index].trigger.name)
     ) {
       switch (trigger[index].trigger.name) {
         case 'level-up':
           newTrigger.push({
             title: 'level up to evolve',
-            newTrigger: 'level',
+            newTrigger: 'level-up',
+            
           });
           break;
         case 'trade':
@@ -230,7 +231,7 @@ export const EvoTrigger = ({ evo }) => {
         case 'use-item':
           newTrigger.push({
             title: 'use an item to evolve',
-            newTrigger: 'item',
+            newTrigger: 'use-item',
           });
           break;
         case 'shed':
@@ -246,22 +247,27 @@ export const EvoTrigger = ({ evo }) => {
           });
           break;
         case 'tower-of-darkness':
+          newTrigger.push({
+            title: 'tower of darkness',
+            newTrigger: 'tower-of-darkness',
+          });
+          break;
         case 'tower-of-waters':
           newTrigger.push({
-            title: 'tower of darkness or tower of water',
-            newTrigger: 'tower',
+            title: 'tower of waters',
+            newTrigger: 'tower-of-waters',
           });
           break;
         case 'three-critical-hits':
           newTrigger.push({
             title: 'land 3 critical hits in one battle',
-            newTrigger: 'crit',
+            newTrigger: 'three-critical-hits',
           });
           break;
         case 'take-damage':
           newTrigger.push({
             title: 'take 49 damage in one battle',
-            newTrigger: 'damage',
+            newTrigger: 'take-damage',
           });
           break;
         default:
@@ -411,8 +417,11 @@ export const EvoDetails = ({ evo }) => {
       }
     }
   });
+  // !newTrigger.find(obj => obj.newTrigger === trigger[index].trigger.name)
   for (const index in item) {
-    if (index === '0' || item[index].name !== item[index - 1].name) {
+    if (index === '0' || 
+    !finalArr.find(obj => obj.name === item[index].name)
+    ) {
       finalArr.push(item[index]);
     }
   }
