@@ -212,14 +212,13 @@ export const EvoTrigger = ({ evo }) => {
   for (const index in trigger) {
     if (
       index === '0' ||
-      !newTrigger.find(obj => obj.newTrigger === trigger[index].trigger.name)
+      !newTrigger.find((obj) => obj.newTrigger === trigger[index].trigger.name)
     ) {
       switch (trigger[index].trigger.name) {
         case 'level-up':
           newTrigger.push({
             title: 'level up to evolve',
             newTrigger: 'level-up',
-            
           });
           break;
         case 'trade':
@@ -293,8 +292,9 @@ export const EvoTrigger = ({ evo }) => {
 export const EvoDetails = ({ evo }) => {
   const obj = evo.evolution_details;
   let condition = [];
+  let finalCon = [];
   let item = [];
-  let finalArr = [];
+  let finalItems = [];
   obj.forEach((detail) => {
     for (const key in detail) {
       if (
@@ -418,24 +418,30 @@ export const EvoDetails = ({ evo }) => {
     }
   });
   // !newTrigger.find(obj => obj.newTrigger === trigger[index].trigger.name)
-  for (const index in item) {
-    if (index === '0' || 
-    !finalArr.find(obj => obj.name === item[index].name)
-    ) {
-      finalArr.push(item[index]);
+
+  for (const index in condition) {
+    if (index === '0' || !finalCon.find((obj) => obj === condition[index])) {
+      finalCon.push(condition[index]);
     }
   }
-
+  for (const index in item) {
+    if (
+      index === '0' ||
+      !finalItems.find((obj) => obj.name === item[index].name)
+    ) {
+      finalItems.push(item[index]);
+    }
+  }
   return (
     <div className="d-flex justify-content-center">
-      {condition.map((item) => {
+      {finalCon.map((item) => {
         return (
           <div className="me-1" title={item} key={item}>
             {item}
           </div>
         );
       })}
-      {finalArr.map((item) => {
+      {finalItems.map((item) => {
         return (
           <img
             src={item.image}
