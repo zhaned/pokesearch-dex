@@ -37,10 +37,10 @@ const Ability = ({ ability, version }) => {
                 <th>In-Game Description:</th>
               </tr>
               <tr>
-                <td className="pe-1">{`${
+                <td className="px-1" style={{ minWidth: '40%' }}>{`${
                   effectEntries[0] ? effectEntries[0].short_effect : '-'
                 }`}</td>
-                <td>
+                <td className="px-1">
                   {`(${flavorText[0].version_group.name}) ${flavorText[0].flavor_text}`}
                 </td>
               </tr>
@@ -52,7 +52,9 @@ const Ability = ({ ability, version }) => {
                 <th>In-Depth Description:</th>
               </tr>
               <tr>
-                <td>{effectEntries[0] ? effectEntries[0].effect : '-'}</td>
+                <td className="px-1">
+                  {effectEntries[0] ? effectEntries[0].effect : '-'}
+                </td>
               </tr>
             </tbody>
           </table>

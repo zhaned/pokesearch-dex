@@ -348,7 +348,7 @@ export const EvoDetails = ({ evo }) => {
             break;
           case 'min_beauty':
             item.push({
-              name: `beauty value of ${detail[key]}`,
+              name: `beauty value of 170+`,
               image:
                 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/blue-scarf.png',
             });

@@ -10,7 +10,7 @@ const Moves = () => {
       }}
     >
       <h1 className="display-2">Moves</h1>
-      <InfoLookUp test="move" />
+      <InfoLookUp infoType="move" />
     </div>
   );
 };

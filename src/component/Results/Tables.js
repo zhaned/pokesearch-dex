@@ -712,10 +712,10 @@ export const MoveInfo = ({ move, version }) => {
           </tr>
           <tr>
             <td
-              className="pe-1"
+              className="px-1"
               style={{ minWidth: '40%' }}
             >{`${effectEntries.short_effect}`}</td>
-            <td>
+            <td className='px-1'>
               {`(${flavorText[0].version_group.name}) ${flavorText[0].flavor_text}`}
             </td>
           </tr>
@@ -726,8 +726,8 @@ export const MoveInfo = ({ move, version }) => {
           <tr className="border-bottom">
             <th>In-depth Effect:</th>
           </tr>
-          <tr>
-            <td>{effectEntries.effect}</td>
+          <tr >
+            <td className='px-1'>{effectEntries.effect}</td>
           </tr>
         </tbody>
       </table>
