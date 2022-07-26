@@ -5,16 +5,16 @@ import './PokeCycler.css';
 const PokeCycler = ({pokeNumber, side}) => {
   let art;
   const [artUrl, setArtUrl] = useState({
-    number1: pokeNumber,
-    url1: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber}.png`,
+    number: pokeNumber,
+    url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber}.png`,
 
   });
 
   function urlMaker() {
     pokeNumber = Math.floor(Math.random() * 897 + 1);
     art = {
-      number1: pokeNumber,
-      url1: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber}.png`
+      number: pokeNumber,
+      url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber}.png`
     };
     return art;
   }
@@ -30,11 +30,11 @@ const PokeCycler = ({pokeNumber, side}) => {
   return (
     <div>
       <div className="img-container container-fluid">
-        <Link to={`/search/${artUrl.number1}`}>
+        <Link to={`/search/${artUrl.number}`}>
           <img
-            key={artUrl.number1}
-            src={artUrl.url1}
-            alt={artUrl.number1}
+            key={artUrl.number}
+            src={artUrl.url}
+            alt={artUrl.number}
             className={`fade-in-${side} hover-${side}`}
           />
         </Link>

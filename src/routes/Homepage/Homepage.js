@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PokeCycler from '../../component/PokeCycler/PokeCycler';
 import './Homepage.css';
@@ -5,10 +6,13 @@ import './Homepage.css';
 const Homepage = () => {
   let pokeNumber = Math.floor(Math.random() * 897 + 1);
   let pokeNumber2 = Math.floor(Math.random() * 897 + 1);
-  const pokeIcon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/251.png`;
+  const pokeIcon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/1.png`;
   const abilityIcon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/109.png`;
-  const moveIcon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/212.png`;
+  const moveIcon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/251.png`;
 
+  useEffect(() => {
+    document.title = 'PokeAPI Dex';
+  },[])
   return (
     <div>
       <h1

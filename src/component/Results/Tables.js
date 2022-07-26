@@ -488,7 +488,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
   return (
     <div className="d-flex justify-content-between">
       <div className="d-flex align-items-center">
-        {/* fix: add the previous pokemon as a link here with a sprite */}
+        {/* fixed: add the previous pokemon as a link here with a sprite */}
         {id === 1 ? null : (
           <Link
             to={`/search/${id - 1}`}
@@ -511,7 +511,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
         className="d-flex justify-content-center align-items-center"
         style={{ margin: '0px' }}
       >
-        <h1 className="display-3 text-center pt-1 pe-1">
+        <h1 className="display-3 text-center pt-1 pe-1" id='title'>
           #{id} {/*fixed: change this to get the id from species.url later*/}
           {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
         </h1>
