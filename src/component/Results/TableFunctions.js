@@ -91,7 +91,6 @@ export const levelGetter = (moves, version) => {
   }
 };
 
-//this feels kinda hacky but it works for now.
 //takes you to the new location after clicking one of the links
 //to the previous or next pokemon and refreshes the page.
 //refresh is somewhat necessary because nothing will render since
@@ -400,7 +399,7 @@ export const EvoDetails = ({ evo }) => {
             item.push({
               name: `trade with a ${detail[key].name}`,
               image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${parseInt(
-                obj[key].url.slice(42).split('/')
+                detail[key].url.slice(42).split('/')
               )}.png`,
             });
             break;
@@ -417,7 +416,6 @@ export const EvoDetails = ({ evo }) => {
       }
     }
   });
-  // !newTrigger.find(obj => obj.newTrigger === trigger[index].trigger.name)
 
   for (const index in condition) {
     if (index === '0' || !finalCon.find((obj) => obj === condition[index])) {

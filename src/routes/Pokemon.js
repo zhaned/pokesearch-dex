@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Loading from "../component/Loading/Loading";
-import Results from "../component/Results/Results";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Loading from '../component/Loading/Loading';
+import Results from '../component/Results/Results';
 
 const Pokemon = () => {
   let { id } = useParams();

@@ -21,9 +21,8 @@ import {
 import './Results.css';
 
 export const Stats = ({ species, traits }) => {
-  //fix: height near 12 inches aren't converted (.3m becomes 0"12)
-  // const height = (traits.height * 10) / 2.54 / 12; // in ft
-  const height = traits.height / 10;
+  //fixed: height near 12 inches aren't converted (.3m becomes 0"12)
+  const height = traits.height / 10; //in meters
   const weight = Math.round(2.20462 * traits.weight) / 10; // in lbs
   const description = regionFilter(langFilter(species.flavor_text_entries));
   return (
@@ -32,12 +31,9 @@ export const Stats = ({ species, traits }) => {
         <tr>
           <th>Description: </th>
           <td>
-            {
-              `(${capitalizer(description.version.name)}): ${capsChecker(
-                description.flavor_text
-              )} `
-              // species.flavor_text_entries[0].flavor_text
-            }
+            {`(${capitalizer(description.version.name)}): ${capsChecker(
+              description.flavor_text
+            )} `}
           </td>
         </tr>
         <tr>
@@ -126,9 +122,7 @@ export const Traits = ({ traits }) => {
       <tbody>
         {stats.map((stat) => (
           <Fragment key={stat.stat.name}>
-            <tr
-            // style={{height: '28px'}}
-            >
+            <tr>
               <th
                 className="border border-bottom-0 px-1"
                 style={{ backgroundColor: 'rgba(0,0,0,.15)' }}
@@ -177,7 +171,7 @@ export const Moveset = ({ moves, version }) => {
     getMoveInfo();
   }, []);
   //fix: get moves from a single generation
-  //fix: order moves via level up
+  //fixed: order moves via level up
   return moveInfo ? (
     <table className="table table-dark table-hover">
       <thead className="text-center move-thead">
@@ -242,7 +236,7 @@ export const Moveset = ({ moves, version }) => {
 };
 
 export const Evolutions = ({ evolution }) => {
-  //fix: include requirement for evolving b/t species
+  //fixed: include requirement for evolving b/t species
   const navigate = useNavigate();
   return (
     <div className="d-flex flex-column" style={{ width: '50%' }}>
@@ -511,7 +505,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
         className="d-flex justify-content-center align-items-center"
         style={{ margin: '0px' }}
       >
-        <h1 className="display-3 text-center pt-1 pe-1" id='title'>
+        <h1 className="display-3 text-center pt-1 pe-1" id="title">
           #{id} {/*fixed: change this to get the id from species.url later*/}
           {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
         </h1>
@@ -715,7 +709,7 @@ export const MoveInfo = ({ move, version }) => {
               className="px-1"
               style={{ minWidth: '40%' }}
             >{`${effectEntries.short_effect}`}</td>
-            <td className='px-1'>
+            <td className="px-1">
               {`(${flavorText[0].version_group.name}) ${flavorText[0].flavor_text}`}
             </td>
           </tr>
@@ -726,8 +720,8 @@ export const MoveInfo = ({ move, version }) => {
           <tr className="border-bottom">
             <th>In-depth Effect:</th>
           </tr>
-          <tr >
-            <td className='px-1'>{effectEntries.effect}</td>
+          <tr>
+            <td className="px-1">{effectEntries.effect}</td>
           </tr>
         </tbody>
       </table>

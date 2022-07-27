@@ -57,7 +57,6 @@ const Move = ({ move, version }) => {
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${poke.number[0]}.png`}
                     alt=""
                     style={{
-                      // minHeight: 'auto',
                       objectPosition: '0px -.5rem',
                     }}
                   />

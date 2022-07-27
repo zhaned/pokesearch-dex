@@ -12,7 +12,7 @@ const Homepage = () => {
 
   useEffect(() => {
     document.title = 'PokeAPI Dex';
-  },[])
+  }, []);
   return (
     <div>
       <h1
@@ -33,8 +33,6 @@ const Homepage = () => {
         <div
           className="align-self-start"
           style={{
-            // verticalAlign: 'middle',
-            // textAlign: 'center',
             textShadow: '2px 2px #851bed',
           }}
         >
@@ -49,7 +47,6 @@ const Homepage = () => {
                   style={{
                     width: '100%',
                     height: 'auto',
-                    // objectFit: 'cover',
                     objectPosition: '0px -37px',
                   }}
                 />
@@ -72,7 +69,6 @@ const Homepage = () => {
                   style={{
                     width: '100%',
                     height: 'auto',
-                    // objectFit: 'cover',
                     objectPosition: '0px -37px',
                   }}
                 />
@@ -95,7 +91,6 @@ const Homepage = () => {
                   style={{
                     width: '100%',
                     height: 'auto',
-                    // objectFit: 'cover',
                     objectPosition: '0px -37px',
                   }}
                 />

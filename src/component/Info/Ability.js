@@ -23,12 +23,12 @@ const Ability = ({ ability, version }) => {
       };
     });
 
-    useEffect(() => {
-      document.title = document.getElementById('title').innerText;
-    }, [])
+  useEffect(() => {
+    document.title = document.getElementById('title').innerText;
+  }, []);
   return (
     <div style={{ color: '#f8f9fa', textShadow: '2px 2px #851bed' }}>
-      <h1 className="display-3 text-center pt-1 pe-1" id='title'>
+      <h1 className="display-3 text-center pt-1 pe-1" id="title">
         {capitalizer(
           ability.name.charAt(0).toUpperCase() + ability.name.slice(1)
         )}
@@ -98,7 +98,6 @@ const Ability = ({ ability, version }) => {
                       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${poke.number[0]}.png`}
                       alt=""
                       style={{
-                        // minHeight: 'auto',
                         objectPosition: '0px -.5rem',
                       }}
                     />
