@@ -393,7 +393,10 @@ export const EvoDetails = ({ evo }) => {
             }
             break;
           case 'time_of_day':
-            condition.push(detail[key]);
+            item.push({
+              name: `${detail[key]}`,
+              image: `${require(`../../images/evolution/${detail[key]}-icon.png`)}`,
+            });
             break;
           case 'trade_species':
             item.push({

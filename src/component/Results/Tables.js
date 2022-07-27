@@ -20,10 +20,10 @@ import {
 } from './TableFunctions';
 import './Results.css';
 
-export const Stats = ({ species, traits }) => {
+export const Traits = ({ species, data }) => {
   //fixed: height near 12 inches aren't converted (.3m becomes 0"12)
-  const height = traits.height / 10; //in meters
-  const weight = Math.round(2.20462 * traits.weight) / 10; // in lbs
+  const height = data.height / 10; //in meters
+  const weight = Math.round(2.20462 * data.weight) / 10; // in lbs
   const description = regionFilter(langFilter(species.flavor_text_entries));
   return (
     <table className="col border-end">
@@ -45,7 +45,7 @@ export const Stats = ({ species, traits }) => {
         <tr>
           <th>Weight:</th>
           <td>
-            {weight} lbs ({traits.weight / 10} kg)
+            {weight} lbs ({data.weight / 10} kg)
           </td>
         </tr>
         <tr>
@@ -67,9 +67,9 @@ export const Stats = ({ species, traits }) => {
   );
 };
 
-export const Traits = ({ traits }) => {
-  const ability = traits.abilities;
-  const stats = traits.stats;
+export const Stats = ({ data }) => {
+  const ability = data.abilities;
+  const stats = data.stats;
   const ev = capitalizer(
     stats
       .filter((stat) => stat.effort > 0)

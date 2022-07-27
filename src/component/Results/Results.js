@@ -1,14 +1,13 @@
 import './Results.css';
 import {
   Moveset,
-  Stats,
   Traits,
+  Stats,
   Evolutions,
   Header,
   TypeMatchup,
 } from './Tables';
 import { useState, useEffect } from 'react';
-import { capitalizer } from './TableFunctions';
 
 //fix: convert the number into a name so the search url is more consistent
 //fixed: dynamic background based on type
@@ -26,7 +25,7 @@ const Results = ({ pokemon, species, evolution, types }) => {
     <div
       className="fade-in-above text-light"
       style={{
-        textShadow: '2px 2px #851bed',
+        textShadow: `2px 2px #851bed`,
       }}
     >
       <Header id={id} pokemon={pokemon} type={type} type2={type2} />
@@ -49,8 +48,8 @@ const Results = ({ pokemon, species, evolution, types }) => {
             backgroundSize: '100% 100%',
           }}
         >
-          <Stats species={species} traits={pokemon} />
-          <Traits traits={pokemon} />
+          <Traits species={species} data={pokemon} />
+          <Stats data={pokemon} />
           <div
             className="d-flex rounded-circle justify-content-center align-items-center col"
             style={{
