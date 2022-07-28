@@ -1,25 +1,37 @@
-.tester td span{
-  margin-bottom: .25rem;
-  margin-top: .25rem
+.type-matchup td span {
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
 }
-.tester tr *{
-  padding: .25rem .25rem;
+.type-matchup tr * {
+  padding: 0.25rem 0.25rem;
   border-bottom: 0px solid;
 }
-.tester td {
+.type-matchup td {
   display: flex;
   flex-wrap: wrap;
   max-width: 24vw;
   min-height: 50px;
 }
 
-.tester tr{
+.type-matchup tr {
   border-top: 1px solid #dee2e6;
 }
 
-.tester th {
+.type-matchup th {
   vertical-align: middle;
 }
+
+.nav-item {
+  background-color: #212529;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.nav-item .nav-link.active {
+  background-color: #323539;
+}
+
+
 
 a {
   color: #f8f9fa;
@@ -27,7 +39,7 @@ a {
   text-decoration: none;
 }
 
-a:hover{
+a:hover {
   color: #f8f9fa;
 }
 .stat-name:hover {
@@ -81,9 +93,9 @@ th {
   border-top-right-radius: 0.5rem;
 }
 
-.move-tbody tr:first-child :last-child {
+/* .move-tbody tr:first-child :last-child {
   border-top-right-radius: 0.5rem;
-}
+} */
 
 .move-tbody tr:last-child :first-child {
   border-bottom-left-radius: 0.5rem;

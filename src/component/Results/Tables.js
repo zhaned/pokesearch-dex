@@ -154,11 +154,11 @@ export const Stats = ({ data }) => {
   );
 };
 
-export const Moveset = ({ moves, version }) => {
+export const Moveset = ({ moves, version, method }) => {
   const [moveInfo, setMoveInfo] = useState();
 
   //fix: dynamically choose version and learn method
-  const moveList = moveFilter(moves, version, 'level-up');
+  const moveList = moveFilter(moves, version, method);
   const getMoveInfo = async () => {
     const url = moveList.map((move) =>
       fetch(move.move.url).then((res) => res.json())
@@ -175,11 +175,6 @@ export const Moveset = ({ moves, version }) => {
   return moveInfo ? (
     <table className="table table-dark table-hover">
       <thead className="text-center move-thead">
-        <tr>
-          <th>
-            <h4>Moves</h4>
-          </th>
-        </tr>
       </thead>
       <tbody className="move-tbody">
         <tr className="text-start border-bottom">
@@ -262,7 +257,7 @@ export const Evolutions = ({ evolution }) => {
                 }
                 className="d-flex flex-column text-center"
                 style={{
-                  width: '10rem',
+                  width: '8rem',
                   height: 'auto',
                 }}
               >
@@ -304,7 +299,7 @@ export const Evolutions = ({ evolution }) => {
                       }
                       className="d-flex flex-column text-center"
                       style={{
-                        width: '10rem',
+                        width: '8rem',
                         height: 'auto',
                       }}
                     >
@@ -350,7 +345,7 @@ export const Evolutions = ({ evolution }) => {
                         }
                         className="d-flex flex-column text-center"
                         style={{
-                          width: '10rem',
+                          width: '8rem',
                           height: 'auto',
                         }}
                       >
@@ -383,7 +378,7 @@ export const Evolutions = ({ evolution }) => {
                 }
                 className="d-flex flex-column text-center"
                 style={{
-                  width: '10rem',
+                  width: '8rem',
                   height: 'auto',
                 }}
               >
@@ -425,7 +420,7 @@ export const Evolutions = ({ evolution }) => {
                       }
                       className="d-flex flex-column text-center"
                       style={{
-                        width: '10rem',
+                        width: '8rem',
                         height: 'auto',
                       }}
                     >
@@ -457,7 +452,7 @@ export const Evolutions = ({ evolution }) => {
             }
             className="d-flex flex-column text-center"
             style={{
-              width: '10rem',
+              width: '8rem',
               height: 'auto',
             }}
           >
@@ -555,7 +550,7 @@ export const TypeMatchup = ({ types }) => {
   return (
     <div>
       <h4 className="text-center">Type Matchup</h4>
-      <table className="table m-0 tester" style={{ color: '#f8f9fa' }}>
+      <table className="table m-0 type-matchup" style={{ color: '#f8f9fa' }}>
         <tbody>
           <tr>
             <th>4x damage:</th>

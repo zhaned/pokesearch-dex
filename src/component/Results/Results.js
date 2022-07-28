@@ -88,7 +88,96 @@ const Results = ({ pokemon, species, evolution, types }) => {
           }}
         />
         <div>
-          <Moveset moves={pokemon.moves} version={version} />
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item me-1" role="presentation">
+              <button
+                class="nav-link active"
+                id="home-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#home"
+                type="button"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                style={{
+                  color: '#f8f9fa',
+                  textShadow: '2px 2px #851bed'
+                }}
+              >
+                Moves
+              </button>
+            </li>
+            <li class="nav-item me-1" role="presentation">
+              <button
+                class="nav-link "
+                id="profile-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#profile"
+                type="button"
+                role="tab"
+                aria-controls="profile"
+                aria-selected="false"
+                style={{
+                  color: '#f8f9fa',
+                  textShadow: '2px 2px #851bed'
+                }}
+              >
+                TM/TR
+              </button>
+            </li>
+            <li class="nav-item me-1" role="presentation">
+              <button
+                class="nav-link "
+                id="contact-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#contact"
+                type="button"
+                role="tab"
+                aria-controls="contact"
+                aria-selected="false"
+                style={{
+                  color: '#f8f9fa',
+                  textShadow: '2px 2px #851bed'
+                }}
+              >
+                Egg
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div
+              class="tab-pane fade show active"
+              id="home"
+              role="tabpanel"
+              aria-labelledby="home-tab"
+            >
+              <Moveset
+                moves={pokemon.moves}
+                version={version}
+                method="level-up"
+              />
+            </div>
+            <div
+              class="tab-pane fade"
+              id="profile"
+              role="tabpanel"
+              aria-labelledby="profile-tab"
+            >
+              <Moveset
+                moves={pokemon.moves}
+                version={version}
+                method="machine"
+              />
+            </div>
+            <div
+              class="tab-pane fade"
+              id="contact"
+              role="tabpanel"
+              aria-labelledby="contact-tab"
+            >
+              <Moveset moves={pokemon.moves} version={version} method="egg" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
