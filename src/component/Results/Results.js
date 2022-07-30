@@ -88,10 +88,10 @@ const Results = ({ pokemon, species, evolution, types }) => {
           }}
         />
         <div>
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item me-1" role="presentation">
+          <ul className="nav nav-tabs" id="myTab" role="tablist">
+            <li className="nav-item me-1" role="presentation">
               <button
-                class="nav-link active"
+                className="nav-link active"
                 id="home-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#home"
@@ -101,15 +101,15 @@ const Results = ({ pokemon, species, evolution, types }) => {
                 aria-selected="true"
                 style={{
                   color: '#f8f9fa',
-                  textShadow: '2px 2px #851bed'
+                  textShadow: '2px 2px #851bed',
                 }}
               >
                 Moves
               </button>
             </li>
-            <li class="nav-item me-1" role="presentation">
+            <li className="nav-item me-1" role="presentation">
               <button
-                class="nav-link "
+                className="nav-link "
                 id="profile-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#profile"
@@ -119,15 +119,15 @@ const Results = ({ pokemon, species, evolution, types }) => {
                 aria-selected="false"
                 style={{
                   color: '#f8f9fa',
-                  textShadow: '2px 2px #851bed'
+                  textShadow: '2px 2px #851bed',
                 }}
               >
                 TM/TR
               </button>
             </li>
-            <li class="nav-item me-1" role="presentation">
+            <li className="nav-item me-1" role="presentation">
               <button
-                class="nav-link "
+                className="nav-link "
                 id="contact-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#contact"
@@ -137,15 +137,15 @@ const Results = ({ pokemon, species, evolution, types }) => {
                 aria-selected="false"
                 style={{
                   color: '#f8f9fa',
-                  textShadow: '2px 2px #851bed'
+                  textShadow: '2px 2px #851bed',
                 }}
               >
                 Egg
               </button>
             </li>
-            <li class="nav-item me-1" role="presentation">
+            <li className="nav-item me-1" role="presentation">
               <button
-                class="nav-link "
+                className="nav-link "
                 id="tutor-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#tutor"
@@ -155,16 +155,16 @@ const Results = ({ pokemon, species, evolution, types }) => {
                 aria-selected="false"
                 style={{
                   color: '#f8f9fa',
-                  textShadow: '2px 2px #851bed'
+                  textShadow: '2px 2px #851bed',
                 }}
               >
                 Tutor
               </button>
             </li>
           </ul>
-          <div class="tab-content" id="myTabContent">
+          <div className="tab-content" id="myTabContent">
             <div
-              class="tab-pane fade show active"
+              className="tab-pane fade show active"
               id="home"
               role="tabpanel"
               aria-labelledby="home-tab"
@@ -176,7 +176,7 @@ const Results = ({ pokemon, species, evolution, types }) => {
               />
             </div>
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="profile"
               role="tabpanel"
               aria-labelledby="profile-tab"
@@ -188,7 +188,7 @@ const Results = ({ pokemon, species, evolution, types }) => {
               />
             </div>
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="contact"
               role="tabpanel"
               aria-labelledby="contact-tab"
@@ -196,7 +196,7 @@ const Results = ({ pokemon, species, evolution, types }) => {
               <Moveset moves={pokemon.moves} version={version} method="egg" />
             </div>
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="tutor"
               role="tabpanel"
               aria-labelledby="tutor-tab"

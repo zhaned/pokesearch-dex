@@ -85,14 +85,28 @@ export const levelGetter = (moves, version) => {
       index.version_group.url ===
       `https://pokeapi.co/api/v2/version-group/${version}/`
     )
-      // return index.level_learned_at === 0
-      //   ? 'Evolve'
-      //   : index.level_learned_at === 1
-      //   ? '-'
-      //   : index.level_learned_at;
       return index.level_learned_at;
   }
 };
+
+export const levelTmGetter = (moves, version, method, machine) => {
+  if(method === 'level-up'){
+    for (let index of moves.version_group_details) {
+      if (
+        index.version_group.url ===
+        `https://pokeapi.co/api/v2/version-group/${version}/`
+      )
+        return index.level_learned_at === 0 ? 'Evolve' : index.level_learned_at === 1 ? '-' : index.level_learned_at;
+    }
+  }
+  if(method === 'machine'){
+    return machine
+  }
+  if(method === 'egg'){ return '-'}
+  if(method === 'tutor'){ return '-'}
+}
+ 
+
 
 //takes you to the new location after clicking one of the links
 //to the previous or next pokemon and refreshes the page.
