@@ -143,6 +143,24 @@ const Results = ({ pokemon, species, evolution, types }) => {
                 Egg
               </button>
             </li>
+            <li class="nav-item me-1" role="presentation">
+              <button
+                class="nav-link "
+                id="tutor-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#tutor"
+                type="button"
+                role="tab"
+                aria-controls="tutor"
+                aria-selected="false"
+                style={{
+                  color: '#f8f9fa',
+                  textShadow: '2px 2px #851bed'
+                }}
+              >
+                Tutor
+              </button>
+            </li>
           </ul>
           <div class="tab-content" id="myTabContent">
             <div
@@ -176,6 +194,14 @@ const Results = ({ pokemon, species, evolution, types }) => {
               aria-labelledby="contact-tab"
             >
               <Moveset moves={pokemon.moves} version={version} method="egg" />
+            </div>
+            <div
+              class="tab-pane fade"
+              id="tutor"
+              role="tabpanel"
+              aria-labelledby="tutor-tab"
+            >
+              <Moveset moves={pokemon.moves} version={version} method="tutor" />
             </div>
           </div>
         </div>

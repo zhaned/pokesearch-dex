@@ -73,8 +73,6 @@ export const moveFilter = (array, version, learn_method) => {
     })
     .sort((a, b) => {
       return (
-        // a.version_group_details[0].level_learned_at -
-        // b.version_group_details[0].level_learned_at
         levelGetter(a, version) - levelGetter(b, version)
       );
     });
@@ -87,6 +85,11 @@ export const levelGetter = (moves, version) => {
       index.version_group.url ===
       `https://pokeapi.co/api/v2/version-group/${version}/`
     )
+      // return index.level_learned_at === 0
+      //   ? 'Evolve'
+      //   : index.level_learned_at === 1
+      //   ? '-'
+      //   : index.level_learned_at;
       return index.level_learned_at;
   }
 };

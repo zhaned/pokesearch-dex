@@ -190,11 +190,12 @@ export const Moveset = ({ moves, version, method }) => {
           <Fragment key={move.name}>
             <tr>
               <td>
-                {levelGetter(moveList[index], version) === 0
+                {levelGetter(moveList[index], version)}
+                {/* {levelGetter(moveList[index], version) === 0
                   ? 'Evolve'
                   : levelGetter(moveList[index], version) === 1
                   ? '-'
-                  : levelGetter(moveList[index], version)}
+                  : levelGetter(moveList[index], version)} */}
               </td>
               <td>
                 <Link className="stat-name" to={`/move/${move.name}`}>
