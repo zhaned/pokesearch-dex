@@ -99,7 +99,8 @@ export const levelTmGetter = (moves, version, method, machine) => {
         return index.level_learned_at === 0 ? 'Evolve' : index.level_learned_at === 1 ? '-' : index.level_learned_at;
     }
   }
-  if(method === 'machine') return machine || 'why';
+  if(method === 'machine') {
+    return machine ? machine.toUpperCase() : '-'};
   if(method === 'egg')return '-';
   if(method === 'tutor') return '-';
 }

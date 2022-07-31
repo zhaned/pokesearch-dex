@@ -156,19 +156,18 @@ export const Stats = ({ data }) => {
 
 export const Moveset = ({ moves, version, method }) => {
   const [moveInfo, setMoveInfo] = useState();
-  const [machineInfo, setMachineInfo] = useState();
+  const [machineInfo, setMachineInfo] = useState([]);
 
   //fix: dynamically choose version and learn method
   const moveList = moveFilter(moves, version, method);
 
+  //attempt 1
   // const getMoveInfo = async () => {
   //   const responses = await Promise.all(
   //     moveList.map((move) => fetch(move.move.url).then((res) => res.json()))
   //   );
   //   setMoveInfo(responses);
-
   // };
-
   // const getTmInfo = async () => {
   //   let results = [];
   //   const url = await moveInfo.map((move) => {
@@ -193,13 +192,12 @@ export const Moveset = ({ moves, version, method }) => {
   //   setMachineInfo(results);
   // };
 
-
+  //attempt 2
   // const getMoveInfo = async () => {
   //   const responses = await Promise.all(
   //     moveList.map((move) => fetch(move.move.url).then((res) => res.json()))
   //   );
   //   setMoveInfo(responses);
-
   //   let results = ['null'];
   //   results = await Promise.all(
   //     responses.map((move) => {
@@ -225,33 +223,25 @@ export const Moveset = ({ moves, version, method }) => {
   //   if(results[0] === 'null') setMachineInfo(results);
   // };
 
-
   const getMoveInfo = async () => {
     const responses = await Promise.all(
       moveList.map((move) => fetch(move.move.url).then((res) => res.json()))
     );
     setMoveInfo(responses);
-    let results = [];
-    responses.map((move) => {
-      if (
-        move.machines.some(
-          (item) =>
-            item.version_group.url ===
-            `https://pokeapi.co/api/v2/version-group/${version}/`
+    const machine = await Promise.all(
+      responses.map((move) =>
+        fetch(
+          move.machines.filter(
+            (machine) =>
+              machine.version_group.url ===
+              `https://pokeapi.co/api/v2/version-group/${version}/`
+          )[0].machine.url
         )
-      ) {
-        const tmUrl = move.machines.filter(
-          (item) =>
-            item.version_group.url ===
-            `https://pokeapi.co/api/v2/version-group/${version}/`
-        );
-        fetch(tmUrl[0].machine.url)
           .then((res) => res.json())
-          .then((data) => results.push(data.item.name));
-      }
-      return null;
-    });
-    setMachineInfo(results);
+          .then((data) => data.item.name)
+      )
+    );
+    setMachineInfo(machine);
   };
 
   useEffect(() => {
@@ -281,13 +271,8 @@ export const Moveset = ({ moves, version, method }) => {
                   moveList[index],
                   version,
                   method,
-                  machineInfo[index + machineInfo.length/2]
+                  machineInfo[index]
                 )}
-                {/* {levelGetter(moveList[index], version) === 0
-                  ? 'Evolve'
-                  : levelGetter(moveList[index], version) === 1
-                  ? '-'
-                  : levelGetter(moveList[index], version)} */}
               </td>
               <td>
                 <Link className="stat-name" to={`/move/${move.name}`}>
