@@ -193,13 +193,44 @@ export const Moveset = ({ moves, version, method }) => {
   //   setMachineInfo(results);
   // };
 
-  //#####################################################
+
+  // const getMoveInfo = async () => {
+  //   const responses = await Promise.all(
+  //     moveList.map((move) => fetch(move.move.url).then((res) => res.json()))
+  //   );
+  //   setMoveInfo(responses);
+
+  //   let results = ['null'];
+  //   results = await Promise.all(
+  //     responses.map((move) => {
+  //       if (
+  //         move.machines.some(
+  //           (item) =>
+  //             item.version_group.url ===
+  //             `https://pokeapi.co/api/v2/version-group/${version}/`
+  //         )
+  //       ) {
+  //         const tmUrl = move.machines.filter(
+  //           (item) =>
+  //             item.version_group.url ===
+  //             `https://pokeapi.co/api/v2/version-group/${version}/`
+  //         );
+  //         fetch(tmUrl[0].machine.url)
+  //           .then((res) => res.json())
+  //           .then((data) => results.push(data.item.name));
+  //       }
+  //       return 'null';
+  //     })
+  //   )
+  //   if(results[0] === 'null') setMachineInfo(results);
+  // };
+
+
   const getMoveInfo = async () => {
     const responses = await Promise.all(
       moveList.map((move) => fetch(move.move.url).then((res) => res.json()))
     );
     setMoveInfo(responses);
-
     let results = [];
     responses.map((move) => {
       if (
@@ -221,43 +252,12 @@ export const Moveset = ({ moves, version, method }) => {
       return null;
     });
     setMachineInfo(results);
-    console.log(results)
   };
-
-  // const getTmInfo = async () => {
-  //   let results = [];
-  //   const url = await moveInfo.map((move) => {
-  //     if (
-  //       move.machines.some(
-  //         (item) =>
-  //           item.version_group.url ===
-  //           `https://pokeapi.co/api/v2/version-group/${version}/`
-  //       )
-  //     ) {
-  //       const tmUrl = move.machines.filter(
-  //         (item) =>
-  //           item.version_group.url ===
-  //           `https://pokeapi.co/api/v2/version-group/${version}/`
-  //       );
-  //       fetch(tmUrl[0].machine.url)
-  //         .then((res) => res.json())
-  //         .then((data) => results.push(data.item.name));
-  //     }
-  //     return null;
-  //   });
-  //   setMachineInfo(results);
-  // };
-
-  //#######################################################
 
   useEffect(() => {
     getMoveInfo();
-    console.log(machineInfo);
   }, []);
 
-  // useEffect(() => {
-  //   getTmInfo();
-  // }, [moveInfo]);
   //fix: get moves from a single generation
   //fixed: order moves via level up
   return moveInfo ? (
@@ -281,7 +281,7 @@ export const Moveset = ({ moves, version, method }) => {
                   moveList[index],
                   version,
                   method,
-                  machineInfo[index]
+                  machineInfo[index + machineInfo.length/2]
                 )}
                 {/* {levelGetter(moveList[index], version) === 0
                   ? 'Evolve'
