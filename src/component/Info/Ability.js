@@ -1,5 +1,4 @@
 import { capitalizer } from '../Results/TableFunctions';
-import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { AbilityInfo, PokemonTable } from '../Results/Tables';
 

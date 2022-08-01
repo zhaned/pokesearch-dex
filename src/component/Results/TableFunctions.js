@@ -72,9 +72,7 @@ export const moveFilter = (array, version, learn_method) => {
       return null;
     })
     .sort((a, b) => {
-      return (
-        levelGetter(a, version) - levelGetter(b, version)
-      );
+      return levelGetter(a, version) - levelGetter(b, version);
     });
   return newArr;
 };
@@ -90,20 +88,25 @@ export const levelGetter = (moves, version) => {
 };
 
 export const levelTmGetter = (moves, version, method, machine) => {
-  if(method === 'level-up'){
+  if (method === 'level-up') {
     for (let index of moves.version_group_details) {
       if (
         index.version_group.url ===
         `https://pokeapi.co/api/v2/version-group/${version}/`
       )
-        return index.level_learned_at === 0 ? 'Evolve' : index.level_learned_at === 1 ? '-' : index.level_learned_at;
+        return index.level_learned_at === 0
+          ? 'Evolve'
+          : index.level_learned_at === 1
+          ? '-'
+          : index.level_learned_at;
     }
   }
-  if(method === 'machine') {
-    return machine ? machine.toUpperCase() : '-'};
-  if(method === 'egg')return '-';
-  if(method === 'tutor') return '-';
-}
+  if (method === 'machine') {
+    return machine ? machine.toUpperCase() : '-';
+  }
+  if (method === 'egg') return '-';
+  if (method === 'tutor') return '-';
+};
 
 //takes you to the new location after clicking one of the links
 //to the previous or next pokemon and refreshes the page.
@@ -467,6 +470,32 @@ export const EvoDetails = ({ evo }) => {
         );
       })}
     </div>
+  );
+};
+
+export const EvoImage = ({ evo, Link, navigate, path }) => {
+  const evolution = evo;
+  let pokeNumber =
+    path === 'primary'
+      ? parseInt(evolution.chain.species.url.slice(42).split('/'))
+      : parseInt(evolution.species.url.slice(42).split('/'));
+  let pokeName = path === 'primary' ? evo.chain.species.name : evo.species.name;
+  return (
+    <Link
+      to={`/search/${pokeNumber}`}
+      onClick={() => updateLocation(navigate, `/search/${pokeNumber}`)}
+      className="d-flex flex-column text-center"
+      style={{
+        width: '8rem',
+        height: 'auto',
+      }}
+    >
+      <img
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeNumber}.png`}
+        alt=""
+      />
+      {capitalizer(pokeName)}
+    </Link>
   );
 };
 
