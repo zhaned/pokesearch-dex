@@ -1,18 +1,12 @@
 import {
-  versionFilter,
   capitalizer,
-  langFilter,
 } from '../Results/TableFunctions';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import { AbilityInfo } from '../Results/Tables';
 
 const Ability = ({ ability, version }) => {
-  const effectEntries = langFilter(ability.effect_entries);
-  const flavorText = versionFilter(
-    ability.flavor_text_entries,
-    version,
-    langFilter
-  );
+
   const pokemonList = ability.pokemon
     .filter((poke) => parseInt(poke.pokemon.url.slice(34).split('/')) < 899)
     .map((poke) => {
@@ -35,34 +29,7 @@ const Ability = ({ ability, version }) => {
       </h1>
       <div>
         <div className="table table-dark">
-          <table className="border" style={{ width: '100%' }}>
-            <tbody>
-              <tr className="border-bottom">
-                <th>Short Description: </th>
-                <th>In-Game Description:</th>
-              </tr>
-              <tr>
-                <td className="px-1" style={{ minWidth: '40%' }}>{`${
-                  effectEntries[0] ? effectEntries[0].short_effect : '-'
-                }`}</td>
-                <td className="px-1">
-                  {`(${flavorText[0].version_group.name}) ${flavorText[0].flavor_text}`}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table className="border border-top-0" style={{ width: '100%' }}>
-            <tbody>
-              <tr className="border-bottom">
-                <th>In-Depth Description:</th>
-              </tr>
-              <tr>
-                <td className="px-1">
-                  {effectEntries[0] ? effectEntries[0].effect : '-'}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <AbilityInfo ability={ability} version={version} />
         </div>
         <hr
           style={{

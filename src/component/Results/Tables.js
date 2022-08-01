@@ -783,7 +783,9 @@ export const MoveInfo = ({ move, version }) => {
               style={{ minWidth: '40%' }}
             >{`${effectEntries.short_effect}`}</td>
             <td className="px-1">
-              {`(${flavorText[0].version_group.name}) ${flavorText[0].flavor_text}`}
+              {`(${capitalizer(flavorText[0].version_group.name)}) ${
+                flavorText[0].flavor_text
+              }`}
             </td>
           </tr>
         </tbody>
@@ -795,6 +797,51 @@ export const MoveInfo = ({ move, version }) => {
           </tr>
           <tr>
             <td className="px-1">{effectEntries.effect}</td>
+          </tr>
+        </tbody>
+      </table>
+    </>
+  );
+};
+
+export const AbilityInfo = ({ ability, version }) => {
+  const effectEntries = langFilter(ability.effect_entries);
+  
+  const flavorText = versionFilter(
+    ability.flavor_text_entries,
+    version,
+    langFilter
+  );
+
+  return (
+    <>
+      <table className="border" style={{ width: '100%' }}>
+        <tbody>
+          <tr className="border-bottom">
+            <th>Short Description: </th>
+            <th>In-Game Description:</th>
+          </tr>
+          <tr>
+            <td className="px-1" style={{ minWidth: '40%' }}>{`${
+              effectEntries[0] ? effectEntries[0].short_effect : '-'
+            }`}</td>
+            <td className="px-1">
+              {`(${capitalizer(flavorText[0].version_group.name)}) ${
+                flavorText[0].flavor_text
+              }`}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table className="border border-top-0" style={{ width: '100%' }}>
+        <tbody>
+          <tr className="border-bottom">
+            <th>In-Depth Description:</th>
+          </tr>
+          <tr>
+            <td className="px-1">
+              {effectEntries[0] ? effectEntries[0].effect : '-'}
+            </td>
           </tr>
         </tbody>
       </table>
