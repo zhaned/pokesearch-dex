@@ -1,22 +1,18 @@
-import {
-  capitalizer,
-} from '../Results/TableFunctions';
+import { capitalizer } from '../Results/TableFunctions';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import { AbilityInfo } from '../Results/Tables';
+import { AbilityInfo, PokemonTable } from '../Results/Tables';
 
 const Ability = ({ ability, version }) => {
-
   const pokemonList = ability.pokemon
     .filter((poke) => parseInt(poke.pokemon.url.slice(34).split('/')) < 899)
     .map((poke) => {
       return {
         pokemon: capitalizer(poke.pokemon.name),
         number: poke.pokemon.url.slice(34).split('/'),
-        hidden: poke.is_hidden,
+        hidden: poke.is_hidden ? 'yes' : 'no',
       };
     });
-
   useEffect(() => {
     document.title = document.getElementById('title').innerText;
   }, []);
@@ -47,35 +43,7 @@ const Ability = ({ ability, version }) => {
             </tr>
           </thead>
         </table>
-        <table className="table table-dark table-hover">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Pokemon</th>
-              <th>is hidden?</th>
-            </tr>
-          </thead>
-          <tbody>
-            {pokemonList.map((poke) => (
-              <tr key={poke.number}>
-                <td className="align-middle">{poke.number}</td>
-                <td>
-                  <Link to={`/search/${poke.number[0]}`}>
-                    <img
-                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${poke.number[0]}.png`}
-                      alt=""
-                      style={{
-                        objectPosition: '0px -.5rem',
-                      }}
-                    />
-                    {poke.pokemon}
-                  </Link>
-                </td>
-                <td className="align-middle">{poke.hidden ? 'yes' : 'no'}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <PokemonTable list={pokemonList} />
       </div>
     </div>
   );

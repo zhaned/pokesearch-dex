@@ -1,6 +1,6 @@
 import { capitalizer } from '../Results/TableFunctions';
 import { Link } from 'react-router-dom';
-import { MoveInfo } from '../Results/Tables';
+import { MoveInfo, PokemonTable } from '../Results/Tables';
 import { useEffect } from 'react';
 
 const Move = ({ move, version }) => {
@@ -39,34 +39,7 @@ const Move = ({ move, version }) => {
           </tr>
         </thead>
       </table>
-      <table className="table table-dark table-hover">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Pokemon</th>
-          </tr>
-        </thead>
-        <tbody>
-          {pokemonList.map((poke) => (
-            <tr key={poke.number}>
-              <td>{poke.number}</td>
-              <td>
-                <Link to={`/search/${poke.number[0]}`}>
-                  {' '}
-                  <img
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${poke.number[0]}.png`}
-                    alt=""
-                    style={{
-                      objectPosition: '0px -.5rem',
-                    }}
-                  />
-                  {poke.pokemon}
-                </Link>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <PokemonTable list={pokemonList} />
     </div>
   );
 };

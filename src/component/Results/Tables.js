@@ -158,7 +158,7 @@ export const Moveset = ({ moves, version, method }) => {
   const [moveInfo, setMoveInfo] = useState();
   const [machineInfo, setMachineInfo] = useState([]);
 
-  //fix: dynamically choose version and learn method
+  //fixed: dynamically choose version and learn method
   const moveList = moveFilter(moves, version, method);
 
   //attempt 1
@@ -228,20 +228,22 @@ export const Moveset = ({ moves, version, method }) => {
       moveList.map((move) => fetch(move.move.url).then((res) => res.json()))
     );
     setMoveInfo(responses);
-    const machine = await Promise.all(
-      responses.map((move) =>
-        fetch(
-          move.machines.filter(
-            (machine) =>
-              machine.version_group.url ===
-              `https://pokeapi.co/api/v2/version-group/${version}/`
-          )[0].machine.url
+    if (method === 'machine') {
+      const machine = await Promise.all(
+        responses.map((move) =>
+          fetch(
+            move.machines.filter(
+              (machine) =>
+                machine.version_group.url ===
+                `https://pokeapi.co/api/v2/version-group/${version}/`
+            )[0].machine.url
+          )
+            .then((res) => res.json())
+            .then((data) => data.item.name)
         )
-          .then((res) => res.json())
-          .then((data) => data.item.name)
-      )
-    );
-    setMachineInfo(machine);
+      );
+      setMachineInfo(machine);
+    }
   };
 
   useEffect(() => {
@@ -806,7 +808,7 @@ export const MoveInfo = ({ move, version }) => {
 
 export const AbilityInfo = ({ ability, version }) => {
   const effectEntries = langFilter(ability.effect_entries);
-  
+
   const flavorText = versionFilter(
     ability.flavor_text_entries,
     version,
@@ -846,5 +848,40 @@ export const AbilityInfo = ({ ability, version }) => {
         </tbody>
       </table>
     </>
+  );
+};
+
+export const PokemonTable = ({list}) => {
+  const pokemonList = list;
+  return (
+    <table className="table table-dark table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Pokemon</th>
+          <th>{pokemonList[0].hidden ? 'is hidden?' : ''}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {pokemonList.map((poke) => (
+          <tr key={poke.number}>
+            <td className="align-middle">{poke.number}</td>
+            <td>
+              <Link to={`/search/${poke.number[0]}`}>
+                <img
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${poke.number[0]}.png`}
+                  alt=""
+                  style={{
+                    objectPosition: '0px -.5rem',
+                  }}
+                />
+                {poke.pokemon}
+              </Link>
+            </td>
+            <td className="align-middle">{poke.hidden ? poke.hidden : ''}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
