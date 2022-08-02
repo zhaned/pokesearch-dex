@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import PokeList from "./PokeList";
-import Pagination from "./Pagination";
-import Loading from "../Loading/Loading";
+import React, { useState, useEffect } from 'react';
+import PokeList from './PokeList';
+import Pagination from './Pagination';
+import Loading from '../Loading/Loading';
 
 function PokeLookUp() {
   const [pokemon, setPokemon] = useState();
   const [currentPageURL, setCurrentPageURL] = useState(
-    "http://localhost:3001/pokemon"
+    'http://localhost:3001/pokemon'
   );
   const [prevPageURL, setPrevPageURL] = useState();
   const [nextPageURL, setNextPageURL] = useState();
@@ -17,7 +17,7 @@ function PokeLookUp() {
       .then((data) => {
         setNextPageURL(data.next);
         setPrevPageURL(data.previous);
-        setPokemon(data.results.map((p) => [p.name, p.url]));
+        setPokemon(data.results.map((p) => ({ name: p.name, url: p.url })));
       });
   }, [currentPageURL]);
 
