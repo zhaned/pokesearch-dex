@@ -1,7 +1,26 @@
 .fade-in-above {
-      animation: fadeinabove .25s linear forwards;
+  animation: fadeinabove 0.25s linear forwards;
 }
 
+.form-control::placeholder {
+  color: #8a8a8a
+}
+
+.form-control {
+  color: #f8f9fa;
+  background-color: #d9c6ed;
+}
+
+.form-control:focus {
+  color: #f8f9fa;
+  background-color: #b68ce1;
+  box-shadow: 0 0 0 0.2rem rgba(200, 200, 200, 0.4);
+  border-color: rgb(245, 245, 245);
+}
+
+.form-control:focus::placeholder {
+  color: #d4d4d4
+}
 
 @keyframes fadeinabove {
   0% {

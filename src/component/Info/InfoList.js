@@ -9,8 +9,8 @@ const InfoList = ({ info, infoType }) => {
     >
       {info.map((p) => (
         <Link
-          key={p}
-          to={{ pathname: `/${infoType}/${p[0]}` }}
+          key={p.name}
+          to={{ pathname: `/${infoType}/${p.name}` }}
           style={{ textDecoration: 'none' }}
         >
           <div
@@ -25,7 +25,7 @@ const InfoList = ({ info, infoType }) => {
               flexDirection: 'unset',
             }}
           >
-            <div>{capitalizer(p[0])}</div>
+            <div>{capitalizer(p.name)}</div>
           </div>
         </Link>
       ))}
