@@ -11,7 +11,7 @@ const Homepage = () => {
   const moveIcon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/251.png`;
 
   useEffect(() => {
-    document.title = 'PokeAPI Dex';
+    document.title = 'PokéAPI Dex';
   }, []);
   return (
     <div>
@@ -23,7 +23,7 @@ const Homepage = () => {
           marginTop: '5%',
         }}
       >
-        Welcome to PokeAPI Dex!
+        Welcome to PokéAPI Dex!
       </h1>
       <div
         className="d-flex justify-content-between align-items-center"
@@ -55,7 +55,7 @@ const Homepage = () => {
                 className="btn btn-danger btn-lg"
                 style={{ color: '#f8f9fa', textShadow: '2px 2px #851bed' }}
               >
-                Look up Pokemon now!
+                Look up Pokémon now!
               </button>
             </Link>
           </div>

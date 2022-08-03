@@ -29,7 +29,7 @@ export default function PokeList({ pokemon }) {
               color: '#f7f7f7',
             }}
           >
-            <div className="mt-2">
+            <div className="my-2">
               {`#${urlToNumber(p.url)} ` + p.name.charAt(0).toUpperCase() + p.name.slice(1)}
             </div>
             <PokeImage url={p.url} />

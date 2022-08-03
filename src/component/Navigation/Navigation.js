@@ -2,8 +2,6 @@ import { Link, useLocation } from 'react-router-dom';
 import ScrollTop from './NavFunctions';
 import './Navigation.css';
 
-
-
 const Navigation = () => {
   const location = useLocation();
   return (
@@ -23,9 +21,7 @@ const Navigation = () => {
             className="m-1"
             style={{ height: '2rem' }}
           />
-          <span>
-            PokeAPI Dex
-          </span>
+          <span>PokéAPI Dex</span>
         </div>
       </Link>
       <div>
