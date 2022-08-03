@@ -5,33 +5,43 @@ import InfoList from './InfoList';
 import SearchBar from '../SearchBar';
 
 const InfoLookUp = ({ infoType }) => {
-  const [currentInfo, setCurrentInfo] = useState();
-  const [inputValue, setInputValue] = useState('');
   const [info, setInfo] = useState();
-  const [currentPageURL, setCurrentPageURL] = useState(
-    `http://localhost:3001/${infoType}`
-  );
-  const [prevPageURL, setPrevPageURL] = useState();
-  const [nextPageURL, setNextPageURL] = useState();
+  const [currentInfo, setCurrentInfo] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  const [prevPageURL, setPrevPageURL] = useState(null);
+  const [nextPageURL, setNextPageURL] = useState(1);
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
-    fetch(currentPageURL)
+    fetch(`http://localhost:3001/${infoType}`)
       .then((res) => res.json())
       .then((data) => {
-        setNextPageURL(data.next);
-        setPrevPageURL(data.previous);
         setInfo(data.results.map((p) => ({ name: p.name, url: p.url })));
         setCurrentInfo(data.results.map((p) => ({ name: p.name, url: p.url })));
       });
-  }, [currentPageURL]);
+  }, [infoType]);
+
+  useEffect(() => {
+    if (currentInfo.length - offset > 70) {
+      setNextPageURL(1);
+    } else {
+      setNextPageURL(null);
+    }
+
+    if (offset > 0) {
+      setPrevPageURL(1);
+    } else {
+      setPrevPageURL(null);
+    }
+  }, [offset, currentInfo]);
 
   function goPrevPage() {
-    setCurrentPageURL(prevPageURL);
+    setOffset(offset - 70);
   }
   function goNextPage() {
-    setCurrentPageURL(nextPageURL);
+    setOffset(offset + 70);
   }
+
   return (
     <div>
       <div className="d-flex justify-content-between mb-1">
@@ -48,7 +58,10 @@ const InfoLookUp = ({ infoType }) => {
         />
       </div>
       {info ? (
-        <InfoList info={currentInfo.slice(offset, offset + 70)} infoType={infoType} />
+        <InfoList
+          info={currentInfo.slice(offset, offset + 70)}
+          infoType={infoType}
+        />
       ) : (
         <Loading />
       )}

@@ -6,40 +6,42 @@ import './pokeList.css';
 import SearchBar from '../SearchBar';
 
 function PokeLookUp() {
-  const [currentList, setCurrentList] = useState();
   const [pokemon, setPokemon] = useState();
+  const [currentList, setCurrentList] = useState([]);
   const [inputValue, setInputValue] = useState('');
-  const [currentPageURL, setCurrentPageURL] = useState(
-    'http://localhost:3001/pokemon'
-  );
-  const [prevPageURL, setPrevPageURL] = useState();
-  const [nextPageURL, setNextPageURL] = useState();
+  const [prevPageURL, setPrevPageURL] = useState(null);
+  const [nextPageURL, setNextPageURL] = useState(1);
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
-    fetch(currentPageURL)
+    fetch('http://localhost:3001/pokemon')
       .then((res) => res.json())
       .then((data) => {
-        setNextPageURL(data.next);
-        setPrevPageURL(data.previous);
         setPokemon(data.results.map((p) => ({ name: p.name, url: p.url })));
         setCurrentList(data.results.map((p) => ({ name: p.name, url: p.url })));
       });
-  }, [currentPageURL]);
+  }, []);
+
+  useEffect(() => {
+    if (currentList.length - offset > 24) {
+      setNextPageURL(1);
+    } else {
+      setNextPageURL(null);
+    }
+
+    if (offset > 0) {
+      setPrevPageURL(1);
+    } else {
+      setPrevPageURL(null);
+    }
+  }, [offset, currentList]);
 
   function goPrevPage() {
-    setCurrentPageURL(prevPageURL);
+    setOffset(offset - 24);
   }
   function goNextPage() {
-    setCurrentPageURL(nextPageURL);
+    setOffset(offset + 24);
   }
-
-  /*
-  - pull all the data in
-  - send all into pokelist
-  - set an amount to be displayed on the browser
-  - when search is updated, offset resets back to 0
-  */
 
   return (
     <div>

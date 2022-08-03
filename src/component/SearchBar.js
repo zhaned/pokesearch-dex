@@ -4,7 +4,7 @@ const SearchBar = ({setOffset, setInputValue, setCurrentList, inputValue, info})
     e.preventDefault();
     setOffset(0);
     let value = e.target.value;
-    value = value.replace(/[^A-Za-z0-9-. ]/gi, '');
+    value = value.replace(/[^A-Za-z0-9- ]/gi, '');
     setInputValue(value);
     setCurrentList(info.filter(obj => {
       return obj.name.includes(value)
@@ -24,8 +24,8 @@ const SearchBar = ({setOffset, setInputValue, setCurrentList, inputValue, info})
       className="form-control"
       value={inputValue}
       type={'text'}
-      placeholder={'Search a Pokémon...'}
-      pattern={'[A-Za-z0-9-. ]+'}
+      placeholder={'Search...'}
+      pattern={'[A-Za-z0-9- ]+'}
       title={'Only letters, numbers, hypens, and periods are accepted'}
       onInput={handleChange}
       onKeyDown={handleKeyDown}

@@ -444,7 +444,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
             onClick={() => updateLocation(navigate, `/search/${id - 1}`)}
           >
             <h3 className="next-sprite">
-              <span style={{ verticalAlign: 'bottom' }}>&lt;</span>
+              <span style={{ verticalAlign: 'bottom' }}>&#8592;</span>
               <img
                 className="img-fluid"
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${
@@ -482,7 +482,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
         </p>
       </div>
       <div className="d-flex align-items-center">
-        {/* fix: add the next pokemon as a link here with a sprite */}
+        {/* fixed: add the next pokemon as a link here with a sprite */}
         {id === 898 ? null : (
           <Link
             to={`/search/${id + 1}`}
@@ -495,7 +495,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
                 }.png`}
                 alt=""
               />
-              <span style={{ verticalAlign: 'bottom' }}>&gt;</span>
+              <span style={{ verticalAlign: 'bottom' }}>&#8594;</span>
             </h3>
           </Link>
         )}
