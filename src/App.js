@@ -12,6 +12,7 @@ import Moves from './routes/Moves';
 
 import Error from './routes/Error';
 import './App.css';
+
 // checks current route to see if nav header should render
 function useNav() {
   let { pathname } = useLocation();

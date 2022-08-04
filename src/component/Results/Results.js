@@ -61,7 +61,7 @@ const Results = ({ pokemon, species, evolution, types }) => {
           >
             <img
               src={pokemon.sprites.other['official-artwork'].front_default}
-              alt={pokemon.id}
+              alt={'(not currently available)'}
               className="img-fluid ms-1"
               style={{
                 maxHeight: '84%',

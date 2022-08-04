@@ -18,10 +18,6 @@ const Favorites = () => {
           opacity: '1',
         }}
       />
-
-
-
-
     </>
   );
 };

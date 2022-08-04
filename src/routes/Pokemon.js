@@ -9,14 +9,15 @@ const Pokemon = () => {
   const [species, setSpecies] = useState();
   const [evolution, setEvolution] = useState();
   const [types, setTypes] = useState();
+
   useEffect(() => {
     function fetchPokemon() {
       let types = [];
-      return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+      fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then((res) => (res.ok ? res.json() : Promise.reject(res)))
         .then((data) => {
           setPokemon(data);
-          return data;
+          return { types: data.types, species: data.species };
         })
         .then((data) => {
           data.types.map((type) =>
@@ -27,26 +28,23 @@ const Pokemon = () => {
                 setTypes(types);
               })
           );
-        });
-    }
-    function fetchSpecies() {
-      return fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
-        .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-        .then((data) => {
-          setSpecies(data);
-          return data;
-        })
-        .then((data) => {
-          fetch(data.evolution_chain.url)
+          fetch(data.species.url)
             .then((res) => (res.ok ? res.json() : Promise.reject(res)))
             .then((data) => {
-              setEvolution(data);
+              setSpecies(data);
+              return data;
+            })
+            .then((data) => {
+              fetch(data.evolution_chain.url)
+                .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+                .then((data) => {
+                  setEvolution(data);
+                });
             });
         });
     }
     fetchPokemon();
-    fetchSpecies();
-  }, []);
+  }, [id]);
 
   //stops the component from rendering until data is fetched
   return types && evolution ? (
