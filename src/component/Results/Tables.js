@@ -433,7 +433,7 @@ export const Evolutions = ({ evolution }) => {
 
 export const Header = ({ id, pokemon, type, type2 }) => {
   const navigate = useNavigate();
-
+  //fix: get list of id with names redux
   return (
     <div className="d-flex justify-content-between">
       <div className="d-flex align-items-center">

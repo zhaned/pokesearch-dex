@@ -410,10 +410,17 @@ export const EvoDetails = ({ evo }) => {
             }
             break;
           case 'time_of_day':
-            item.push({
-              name: `${detail[key]}`,
-              image: `${require(`../../images/evolution/${detail[key]}-icon.png`)}`,
-            });
+            if (detail[key] === 'day') {
+              item.push({
+                name: `${detail[key]}`,
+                image: `https://archives.bulbagarden.net/media/upload/b/b2/Clear_icon_LA.png`,
+              });
+            }else{
+              item.push({
+                name: `${detail[key]}`,
+                image: `${require(`../../images/evolution/${detail[key]}-icon.png`)}`,
+              });
+            }
             break;
           case 'trade_species':
             item.push({
@@ -466,6 +473,7 @@ export const EvoDetails = ({ evo }) => {
             alt={item.name}
             title={item.name}
             key={item.name}
+            style={{width: '30px'}}
           />
         );
       })}

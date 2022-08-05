@@ -1,3 +1,6 @@
+import { Counter } from "../redux/Counter";
+
+
 export default function About() {
   return (
     <>
@@ -17,6 +20,7 @@ export default function About() {
           opacity: '1',
         }}
       />
+      <Counter />
     </>
   );
 }

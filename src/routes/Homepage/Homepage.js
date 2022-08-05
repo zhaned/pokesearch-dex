@@ -14,7 +14,7 @@ const Homepage = () => {
 
   useEffect(() => {
     document.title = 'PokéAPI Dex';
-    fetch(`https://pokeapi.co/api/v2/pokemon?limit=898`)
+    fetch(`http://localhost:3001/pokemon`)
       .then((res) => res.json())
       .then((data) => setPokemon(data));
   }, []);
