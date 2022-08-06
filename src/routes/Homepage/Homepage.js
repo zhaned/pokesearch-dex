@@ -1,21 +1,22 @@
-import { useState } from 'react';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux/';
+import { getPokemon } from './homepageSlice';
+
 import PokeCycler from '../../component/PokeCycler/PokeCycler';
 import ButtonIcon from '../../component/ButtonIcon';
 import './Homepage.css';
 
 const Homepage = () => {
-  const [pokemon, setPokemon] = useState('');
   let pokeNumber = Math.floor(Math.random() * 897 + 1);
   let pokeNumber2 = Math.floor(Math.random() * 897 + 1);
 
+  const dispatch = useDispatch();
+  const pokemon = useSelector((state) => state.homepage.list);
+
   useEffect(() => {
     document.title = 'PokéAPI Dex';
-    fetch(`http://localhost:3001/pokemon`)
-      .then((res) => res.json())
-      .then((data) => setPokemon(data));
-  }, []);
-
+    dispatch(getPokemon());
+  }, [dispatch]);
   return (
     <div>
       <h1
@@ -48,18 +49,18 @@ const Homepage = () => {
             text={'Look up Pokémon now!'}
             btn={'btn-danger'}
           />
-            <ButtonIcon
-              number={109}
-              location={'ability'}
-              text={'... or abilities'}
-              btn={'btn-success'}
-            />
-            <ButtonIcon
-              number={251}
-              location={'move'}
-              text={'... or even moves!'}
-              btn={'btn-primary'}
-            />
+          <ButtonIcon
+            number={109}
+            location={'ability'}
+            text={'... or abilities'}
+            btn={'btn-success'}
+          />
+          <ButtonIcon
+            number={251}
+            location={'move'}
+            text={'... or even moves!'}
+            btn={'btn-primary'}
+          />
         </div>
         {pokemon ? (
           <PokeCycler pokeNumber={pokeNumber2} side={'right'} list={pokemon} />

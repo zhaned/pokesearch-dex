@@ -10,7 +10,7 @@ const PokeCycler = ({ pokeNumber, side, list }) => {
   });
 
   function nameGetter(number) {
-    const result = list.results.find(obj => obj.url === `https://pokeapi.co/api/v2/pokemon/${number}/`);
+    const result = list.find(obj => obj.url === `https://pokeapi.co/api/v2/pokemon/${number}/`);
     return result.name;
   }
 
