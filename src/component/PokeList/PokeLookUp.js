@@ -18,7 +18,7 @@ function PokeLookUp() {
   const status = useSelector((state) => state.pokemon.status);
   const dispatch = useDispatch();
 
-  if (status === null) {
+  if (!status) {
     dispatch(getPokemon());
   }
 
