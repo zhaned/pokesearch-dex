@@ -5,6 +5,6 @@ import homepageReducer from '../routes/Homepage/homepageSlice'
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
-    homepage: homepageReducer,
+    pokemon: homepageReducer,
   },
 });

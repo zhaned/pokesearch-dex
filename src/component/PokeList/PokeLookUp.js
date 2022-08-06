@@ -1,26 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux/';
 import PokeList from './PokeList';
 import Pagination from './Pagination';
 import Loading from '../Loading/Loading';
 import './pokeList.css';
 import SearchBar from '../SearchBar';
+import { getPokemon } from '../../routes/Homepage/homepageSlice';
 
 function PokeLookUp() {
-  const [pokemon, setPokemon] = useState();
   const [currentList, setCurrentList] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [prevPageURL, setPrevPageURL] = useState(null);
   const [nextPageURL, setNextPageURL] = useState(1);
   const [offset, setOffset] = useState(0);
 
+  const pokemon = useSelector((state) => state.pokemon.list);
+  const status = useSelector((state) => state.pokemon.status);
+  const dispatch = useDispatch();
+
+  if (status === null) {
+    dispatch(getPokemon());
+  }
+
   useEffect(() => {
-    fetch('http://localhost:3001/pokemon')
-      .then((res) => res.json())
-      .then((data) => {
-        setPokemon(data.results.map((p) => ({ name: p.name, url: p.url })));
-        setCurrentList(data.results.map((p) => ({ name: p.name, url: p.url })));
-      });
-  }, []);
+    setCurrentList(pokemon);
+  }, [pokemon]);
 
   useEffect(() => {
     if (currentList.length - offset > 24) {
@@ -42,6 +46,13 @@ function PokeLookUp() {
   function goNextPage() {
     setOffset(offset + 24);
   }
+  function PageNumber({ number, offset }) {
+    return (
+      <div style={{ color: '#f8f9fa', textShadow: '2px 2px #851bed' }}>
+        Page {Math.ceil(offset / 24 + 1)} of {Math.ceil(number / 24)}
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -53,12 +64,13 @@ function PokeLookUp() {
           inputValue={inputValue}
           info={pokemon}
         />
+        <PageNumber number={currentList.length} offset={offset} />
         <Pagination
           goPrevPage={prevPageURL ? goPrevPage : null}
           goNextPage={nextPageURL ? goNextPage : null}
         />
       </div>
-      {pokemon ? (
+      {currentList ? (
         <PokeList pokemon={currentList.slice(offset, offset + 24)} />
       ) : (
         <Loading />

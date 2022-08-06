@@ -5,7 +5,7 @@ import { getPokemon } from '../Homepage/homepageSlice';
 
 export default function Component() {
   const dispatch = useDispatch();
-  const test = useSelector((state) => state.about.list);
+  const test = useSelector((state) => state.pokemon.list);
   console.log('test', test);
 
   useEffect(() => {

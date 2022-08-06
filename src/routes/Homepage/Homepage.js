@@ -1,17 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux/';
 import { getPokemon } from './homepageSlice';
-
 import PokeCycler from '../../component/PokeCycler/PokeCycler';
 import ButtonIcon from '../../component/ButtonIcon';
 import './Homepage.css';
 
 const Homepage = () => {
+  const dispatch = useDispatch();
+  const pokemon = useSelector((state) => state.pokemon.list);
+  // +1 because the result cannot be 0
   let pokeNumber = Math.floor(Math.random() * 897 + 1);
   let pokeNumber2 = Math.floor(Math.random() * 897 + 1);
-
-  const dispatch = useDispatch();
-  const pokemon = useSelector((state) => state.homepage.list);
 
   useEffect(() => {
     document.title = 'PokéAPI Dex';

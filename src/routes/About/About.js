@@ -11,7 +11,7 @@ export default function About() {
           textShadow: '2px 2px #851bed',
         }}
       >
-        About
+        About (using this page to test stuff atm)
       </h1>
       <hr
         style={{
