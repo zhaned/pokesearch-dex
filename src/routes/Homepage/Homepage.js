@@ -8,14 +8,18 @@ import './Homepage.css';
 const Homepage = () => {
   const dispatch = useDispatch();
   const pokemon = useSelector((state) => state.pokemon.list);
+  const status = useSelector((state) => state.pokemon.status);
   // +1 because the result cannot be 0
   let pokeNumber = Math.floor(Math.random() * 897 + 1);
   let pokeNumber2 = Math.floor(Math.random() * 897 + 1);
+  
+  if(!status){
+    dispatch(getPokemon());
+  }
 
   useEffect(() => {
     document.title = 'PokéAPI Dex';
-    dispatch(getPokemon());
-  }, [dispatch]);
+  }, []);
   return (
     <div>
       <h1
