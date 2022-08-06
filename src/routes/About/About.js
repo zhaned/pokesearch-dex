@@ -1,5 +1,5 @@
-import { Counter } from "../redux/Counter";
-
+import { Counter } from "../../redux/Counter";
+import Component from "./Component";
 
 export default function About() {
   return (
@@ -21,6 +21,7 @@ export default function About() {
         }}
       />
       <Counter />
+      <Component />
     </>
   );
 }

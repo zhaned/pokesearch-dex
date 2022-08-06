@@ -2,7 +2,7 @@ import { useRoutes, useLocation } from 'react-router-dom';
 
 import Navigation from './component/Navigation/Navigation';
 import Home from './routes/Homepage/Homepage';
-import About from './routes/About';
+import About from './routes/About/About';
 import Favorites from './routes/Favorites';
 import Search from './routes/SearchPage';
 import Pokemon from './routes/Pokemon';

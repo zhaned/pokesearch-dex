@@ -8,9 +8,11 @@ const Homepage = () => {
   const [pokemon, setPokemon] = useState('');
   let pokeNumber = Math.floor(Math.random() * 897 + 1);
   let pokeNumber2 = Math.floor(Math.random() * 897 + 1);
-  const pokeIcon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/1.png`;
-  const abilityIcon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/109.png`;
-  const moveIcon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/251.png`;
+
+  //gets the icon for the homepage buttons
+  function getButtonIcon (number) {
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${number}.png`
+  }
 
   useEffect(() => {
     document.title = 'PokéAPI Dex';
@@ -25,7 +27,7 @@ const Homepage = () => {
         style={{
           color: '#f8f9fa',
           textShadow: '2px 2px #851bed',
-          marginTop: '5%',
+          marginTop: '4rem',
         }}
       >
         Welcome to PokéAPI Dex!
@@ -46,7 +48,7 @@ const Homepage = () => {
             <Link to="/search" style={{ color: '#f8f9fa' }}>
               <div className="sprite-icon container p-0">
                 <img
-                  src={pokeIcon}
+                  src={getButtonIcon(1)}
                   alt=""
                   className="img-fluid d-flex"
                   style={{
@@ -68,7 +70,7 @@ const Homepage = () => {
             <Link to="/ability" style={{ color: '#f8f9fa' }}>
               <div className="sprite-icon container p-0">
                 <img
-                  src={abilityIcon}
+                  src={getButtonIcon(109)}
                   alt=""
                   className="img-fluid d-flex"
                   style={{
@@ -90,7 +92,7 @@ const Homepage = () => {
             <Link to="/move" style={{ color: '#f8f9fa' }}>
               <div className="sprite-icon container p-0">
                 <img
-                  src={moveIcon}
+                  src={getButtonIcon(251)}
                   alt=""
                   className="img-fluid d-flex"
                   style={{
