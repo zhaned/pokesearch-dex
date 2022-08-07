@@ -1,23 +1,19 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { nameGetter } from '../Results/TableFunctions';
 import './PokeCycler.css';
 
 const PokeCycler = ({ pokeNumber, side, list }) => {
   let art;
   const [artUrl, setArtUrl] = useState({
-    name: nameGetter(pokeNumber),
+    name: nameGetter(pokeNumber, list),
     url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber}.png`,
   });
-
-  function nameGetter(number) {
-    const result = list.find(obj => obj.url === `https://pokeapi.co/api/v2/pokemon/${number}/`);
-    return result.name;
-  }
 
   function urlMaker() {
     pokeNumber = Math.floor(Math.random() * 897 + 1);
     art = {
-      name: nameGetter(pokeNumber),
+      name: nameGetter(pokeNumber,list),
       url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber}.png`,
     };
     return art;

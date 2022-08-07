@@ -539,3 +539,10 @@ export function effectEntryAdder(entries, effect) {
     short_effect: newShortEffect.join(' '),
   };
 }
+
+export function nameGetter(number, list) {
+    const result = list && list.find(
+      (obj) => obj.url === `https://pokeapi.co/api/v2/pokemon/${number}/`
+    );
+    return result.name;
+  }
