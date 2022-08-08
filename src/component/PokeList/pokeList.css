@@ -32,3 +32,15 @@
     transform: translateY(0px);
   }
 }
+
+.card:hover{
+  animation-name: hovercard;
+  animation-duration: 0.1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes hovercard {
+  100% {
+    transform: scale(1.10, 1.10);
+  }
+}

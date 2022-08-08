@@ -328,6 +328,7 @@ export const Moveset = ({ moves, version, method }) => {
 export const Evolutions = ({ evolution }) => {
   //fixed: include requirement for evolving b/t species
   const navigate = useNavigate();
+  const list = GetPokemonList();
   return (
     <div className="d-flex flex-column" style={{ width: "50%" }}>
       <h4 className="text-center">Evolution</h4>
@@ -343,6 +344,7 @@ export const Evolutions = ({ evolution }) => {
                 Link={Link}
                 navigate={navigate}
                 path={"primary"}
+                list={list}
               />
               <div className="d-flex align-items-center flex-column">
                 {evolution.chain.evolves_to.map((evo) => (
@@ -365,6 +367,7 @@ export const Evolutions = ({ evolution }) => {
                       Link={Link}
                       navigate={navigate}
                       path={"second"}
+                      list={list}
                     />
                   </div>
                 ))}
@@ -391,6 +394,7 @@ export const Evolutions = ({ evolution }) => {
                         Link={Link}
                         navigate={navigate}
                         path={"second"}
+                        list={list}
                       />
                     </div>
                   ))
@@ -404,6 +408,7 @@ export const Evolutions = ({ evolution }) => {
                 Link={Link}
                 navigate={navigate}
                 path={"primary"}
+                list={list}
               />
               <div className="d-flex align-items-center flex-column">
                 {evolution.chain.evolves_to.map((evo) => (
@@ -426,6 +431,7 @@ export const Evolutions = ({ evolution }) => {
                       Link={Link}
                       navigate={navigate}
                       path={"second"}
+                      list={list}
                     />
                   </div>
                 ))}
@@ -438,6 +444,7 @@ export const Evolutions = ({ evolution }) => {
             Link={Link}
             navigate={navigate}
             path={"primary"}
+            list={list}
           />
         )}
       </div>
