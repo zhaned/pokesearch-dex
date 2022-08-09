@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const getPokemon = createAsyncThunk('homepage/getPokemon', async () => {
-  return fetch('http://localhost:3001/pokemon')
-  .then((res) => res.json())
-  .then((data) => data.results)
+  //https://pokeapi.co/api/v2/pokemon?limit=898
+  return fetch("http://localhost:3001/pokemon")
+    .then((res) => res.json())
+    .then((data) => data.results);
 });
 
 const homepageSlice = createSlice({

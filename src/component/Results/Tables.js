@@ -18,7 +18,7 @@ import {
   versionFilter,
   effectEntryAdder,
   EvoImage,
-  nameGetter
+  nameGetter,
 } from "./TableFunctions";
 import "./Results.css";
 import { useSelector, useDispatch } from "react-redux/";
@@ -463,7 +463,9 @@ export const Header = ({ id, pokemon, type, type2 }) => {
         {id === 1 ? null : (
           <Link
             to={`/search/${nameGetter(id - 1, list)}`}
-            onClick={() => updateLocation(navigate, `/search/${nameGetter(id - 1, list)}`)}
+            onClick={() =>
+              updateLocation(navigate, `/search/${nameGetter(id - 1, list)}`)
+            }
           >
             <h3 className="next-sprite">
               <span style={{ verticalAlign: "bottom" }}>&#8592;</span>
@@ -508,7 +510,9 @@ export const Header = ({ id, pokemon, type, type2 }) => {
         {id === 898 ? null : (
           <Link
             to={`/search/${nameGetter(id + 1, list)}`}
-            onClick={() => updateLocation(navigate, `/search/${nameGetter(id + 1, list)}`)}
+            onClick={() =>
+              updateLocation(navigate, `/search/${nameGetter(id + 1, list)}`)
+            }
           >
             <h3 className="next-sprite">
               <img
@@ -638,7 +642,7 @@ export const MoveInfo = ({ move, version }) => {
     langFilter
   );
   return (
-    <>
+    <div className="table table-dark">
       <table className="border" style={{ width: "100%" }}>
         <thead>
           <tr className="border-bottom">
@@ -704,7 +708,7 @@ export const MoveInfo = ({ move, version }) => {
           </tr>
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 
@@ -718,7 +722,7 @@ export const AbilityInfo = ({ ability, version }) => {
   );
 
   return (
-    <>
+    <div className="table table-dark">
       <table className="border" style={{ width: "100%" }}>
         <tbody>
           <tr className="border-bottom">
@@ -749,12 +753,13 @@ export const AbilityInfo = ({ ability, version }) => {
           </tr>
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 
 export const PokemonTable = ({ list }) => {
   const pokemonList = list;
+  const stateList = GetPokemonList();
   return (
     <table className="table table-dark table-hover">
       <thead>
@@ -769,7 +774,10 @@ export const PokemonTable = ({ list }) => {
           <tr key={poke.number}>
             <td className="align-middle">{poke.number}</td>
             <td>
-              <Link to={`/search/${poke.number[0]}`}>
+              <Link
+                className="stat-name"
+                to={`/search/${nameGetter(poke.number[0], stateList)}`}
+              >
                 <img
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${poke.number[0]}.png`}
                   alt=""
