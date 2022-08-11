@@ -1,10 +1,9 @@
 import HrLineBreak from "../../component/HrLineBreak";
 import { Counter } from "../../redux/Counter";
-import Component from "./Component";
 
 export default function About() {
   return (
-    <>
+    <div>
       <h1
         className="display-3 text-center"
         style={{
@@ -16,7 +15,6 @@ export default function About() {
       </h1>
       <HrLineBreak />
       <Counter />
-      <Component />
-    </>
+    </div>
   );
 }

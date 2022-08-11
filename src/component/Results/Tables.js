@@ -795,3 +795,118 @@ export const PokemonTable = ({ list }) => {
     </table>
   );
 };
+
+export const MoveTabs = ({ pokemon, version}) => {
+  return (
+    <div>
+      <ul className="nav nav-tabs" id="myTab" role="tablist">
+        <li className="nav-item me-1" role="presentation">
+          <button
+            className="nav-link active"
+            id="home-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#home"
+            type="button"
+            role="tab"
+            aria-controls="home"
+            aria-selected="true"
+            style={{
+              color: "#f8f9fa",
+              textShadow: "2px 2px #851bed",
+            }}
+          >
+            Moves
+          </button>
+        </li>
+        <li className="nav-item me-1" role="presentation">
+          <button
+            className="nav-link "
+            id="profile-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#profile"
+            type="button"
+            role="tab"
+            aria-controls="profile"
+            aria-selected="false"
+            style={{
+              color: "#f8f9fa",
+              textShadow: "2px 2px #851bed",
+            }}
+          >
+            TM/TR
+          </button>
+        </li>
+        <li className="nav-item me-1" role="presentation">
+          <button
+            className="nav-link "
+            id="contact-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#contact"
+            type="button"
+            role="tab"
+            aria-controls="contact"
+            aria-selected="false"
+            style={{
+              color: "#f8f9fa",
+              textShadow: "2px 2px #851bed",
+            }}
+          >
+            Egg
+          </button>
+        </li>
+        <li className="nav-item me-1" role="presentation">
+          <button
+            className="nav-link "
+            id="tutor-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#tutor"
+            type="button"
+            role="tab"
+            aria-controls="tutor"
+            aria-selected="false"
+            style={{
+              color: "#f8f9fa",
+              textShadow: "2px 2px #851bed",
+            }}
+          >
+            Tutor
+          </button>
+        </li>
+      </ul>
+      <div className="tab-content" id="myTabContent">
+        <div
+          className="tab-pane fade show active"
+          id="home"
+          role="tabpanel"
+          aria-labelledby="home-tab"
+        >
+          <Moveset moves={pokemon.moves} version={version} method="level-up" />
+        </div>
+        <div
+          className="tab-pane fade"
+          id="profile"
+          role="tabpanel"
+          aria-labelledby="profile-tab"
+        >
+          <Moveset moves={pokemon.moves} version={version} method="machine" />
+        </div>
+        <div
+          className="tab-pane fade"
+          id="contact"
+          role="tabpanel"
+          aria-labelledby="contact-tab"
+        >
+          <Moveset moves={pokemon.moves} version={version} method="egg" />
+        </div>
+        <div
+          className="tab-pane fade"
+          id="tutor"
+          role="tabpanel"
+          aria-labelledby="tutor-tab"
+        >
+          <Moveset moves={pokemon.moves} version={version} method="tutor" />
+        </div>
+      </div>
+    </div>
+  );
+}
