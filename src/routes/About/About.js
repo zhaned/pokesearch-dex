@@ -1,5 +1,6 @@
 import HrLineBreak from "../../component/HrLineBreak";
 import { Counter } from "../../redux/Counter";
+import VersionTest from "./VersionTest";
 
 export default function About() {
   return (
@@ -15,6 +16,7 @@ export default function About() {
       </h1>
       <HrLineBreak />
       <Counter />
+      <VersionTest payload={2}/>
     </div>
   );
 }

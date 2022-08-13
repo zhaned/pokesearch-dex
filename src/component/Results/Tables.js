@@ -176,68 +176,6 @@ export const Moveset = ({ moves, version, method }) => {
   //fixed: dynamically choose version and learn method
   const moveList = moveFilter(moves, version, method);
 
-  //attempt 1
-  // const getMoveInfo = async () => {
-  //   const responses = await Promise.all(
-  //     moveList.map((move) => fetch(move.move.url).then((res) => res.json()))
-  //   );
-  //   setMoveInfo(responses);
-  // };
-  // const getTmInfo = async () => {
-  //   let results = [];
-  //   const url = await moveInfo.map((move) => {
-  //     if (
-  //       move.machines.some(
-  //         (item) =>
-  //           item.version_group.url ===
-  //           `https://pokeapi.co/api/v2/version-group/${version}/`
-  //       )
-  //     ) {
-  //       const tmUrl = move.machines.filter(
-  //         (item) =>
-  //           item.version_group.url ===
-  //           `https://pokeapi.co/api/v2/version-group/${version}/`
-  //       );
-  //       fetch(tmUrl[0].machine.url)
-  //         .then((res) => res.json())
-  //         .then((data) => results.push(data.item.name));
-  //     }
-  //     return null;
-  //   });
-  //   setMachineInfo(results);
-  // };
-
-  //attempt 2
-  // const getMoveInfo = async () => {
-  //   const responses = await Promise.all(
-  //     moveList.map((move) => fetch(move.move.url).then((res) => res.json()))
-  //   );
-  //   setMoveInfo(responses);
-  //   let results = ['null'];
-  //   results = await Promise.all(
-  //     responses.map((move) => {
-  //       if (
-  //         move.machines.some(
-  //           (item) =>
-  //             item.version_group.url ===
-  //             `https://pokeapi.co/api/v2/version-group/${version}/`
-  //         )
-  //       ) {
-  //         const tmUrl = move.machines.filter(
-  //           (item) =>
-  //             item.version_group.url ===
-  //             `https://pokeapi.co/api/v2/version-group/${version}/`
-  //         );
-  //         fetch(tmUrl[0].machine.url)
-  //           .then((res) => res.json())
-  //           .then((data) => results.push(data.item.name));
-  //       }
-  //       return 'null';
-  //     })
-  //   )
-  //   if(results[0] === 'null') setMachineInfo(results);
-  // };
-
   const getMoveInfo = async () => {
     const responses = await Promise.all(
       moveList.map((move) => fetch(move.move.url).then((res) => res.json()))
@@ -796,7 +734,7 @@ export const PokemonTable = ({ list }) => {
   );
 };
 
-export const MoveTabs = ({ pokemon, version}) => {
+export const MoveTabs = ({ pokemon, version }) => {
   return (
     <div>
       <ul className="nav nav-tabs" id="myTab" role="tablist">
@@ -909,4 +847,4 @@ export const MoveTabs = ({ pokemon, version}) => {
       </div>
     </div>
   );
-}
+};
