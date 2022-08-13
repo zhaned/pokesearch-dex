@@ -39,18 +39,18 @@ export const Traits = ({ species, data }) => {
   //fixed: height near 12 inches aren't converted (.3m becomes 0"12)
   const height = data.height / 10; //in meters
   const weight = Math.round(2.20462 * data.weight) / 10; // in lbs
-  const description = regionFilter(langFilter(species.flavor_text_entries));
+  // const description = regionFilter(langFilter(species.flavor_text_entries));
   return (
     <table className="col border-end">
       <tbody>
-        <tr>
+        {/* <tr>
           <th>Description: </th>
           <td>
             {`(${capitalizer(description.version.name)}): ${capsChecker(
               description.flavor_text
             )} `}
           </td>
-        </tr>
+        </tr> */}
         <tr>
           <th>Height:</th>
           <td>
@@ -847,4 +847,46 @@ export const MoveTabs = ({ pokemon, version }) => {
       </div>
     </div>
   );
+};
+
+export const Description = ({ data, versions }) => {
+  const versionDescription = regionFilter(
+    langFilter(data.flavor_text_entries),
+    versions
+  );
+  // console.log(versionDescription);
+  return (
+    <table className="border-top w-100">
+      <tbody>
+        <tr>
+          <th>Description</th>
+        </tr>
+        {versionDescription ? (
+          versionDescription.map((version) => (
+            <tr key={version[0].version.name}>
+              <th>{capitalizer(version[0].version.name)}</th>
+              <td>{capsChecker(version[0].flavor_text)}</td>
+            </tr>
+          ))
+        ) : (
+          <tr>
+            <td className="text-center">
+              <span>
+                ( There is currently no description for this Pokémon in this
+                current generation. )
+              </span>
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  );
+  // <table>
+  //   <tbody>
+  //     <tr>
+  //       <th>Version:</th>
+  //       <td>A description of the pokemon from this specific version from x generation</td>
+  //     </tr>
+  //   </tbody>
+  // </table>;
 };

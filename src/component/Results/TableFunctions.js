@@ -1,10 +1,14 @@
 //fix: make it take in a region/group to choose which version to use
-export const regionFilter = (arr) => {
+export const regionFilter = (arr, versions) => {
   const oldArr = arr;
   let newArr;
-  newArr = oldArr.filter((text) => text.version.name === "sword");
-  if (newArr.length === 0) return oldArr[oldArr.length - 1];
-  return newArr[0];
+  newArr = versions.map((version) => 
+  oldArr.filter((text) => text.version.name === version)
+  )
+  // newArr = oldArr.filter((text) => text.version.name === "sword");
+  // if (newArr[0].length === 0) return oldArr[oldArr.length - 1];
+  if (newArr[0].length === 0) return null;
+  return newArr;
 };
 
 export const langFilter = (arr) => {
