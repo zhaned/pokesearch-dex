@@ -854,7 +854,6 @@ export const Description = ({ data, versions }) => {
     langFilter(data.flavor_text_entries),
     versions
   );
-  // console.log(versionDescription);
   return (
     <table className="border-top w-100">
       <tbody>
@@ -864,7 +863,7 @@ export const Description = ({ data, versions }) => {
         {versionDescription ? (
           versionDescription.map((version) => (
             <tr key={version[0].version.name}>
-              <th>{capitalizer(version[0].version.name)}</th>
+              <th>{`${capitalizer(version[0].version.name)}:`}</th>
               <td>{capsChecker(version[0].flavor_text)}</td>
             </tr>
           ))

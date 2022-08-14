@@ -2,13 +2,14 @@
 export const regionFilter = (arr, versions) => {
   const oldArr = arr;
   let newArr;
-  newArr = versions.map((version) => 
-  oldArr.filter((text) => text.version.name === version)
-  )
-  // newArr = oldArr.filter((text) => text.version.name === "sword");
-  // if (newArr[0].length === 0) return oldArr[oldArr.length - 1];
+  newArr = versions.map((version) =>
+    oldArr.filter((text) => text.version.name === version)
+  );
   if (newArr[0].length === 0) return null;
   return newArr;
+  //fix: old stuff, can delete later
+  // newArr = oldArr.filter((text) => text.version.name === "sword");
+  // if (newArr[0].length === 0) return oldArr[oldArr.length - 1];
 };
 
 export const langFilter = (arr) => {

@@ -21,7 +21,7 @@ const Results = ({ pokemon, species, evolution, types }) => {
   //versions affect description
   //possibly fetch generation with it and get pokedex for search filter?
   const [version, setVersion] = useState("20");
-  const versionsTest = ['sword', 'shield']
+  const versionsTest = ['omega-ruby','alpha-sapphire']
   const type = pokemon.types[0].type.name;
   const type2 = pokemon.types.length > 1 ? pokemon.types[1].type.name : null;
   const id = parseInt(pokemon.species.url.slice(42).split("/"));
