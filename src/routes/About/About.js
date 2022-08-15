@@ -16,7 +16,7 @@ export default function About() {
       </h1>
       <HrLineBreak />
       <Counter />
-      <VersionTest payload={2}/>
+      <VersionTest payload={20}/>
     </div>
   );
 }

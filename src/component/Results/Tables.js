@@ -393,11 +393,13 @@ export const Evolutions = ({ evolution }) => {
 export const Header = ({ id, pokemon, type, type2 }) => {
   const list = GetPokemonList();
   const navigate = useNavigate();
-  //fix: get list of id with names redux
+  //fixed: get list of id with names redux
   return (
     <div className="d-flex justify-content-between">
       <div className="d-flex align-items-center">
-        {/* fixed: add the previous pokemon as a link here with a sprite */}
+        {/* fixed: add the previous pokemon as a link here with a sprite */
+        /* fix: try just invoking a function to update all the data with a fetch call and useEffect */
+        }
         {id === 1 ? null : (
           <Link
             to={`/search/${nameGetter(id - 1, list)}`}
