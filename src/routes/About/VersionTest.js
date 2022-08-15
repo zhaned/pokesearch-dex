@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selection } from "../../component/Results/versionSlice";
+import { selection, getVersions } from "../../component/Results/versionSlice";
 
 export default function VersionTest({ payload }) {
   const { version_group } = useSelector((state) => state.version);
@@ -9,10 +9,14 @@ export default function VersionTest({ payload }) {
   const dispatch = useDispatch();
   const [actionPayload, setActionPayload] = useState(payload);
   useEffect(() => {
-    dispatch(selection(actionPayload));
+    // dispatch(selection(getVersions));
     // console.log('actionPayload: ', actionPayload)
   }, [actionPayload, dispatch]);
-
+  
+  useEffect(()=> {
+    dispatch(getVersions())
+  },[])
+  // console.log('generation', generation,'\n', 'versions test', versions,'\n', 'version_group', version_group)
   return (
     <div>
       <span
@@ -32,16 +36,16 @@ export default function VersionTest({ payload }) {
           Get Version
         </button>
       </div>
-      <div class="dropdown">
+      <div className="dropdown">
         <button
-          class="btn btn-secondary dropdown-toggle"
+          className="btn btn-secondary dropdown-toggle"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
           Dropdown button
         </button>
-        <ul class="dropdown-menu">
+        <ul className="dropdown-menu">
           <li onClick={() => dispatch(selection(actionPayload))}>
             <span className="dropdown-item">Update</span>
           </li>
@@ -50,23 +54,21 @@ export default function VersionTest({ payload }) {
             <a className="dropdown-item">Another action</a>
           </li>
           <li>
-            <a class="dropdown-item" href="#">
+            <a className="dropdown-item" href="#">
               Something else here
             </a>
           </li>
         </ul>
       </div>
-      <select className="btn btn-secondary" value={"test"}>
+      <select className="btn btn-secondary" readOnly={"test"}>
         <optgroup label="Generation 1">
           <option onClick={() => dispatch(selection(actionPayload))}>
             dispatch action
           </option>
           <option onClick={() => setActionPayload(5)}>set payload to 5</option>
-          <option>City 1 branch C</option>
         </optgroup>
         <optgroup label="Generation 2">
-          <option value={'test'}>default test</option>
-          <option>City 2 branch B</option>
+          <option value={"test"}>default test</option>
         </optgroup>
       </select>
     </div>
