@@ -855,7 +855,7 @@ export const Description = ({ data, versions }) => {
   const versionDescription = regionFilter(
     langFilter(data.flavor_text_entries),
     versions
-  );
+    );
   return (
     <table className="border-top w-100">
       <tbody>
@@ -863,12 +863,17 @@ export const Description = ({ data, versions }) => {
           <th>Description</th>
         </tr>
         {versionDescription ? (
-          versionDescription.map((version) => (
-            <tr key={version[0].version.name}>
-              <th>{`${capitalizer(version[0].version.name)}:`}</th>
-              <td>{capsChecker(version[0].flavor_text)}</td>
-            </tr>
-          ))
+          versionDescription.map((version) =>
+            version.length > 0 ? (
+              <tr key={version[0].version.name}>
+                <th>{`${capitalizer(version[0].version.name)}:`}</th>
+                <td>{capsChecker(version[0].flavor_text)}</td>
+              </tr>
+            ) : (
+              <tr>
+              </tr>
+            )
+          )
         ) : (
           <tr>
             <td className="text-center">

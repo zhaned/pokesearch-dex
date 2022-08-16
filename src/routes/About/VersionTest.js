@@ -14,7 +14,7 @@ export default function VersionTest({ payload }) {
   }, [actionPayload, dispatch]);
   
   useEffect(()=> {
-    dispatch(getVersions())
+    dispatch(getVersions(7))
   },[])
   // console.log('generation', generation,'\n', 'versions test', versions,'\n', 'version_group', version_group)
   return (

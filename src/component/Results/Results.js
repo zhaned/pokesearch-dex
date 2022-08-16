@@ -29,7 +29,6 @@ const Results = ({ pokemon, species, evolution, types }) => {
   useEffect(() => {
     document.title = document.getElementById("title").innerText;
   }, []);
-  console.log('versions test',versionsTest)
   return (
     <div
       className="fade-in-above text-light"
