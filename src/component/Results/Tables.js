@@ -39,18 +39,10 @@ export const Traits = ({ species, data }) => {
   //fixed: height near 12 inches aren't converted (.3m becomes 0"12)
   const height = data.height / 10; //in meters
   const weight = Math.round(2.20462 * data.weight) / 10; // in lbs
-  // const description = regionFilter(langFilter(species.flavor_text_entries));
+
   return (
     <table className="col border-end">
       <tbody>
-        {/* <tr>
-          <th>Description: </th>
-          <td>
-            {`(${capitalizer(description.version.name)}): ${capsChecker(
-              description.flavor_text
-            )} `}
-          </td>
-        </tr> */}
         <tr>
           <th>Height:</th>
           <td>
@@ -203,7 +195,7 @@ export const Moveset = ({ moves, version, method }) => {
     getMoveInfo();
   }, []);
 
-  //fix: get moves from a single generation
+  //fixed: get moves from a single generation
   //fixed: order moves via level up
   return moveInfo ? (
     <table className="table table-dark table-hover">
@@ -855,7 +847,8 @@ export const Description = ({ data, versions }) => {
   const versionDescription = regionFilter(
     langFilter(data.flavor_text_entries),
     versions
-    );
+  );
+
   return (
     <table className="border-top w-100">
       <tbody>
@@ -864,14 +857,13 @@ export const Description = ({ data, versions }) => {
         </tr>
         {versionDescription ? (
           versionDescription.map((version) =>
-            version.length > 0 ? (
-              <tr key={version[0].version.name}>
-                <th>{`${capitalizer(version[0].version.name)}:`}</th>
-                <td>{capsChecker(version[0].flavor_text)}</td>
+            Object.keys(version.flavorText).length > 0 ? (
+              <tr key={version.region}>
+                <th>{`${capitalizer(version.region)}:`}</th>
+                <td>{capsChecker(version.flavorText[0].flavor_text)}</td>
               </tr>
             ) : (
-              <tr>
-              </tr>
+              <tr key={Math.random()}></tr>
             )
           )
         ) : (
@@ -887,12 +879,4 @@ export const Description = ({ data, versions }) => {
       </tbody>
     </table>
   );
-  // <table>
-  //   <tbody>
-  //     <tr>
-  //       <th>Version:</th>
-  //       <td>A description of the pokemon from this specific version from x generation</td>
-  //     </tr>
-  //   </tbody>
-  // </table>;
 };
