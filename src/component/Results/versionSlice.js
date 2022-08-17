@@ -1,12 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { version } from "react-dom";
 
 const initialState = {
   version_group: 20, //for moveset
   versions: ["sword", "shield"], //for descriptions
   generation: 8, //for honestly, idk
   status: null,
-  // pokedex?: , might be better in search page
 };
 
 export const getVersions = createAsyncThunk(
@@ -30,16 +28,6 @@ export const getVersions = createAsyncThunk(
     );
     versionObj.versions = getVersions.flatMap((version) => version.versions.map(version => version.name))
     return versionObj;
-
-    // return fetch(`https://pokeapi.co/api/v2/generation/${generation}`)
-    //   .then((res) => res.json())
-    //   .then((data) => data.version_groups.map((version) => version.url))
-    //   .then((url) =>
-    //     Promise.all(url.map((link) => fetch(link).then((res) => res.json())))
-    //   )
-    //   .then((results) =>
-    //     results.flatMap((value) => value.versions.map((obj) => obj.name))
-    //   );
   }
 );
 
