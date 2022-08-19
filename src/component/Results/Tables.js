@@ -23,6 +23,7 @@ import {
 import './Results.css';
 import { useSelector, useDispatch } from 'react-redux/';
 import { getPokemon } from '../../routes/Homepage/homepageSlice';
+import { getVersions, selection } from './versionSlice';
 
 function GetPokemonList() {
   const pokemon = useSelector((state) => state.pokemon.list);
@@ -33,6 +34,57 @@ function GetPokemonList() {
     dispatch(getPokemon());
   }
   return pokemon;
+}
+
+function GenDropDown() {
+  const dispatch = useDispatch();
+  const { generation } = useSelector((state) => state.version);
+  const [actionPayload, setActionPayload] = useState(generation);
+
+  useEffect(() => {
+    dispatch(getVersions(actionPayload || 1));
+    // console.log('action payload changed to: ', actionPayload);
+  }, [actionPayload, dispatch]);
+
+  function handleChange(e) {
+    e.preventDefault();
+    const eventArr = e.target.value.split(',');
+    setActionPayload(eventArr[0]);
+  }
+  return (
+    <div>
+      <select
+        className="btn btn-secondary"
+        value={actionPayload || 3}
+        onChange={handleChange}
+      >
+        <optgroup label="Generation 1">
+          <option value={[1,1]}>Red/Blue</option>
+        </optgroup>
+        <optgroup label="Generation 2">
+          <option value={[2,3]}>Gold/Silver</option>
+        </optgroup>
+        <optgroup label="Generation 3">
+          <option value={3}>Ruby/Sapphire</option>
+        </optgroup>
+        <optgroup label="Generation 4">
+          <option value={4}>Diamond/Pearl</option>
+        </optgroup>
+        <optgroup label="Generation 5">
+          <option value={5}>Black/White</option>
+        </optgroup>
+        <optgroup label="Generation 6">
+          <option value={6}>X/Y</option>
+        </optgroup>
+        <optgroup label="Generation 7">
+          <option value={7}>Sun/Moon</option>
+        </optgroup>
+        <optgroup label="Generation 8">
+          <option value={[8, 20]}>Sword/Shield</option>
+        </optgroup>
+      </select>
+    </div>
+  );
 }
 
 export const Traits = ({ species, data }) => {
@@ -161,13 +213,15 @@ export const Stats = ({ data }) => {
   );
 };
 
-export const Moveset = ({ moves, version, method }) => {
+export const Moveset = ({ moves, method }) => {
   const [moveInfo, setMoveInfo] = useState();
   const [machineInfo, setMachineInfo] = useState([]);
-
+  const versionGroup = useSelector((state) => state.version.version_group);
   //fixed: dynamically choose version and learn method
-  const moveList = moveFilter(moves, version, method);
-
+  // const [moveList, setMoveList] = useState(
+  //   moveFilter(moves, versionGroup, method)
+  // );
+  const moveList = moveFilter(moves, versionGroup, method);
   const getMoveInfo = async () => {
     const responses = await Promise.all(
       moveList.map((move) => fetch(move.move.url).then((res) => res.json()))
@@ -180,7 +234,7 @@ export const Moveset = ({ moves, version, method }) => {
             move.machines.filter(
               (machine) =>
                 machine.version_group.url ===
-                `https://pokeapi.co/api/v2/version-group/${version}/`
+                `https://pokeapi.co/api/v2/version-group/${versionGroup}/`
             )[0].machine.url
           )
             .then((res) => res.json())
@@ -190,10 +244,9 @@ export const Moveset = ({ moves, version, method }) => {
       setMachineInfo(machine);
     }
   };
-
   useEffect(() => {
     getMoveInfo();
-  }, []);
+  }, [versionGroup]);
 
   //fixed: get moves from a single generation
   //fixed: order moves via level up
@@ -210,44 +263,47 @@ export const Moveset = ({ moves, version, method }) => {
           <th>Acc</th>
           <th>PP</th>
         </tr>
-        {moveInfo.map((move, index) => (
-          <Fragment key={move.name}>
-            <tr>
-              <td>
-                {levelTmGetter(
-                  moveList[index],
-                  version,
-                  method,
-                  machineInfo[index]
-                )}
-              </td>
-              <td>
-                <Link className="stat-name" to={`/move/${move.name}`}>
-                  {capitalizer(move.name)}
-                </Link>
-              </td>
-              <td>
-                <img
-                  className="d-flex"
-                  src={require(`../../images/damage-classes/${move.damage_class.name}-icon.png`)}
-                  alt=""
-                  title={capitalizer(move.damage_class.name)}
-                />
-              </td>
-              <td>
-                <span
-                  className="border rounded p-1"
-                  style={{ backgroundColor: TypeColor(move.type.name) }}
-                >
-                  {capitalizer(move.type.name)}
-                </span>
-              </td>
-              <td>{move.power ? move.power : '-'}</td>
-              <td>{move.accuracy ? `${move.accuracy}%` : '-'}</td>
-              <td>{move.pp}</td>
-            </tr>
-          </Fragment>
-        ))}
+        {moveList.length === moveInfo.length &&
+          moveInfo.map((move, index) => (
+            <Fragment key={move.name}>
+              <tr>
+                <td>
+                  {moveList
+                    ? levelTmGetter(
+                        moveList[index],
+                        versionGroup,
+                        method,
+                        machineInfo[index]
+                      )
+                    : null}
+                </td>
+                <td>
+                  <Link className="stat-name" to={`/move/${move.name}`}>
+                    {capitalizer(move.name)}
+                  </Link>
+                </td>
+                <td>
+                  <img
+                    className="d-flex"
+                    src={require(`../../images/damage-classes/${move.damage_class.name}-icon.png`)}
+                    alt=""
+                    title={capitalizer(move.damage_class.name)}
+                  />
+                </td>
+                <td>
+                  <span
+                    className="border rounded p-1"
+                    style={{ backgroundColor: TypeColor(move.type.name) }}
+                  >
+                    {capitalizer(move.type.name)}
+                  </span>
+                </td>
+                <td>{move.power ? move.power : '-'}</td>
+                <td>{move.accuracy ? `${move.accuracy}%` : '-'}</td>
+                <td>{move.pp}</td>
+              </tr>
+            </Fragment>
+          ))}
       </tbody>
     </table>
   ) : (
@@ -727,7 +783,7 @@ export const PokemonTable = ({ list }) => {
   );
 };
 
-export const MoveTabs = ({ pokemon, version }) => {
+export const MoveTabs = ({ pokemon }) => {
   return (
     <div>
       <div className="d-flex justify-content-between">
@@ -805,22 +861,7 @@ export const MoveTabs = ({ pokemon, version }) => {
             </button>
           </li>
         </ul>
-        <div>
-          <select className="btn" style={{
-            color: "#fff",
-            backgroundColor: '#212529',
-            borderColor: '#6c757d'
-          }}>
-            <optgroup label="Generation 1">
-              <option>gen 1</option>
-              <option>gen 5</option>
-            </optgroup>
-            <optgroup label="Generation 2">
-              <option value={'test'}>gen 2</option>
-              <option >gen 8</option>
-            </optgroup>
-          </select>
-        </div>
+        <GenDropDown />
       </div>
       <div className="tab-content" id="myTabContent">
         <div
@@ -829,7 +870,7 @@ export const MoveTabs = ({ pokemon, version }) => {
           role="tabpanel"
           aria-labelledby="home-tab"
         >
-          <Moveset moves={pokemon.moves} version={version} method="level-up" />
+          <Moveset moves={pokemon.moves} method="level-up" />
         </div>
         <div
           className="tab-pane fade"
@@ -837,7 +878,7 @@ export const MoveTabs = ({ pokemon, version }) => {
           role="tabpanel"
           aria-labelledby="profile-tab"
         >
-          <Moveset moves={pokemon.moves} version={version} method="machine" />
+          <Moveset moves={pokemon.moves} method="machine" />
         </div>
         <div
           className="tab-pane fade"
@@ -845,7 +886,7 @@ export const MoveTabs = ({ pokemon, version }) => {
           role="tabpanel"
           aria-labelledby="contact-tab"
         >
-          <Moveset moves={pokemon.moves} version={version} method="egg" />
+          <Moveset moves={pokemon.moves} method="egg" />
         </div>
         <div
           className="tab-pane fade"
@@ -853,14 +894,16 @@ export const MoveTabs = ({ pokemon, version }) => {
           role="tabpanel"
           aria-labelledby="tutor-tab"
         >
-          <Moveset moves={pokemon.moves} version={version} method="tutor" />
+          <Moveset moves={pokemon.moves} method="tutor" />
         </div>
       </div>
     </div>
   );
 };
 
-export const Description = ({ data, versions }) => {
+export const Description = ({ data }) => {
+  const { versions } = useSelector((state) => state.version);
+  const { generation } = useSelector((state) => state.version);
   const versionDescription = regionFilter(
     langFilter(data.flavor_text_entries),
     versions
@@ -870,6 +913,7 @@ export const Description = ({ data, versions }) => {
     <table className="border-top w-100">
       <tbody>
         <tr>
+          <th title={`Generation ${generation}`}>{`Gen. ${generation} `}</th>
           <th>Description</th>
         </tr>
         {versionDescription ? (

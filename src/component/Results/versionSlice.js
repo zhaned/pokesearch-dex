@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  version_group: 20, //for moveset
-  versions: ["sword", "shield"], //for descriptions
-  generation: 8, //for honestly, idk
+  version_group: null, //for moveset
+  versions: [], //for descriptions
+  generation: null, //for honestly, idk
   status: null,
 };
 
@@ -19,7 +19,7 @@ export const getVersions = createAsyncThunk(
       `https://pokeapi.co/api/v2/generation/${generation}`
     ).then((res) => res.json())
     versionObj.generation = getGeneration.id;
-    versionObj.version_group = getGeneration.version_groups[0].name;
+    versionObj.version_group = getGeneration.version_groups[0].url.slice(40).split("/").join('');
     const getVersions = await Promise.all(
       getGeneration.version_groups.flatMap((group) =>
         fetch(group.url)

@@ -32,7 +32,7 @@ export default function VersionTest({ payload }) {
           aria-label="select version"
           onClick={() => dispatch(selection(20))}
         >
-          Change to gen 4
+          change specific version-group to 20
         </button>
       </div>
       {/* <div className="dropdown">
