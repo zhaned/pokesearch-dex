@@ -9,13 +9,12 @@ export default function VersionTest({ payload }) {
   const dispatch = useDispatch();
   const [actionPayload, setActionPayload] = useState(payload);
   useEffect(() => {
+    dispatch(getVersions(actionPayload));
+    console.log('action payload changed to: ', actionPayload)
     // dispatch(selection(getVersions));
     // console.log('actionPayload: ', actionPayload)
   }, [actionPayload, dispatch]);
   
-  useEffect(()=> {
-    dispatch(getVersions(8))
-  },[])
   // console.log('generation', generation,'\n', 'versions test', versions,'\n', 'version_group', version_group)
   return (
     <div>
@@ -31,12 +30,12 @@ export default function VersionTest({ payload }) {
         <button
           className="btn btn-info border me-1"
           aria-label="select version"
-          onClick={() => dispatch(selection(actionPayload))}
+          onClick={() => dispatch(selection(20))}
         >
-          Get Version
+          Change to gen 4
         </button>
       </div>
-      <div className="dropdown">
+      {/* <div className="dropdown">
         <button
           className="btn btn-secondary dropdown-toggle"
           type="button"
@@ -46,7 +45,7 @@ export default function VersionTest({ payload }) {
           Dropdown button
         </button>
         <ul className="dropdown-menu">
-          <li onClick={() => dispatch(selection(actionPayload))}>
+          <li onClick={() => setActionPayload()}>
             <span className="dropdown-item">Update</span>
           </li>
           <li>GENERATION 3</li>
@@ -59,16 +58,17 @@ export default function VersionTest({ payload }) {
             </a>
           </li>
         </ul>
-      </div>
+      </div> */}
       <select className="btn btn-secondary" readOnly={"test"}>
         <optgroup label="Generation 1">
-          <option onClick={() => dispatch(selection(actionPayload))}>
-            dispatch action
+          <option onClick={() => setActionPayload(1)}>
+            gen 1
           </option>
-          <option onClick={() => setActionPayload(5)}>set payload to 5</option>
+          <option onClick={() => setActionPayload(5)}>gen 5</option>
         </optgroup>
         <optgroup label="Generation 2">
-          <option value={"test"}>default test</option>
+          <option onClick={() => setActionPayload(2)} value={"test"}>gen 2</option>
+          <option onClick={() => setActionPayload(8)} value={"test"}>gen 8</option>
         </optgroup>
       </select>
     </div>

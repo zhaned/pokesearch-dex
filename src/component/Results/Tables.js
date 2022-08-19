@@ -1,7 +1,7 @@
-import { Fragment, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Loading from "../Loading/Loading";
-import { TypeColor, TypeNames } from "../Type";
+import { Fragment, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Loading from '../Loading/Loading';
+import { TypeColor, TypeNames } from '../Type';
 import {
   regionFilter,
   langFilter,
@@ -19,10 +19,10 @@ import {
   effectEntryAdder,
   EvoImage,
   nameGetter,
-} from "./TableFunctions";
-import "./Results.css";
-import { useSelector, useDispatch } from "react-redux/";
-import { getPokemon } from "../../routes/Homepage/homepageSlice";
+} from './TableFunctions';
+import './Results.css';
+import { useSelector, useDispatch } from 'react-redux/';
+import { getPokemon } from '../../routes/Homepage/homepageSlice';
 
 function GetPokemonList() {
   const pokemon = useSelector((state) => state.pokemon.list);
@@ -61,7 +61,7 @@ export const Traits = ({ species, data }) => {
         </tr>
         <tr>
           <th>Egg Groups: </th>
-          <td>{species.egg_groups.map((group) => group.name + " | ")}</td>
+          <td>{species.egg_groups.map((group) => group.name + ' | ')}</td>
         </tr>
         <tr>
           <th>Base Egg Cycle: </th>
@@ -81,9 +81,9 @@ export const Stats = ({ data }) => {
     stats
       .filter((stat) => stat.effort > 0)
       .map((data) => {
-        return data.stat.name + ": " + data.effort;
+        return data.stat.name + ': ' + data.effort;
       })
-      .join(", ")
+      .join(', ')
   );
 
   return (
@@ -107,7 +107,7 @@ export const Stats = ({ data }) => {
           )}
         </tr>
         <tr>
-          <td style={{ fontStyle: "italic" }}>Hidden:</td>
+          <td style={{ fontStyle: 'italic' }}>Hidden:</td>
           {ability.map((ability) =>
             ability.is_hidden === true ? (
               <td key={ability.ability.name}>
@@ -132,7 +132,7 @@ export const Stats = ({ data }) => {
             <tr>
               <th
                 className="border border-bottom-0 px-1"
-                style={{ backgroundColor: "rgba(0,0,0,.15)" }}
+                style={{ backgroundColor: 'rgba(0,0,0,.15)' }}
               >
                 <div title={capitalizer(stat.stat.name)}>
                   {statRenamer(stat.stat.name)}
@@ -140,14 +140,14 @@ export const Stats = ({ data }) => {
               </th>
               <td
                 style={{
-                  width: "100%",
+                  width: '100%',
                 }}
               >
                 <div
                   className="stat-visuals rounded-end border border-start-0"
                   style={{
                     width: `${stat.base_stat / 2}%`,
-                    minWidth: `${stat.base_stat < 10 ? "5%" : "7%"}`,
+                    minWidth: `${stat.base_stat < 10 ? '5%' : '7%'}`,
                   }}
                 >
                   {stat.base_stat}
@@ -173,7 +173,7 @@ export const Moveset = ({ moves, version, method }) => {
       moveList.map((move) => fetch(move.move.url).then((res) => res.json()))
     );
     setMoveInfo(responses);
-    if (method === "machine") {
+    if (method === 'machine') {
       const machine = await Promise.all(
         responses.map((move) =>
           fetch(
@@ -242,8 +242,8 @@ export const Moveset = ({ moves, version, method }) => {
                   {capitalizer(move.type.name)}
                 </span>
               </td>
-              <td>{move.power ? move.power : "-"}</td>
-              <td>{move.accuracy ? `${move.accuracy}%` : "-"}</td>
+              <td>{move.power ? move.power : '-'}</td>
+              <td>{move.accuracy ? `${move.accuracy}%` : '-'}</td>
               <td>{move.pp}</td>
             </tr>
           </Fragment>
@@ -260,11 +260,11 @@ export const Evolutions = ({ evolution }) => {
   const navigate = useNavigate();
   const list = GetPokemonList();
   return (
-    <div className="d-flex flex-column" style={{ width: "50%" }}>
+    <div className="d-flex flex-column" style={{ width: '50%' }}>
       <h4 className="text-center">Evolution</h4>
       <div
         className="d-flex flex-wrap justify-content-center align-items-center"
-        style={{ height: "100%" }}
+        style={{ height: '100%' }}
       >
         {evolution.chain.evolves_to[0] ? (
           evolution.chain.evolves_to[0].evolves_to[0] ? (
@@ -273,7 +273,7 @@ export const Evolutions = ({ evolution }) => {
                 evo={evolution}
                 Link={Link}
                 navigate={navigate}
-                path={"primary"}
+                path={'primary'}
                 list={list}
               />
               <div className="d-flex align-items-center flex-column">
@@ -286,7 +286,7 @@ export const Evolutions = ({ evolution }) => {
                       <EvoDetails evo={evo} />
                       <span
                         className="text-center"
-                        style={{ fontSize: "2rem" }}
+                        style={{ fontSize: '2rem' }}
                       >
                         &#8594;
                       </span>
@@ -296,7 +296,7 @@ export const Evolutions = ({ evolution }) => {
                       evo={evo}
                       Link={Link}
                       navigate={navigate}
-                      path={"second"}
+                      path={'second'}
                       list={list}
                     />
                   </div>
@@ -313,7 +313,7 @@ export const Evolutions = ({ evolution }) => {
                         <EvoDetails evo={evo} />
                         <span
                           className="text-center"
-                          style={{ fontSize: "2rem" }}
+                          style={{ fontSize: '2rem' }}
                         >
                           &#8594;
                         </span>
@@ -323,7 +323,7 @@ export const Evolutions = ({ evolution }) => {
                         evo={evo}
                         Link={Link}
                         navigate={navigate}
-                        path={"second"}
+                        path={'second'}
                         list={list}
                       />
                     </div>
@@ -337,7 +337,7 @@ export const Evolutions = ({ evolution }) => {
                 evo={evolution}
                 Link={Link}
                 navigate={navigate}
-                path={"primary"}
+                path={'primary'}
                 list={list}
               />
               <div className="d-flex align-items-center flex-column">
@@ -350,7 +350,7 @@ export const Evolutions = ({ evolution }) => {
                       <EvoDetails evo={evo} />
                       <span
                         className="text-center"
-                        style={{ fontSize: "2rem" }}
+                        style={{ fontSize: '2rem' }}
                       >
                         &#8594;
                       </span>
@@ -360,7 +360,7 @@ export const Evolutions = ({ evolution }) => {
                       evo={evo}
                       Link={Link}
                       navigate={navigate}
-                      path={"second"}
+                      path={'second'}
                       list={list}
                     />
                   </div>
@@ -373,7 +373,7 @@ export const Evolutions = ({ evolution }) => {
             evo={evolution}
             Link={Link}
             navigate={navigate}
-            path={"primary"}
+            path={'primary'}
             list={list}
           />
         )}
@@ -390,8 +390,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
     <div className="d-flex justify-content-between">
       <div className="d-flex align-items-center">
         {/* fixed: add the previous pokemon as a link here with a sprite */
-        /* fix: try just invoking a function to update all the data with a fetch call and useEffect */
-        }
+        /* fix: try just invoking a function to update all the data with a fetch call and useEffect */}
         {id === 1 ? null : (
           <Link
             to={`/search/${nameGetter(id - 1, list)}`}
@@ -400,7 +399,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
             }
           >
             <h3 className="next-sprite">
-              <span style={{ verticalAlign: "bottom" }}>&#8592;</span>
+              <span style={{ verticalAlign: 'bottom' }}>&#8592;</span>
               <img
                 className="img-fluid"
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${
@@ -414,7 +413,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
       </div>
       <div
         className="d-flex justify-content-center align-items-center"
-        style={{ margin: "0px" }}
+        style={{ margin: '0px' }}
       >
         <h1 className="display-3 text-center pt-1 pe-1" id="title">
           #{id} {/*fixed: change this to get the id from species.url later*/}
@@ -426,7 +425,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
             style={{ backgroundColor: TypeColor(type) }}
           >
             {type}
-          </span>{" "}
+          </span>{' '}
           {type2 !== null ? (
             <span
               className="border rounded px-1"
@@ -453,7 +452,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
                 }.png`}
                 alt=""
               />
-              <span style={{ verticalAlign: "bottom" }}>&#8594;</span>
+              <span style={{ verticalAlign: 'bottom' }}>&#8594;</span>
             </h3>
           </Link>
         )}
@@ -468,7 +467,7 @@ export const TypeMatchup = ({ types }) => {
   return (
     <div>
       <h4 className="text-center">Type Matchup</h4>
-      <table className="table m-0 type-matchup" style={{ color: "#f8f9fa" }}>
+      <table className="table m-0 type-matchup" style={{ color: '#f8f9fa' }}>
         <tbody>
           <tr>
             <th>4x damage:</th>
@@ -515,7 +514,7 @@ export const TypeMatchup = ({ types }) => {
           <tr>
             <th>1/2 damage:</th>
             <td>
-              {" "}
+              {' '}
               {matchups.half.map((type) => (
                 <span
                   className="border rounded p-1 me-1"
@@ -530,7 +529,7 @@ export const TypeMatchup = ({ types }) => {
           <tr>
             <th>1/4 damage:</th>
             <td>
-              {" "}
+              {' '}
               {matchups.quarter.map((type) => (
                 <span
                   className="border rounded p-1 me-1"
@@ -545,7 +544,7 @@ export const TypeMatchup = ({ types }) => {
           <tr>
             <th>No damage:</th>
             <td>
-              {" "}
+              {' '}
               {matchups.no.map((type) => (
                 <span
                   className="border rounded p-1 me-1"
@@ -575,7 +574,7 @@ export const MoveInfo = ({ move, version }) => {
   );
   return (
     <div className="table table-dark">
-      <table className="border" style={{ width: "100%" }}>
+      <table className="border" style={{ width: '100%' }}>
         <thead>
           <tr className="border-bottom">
             <th>Category</th>
@@ -604,14 +603,14 @@ export const MoveInfo = ({ move, version }) => {
                 {move.type.name}
               </span>
             </td>
-            <td>{move.power ? move.power : "-"}</td>
-            <td>{move.accuracy ? move.accuracy + "%" : "-"}</td>
+            <td>{move.power ? move.power : '-'}</td>
+            <td>{move.accuracy ? move.accuracy + '%' : '-'}</td>
             <td>{move.pp}</td>
             <td>{move.priority}</td>
           </tr>
         </tbody>
       </table>
-      <table className="border border-top-0" style={{ width: "100%" }}>
+      <table className="border border-top-0" style={{ width: '100%' }}>
         <tbody>
           <tr className="border-bottom">
             <th>Short Effect:</th>
@@ -620,7 +619,7 @@ export const MoveInfo = ({ move, version }) => {
           <tr>
             <td
               className="px-1"
-              style={{ minWidth: "40%" }}
+              style={{ minWidth: '40%' }}
             >{`${effectEntries.short_effect}`}</td>
             <td className="px-1">
               {`(${capitalizer(flavorText[0].version_group.name)}) ${
@@ -630,7 +629,7 @@ export const MoveInfo = ({ move, version }) => {
           </tr>
         </tbody>
       </table>
-      <table className="border border-top-0" style={{ width: "100%" }}>
+      <table className="border border-top-0" style={{ width: '100%' }}>
         <tbody>
           <tr className="border-bottom">
             <th>In-depth Effect:</th>
@@ -655,15 +654,15 @@ export const AbilityInfo = ({ ability, version }) => {
 
   return (
     <div className="table table-dark">
-      <table className="border" style={{ width: "100%" }}>
+      <table className="border" style={{ width: '100%' }}>
         <tbody>
           <tr className="border-bottom">
             <th>Short Description: </th>
             <th>In-Game Description:</th>
           </tr>
           <tr>
-            <td className="px-1" style={{ minWidth: "40%" }}>{`${
-              effectEntries[0] ? effectEntries[0].short_effect : "-"
+            <td className="px-1" style={{ minWidth: '40%' }}>{`${
+              effectEntries[0] ? effectEntries[0].short_effect : '-'
             }`}</td>
             <td className="px-1">
               {`(${capitalizer(flavorText[0].version_group.name)}) ${
@@ -673,14 +672,14 @@ export const AbilityInfo = ({ ability, version }) => {
           </tr>
         </tbody>
       </table>
-      <table className="border border-top-0" style={{ width: "100%" }}>
+      <table className="border border-top-0" style={{ width: '100%' }}>
         <tbody>
           <tr className="border-bottom">
             <th>In-Depth Description:</th>
           </tr>
           <tr>
             <td className="px-1">
-              {effectEntries[0] ? effectEntries[0].effect : "-"}
+              {effectEntries[0] ? effectEntries[0].effect : '-'}
             </td>
           </tr>
         </tbody>
@@ -698,7 +697,7 @@ export const PokemonTable = ({ list }) => {
         <tr>
           <th>#</th>
           <th>Pokemon</th>
-          <th>{pokemonList[0].hidden ? "is hidden?" : ""}</th>
+          <th>{pokemonList[0].hidden ? 'is hidden?' : ''}</th>
         </tr>
       </thead>
       <tbody>
@@ -714,13 +713,13 @@ export const PokemonTable = ({ list }) => {
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${poke.number[0]}.png`}
                   alt=""
                   style={{
-                    objectPosition: "0px -.5rem",
+                    objectPosition: '0px -.5rem',
                   }}
                 />
                 {poke.pokemon}
               </Link>
             </td>
-            <td className="align-middle">{poke.hidden ? poke.hidden : ""}</td>
+            <td className="align-middle">{poke.hidden ? poke.hidden : ''}</td>
           </tr>
         ))}
       </tbody>
@@ -731,80 +730,98 @@ export const PokemonTable = ({ list }) => {
 export const MoveTabs = ({ pokemon, version }) => {
   return (
     <div>
-      <ul className="nav nav-tabs" id="myTab" role="tablist">
-        <li className="nav-item me-1" role="presentation">
-          <button
-            className="nav-link active"
-            id="home-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#home"
-            type="button"
-            role="tab"
-            aria-controls="home"
-            aria-selected="true"
-            style={{
-              color: "#f8f9fa",
-              textShadow: "2px 2px #851bed",
-            }}
-          >
-            Moves
-          </button>
-        </li>
-        <li className="nav-item me-1" role="presentation">
-          <button
-            className="nav-link "
-            id="profile-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#profile"
-            type="button"
-            role="tab"
-            aria-controls="profile"
-            aria-selected="false"
-            style={{
-              color: "#f8f9fa",
-              textShadow: "2px 2px #851bed",
-            }}
-          >
-            TM/TR
-          </button>
-        </li>
-        <li className="nav-item me-1" role="presentation">
-          <button
-            className="nav-link "
-            id="contact-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#contact"
-            type="button"
-            role="tab"
-            aria-controls="contact"
-            aria-selected="false"
-            style={{
-              color: "#f8f9fa",
-              textShadow: "2px 2px #851bed",
-            }}
-          >
-            Egg
-          </button>
-        </li>
-        <li className="nav-item me-1" role="presentation">
-          <button
-            className="nav-link "
-            id="tutor-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#tutor"
-            type="button"
-            role="tab"
-            aria-controls="tutor"
-            aria-selected="false"
-            style={{
-              color: "#f8f9fa",
-              textShadow: "2px 2px #851bed",
-            }}
-          >
-            Tutor
-          </button>
-        </li>
-      </ul>
+      <div className="d-flex justify-content-between">
+        <ul className="nav nav-tabs" id="myTab" role="tablist">
+          <li className="nav-item me-1" role="presentation">
+            <button
+              className="nav-link active"
+              id="home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#home"
+              type="button"
+              role="tab"
+              aria-controls="home"
+              aria-selected="true"
+              style={{
+                color: '#f8f9fa',
+                textShadow: '2px 2px #851bed',
+              }}
+            >
+              Moves
+            </button>
+          </li>
+          <li className="nav-item me-1" role="presentation">
+            <button
+              className="nav-link "
+              id="profile-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#profile"
+              type="button"
+              role="tab"
+              aria-controls="profile"
+              aria-selected="false"
+              style={{
+                color: '#f8f9fa',
+                textShadow: '2px 2px #851bed',
+              }}
+            >
+              TM/TR
+            </button>
+          </li>
+          <li className="nav-item me-1" role="presentation">
+            <button
+              className="nav-link "
+              id="contact-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#contact"
+              type="button"
+              role="tab"
+              aria-controls="contact"
+              aria-selected="false"
+              style={{
+                color: '#f8f9fa',
+                textShadow: '2px 2px #851bed',
+              }}
+            >
+              Egg
+            </button>
+          </li>
+          <li className="nav-item me-1" role="presentation">
+            <button
+              className="nav-link "
+              id="tutor-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#tutor"
+              type="button"
+              role="tab"
+              aria-controls="tutor"
+              aria-selected="false"
+              style={{
+                color: '#f8f9fa',
+                textShadow: '2px 2px #851bed',
+              }}
+            >
+              Tutor
+            </button>
+          </li>
+        </ul>
+        <div>
+          <select className="btn" style={{
+            color: "#fff",
+            backgroundColor: '#212529',
+            borderColor: '#6c757d'
+          }}>
+            <optgroup label="Generation 1">
+              <option>gen 1</option>
+              <option>gen 5</option>
+            </optgroup>
+            <optgroup label="Generation 2">
+              <option value={'test'}>gen 2</option>
+              <option >gen 8</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
       <div className="tab-content" id="myTabContent">
         <div
           className="tab-pane fade show active"
