@@ -73,24 +73,25 @@ export function statRenamer(stat) {
 }
 
 //this will filter the move list to only a specific version and learn method
-export const moveFilter = (array, version, learn_method) => {
-  const newArr = array
-    .filter((move) => {
-      if (
-        move.version_group_details.some(
-          (method) =>
-            method.move_learn_method.name === learn_method &&
-            method.version_group.url ===
-              `https://pokeapi.co/api/v2/version-group/${version}/`
+export const moveFilter = (moveArr, version, learn_method) => {
+  const newArr = learn_method.flatMap((method) =>
+    moveArr
+      .filter((move) => {
+        if (
+          move.version_group_details.some(
+            (learn) =>
+              learn.move_learn_method.name === method &&
+              learn.version_group.url ===
+                `https://pokeapi.co/api/v2/version-group/${version}/`
+          )
         )
-      )
-        return move;
-      return null;
-    })
-    .sort((a, b) => {
-      return levelGetter(a, version) - levelGetter(b, version);
-    });
-  // console.log(array, version, learn_method, 'newArr', newArr);
+          return move;
+        return null;
+      })
+      .sort((a, b) => {
+        return levelGetter(a, version) - levelGetter(b, version);
+      })
+  );
   return newArr;
 };
 

@@ -23,7 +23,7 @@ import {
 import './Results.css';
 import { useSelector, useDispatch } from 'react-redux/';
 import { getPokemon } from '../../routes/Homepage/homepageSlice';
-import { getVersions } from './versionSlice';
+import { getVersions, selection } from './versionSlice';
 
 function GetPokemonList() {
   const pokemon = useSelector((state) => state.pokemon.list);
@@ -39,10 +39,17 @@ function GetPokemonList() {
 function GenDropDown() {
   const dispatch = useDispatch();
   const { generation, version_group } = useSelector((state) => state.version);
-  const [actionPayload, setActionPayload] = useState(`${generation || 8},${version_group || 20}`);
+  const [actionPayload, setActionPayload] = useState(
+    `${generation || 8},${version_group || 20}`
+  );
 
   useEffect(() => {
-    dispatch(getVersions(actionPayload));
+    const genParse = actionPayload.split(',');
+    if (generation === Number(genParse[0])) {
+      dispatch(selection(genParse[1]));
+    } else {
+      dispatch(getVersions(genParse));
+    }
   }, [actionPayload, dispatch]);
 
   function handleChange(e) {
@@ -235,11 +242,9 @@ export const Moveset = ({ moves, method }) => {
   const [moveInfo, setMoveInfo] = useState();
   const [machineInfo, setMachineInfo] = useState([]);
   const versionGroup = useSelector((state) => state.version.version_group);
-  //fixed: dynamically choose version and learn method
-  // const [moveList, setMoveList] = useState(
-  //   moveFilter(moves, versionGroup, method)
-  // );
   const moveList = moveFilter(moves, versionGroup, method);
+  //fixed: dynamically choose version and learn method
+
   const getMoveInfo = async () => {
     const responses = await Promise.all(
       moveList.map((move) => fetch(move.move.url).then((res) => res.json()))
@@ -273,7 +278,7 @@ export const Moveset = ({ moves, method }) => {
       <thead className="text-center move-thead"></thead>
       <tbody className="move-tbody">
         <tr className="text-start border-bottom">
-          <th>{capitalizer(method)}</th>
+          <th>{capitalizer(method[0])}</th>
           <th>Name</th>
           <th>Category</th>
           <th>Type</th>
@@ -290,7 +295,7 @@ export const Moveset = ({ moves, method }) => {
                     ? levelTmGetter(
                         moveList[index],
                         versionGroup,
-                        method,
+                        method[0],
                         machineInfo[index]
                       )
                     : null}
@@ -888,7 +893,7 @@ export const MoveTabs = ({ pokemon }) => {
           role="tabpanel"
           aria-labelledby="home-tab"
         >
-          <Moveset moves={pokemon.moves} method="level-up" />
+          <Moveset moves={pokemon.moves} method={["level-up"]} />
         </div>
         <div
           className="tab-pane fade"
@@ -896,7 +901,7 @@ export const MoveTabs = ({ pokemon }) => {
           role="tabpanel"
           aria-labelledby="profile-tab"
         >
-          <Moveset moves={pokemon.moves} method="machine" />
+          <Moveset moves={pokemon.moves} method={["machine"]} />
         </div>
         <div
           className="tab-pane fade"
@@ -904,7 +909,7 @@ export const MoveTabs = ({ pokemon }) => {
           role="tabpanel"
           aria-labelledby="contact-tab"
         >
-          <Moveset moves={pokemon.moves} method="egg" />
+          <Moveset moves={pokemon.moves} method={["egg","light-ball-egg"]} />
         </div>
         <div
           className="tab-pane fade"
@@ -912,7 +917,7 @@ export const MoveTabs = ({ pokemon }) => {
           role="tabpanel"
           aria-labelledby="tutor-tab"
         >
-          <Moveset moves={pokemon.moves} method="tutor" />
+          <Moveset moves={pokemon.moves} method={["tutor"]} />
         </div>
       </div>
     </div>
