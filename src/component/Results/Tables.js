@@ -23,7 +23,7 @@ import {
 import './Results.css';
 import { useSelector, useDispatch } from 'react-redux/';
 import { getPokemon } from '../../routes/Homepage/homepageSlice';
-import { getVersions, selection } from './versionSlice';
+import { getVersions } from './versionSlice';
 
 function GetPokemonList() {
   const pokemon = useSelector((state) => state.pokemon.list);
@@ -38,46 +38,64 @@ function GetPokemonList() {
 
 function GenDropDown() {
   const dispatch = useDispatch();
-  const { generation } = useSelector((state) => state.version);
-  const [actionPayload, setActionPayload] = useState(generation);
+  const { generation, version_group } = useSelector((state) => state.version);
+  const [actionPayload, setActionPayload] = useState(`${generation || 8},${version_group || 20}`);
 
   useEffect(() => {
-    dispatch(getVersions(actionPayload || 1));
-    // console.log('action payload changed to: ', actionPayload);
+    dispatch(getVersions(actionPayload));
   }, [actionPayload, dispatch]);
 
   function handleChange(e) {
     e.preventDefault();
-    const eventArr = e.target.value.split(',');
-    setActionPayload(eventArr[0]);
+    setActionPayload(e.target.value);
   }
   return (
     <div>
       <select
         className="btn btn-secondary"
-        value={actionPayload || 3}
+        value={actionPayload}
         onChange={handleChange}
       >
         <optgroup label="Generation 1">
-          <option value={[1,1]}>Red/Blue</option>
+          <option value={[1, 1]}>Red/Blue</option>
+          <option value={[1, 2]}>Yellow</option>
         </optgroup>
         <optgroup label="Generation 2">
-          <option value={[2,3]}>Gold/Silver</option>
+          <option value={[2, 3]}>Gold/Silver</option>
+          <option value={[2, 4]}>Crystal</option>
         </optgroup>
         <optgroup label="Generation 3">
-          <option value={3}>Ruby/Sapphire</option>
+          <option value={[3, 5]}>Ruby/Sapphire</option>
+          <option value={[3, 6]}>Emerald</option>
+          <option title="Fire Red/Leaf Green" value={[3, 7]}>
+            FR/LG
+          </option>
         </optgroup>
         <optgroup label="Generation 4">
-          <option value={4}>Diamond/Pearl</option>
+          <option value={[4, 8]}>Diamond/Pearl</option>
+          <option value={[4, 9]}>Platinum</option>
+          <option title="Heart Gold/Soul Silver" value={[4, 10]}>
+            HG/SS
+          </option>
         </optgroup>
         <optgroup label="Generation 5">
-          <option value={5}>Black/White</option>
+          <option value={[5, 11]}>Black/White</option>
+          <option value={[5, 14]}>Black2/White2</option>
         </optgroup>
         <optgroup label="Generation 6">
-          <option value={6}>X/Y</option>
+          <option value={[6, 15]}>X/Y</option>
+          <option title="Omega Ruby/Alpha Sapphire" value={[6, 16]}>
+            OR/AS
+          </option>
         </optgroup>
         <optgroup label="Generation 7">
-          <option value={7}>Sun/Moon</option>
+          <option value={[7, 17]}>Sun/Moon</option>
+          <option title="Ultra Sun/Ultra Moon" value={[7, 18]}>
+            US/UM
+          </option>
+          <option title="Let's Go, Pikachu/Let's Go, Eevee" value={[7, 19]}>
+            LGP/LGE
+          </option>
         </optgroup>
         <optgroup label="Generation 8">
           <option value={[8, 20]}>Sword/Shield</option>
@@ -929,7 +947,8 @@ export const Description = ({ data }) => {
           )
         ) : (
           <tr>
-            <td className="text-center">
+            <th></th>
+            <td>
               <span>
                 ( There is currently no description for this Pokémon in this
                 current generation. )

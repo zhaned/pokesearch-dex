@@ -1,25 +1,26 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  version_group: null, //for moveset
+  generation: null, //for version groups
+  version_group: null, //for moveset and versions
   versions: [], //for descriptions
-  generation: null, //for honestly, idk
   status: null,
 };
 
 export const getVersions = createAsyncThunk(
   "version/getVersions",
   async (generation) => {
+    const genParse = generation.split(',');
     let versionObj = {
       generation: null,
       version_group: null,
       versions: null,
     };
     const getGeneration = await fetch(
-      `https://pokeapi.co/api/v2/generation/${generation}`
+      `https://pokeapi.co/api/v2/generation/${genParse[0]}`
     ).then((res) => res.json())
     versionObj.generation = getGeneration.id;
-    versionObj.version_group = getGeneration.version_groups[0].url.slice(40).split("/").join('');
+    versionObj.version_group = genParse[1];
     const getVersions = await Promise.all(
       getGeneration.version_groups.flatMap((group) =>
         fetch(group.url)
@@ -39,12 +40,6 @@ export const versionSlice = createSlice({
       state.version_group = action.payload;
     },
   },
-  //1. needs to first get generation,
-  //2. map through each version_group url
-  //3. get versions for each version_group
-
-  //4. when changed, change the version group
-  //5. repeat steps 1-3
   extraReducers: {
     [getVersions.pending]: (state, action) => {
       state.status = "loading";
