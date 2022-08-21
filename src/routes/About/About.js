@@ -1,5 +1,6 @@
 import HrLineBreak from "../../component/HrLineBreak";
-import { Counter } from "../../redux/Counter";
+import NavSideBar from "./NavSideBar";
+import './NavSideBar.css'
 
 export default function About() {
   return (
@@ -14,7 +15,7 @@ export default function About() {
         About (using this page to test stuff atm)
       </h1>
       <HrLineBreak />
-      <Counter />
+      <NavSideBar />
     </div>
   );
 }

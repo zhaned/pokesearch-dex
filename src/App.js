@@ -19,6 +19,8 @@ function useNav() {
   return pathname === '/' ? null : <Navigation />;
 }
 
+
+
 const RouteList = () =>
   useRoutes([
     { path: '/', element: <Home /> },

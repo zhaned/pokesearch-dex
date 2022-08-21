@@ -41,7 +41,7 @@ export const versionSlice = createSlice({
     },
   },
   extraReducers: {
-    [getVersions.pending]: (state, action) => {
+    [getVersions.pending]: (state) => {
       state.status = 'loading';
     },
     [getVersions.fulfilled]: (state, { payload }) => {
@@ -50,7 +50,7 @@ export const versionSlice = createSlice({
       state.version_group = payload.version_group;
       state.status = 'success';
     },
-    [getVersions.rejected]: (state, action) => {
+    [getVersions.rejected]: (state) => {
       state.status = 'failed';
     },
   },
