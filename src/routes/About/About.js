@@ -1,5 +1,4 @@
 import HrLineBreak from "../../component/HrLineBreak";
-import './NavSideBar.css'
 
 export default function About() {
   return (

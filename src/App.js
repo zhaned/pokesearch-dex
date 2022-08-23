@@ -4,7 +4,7 @@ import Navigation from './component/Navigation/Navigation';
 import Home from './routes/Homepage/Homepage';
 import About from './routes/About/About';
 import Favorites from './routes/Favorites';
-import Search from './routes/SearchPage';
+import Search from './routes/SearchPage/SearchPage';
 import Pokemon from './routes/Pokemon';
 import Abilities from './routes/Abilities';
 import InfoPage from './component/Info/InfoPage';

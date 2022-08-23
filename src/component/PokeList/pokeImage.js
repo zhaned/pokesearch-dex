@@ -1,13 +1,12 @@
 const PokeImage = (url) => {
   let pokeId = url.url;
-  pokeId = pokeId.slice(34).split('/');
-  const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeId[0]}.png`;
+  const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeId}.png`;
 
   return (
     <img
       className="rounded-circle"
       src={imageUrl}
-      alt={pokeId[0]}
+      alt={pokeId}
       style={{
         border: '1px solid #f8f9fa',
         background:

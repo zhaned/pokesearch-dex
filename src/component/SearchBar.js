@@ -5,6 +5,7 @@ const SearchBar = ({
   inputValue,
   info,
 }) => {
+  console.log(info)
   function handleChange(e) {
     e.preventDefault();
     setOffset(0);
@@ -13,7 +14,7 @@ const SearchBar = ({
     setInputValue(value);
     setCurrentList(
       info.filter((obj) => {
-        return obj.name.includes(value);
+        return obj.pokemon_species.name.includes(value);
       })
     );
   }

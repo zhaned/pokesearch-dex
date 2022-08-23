@@ -14,14 +14,14 @@ const homepageSlice = createSlice({
     status: null,
   },
   extraReducers: {
-    [getPokemon.pending]: (state, action) => {
+    [getPokemon.pending]: (state) => {
       state.status = 'loading';
     },
     [getPokemon.fulfilled]: (state, { payload }) => {
       state.list = payload;
       state.status = 'success';
     },
-    [getPokemon.rejected]: (state, action) => {
+    [getPokemon.rejected]: (state) => {
       state.status = 'failed';
     },
   },

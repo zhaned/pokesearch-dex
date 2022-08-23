@@ -4,7 +4,7 @@ import './pokeList.css';
 
 export default function PokeList({ pokemon }) {
   function urlToNumber(url) {
-    const num = url.slice(34).split('/');
+    const num = url.slice(42).split('/');
     return num[0];
   }
   return (
@@ -14,8 +14,8 @@ export default function PokeList({ pokemon }) {
     >
       {pokemon.map((p) => (
         <Link
-          key={p.name}
-          to={{ pathname: `/search/${p.name}` }}
+          key={p.entry_number}
+          to={{ pathname: `/search/${p.pokemon_species.name}` }}
           style={{ textDecoration: 'none' }}
         >
           <div
@@ -30,9 +30,9 @@ export default function PokeList({ pokemon }) {
             }}
           >
             <div className="my-2">
-              {`#${urlToNumber(p.url)} ` + p.name.charAt(0).toUpperCase() + p.name.slice(1)}
+              {`#${urlToNumber(p.pokemon_species.url)} ` + p.pokemon_species.name.charAt(0).toUpperCase() + p.pokemon_species.name.slice(1)}
             </div>
-            <PokeImage url={p.url} />
+            <PokeImage url={urlToNumber(p.pokemon_species.url)} />
           </div>
         </Link>
       ))}

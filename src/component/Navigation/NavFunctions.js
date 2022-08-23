@@ -11,7 +11,7 @@ const ScrollTop = () => {
       setVisible(false);
     }
   };
-  function someFunc() {
+  function scrollTop() {
     window.scrollTo(0, 0);
   }
 
@@ -22,7 +22,7 @@ const ScrollTop = () => {
       type="image"
       src={require(`../../images/scroll-top.png`)}
       alt=""
-      onClick={someFunc}
+      onClick={scrollTop}
     />
   );
 };

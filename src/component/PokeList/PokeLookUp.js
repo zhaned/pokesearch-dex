@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux/';
 import PokeList from './PokeList';
 import Pagination from './Pagination';
 import Loading from '../Loading/Loading';
 import './pokeList.css';
 import SearchBar from '../SearchBar';
-import { getPokemon } from '../../routes/Homepage/homepageSlice';
+import { useSelector, useDispatch } from 'react-redux/';
+import { getPokedex } from '../../routes/SearchPage/SearchPageSlice';
 
 function PokeLookUp() {
   const [currentList, setCurrentList] = useState([]);
@@ -14,17 +14,17 @@ function PokeLookUp() {
   const [nextPageURL, setNextPageURL] = useState(1);
   const [offset, setOffset] = useState(0);
 
-  const pokemon = useSelector((state) => state.pokemon.list);
-  const status = useSelector((state) => state.pokemon.status);
+  const {pokedex} = useSelector((state) => state.pokedex);
+  const { status } = useSelector((state) => state.pokedex);
   const dispatch = useDispatch();
-
+  // console.log(dex)
   if (!status) {
-    dispatch(getPokemon());
+    dispatch(getPokedex());
   }
 
   useEffect(() => {
-    setCurrentList(pokemon);
-  }, [pokemon]);
+    setCurrentList(pokedex);
+  }, [pokedex]);
 
   useEffect(() => {
     if (currentList.length - offset > 24) {
@@ -62,7 +62,7 @@ function PokeLookUp() {
           setInputValue={setInputValue}
           setCurrentList={setCurrentList}
           inputValue={inputValue}
-          info={pokemon}
+          info={pokedex}
         />
         <PageNumber number={currentList.length} offset={offset} />
         <Pagination

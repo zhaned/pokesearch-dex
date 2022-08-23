@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import HrLineBreak from "../component/HrLineBreak";
-import PokeLookUp from "../component/PokeList/PokeLookUp";
+import HrLineBreak from "../../component/HrLineBreak";
+import PokeLookUp from "../../component/PokeList/PokeLookUp";
 
 const SearchPage = () => {
   useEffect(() => {
