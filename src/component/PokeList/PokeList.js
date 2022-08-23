@@ -30,7 +30,7 @@ export default function PokeList({ pokemon }) {
             }}
           >
             <div className="my-2">
-              {`#${urlToNumber(p.pokemon_species.url)} ` + p.pokemon_species.name.charAt(0).toUpperCase() + p.pokemon_species.name.slice(1)}
+              {`#${p.entry_number} ` + p.pokemon_species.name.charAt(0).toUpperCase() + p.pokemon_species.name.slice(1)}
             </div>
             <PokeImage url={urlToNumber(p.pokemon_species.url)} />
           </div>

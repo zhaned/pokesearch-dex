@@ -1,16 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-export const getPokedex = createAsyncThunk('searchPage/getPokedex', async () => {
-  //https://pokeapi.co/api/v2/pokedex/
-  return fetch(`https://pokeapi.co/api/v2/pokedex/1`)
-    .then((res) => res.json())
-    .then((data) => data.pokemon_entries);
-});
+export const getPokedex = createAsyncThunk(
+  'searchPage/getPokedex',
+  async (dex) => {
+    //https://pokeapi.co/api/v2/pokedex/
+    return fetch(`https://pokeapi.co/api/v2/pokedex/${dex}`)
+      .then((res) => res.json())
+      .then((data) => data);
+  }
+);
 
 const searchPageSlice = createSlice({
   name: 'searchPage',
   initialState: {
     pokedex: '',
+    id: '',
     status: null,
   },
   extraReducers: {
@@ -18,7 +22,8 @@ const searchPageSlice = createSlice({
       state.status = 'loading';
     },
     [getPokedex.fulfilled]: (state, { payload }) => {
-      state.pokedex = payload;
+      state.pokedex = payload.pokemon_entries;
+      state.id = payload.id;
       state.status = 'success';
     },
     [getPokedex.rejected]: (state) => {

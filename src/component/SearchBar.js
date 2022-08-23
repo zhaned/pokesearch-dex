@@ -5,7 +5,6 @@ const SearchBar = ({
   inputValue,
   info,
 }) => {
-  console.log(info)
   function handleChange(e) {
     e.preventDefault();
     setOffset(0);

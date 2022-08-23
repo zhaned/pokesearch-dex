@@ -1,6 +1,21 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux/';
+import { getPokedex } from '../../routes/SearchPage/SearchPageSlice';
+
 const NavSideBar = () => {
+  const { id } = useSelector(state => state.pokedex);
+  const [currentDex, setCurrentDex] = useState(id);
+  const dispatch = useDispatch();
+
+  //can't set in handlechange; select doesn't update
+  useEffect(() => {
+    setCurrentDex(id);
+  }, [id]);
+
   function handleChange(e) {
-    console.log(e.target.value)
+    e.preventDefault();
+    dispatch(getPokedex(e.target.value))
   }
   return (
     <>
@@ -66,7 +81,12 @@ const NavSideBar = () => {
           </div> */}
           <div>
             <label htmlFor="pokedex">Pokedex:</label>
-            <select className="m-1" id="pokedex" value={1} onChange={handleChange}>
+            <select
+              className="m-1"
+              id="pokedex"
+              value={currentDex}
+              onChange={handleChange}
+            >
               <option value="1">National</option>
               <option value="2">Kanto</option>
               <option value="7">Johto</option>

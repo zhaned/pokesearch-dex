@@ -14,12 +14,12 @@ function PokeLookUp() {
   const [nextPageURL, setNextPageURL] = useState(1);
   const [offset, setOffset] = useState(0);
 
-  const {pokedex} = useSelector((state) => state.pokedex);
+  const { pokedex } = useSelector((state) => state.pokedex);
   const { status } = useSelector((state) => state.pokedex);
   const dispatch = useDispatch();
-  // console.log(dex)
   if (!status) {
-    dispatch(getPokedex());
+    console.log('just testing')
+    dispatch(getPokedex(9));
   }
 
   useEffect(() => {
