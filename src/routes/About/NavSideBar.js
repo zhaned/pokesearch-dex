@@ -7,8 +7,14 @@ const NavSideBar = () => {
         href="#offcanvasExample"
         role="button"
         aria-controls="offcanvasExample"
+        style={{
+          position: 'fixed',
+          top: '5rem',
+          left: '1rem',
+          zIndex: '1'
+        }}
       >
-        Link with href
+        Filters
       </a>
       <div
         class="offcanvas offcanvas-start"

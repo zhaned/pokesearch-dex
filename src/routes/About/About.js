@@ -1,5 +1,4 @@
 import HrLineBreak from "../../component/HrLineBreak";
-import NavSideBar from "./NavSideBar";
 import './NavSideBar.css'
 
 export default function About() {
@@ -15,7 +14,6 @@ export default function About() {
         About (using this page to test stuff atm)
       </h1>
       <HrLineBreak />
-      <NavSideBar />
     </div>
   );
 }

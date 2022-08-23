@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import NavSideBar from "../../routes/About/NavSideBar";
 import ScrollTop from "./NavFunctions";
 import "./Navigation.css";
 
@@ -44,6 +45,7 @@ const Navigation = () => {
         </Link>
       </div>
       <ScrollTop />
+      <NavSideBar />
     </nav>
   );
 };
