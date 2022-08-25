@@ -15,6 +15,7 @@ const NavSideBar = () => {
   const [currentDex, setCurrentDex] = useState(id);
   const dispatch = useDispatch();
 
+  //fix: sort type doesn't filter when setting a diff dex
   //can't set in handlechange; select doesn't update
   useEffect(() => {
     setCurrentDex(id);

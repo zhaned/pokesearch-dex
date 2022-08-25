@@ -509,9 +509,9 @@ export const EvoImage = ({ evo, Link, navigate, path, list }) => {
   return (
     <Link
       to={`/search/${nameGetter(pokeNumber, list)}`}
-      onClick={() =>
-        updateLocation(navigate, `/search/${nameGetter(pokeNumber, list)}`)
-      }
+      // onClick={() =>
+      //   updateLocation(navigate, `/search/${nameGetter(pokeNumber, list)}`)
+      // }
       className="d-flex flex-column text-center"
       style={{
         width: '8rem',

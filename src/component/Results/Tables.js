@@ -472,9 +472,12 @@ export const Header = ({ id, pokemon, type, type2 }) => {
         {id === 1 ? null : (
           <Link
             to={`/search/${nameGetter(id - 1, list)}`}
-            onClick={() =>
-              updateLocation(navigate, `/search/${nameGetter(id - 1, list)}`)
-            }
+            // onClick={() =>
+            //   updateLocation(navigate, `/search/${nameGetter(id - 1, list)}`)
+            // }
+            // onClick={() =>
+            //   updateLocation(navigate, `/search/${nameGetter(id - 1, list)}`)
+            // }
           >
             <h3 className="next-sprite">
               <span style={{ verticalAlign: 'bottom' }}>&#8592;</span>
@@ -519,9 +522,9 @@ export const Header = ({ id, pokemon, type, type2 }) => {
         {id === 898 ? null : (
           <Link
             to={`/search/${nameGetter(id + 1, list)}`}
-            onClick={() =>
-              updateLocation(navigate, `/search/${nameGetter(id + 1, list)}`)
-            }
+            // onClick={() =>
+            //   updateLocation(navigate, `/search/${nameGetter(id + 1, list)}`)
+            // }
           >
             <h3 className="next-sprite">
               <img

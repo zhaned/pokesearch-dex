@@ -10,6 +10,7 @@ export const getPokedex = createAsyncThunk(
   }
 );
 
+//fix: include sort type 
 const initialState = {
   pokedex: '',
   id: '',
