@@ -16,10 +16,10 @@ function PokeLookUp() {
 
   const { pokedex } = useSelector((state) => state.pokedex);
   const { status } = useSelector((state) => state.pokedex);
+  
   const dispatch = useDispatch();
   if (!status) {
-    console.log('just testing')
-    dispatch(getPokedex(9));
+    dispatch(getPokedex(1));
   }
 
   useEffect(() => {

@@ -244,13 +244,12 @@ export const Moveset = ({ moves, method }) => {
   const versionGroup = useSelector((state) => state.version.version_group);
   const moveList = moveFilter(moves, versionGroup, method);
   //fixed: dynamically choose version and learn method
-
   const getMoveInfo = async () => {
     const responses = await Promise.all(
       moveList.map((move) => fetch(move.move.url).then((res) => res.json()))
     );
     setMoveInfo(responses);
-    if (method === 'machine') {
+    if (method[0] === 'machine') {
       const machine = await Promise.all(
         responses.map((move) =>
           fetch(
@@ -893,7 +892,7 @@ export const MoveTabs = ({ pokemon }) => {
           role="tabpanel"
           aria-labelledby="home-tab"
         >
-          <Moveset moves={pokemon.moves} method={["level-up"]} />
+          <Moveset moves={pokemon.moves} method={['level-up']} />
         </div>
         <div
           className="tab-pane fade"
@@ -901,7 +900,7 @@ export const MoveTabs = ({ pokemon }) => {
           role="tabpanel"
           aria-labelledby="profile-tab"
         >
-          <Moveset moves={pokemon.moves} method={["machine"]} />
+          <Moveset moves={pokemon.moves} method={['machine']} />
         </div>
         <div
           className="tab-pane fade"
@@ -909,7 +908,7 @@ export const MoveTabs = ({ pokemon }) => {
           role="tabpanel"
           aria-labelledby="contact-tab"
         >
-          <Moveset moves={pokemon.moves} method={["egg","light-ball-egg"]} />
+          <Moveset moves={pokemon.moves} method={['egg', 'light-ball-egg']} />
         </div>
         <div
           className="tab-pane fade"
@@ -917,7 +916,7 @@ export const MoveTabs = ({ pokemon }) => {
           role="tabpanel"
           aria-labelledby="tutor-tab"
         >
-          <Moveset moves={pokemon.moves} method={["tutor"]} />
+          <Moveset moves={pokemon.moves} method={['tutor']} />
         </div>
       </div>
     </div>

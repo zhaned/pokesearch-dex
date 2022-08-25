@@ -17,6 +17,7 @@ const searchPageSlice = createSlice({
     id: '',
     status: null,
   },
+  
   extraReducers: {
     [getPokedex.pending]: (state) => {
       state.status = 'loading';
