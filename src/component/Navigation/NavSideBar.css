@@ -41,3 +41,9 @@
   top: 10px;
   right: 10px;
 }
+
+.offcanvas {
+  color: rgb(248, 249, 250) !important;
+  text-shadow: rgb(133, 27, 237) 2px 2px;
+  background-color: rgb(41,41,41) !important;
+}

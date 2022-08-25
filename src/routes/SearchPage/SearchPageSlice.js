@@ -10,14 +10,37 @@ export const getPokedex = createAsyncThunk(
   }
 );
 
+const initialState = {
+  pokedex: '',
+  id: '',
+  status: null,
+};
+
 const searchPageSlice = createSlice({
   name: 'searchPage',
-  initialState: {
-    pokedex: '',
-    id: '',
-    status: null,
+  initialState,
+  reducers: {
+    ascending: (state) => {
+      state.pokedex.sort((a, b) => {
+        return a.entry_number - b.entry_number;
+      });
+    },
+    descending: (state) => {
+      state.pokedex.sort((a, b) => {
+        return b.entry_number - a.entry_number;
+      });
+    },
+    aToZ: (state) => {
+      state.pokedex.sort((a, b) =>
+        a.pokemon_species.name.localeCompare(b.pokemon_species.name)
+      );
+    },
+    zToA: (state) => {
+      state.pokedex.sort((a, b) =>
+        b.pokemon_species.name.localeCompare(a.pokemon_species.name)
+      );
+    },
   },
-  
   extraReducers: {
     [getPokedex.pending]: (state) => {
       state.status = 'loading';
@@ -33,4 +56,5 @@ const searchPageSlice = createSlice({
   },
 });
 
+export const { ascending, descending, aToZ, zToA } = searchPageSlice.actions;
 export default searchPageSlice.reducer;

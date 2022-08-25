@@ -11,7 +11,7 @@ import {
 import { useEffect } from "react";
 import HrLineBreak from "../HrLineBreak";
 
-//fix: convert the number into a name so the search url is more consistent
+//fixed: convert the number into a name so the search url is more consistent
 //fixed: dynamic background based on type
 //fix: refactor this place holy
 const Results = ({ pokemon, species, evolution, types }) => {

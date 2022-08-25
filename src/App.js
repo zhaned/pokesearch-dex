@@ -16,10 +16,8 @@ import './App.css';
 // checks current route to see if nav header should render
 function useNav() {
   let { pathname } = useLocation();
-  return pathname === '/' ? null : <Navigation />;
+  return pathname !== '/' && <Navigation />;
 }
-
-
 
 const RouteList = () =>
   useRoutes([

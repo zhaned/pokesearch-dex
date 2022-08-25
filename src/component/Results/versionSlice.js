@@ -57,5 +57,4 @@ export const versionSlice = createSlice({
 });
 
 export const { selection } = versionSlice.actions;
-
 export default versionSlice.reducer;

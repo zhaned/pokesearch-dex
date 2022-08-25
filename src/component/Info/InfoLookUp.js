@@ -53,8 +53,8 @@ const InfoLookUp = ({ infoType }) => {
           info={info}
         />
         <Pagination
-          goPrevPage={prevPageURL ? goPrevPage : null}
-          goNextPage={nextPageURL ? goNextPage : null}
+          goPrevPage={prevPageURL && goPrevPage}
+          goNextPage={nextPageURL && goNextPage}
         />
       </div>
       {info ? (

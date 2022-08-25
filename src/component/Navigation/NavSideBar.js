@@ -1,10 +1,17 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux/';
-import { getPokedex } from '../../routes/SearchPage/SearchPageSlice';
+import {
+  ascending,
+  aToZ,
+  descending,
+  getPokedex,
+  zToA,
+} from '../../routes/SearchPage/SearchPageSlice';
+import "./NavSideBar.css"
 
 const NavSideBar = () => {
-  const { id } = useSelector(state => state.pokedex);
+  const { id } = useSelector((state) => state.pokedex);
   const [currentDex, setCurrentDex] = useState(id);
   const dispatch = useDispatch();
 
@@ -15,16 +22,35 @@ const NavSideBar = () => {
 
   function handleChange(e) {
     e.preventDefault();
-    dispatch(getPokedex(e.target.value))
+    dispatch(getPokedex(e.target.value));
+  }
+  function handleSort(e) {
+    e.preventDefault();
+    switch (e.target.value) {
+      case 'ascending':
+        dispatch(ascending());
+        break;
+      case 'descending':
+        dispatch(descending());
+        break;
+      case 'atoz':
+        dispatch(aToZ());
+        break;
+      case 'ztoa':
+        dispatch(zToA());
+        break;
+      default:
+        break;
+    }
   }
   return (
     <>
       <a
         className="btn btn-primary"
         data-bs-toggle="offcanvas"
-        href="#offcanvasExample"
+        href="#offcanvas"
         role="button"
-        aria-controls="offcanvasExample"
+        aria-controls="offcanvas"
         style={{
           position: 'fixed',
           top: '5rem',
@@ -37,16 +63,16 @@ const NavSideBar = () => {
       <div
         className="offcanvas offcanvas-start"
         tabIndex="-1"
-        id="offcanvasExample"
-        aria-labelledby="offcanvasExampleLabel"
+        id="offcanvas"
+        aria-labelledby="offcanvasLabel"
       >
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasExampleLabel">
+          <h5 className="offcanvas-title" id="offcanvasLabel">
             Filters for Search
           </h5>
           <button
             type="button"
-            className="btn-close"
+            className="btn-close btn-close-white"
             data-bs-dismiss="offcanvas"
             aria-label="Close"
           ></button>
@@ -104,11 +130,11 @@ const NavSideBar = () => {
           </div>
           <div>
             <label htmlFor="sort">Sort:</label>
-            <select className="m-1" id="sort">
-              <option value="">Ascending</option>
-              <option value="">Descending</option>
-              <option value="">A-Z</option>
-              <option value="">Z-A</option>
+            <select className="m-1" id="sort" onChange={handleSort}>
+              <option value="ascending">Ascending</option>
+              <option value="descending">Descending</option>
+              <option value="atoz">A-Z</option>
+              <option value="ztoa">Z-A</option>
             </select>
           </div>
         </div>

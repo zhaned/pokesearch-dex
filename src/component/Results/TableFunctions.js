@@ -1,4 +1,4 @@
-//fix: make it take in a region/group to choose which version to use
+//fixed: make it take in a region/group to choose which version to use
 export const regionFilter = (arr, versions) => {
   const oldArr = arr;
   let newArr;

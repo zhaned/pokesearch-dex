@@ -1,5 +1,6 @@
 import HrLineBreak from "../../component/HrLineBreak";
 
+
 export default function About() {
   return (
     <div>
