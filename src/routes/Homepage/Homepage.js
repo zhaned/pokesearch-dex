@@ -12,8 +12,7 @@ const Homepage = () => {
   // +1 because the result cannot be 0
   let pokeNumber = Math.floor(Math.random() * 897 + 1);
   let pokeNumber2 = Math.floor(Math.random() * 897 + 1);
-  
-  if(!status){
+  if (status !== 'success') {
     dispatch(getPokemon());
   }
 
@@ -25,47 +24,47 @@ const Homepage = () => {
       <h1
         className="display-3 text-center"
         style={{
-          color: "#f8f9fa",
-          textShadow: "2px 2px #851bed",
-          marginTop: "4rem",
+          color: '#f8f9fa',
+          textShadow: '2px 2px #851bed',
+          marginTop: '4rem',
         }}
       >
         Welcome to PokéAPI Dex!
       </h1>
       <div
         className="d-flex justify-content-between align-items-center"
-        style={{ marginTop: "5%" }}
+        style={{ marginTop: '5%' }}
       >
         {pokemon ? (
-          <PokeCycler pokeNumber={pokeNumber} side={"left"} list={pokemon} />
+          <PokeCycler pokeNumber={pokeNumber} side={'left'} list={pokemon} />
         ) : null}
         <div
           style={{
-            textShadow: "2px 2px #851bed",
+            textShadow: '2px 2px #851bed',
           }}
         >
           {/*fixed?: animations are in the way of the button so you can't click */}
           <ButtonIcon
             number={1}
-            location={"search"}
-            text={"Look up Pokémon now!"}
-            btn={"btn-danger"}
+            location={'search'}
+            text={'Look up Pokémon now!'}
+            btn={'btn-danger'}
           />
           <ButtonIcon
             number={109}
-            location={"ability"}
-            text={"... or abilities"}
-            btn={"btn-success"}
+            location={'ability'}
+            text={'... or abilities'}
+            btn={'btn-success'}
           />
           <ButtonIcon
             number={251}
-            location={"move"}
-            text={"... or even moves!"}
-            btn={"btn-primary"}
+            location={'move'}
+            text={'... or even moves!'}
+            btn={'btn-primary'}
           />
         </div>
         {pokemon ? (
-          <PokeCycler pokeNumber={pokeNumber2} side={"right"} list={pokemon} />
+          <PokeCycler pokeNumber={pokeNumber2} side={'right'} list={pokemon} />
         ) : null}
       </div>
     </div>

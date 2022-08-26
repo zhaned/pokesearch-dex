@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import HrLineBreak from "../HrLineBreak";
 
 const Move = ({ move, version }) => {
-  console.log(move)
   const pokemonList = move.learned_by_pokemon
     .filter((poke) => parseInt(poke.url.slice(34).split("/")) < 899)
     .map((poke) => {
@@ -28,7 +27,7 @@ const Move = ({ move, version }) => {
         <thead className="text-center move-thead">
           <tr>
             <th>
-              <h4>Pokemon That Can Learn This Move</h4>
+              <h4>Pokémon That Can Learn This Move</h4>
             </th>
           </tr>
         </thead>

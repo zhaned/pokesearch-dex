@@ -756,7 +756,7 @@ export const PokemonTable = ({ list }) => {
       <thead>
         <tr>
           <th>#</th>
-          <th>Pokemon</th>
+          <th>Pokémon</th>
           <th>{pokemonList[0].hidden ? 'is hidden?' : ''}</th>
         </tr>
       </thead>

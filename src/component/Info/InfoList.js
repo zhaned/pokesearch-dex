@@ -16,7 +16,7 @@ const InfoList = ({ info, infoType }) => {
           <div
             className="card m-2 shadow align-items-center justify-content-center"
             style={{
-              width: '10rem',
+              width: '12rem',
               height: '3rem',
               backgroundColor: '#8b43d4',
               backgroundImage: 'var(--bs-gradient)',

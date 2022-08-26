@@ -30,7 +30,7 @@ const Ability = ({ ability, version }) => {
         <thead className="text-center move-thead">
           <tr>
             <th>
-              <h4>Pokemon With This Ability</h4>
+              <h4>Pokémon With This Ability</h4>
             </th>
           </tr>
         </thead>

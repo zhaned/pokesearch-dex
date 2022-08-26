@@ -28,21 +28,42 @@ const Navigation = () => {
       <div>
         {location.pathname !== '/search' && (
           <Link to="/search">
-            <button className="btn btn-info mx-1">Search</button>
+            <button className="btn btn-danger mx-1">Pokémon</button>
+          </Link>
+        )}
+        {location.pathname !== '/ability' && (
+          <Link to="/ability">
+            <button className="btn btn-success mx-1">Abilities</button>
+          </Link>
+        )}
+        {location.pathname !== '/move' && (
+          <Link to="/move">
+            <button className="btn btn-primary mx-1">Moves</button>
           </Link>
         )}
         {location.pathname !== '/about' && (
           <Link to="/about">
-            <button className="btn btn-success mx-1">About</button>
+            <button className="btn btn-info mx-1">About</button>
           </Link>
         )}
-        <Link
-          to="/favorites"
+        <a
+          href="https://github.com/zhaned/pokeapi-dex-client"
+          target={'_blank'}
+          rel="noreferrer noopener"
           className="border-start border-2"
-          style={{ padding: '16px 0px' }}
+          style={{
+            padding: '1.5rem .5rem',
+            background:
+              'linear-gradient(rgba(45,45,45, 0.35),rgba(45,45,45, 0.35) )',
+          }}
         >
-          <button className="btn btn-danger m-1">Favorites</button>
-        </Link>
+          {/* <button className="btn btn-danger m-1">Favorites</button> */}
+          <img
+            src={require('../../images/GitHub-Icon.png')}
+            alt={'GitHub'}
+            style={{ height: '2.5rem' }}
+          />
+        </a>
       </div>
       <ScrollTop />
       {location.pathname === '/search' ? (

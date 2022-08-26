@@ -25,7 +25,7 @@ const InfoLookUp = ({ infoType }) => {
   }, [info]);
 
   useEffect(() => {
-    if (currentInfo.length - offset > 70) {
+    if (currentInfo.length - offset > 60) {
       setNextPageURL(1);
     } else {
       setNextPageURL(null);
@@ -39,10 +39,10 @@ const InfoLookUp = ({ infoType }) => {
   }, [offset, currentInfo]);
 
   function goPrevPage() {
-    setOffset(offset - 70);
+    setOffset(offset - 60);
   }
   function goNextPage() {
-    setOffset(offset + 70);
+    setOffset(offset + 60);
   }
 
   //fix: put in its own file
@@ -64,7 +64,7 @@ const InfoLookUp = ({ infoType }) => {
           inputValue={inputValue}
           info={info}
         />
-        <PageNumber number={currentInfo.length} offset={offset} amount={70} />
+        <PageNumber number={currentInfo.length} offset={offset} amount={60} />
         <Pagination
           goPrevPage={prevPageURL && goPrevPage}
           goNextPage={nextPageURL && goNextPage}
@@ -72,7 +72,7 @@ const InfoLookUp = ({ infoType }) => {
       </div>
       {currentInfo ? (
         <InfoList
-          info={currentInfo.slice(offset, offset + 70)}
+          info={currentInfo.slice(offset, offset + 60)}
           infoType={infoType}
         />
       ) : (
