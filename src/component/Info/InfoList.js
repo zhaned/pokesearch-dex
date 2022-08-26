@@ -25,7 +25,7 @@ const InfoList = ({ info, infoType }) => {
               flexDirection: 'unset',
             }}
           >
-            <div>{capitalizer(p.name)}</div>
+            <div>{`#${p.index+1} ` + capitalizer(p.name)}</div>
           </div>
         </Link>
       ))}

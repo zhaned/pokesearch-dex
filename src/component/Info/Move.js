@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import HrLineBreak from "../HrLineBreak";
 
 const Move = ({ move, version }) => {
+  console.log(move)
   const pokemonList = move.learned_by_pokemon
     .filter((poke) => parseInt(poke.url.slice(34).split("/")) < 899)
     .map((poke) => {
@@ -32,7 +33,7 @@ const Move = ({ move, version }) => {
           </tr>
         </thead>
       </table>
-      <PokemonTable list={pokemonList} />
+      {pokemonList.length > 0 && <PokemonTable list={pokemonList} />}
     </div>
   );
 };

@@ -70,10 +70,11 @@ const typeColor = {
   water: {
     name: 'water',
     color: '#1773d8',
-  },
+  }
 };
 
 export const TypeColor = (type) => {
+  console.log(type)
   const typing = type;
   const color = typeColor[typing].color || 'black';
   return color;

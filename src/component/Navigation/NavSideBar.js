@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux/';
 import {
   ascending,
   aToZ,
   descending,
   getPokedex,
+  setSort,
   zToA,
 } from '../../routes/SearchPage/SearchPageSlice';
 import './NavSideBar.css';
@@ -13,37 +13,39 @@ import './NavSideBar.css';
 const NavSideBar = ({ location }) => {
   const route = location;
   const { id } = useSelector((state) => state.pokedex);
-  const [currentDex, setCurrentDex] = useState(id);
+  const { info } = useSelector((state) => state.pokedex);
+  const { sort } = useSelector((state) => state.pokedex);
   const dispatch = useDispatch();
 
   //fix: sort type doesn't filter when setting a diff dex
-  //can't set in handlechange; select doesn't update
   useEffect(() => {
-    setCurrentDex(id);
-  }, [id]);
+    switch (sort) {
+      case 'ascending':
+        dispatch(ascending(route));
+        break;
+      case 'descending':
+        dispatch(descending(route));
+        break;
+      case 'atoz':
+        dispatch(aToZ(route));
+        break;
+      case 'ztoa':
+        dispatch(zToA(route));
+        break;
+      default:
+        break;
+    }
+  }, [id, info, sort]);
 
   function handleChange(e) {
     e.preventDefault();
     dispatch(getPokedex(e.target.value));
   }
+
   function handleSort(e) {
     e.preventDefault();
-    switch (e.target.value) {
-      case 'ascending':
-        dispatch(ascending());
-        break;
-      case 'descending':
-        dispatch(descending());
-        break;
-      case 'atoz':
-        dispatch(aToZ());
-        break;
-      case 'ztoa':
-        dispatch(zToA());
-        break;
-      default:
-        break;
-    }
+    const value = e.target.value;
+    dispatch(setSort(value));
   }
   return (
     <>
@@ -88,7 +90,7 @@ const NavSideBar = ({ location }) => {
               <select
                 className="m-1"
                 id="pokedex"
-                value={currentDex}
+                value={id}
                 onChange={handleChange}
               >
                 <option value="1">National</option>
@@ -109,13 +111,14 @@ const NavSideBar = ({ location }) => {
           )}
           <div>
             <label htmlFor="sort">Sort:</label>
-            <select className="m-1" id="sort" onChange={handleSort}>
-              {route === '/search' && (
-                <>
-                  <option value="ascending">Ascending</option>
-                  <option value="descending">Descending</option>
-                </>
-              )}
+            <select
+              className="m-1"
+              id="sort"
+              onChange={handleSort}
+              value={sort}
+            >
+              <option value="ascending">Ascending</option>
+              <option value="descending">Descending</option>
               <option value="atoz">A-Z</option>
               <option value="ztoa">Z-A</option>
             </select>

@@ -16,8 +16,8 @@ function PokeLookUp() {
 
   const { pokedex } = useSelector((state) => state.pokedex);
   const { status } = useSelector((state) => state.pokedex);
-  
   const dispatch = useDispatch();
+
   if (!status) {
     dispatch(getPokedex(1));
   }
@@ -46,14 +46,16 @@ function PokeLookUp() {
   function goNextPage() {
     setOffset(offset + 24);
   }
-  function PageNumber({ number, offset }) {
+
+  //fix: put in its own file
+  function PageNumber({ number, offset, amount }) {
     return (
       <div style={{ color: '#f8f9fa', textShadow: '2px 2px #851bed' }}>
-        Page {Math.ceil(offset / 24 + 1)} of {Math.ceil(number / 24)}
+        Page {Math.ceil(offset / amount + 1)} of {Math.ceil(number / amount)}
       </div>
     );
   }
-
+  
   return (
     <div>
       <div className="d-flex justify-content-between mb-1">
@@ -64,7 +66,7 @@ function PokeLookUp() {
           inputValue={inputValue}
           info={pokedex}
         />
-        <PageNumber number={currentList.length} offset={offset} />
+        <PageNumber number={currentList.length} offset={offset} amount={24}/>
         <Pagination
           goPrevPage={prevPageURL ? goPrevPage : null}
           goNextPage={nextPageURL ? goNextPage : null}

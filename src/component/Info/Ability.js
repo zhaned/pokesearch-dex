@@ -35,7 +35,7 @@ const Ability = ({ ability, version }) => {
           </tr>
         </thead>
       </table>
-      <PokemonTable list={pokemonList} />
+      {pokemonList.length > 0 &&<PokemonTable list={pokemonList} />}
     </div>
   );
 };

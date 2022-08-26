@@ -3,23 +3,26 @@ import Pagination from '../PokeList/Pagination';
 import Loading from '../Loading/Loading';
 import InfoList from './InfoList';
 import SearchBar from '../SearchBar';
+import { useDispatch, useSelector } from 'react-redux';
+import { getInfo } from '../../routes/SearchPage/SearchPageSlice';
 
 const InfoLookUp = ({ infoType }) => {
-  const [info, setInfo] = useState();
   const [currentInfo, setCurrentInfo] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [prevPageURL, setPrevPageURL] = useState(null);
   const [nextPageURL, setNextPageURL] = useState(1);
   const [offset, setOffset] = useState(0);
 
+  const { info } = useSelector((state) => state.pokedex);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    fetch(`http://localhost:3001/${infoType}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setInfo(data.results.map((p) => ({ name: p.name, url: p.url })));
-        setCurrentInfo(data.results.map((p) => ({ name: p.name, url: p.url })));
-      });
-  }, [infoType]);
+    dispatch(getInfo(infoType));
+  }, []);
+
+  useEffect(() => {
+    setCurrentInfo(info);
+  }, [info]);
 
   useEffect(() => {
     if (currentInfo.length - offset > 70) {
@@ -42,6 +45,15 @@ const InfoLookUp = ({ infoType }) => {
     setOffset(offset + 70);
   }
 
+  //fix: put in its own file
+  function PageNumber({ number, offset, amount }) {
+    return (
+      <div style={{ color: '#f8f9fa', textShadow: '2px 2px #851bed' }}>
+        Page {Math.ceil(offset / amount + 1)} of {Math.ceil(number / amount)}
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="d-flex justify-content-between mb-1">
@@ -52,12 +64,13 @@ const InfoLookUp = ({ infoType }) => {
           inputValue={inputValue}
           info={info}
         />
+        <PageNumber number={currentInfo.length} offset={offset} amount={70} />
         <Pagination
           goPrevPage={prevPageURL && goPrevPage}
           goNextPage={nextPageURL && goNextPage}
         />
       </div>
-      {info ? (
+      {currentInfo ? (
         <InfoList
           info={currentInfo.slice(offset, offset + 70)}
           infoType={infoType}

@@ -7,7 +7,6 @@ const InfoPage = () => {
   const [info, setInfo] = useState();
   //fix: use the global state version or just use latest
   const [version, setVersion] = useState('20');
-
   const infoType = useLocation().pathname.split('/')[1];
   let { id } = useParams();
 
