@@ -26,10 +26,11 @@ const Results = ({ pokemon, species, evolution, types }) => {
   const id = parseInt(pokemon.species.url.slice(42).split('/'));
   useEffect(() => {
     document.title = document.getElementById('title').innerText;
-  }, []);
+  }, [id]);
   return (
     <div
       className="fade-in-above text-light"
+      key={id}
       style={{
         textShadow: `2px 2px #851bed`,
       }}

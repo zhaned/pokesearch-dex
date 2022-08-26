@@ -499,7 +499,7 @@ export const EvoDetails = ({ evo }) => {
   );
 };
 
-export const EvoImage = ({ evo, Link, navigate, path, list }) => {
+export const EvoImage = ({ evo, Link, path, list }) => {
   const evolution = evo;
   let pokeNumber =
     path === 'primary'
@@ -509,10 +509,8 @@ export const EvoImage = ({ evo, Link, navigate, path, list }) => {
   return (
     <Link
       to={`/search/${nameGetter(pokeNumber, list)}`}
-      // onClick={() =>
-      //   updateLocation(navigate, `/search/${nameGetter(pokeNumber, list)}`)
-      // }
       className="d-flex flex-column text-center"
+      // onClick={() => window.scrollTo(0,0)}
       style={{
         width: '8rem',
         height: 'auto',

@@ -44,7 +44,12 @@ const Pokemon = () => {
         });
     }
     fetchPokemon();
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant'
+    });
   }, [id]);
+
 
   //stops the component from rendering until data is fetched
   return types && evolution ? (

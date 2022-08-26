@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 import { TypeColor, TypeNames } from '../Type';
 import {
@@ -11,7 +11,6 @@ import {
   statRenamer,
   moveFilter,
   levelTmGetter,
-  updateLocation,
   TypeMultiplyer,
   EvoTrigger,
   EvoDetails,
@@ -268,7 +267,7 @@ export const Moveset = ({ moves, method }) => {
   };
   useEffect(() => {
     getMoveInfo();
-  }, [versionGroup]);
+  }, [versionGroup, moves]);
 
   //fixed: get moves from a single generation
   //fixed: order moves via level up
@@ -335,7 +334,6 @@ export const Moveset = ({ moves, method }) => {
 
 export const Evolutions = ({ evolution }) => {
   //fixed: include requirement for evolving b/t species
-  const navigate = useNavigate();
   const list = GetPokemonList();
   return (
     <div className="d-flex flex-column" style={{ width: '50%' }}>
@@ -350,7 +348,6 @@ export const Evolutions = ({ evolution }) => {
               <EvoImage
                 evo={evolution}
                 Link={Link}
-                navigate={navigate}
                 path={'primary'}
                 list={list}
               />
@@ -373,7 +370,6 @@ export const Evolutions = ({ evolution }) => {
                     <EvoImage
                       evo={evo}
                       Link={Link}
-                      navigate={navigate}
                       path={'second'}
                       list={list}
                     />
@@ -400,7 +396,6 @@ export const Evolutions = ({ evolution }) => {
                       <EvoImage
                         evo={evo}
                         Link={Link}
-                        navigate={navigate}
                         path={'second'}
                         list={list}
                       />
@@ -414,7 +409,6 @@ export const Evolutions = ({ evolution }) => {
               <EvoImage
                 evo={evolution}
                 Link={Link}
-                navigate={navigate}
                 path={'primary'}
                 list={list}
               />
@@ -437,7 +431,6 @@ export const Evolutions = ({ evolution }) => {
                     <EvoImage
                       evo={evo}
                       Link={Link}
-                      navigate={navigate}
                       path={'second'}
                       list={list}
                     />
@@ -447,13 +440,7 @@ export const Evolutions = ({ evolution }) => {
             </>
           )
         ) : (
-          <EvoImage
-            evo={evolution}
-            Link={Link}
-            navigate={navigate}
-            path={'primary'}
-            list={list}
-          />
+          <EvoImage evo={evolution} Link={Link} path={'primary'} list={list} />
         )}
       </div>
     </div>
@@ -462,7 +449,6 @@ export const Evolutions = ({ evolution }) => {
 
 export const Header = ({ id, pokemon, type, type2 }) => {
   const list = GetPokemonList();
-  const navigate = useNavigate();
   //fixed: get list of id with names redux
   return (
     <div className="d-flex justify-content-between">
@@ -472,12 +458,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
         {id === 1 ? null : (
           <Link
             to={`/search/${nameGetter(id - 1, list)}`}
-            // onClick={() =>
-            //   updateLocation(navigate, `/search/${nameGetter(id - 1, list)}`)
-            // }
-            // onClick={() =>
-            //   updateLocation(navigate, `/search/${nameGetter(id - 1, list)}`)
-            // }
+            onClick={() => window.scrollTo(0, 0)}
           >
             <h3 className="next-sprite">
               <span style={{ verticalAlign: 'bottom' }}>&#8592;</span>
@@ -522,9 +503,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
         {id === 898 ? null : (
           <Link
             to={`/search/${nameGetter(id + 1, list)}`}
-            // onClick={() =>
-            //   updateLocation(navigate, `/search/${nameGetter(id + 1, list)}`)
-            // }
+            onClick={() => window.scrollTo(0, 0)}
           >
             <h3 className="next-sprite">
               <img
