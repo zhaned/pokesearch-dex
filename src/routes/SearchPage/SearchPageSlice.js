@@ -34,7 +34,7 @@ export const getInfo = createAsyncThunk('searchPage/getInfo', async (info) => {
     );
 });
 
-//fix: include sort type
+//fixed: include sort type
 const initialState = {
   pokedex: [],
   id: '',

@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import PokeList from './PokeList';
-import Pagination from './Pagination';
+import Pagination from '../Search/Pagination';
 import Loading from '../Loading/Loading';
 import './pokeList.css';
-import SearchBar from '../SearchBar';
+import SearchBar from '../Search/SearchBar';
 import { useSelector, useDispatch } from 'react-redux/';
 import { getPokedex } from '../../routes/SearchPage/SearchPageSlice';
+import { PageNumber } from '../Search/PageNumber';
 
 function PokeLookUp() {
   const [currentList, setCurrentList] = useState([]);
   const [inputValue, setInputValue] = useState('');
-  const [prevPageURL, setPrevPageURL] = useState(null);
-  const [nextPageURL, setNextPageURL] = useState(1);
   const [offset, setOffset] = useState(0);
 
   const { pokedex } = useSelector((state) => state.pokedex);
@@ -24,38 +23,9 @@ function PokeLookUp() {
 
   useEffect(() => {
     setCurrentList(pokedex);
+    setOffset(0)
   }, [pokedex]);
 
-  useEffect(() => {
-    if (currentList.length - offset > 24) {
-      setNextPageURL(1);
-    } else {
-      setNextPageURL(null);
-    }
-
-    if (offset > 0) {
-      setPrevPageURL(1);
-    } else {
-      setPrevPageURL(null);
-    }
-  }, [offset, currentList]);
-
-  function goPrevPage() {
-    setOffset(offset - 24);
-  }
-  function goNextPage() {
-    setOffset(offset + 24);
-  }
-
-  //fix: put in its own file
-  function PageNumber({ number, offset, amount }) {
-    return (
-      <div style={{ color: '#f8f9fa', textShadow: '2px 2px #851bed' }}>
-        Page {Math.ceil(offset / amount + 1)} of {Math.ceil(number / amount)}
-      </div>
-    );
-  }
-  
   return (
     <div>
       <div className="d-flex justify-content-between mb-1">
@@ -66,10 +36,12 @@ function PokeLookUp() {
           inputValue={inputValue}
           info={pokedex}
         />
-        <PageNumber number={currentList.length} offset={offset} amount={24}/>
+        <PageNumber number={currentList.length} offset={offset} amount={24} />
         <Pagination
-          goPrevPage={prevPageURL ? goPrevPage : null}
-          goNextPage={nextPageURL ? goNextPage : null}
+          currentInfo={currentList}
+          offset={offset}
+          setOffset={setOffset}
+          offsetAmount={24}
         />
       </div>
       {currentList ? (

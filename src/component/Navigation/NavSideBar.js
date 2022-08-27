@@ -17,7 +17,7 @@ const NavSideBar = ({ location }) => {
   const { sort } = useSelector((state) => state.pokedex);
   const dispatch = useDispatch();
 
-  //fix: sort type doesn't filter when setting a diff dex
+  //fixed: sort type doesn't filter when setting a diff dex
   useEffect(() => {
     switch (sort) {
       case 'ascending':
