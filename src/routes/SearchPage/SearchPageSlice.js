@@ -36,10 +36,10 @@ export const getInfo = createAsyncThunk('searchPage/getInfo', async (info) => {
 
 //fixed: include sort type
 const initialState = {
-  pokedex: [],
   id: '',
-  info: [],
   sort: '',
+  pokedex: [],
+  info: [],
   status: null,
   infoStatus: null,
 };

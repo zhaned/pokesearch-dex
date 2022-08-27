@@ -36,7 +36,7 @@ function PokeLookUp() {
           inputValue={inputValue}
           info={pokedex}
         />
-        <PageNumber number={currentList.length} offset={offset} amount={24} />
+        <PageNumber number={currentList.length} offset={offset} offsetAmount={24} />
         <Pagination
           currentInfo={currentList}
           offset={offset}

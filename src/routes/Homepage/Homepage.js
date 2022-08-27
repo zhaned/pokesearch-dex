@@ -12,7 +12,8 @@ const Homepage = () => {
   // +1 because the result cannot be 0
   let pokeNumber = Math.floor(Math.random() * 897 + 1);
   let pokeNumber2 = Math.floor(Math.random() * 897 + 1);
-  if (status !== 'success') {
+  
+  if (status === null || status === 'failed') {
     dispatch(getPokemon());
   }
 

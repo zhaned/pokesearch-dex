@@ -8,9 +8,9 @@ import {
   setSort,
   zToA,
 } from '../../routes/SearchPage/SearchPageSlice';
-import './NavSideBar.css';
+import './FilterSidebar.css';
 
-const NavSideBar = ({ location }) => {
+const FilterSidebar = ({ location }) => {
   const route = location;
   const { id } = useSelector((state) => state.pokedex);
   const { info } = useSelector((state) => state.pokedex);
@@ -129,4 +129,4 @@ const NavSideBar = ({ location }) => {
   );
 };
 
-export default NavSideBar;
+export default FilterSidebar;

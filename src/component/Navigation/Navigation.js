@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-import NavSideBar from './NavSideBar';
-import ScrollTop from './NavFunctions';
+import NavSideBar from './FilterSidebar';
+import ScrollTop from './ScrollTop';
 import './Navigation.css';
 
 const Navigation = () => {
@@ -12,7 +12,6 @@ const Navigation = () => {
     >
       <Link
         to="/"
-        className=""
         style={{ textDecoration: 'none', textShadow: '0px 0px #f8f9fa' }}
       >
         <div className="rounded-pill pe-2 home-link">
@@ -50,7 +49,7 @@ const Navigation = () => {
           href="https://github.com/zhaned/pokeapi-dex-client"
           target={'_blank'}
           rel="noreferrer noopener"
-          className="border-start border-2"
+          className="border-start border-2 git-link"
           style={{
             padding: '1.5rem .5rem',
             background:
@@ -59,6 +58,7 @@ const Navigation = () => {
         >
           {/* <button className="btn btn-danger m-1">Favorites</button> */}
           <img
+          className=''
             src={require('../../images/GitHub-Icon.png')}
             alt={'GitHub'}
             style={{ height: '2.5rem' }}

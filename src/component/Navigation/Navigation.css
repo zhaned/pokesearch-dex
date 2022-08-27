@@ -28,6 +28,19 @@
   }
 }
 
+.git-link:hover img {
+  animation: coinspin 0.75s forwards;
+}
+
+@keyframes coinspin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
 .scroll-in {
   position: fixed;
   right: -72px;
