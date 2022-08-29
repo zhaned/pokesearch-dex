@@ -33,11 +33,7 @@ const InfoLookUp = ({ infoType }) => {
           inputValue={inputValue}
           info={info}
         />
-        <PageNumber
-          number={currentInfo.length}
-          offset={offset}
-          offsetAmount={60}
-        />
+        <PageNumber number={currentInfo} offset={offset} offsetAmount={60} />
         <Pagination
           currentInfo={currentInfo}
           offset={offset}

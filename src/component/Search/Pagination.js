@@ -8,8 +8,9 @@ export default function Pagination({
 }) {
   const [prevPageURL, setPrevPageURL] = useState(null);
   const [nextPageURL, setNextPageURL] = useState(1);
+  const info = currentInfo || '1';
   useEffect(() => {
-    if (currentInfo.length - offset > offsetAmount) {
+    if (info.length - offset > offsetAmount) {
       setNextPageURL(1);
     } else {
       setNextPageURL(null);
@@ -20,7 +21,7 @@ export default function Pagination({
     } else {
       setPrevPageURL(null);
     }
-  }, [offset, currentInfo, offsetAmount]);
+  }, [offset, info, offsetAmount]);
 
   function goPrevPage(offsetAmount) {
     setOffset(offset - offsetAmount);

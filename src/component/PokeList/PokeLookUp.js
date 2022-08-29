@@ -9,7 +9,7 @@ import { getPokedex } from '../../routes/SearchPage/SearchPageSlice';
 import { PageNumber } from '../Search/PageNumber';
 
 function PokeLookUp() {
-  const [currentList, setCurrentList] = useState([]);
+  const [currentList, setCurrentList] = useState(null);
   const [inputValue, setInputValue] = useState('');
   const [offset, setOffset] = useState(0);
 
@@ -25,7 +25,6 @@ function PokeLookUp() {
     setCurrentList(pokedex);
     setOffset(0)
   }, [pokedex]);
-
   return (
     <div>
       <div className="d-flex justify-content-between mb-1">
@@ -36,7 +35,7 @@ function PokeLookUp() {
           inputValue={inputValue}
           info={pokedex}
         />
-        <PageNumber number={currentList.length} offset={offset} offsetAmount={24} />
+        <PageNumber number={currentList} offset={offset} offsetAmount={24} />
         <Pagination
           currentInfo={currentList}
           offset={offset}

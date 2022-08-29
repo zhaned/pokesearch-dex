@@ -38,8 +38,8 @@ export const getInfo = createAsyncThunk('searchPage/getInfo', async (info) => {
 const initialState = {
   id: '',
   sort: '',
-  pokedex: [],
-  info: [],
+  pokedex: null,
+  info: null,
   status: null,
   infoStatus: null,
 };
