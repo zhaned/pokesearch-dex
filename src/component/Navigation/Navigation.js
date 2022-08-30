@@ -56,7 +56,6 @@ const Navigation = () => {
               'linear-gradient(rgba(45,45,45, 0.35),rgba(45,45,45, 0.35) )',
           }}
         >
-          {/* <button className="btn btn-danger m-1">Favorites</button> */}
           <img
           className=''
             src={require('../../images/GitHub-Icon.png')}
