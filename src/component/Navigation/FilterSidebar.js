@@ -50,7 +50,7 @@ const FilterSidebar = ({ location }) => {
   return (
     <>
       <a
-        className="btn btn-info"
+        className="filter-btn"
         data-bs-toggle="offcanvas"
         href="#offcanvas"
         role="button"
@@ -85,7 +85,7 @@ const FilterSidebar = ({ location }) => {
         <div className="offcanvas-body">
           <div>Use these filters to make your search more precise!</div>
           {route === '/search' && (
-            <div>
+            <div className="dropdown">
               <label htmlFor="pokedex">Pokedex:</label>
               <select
                 className="m-1"
@@ -109,7 +109,7 @@ const FilterSidebar = ({ location }) => {
               </select>
             </div>
           )}
-          <div>
+          <div className="dropdown">
             <label htmlFor="sort">Sort:</label>
             <select
               className="m-1"

@@ -57,6 +57,7 @@ const searchPageSlice = createSlice({
           return a.entry_number - b.entry_number;
         });
       } else {
+        console.log('it got to here')
         state.info.sort((a, b) => {
           return a.index - b.index;
         });

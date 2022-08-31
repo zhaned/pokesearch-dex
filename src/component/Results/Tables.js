@@ -56,7 +56,7 @@ function GenDropDown() {
     setActionPayload(e.target.value);
   }
   return (
-    <div>
+    <div className='dropdown'>
       <select
         value={actionPayload}
         onChange={handleChange}
