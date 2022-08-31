@@ -58,7 +58,6 @@ function GenDropDown() {
   return (
     <div>
       <select
-        className="btn btn-secondary"
         value={actionPayload}
         onChange={handleChange}
       >
