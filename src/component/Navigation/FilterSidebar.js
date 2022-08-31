@@ -13,6 +13,7 @@ import './FilterSidebar.css';
 const FilterSidebar = ({ location }) => {
   const route = location;
   const { id } = useSelector((state) => state.pokedex);
+  const { allPokemon } = useSelector((state) => state.pokedex);
   const { info } = useSelector((state) => state.pokedex);
   const { sort } = useSelector((state) => state.pokedex);
   const dispatch = useDispatch();
@@ -37,9 +38,9 @@ const FilterSidebar = ({ location }) => {
     }
   }, [id, info, sort]);
 
-  function handleChange(e) {
+  function handlePokedex(e) {
     e.preventDefault();
-    dispatch(getPokedex(e.target.value));
+    dispatch(getPokedex(e.target.value, allPokemon));
   }
 
   function handleSort(e) {
@@ -91,7 +92,7 @@ const FilterSidebar = ({ location }) => {
                 className="m-1"
                 id="pokedex"
                 value={id}
-                onChange={handleChange}
+                onChange={handlePokedex}
               >
                 <option value="1">National</option>
                 <option value="2">Kanto</option>

@@ -14,9 +14,9 @@ export default function PokeList({ pokemon }) {
     >
       {pokemon.map((p) => (
         <Link
-          key={p.entry_number}
-          to={{ pathname: `/search/${p.name}` }}
-          style={{ textDecoration: 'none' }}
+        key={p.entry_number}
+        to={{ pathname: `/search/${p.name}` }}
+        style={{ textDecoration: 'none' }}
         >
           <div
             className="card m-2 align-content-center shadow"
@@ -32,7 +32,7 @@ export default function PokeList({ pokemon }) {
             <div className="my-2">
               {`#${p.entry_number} ` + p.name.charAt(0).toUpperCase() + p.name.slice(1)}
             </div>
-            <PokeImage url={urlToNumber(p.url)} />
+            <PokeImage url={p.url} />
           </div>
         </Link>
       ))}

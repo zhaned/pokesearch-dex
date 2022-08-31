@@ -1,25 +1,52 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+
+export const getAllPokemon = createAsyncThunk(
+  'searchPage/getAllPokemon',
+  async () => {
+    //https://pokeapi.co/api/v2/pokemon?limit=898
+    return fetch(`http://localhost:3001/pokemon`)
+      .then((res) => res.json())
+      .then((data) =>
+        data.results.map((item) => {
+          const id = item.url.slice(34).split("/")
+          return {
+            entry_number: id[0],
+            name: item.name,
+            url: id[0],
+          };
+        }),
+      );
+  }
+);
 export const getPokedex = createAsyncThunk(
   'searchPage/getPokedex',
-  async (dex) => {
+  async (dex, fullList) => {
+    console.log('shouldnt be here too much')
+    /*
+    full list is necessary because pokedex doesn't give the right
+    name for the url (ex: aegislash won't link anywhere; 
+    needs aegislash-shield)
+    */
+    const allPokemon = fullList.getState().pokedex.allPokemon;
     //https://pokeapi.co/api/v2/pokedex/
     return fetch(`https://pokeapi.co/api/v2/pokedex/${dex}`)
       .then((res) => res.json())
       .then((data) => [
         data.id,
         data.pokemon_entries.map((item) => {
+          const url = item.pokemon_species.url.slice(42).split('/')
           return {
             entry_number: item.entry_number,
-            name: item.pokemon_species.name,
-            url: item.pokemon_species.url,
+            name: allPokemon.find(obj => obj.url === url[0]).name,
+            url: url[0],
           };
         }),
       ]);
   }
 );
+
 export const getInfo = createAsyncThunk('searchPage/getInfo', async (info) => {
-  //https://pokeapi.co/api/v2/pokedex/
   const limit = info === 'ability' ? 267 : 826;
   return fetch(`https://pokeapi.co/api/v2/${info}?limit=${limit}`)
     .then((res) => res.json())
@@ -38,8 +65,10 @@ export const getInfo = createAsyncThunk('searchPage/getInfo', async (info) => {
 const initialState = {
   id: '',
   sort: '',
-  pokedex: null,
-  info: null,
+  allPokemon: [],
+  pokedex: [],
+  info: [],
+  allStatus: null,
   status: null,
   infoStatus: null,
 };
@@ -57,7 +86,6 @@ const searchPageSlice = createSlice({
           return a.entry_number - b.entry_number;
         });
       } else {
-        console.log('it got to here')
         state.info.sort((a, b) => {
           return a.index - b.index;
         });
@@ -110,6 +138,16 @@ const searchPageSlice = createSlice({
     },
     [getInfo.rejected]: (state) => {
       state.infoStatus = 'failed';
+    },
+    [getAllPokemon.pending]: (state) => {
+      state.allStatus = 'loading';
+    },
+    [getAllPokemon.fulfilled]: (state, { payload }) => {
+      state.allPokemon = payload;
+      state.allStatus = 'success';
+    },
+    [getAllPokemon.rejected]: (state) => {
+      state.allStatus = 'failed';
     },
   },
 });
