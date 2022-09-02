@@ -21,15 +21,12 @@ export const getAllPokemon = createAsyncThunk(
 export const getPokedex = createAsyncThunk(
   "searchPage/getPokedex",
   async (dex, fullList) => {
-    console.log("shouldnt be here too much");
-
     /*
-    full list is necessary because pokedex doesn't give the right
-    name for the url (ex: aegislash won't link anywhere; 
-    needs aegislash-shield)
+    full list is necessary because pokedex doesn't give the 
+    correct name for the url (ex: aegislash won't link anywhere; 
+    needs aegislash-shield, which full list will provide)
     */
     const allPokemon = fullList.getState().pokedex.allPokemon;
-    console.log(fullList.getState().pokedex, " l;lalsk;dsfjas");
     //https://pokeapi.co/api/v2/pokedex/
     return fetch(`https://pokeapi.co/api/v2/pokedex/${dex}`)
       .then((res) => res.json())
@@ -37,8 +34,6 @@ export const getPokedex = createAsyncThunk(
         data.id,
         data.pokemon_entries.map((item) => {
           const url = item.pokemon_species.url.slice(42).split("/");
-          const newName = allPokemon.find((obj) => obj.url === url[0]);
-          // console.log(newName);
           return {
             entry_number: item.entry_number,
             name: allPokemon.find((obj) => obj.url === url[0]).name,

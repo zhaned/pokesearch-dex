@@ -27,17 +27,11 @@ function PokeLookUp() {
   if (!allStatus) {
     dispatch(getAllPokemon());
   }
-  //fix: always triggers which causes sort to not work, useref only works if you dont leave the page so its useless
+  //fixed: always triggers which causes sort to not work, useref only works if you dont leave the page so its useless
   useEffect(() => {
+    if (firstUpdate.current !== 'success') {
       dispatch(getPokedex(id || 1, allPokemon));
-    // console.log(allPokemon)
-    // console.log(firstUpdate.current);
-    if (firstUpdate.current) {
-      dispatch(getPokedex(id || 1, allPokemon));
-      firstUpdate.current = false;
-      console.log("not here after first time", firstUpdate.current);
     } else {
-      console.log("made it!!!");
       return;
     }
   }, [allPokemon]);
