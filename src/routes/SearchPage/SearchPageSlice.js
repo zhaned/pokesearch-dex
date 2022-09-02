@@ -1,44 +1,47 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getAllPokemon = createAsyncThunk(
-  'searchPage/getAllPokemon',
+  "searchPage/getAllPokemon",
   async () => {
     //https://pokeapi.co/api/v2/pokemon?limit=898
     return fetch(`http://localhost:3001/pokemon`)
       .then((res) => res.json())
       .then((data) =>
         data.results.map((item) => {
-          const id = item.url.slice(34).split("/")
+          const id = item.url.slice(34).split("/");
           return {
             entry_number: id[0],
             name: item.name,
             url: id[0],
           };
-        }),
+        })
       );
   }
 );
 export const getPokedex = createAsyncThunk(
-  'searchPage/getPokedex',
+  "searchPage/getPokedex",
   async (dex, fullList) => {
-    console.log('shouldnt be here too much')
+    console.log("shouldnt be here too much");
+
     /*
     full list is necessary because pokedex doesn't give the right
     name for the url (ex: aegislash won't link anywhere; 
     needs aegislash-shield)
     */
     const allPokemon = fullList.getState().pokedex.allPokemon;
+    console.log(fullList.getState().pokedex, " l;lalsk;dsfjas");
     //https://pokeapi.co/api/v2/pokedex/
     return fetch(`https://pokeapi.co/api/v2/pokedex/${dex}`)
       .then((res) => res.json())
       .then((data) => [
         data.id,
         data.pokemon_entries.map((item) => {
-          const url = item.pokemon_species.url.slice(42).split('/')
+          const url = item.pokemon_species.url.slice(42).split("/");
+          const newName = allPokemon.find((obj) => obj.url === url[0]);
+          // console.log(newName);
           return {
             entry_number: item.entry_number,
-            name: allPokemon.find(obj => obj.url === url[0]).name,
+            name: allPokemon.find((obj) => obj.url === url[0]).name,
             url: url[0],
           };
         }),
@@ -46,8 +49,8 @@ export const getPokedex = createAsyncThunk(
   }
 );
 
-export const getInfo = createAsyncThunk('searchPage/getInfo', async (info) => {
-  const limit = info === 'ability' ? 267 : 826;
+export const getInfo = createAsyncThunk("searchPage/getInfo", async (info) => {
+  const limit = info === "ability" ? 267 : 826;
   return fetch(`https://pokeapi.co/api/v2/${info}?limit=${limit}`)
     .then((res) => res.json())
     .then((data) =>
@@ -63,8 +66,8 @@ export const getInfo = createAsyncThunk('searchPage/getInfo', async (info) => {
 
 //fixed: include sort type
 const initialState = {
-  id: '',
-  sort: '',
+  id: "",
+  sort: "",
   allPokemon: [],
   pokedex: [],
   info: [],
@@ -74,14 +77,14 @@ const initialState = {
 };
 
 const searchPageSlice = createSlice({
-  name: 'searchPage',
+  name: "searchPage",
   initialState,
   reducers: {
     setSort: (state, { payload }) => {
       state.sort = payload;
     },
     ascending: (state, { payload }) => {
-      if (payload === '/search') {
+      if (payload === "/search") {
         state.pokedex.sort((a, b) => {
           return a.entry_number - b.entry_number;
         });
@@ -92,7 +95,7 @@ const searchPageSlice = createSlice({
       }
     },
     descending: (state, { payload }) => {
-      if (payload === '/search') {
+      if (payload === "/search") {
         state.pokedex.sort((a, b) => {
           return b.entry_number - a.entry_number;
         });
@@ -103,14 +106,14 @@ const searchPageSlice = createSlice({
       }
     },
     aToZ: (state, { payload }) => {
-      if (payload === '/search') {
+      if (payload === "/search") {
         state.pokedex.sort((a, b) => a.name.localeCompare(b.name));
       } else {
         state.info.sort((a, b) => a.name.localeCompare(b.name));
       }
     },
     zToA: (state, { payload }) => {
-      if (payload === '/search') {
+      if (payload === "/search") {
         state.pokedex.sort((a, b) => b.name.localeCompare(a.name));
       } else {
         state.info.sort((a, b) => b.name.localeCompare(a.name));
@@ -119,35 +122,35 @@ const searchPageSlice = createSlice({
   },
   extraReducers: {
     [getPokedex.pending]: (state) => {
-      state.status = 'loading';
+      state.status = "loading";
     },
     [getPokedex.fulfilled]: (state, { payload }) => {
       state.pokedex = payload[1];
       state.id = payload[0];
-      state.status = 'success';
+      state.status = "success";
     },
     [getPokedex.rejected]: (state) => {
-      state.status = 'failed';
+      state.status = "failed";
     },
     [getInfo.pending]: (state) => {
-      state.infoStatus = 'loading';
+      state.infoStatus = "loading";
     },
     [getInfo.fulfilled]: (state, { payload }) => {
       state.info = payload;
-      state.infoStatus = 'success';
+      state.infoStatus = "success";
     },
     [getInfo.rejected]: (state) => {
-      state.infoStatus = 'failed';
+      state.infoStatus = "failed";
     },
     [getAllPokemon.pending]: (state) => {
-      state.allStatus = 'loading';
+      state.allStatus = "loading";
     },
     [getAllPokemon.fulfilled]: (state, { payload }) => {
       state.allPokemon = payload;
-      state.allStatus = 'success';
+      state.allStatus = "success";
     },
     [getAllPokemon.rejected]: (state) => {
-      state.allStatus = 'failed';
+      state.allStatus = "failed";
     },
   },
 });
