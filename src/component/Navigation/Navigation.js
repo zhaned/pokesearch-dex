@@ -27,22 +27,17 @@ const Navigation = () => {
       <div>
         {location.pathname !== '/search' && (
           <Link to="/search">
-            <button className="btn btn-danger mx-1">Pokémon</button>
+            <button className="btn btn-danger me-2">Pokémon</button>
           </Link>
         )}
         {location.pathname !== '/ability' && (
           <Link to="/ability">
-            <button className="btn btn-success mx-1">Abilities</button>
+            <button className="btn btn-success me-2">Abilities</button>
           </Link>
         )}
         {location.pathname !== '/move' && (
           <Link to="/move">
-            <button className="btn btn-primary mx-1">Moves</button>
-          </Link>
-        )}
-        {location.pathname !== '/about' && (
-          <Link to="/about">
-            <button className="btn btn-info mx-1">About</button>
+            <button className="btn btn-primary me-2">Moves</button>
           </Link>
         )}
         <a

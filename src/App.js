@@ -2,7 +2,6 @@ import { useRoutes, useLocation } from 'react-router-dom';
 
 import Navigation from './component/Navigation/Navigation';
 import Home from './routes/Homepage/Homepage';
-import About from './routes/About/About';
 import Search from './routes/SearchPage/SearchPage';
 import Pokemon from './routes/Pokemon';
 import Abilities from './routes/Abilities';
@@ -21,7 +20,6 @@ function useNav() {
 const RouteList = () =>
   useRoutes([
     { path: '/', element: <Home /> },
-    { path: 'about', element: <About /> },
     { path: 'search', element: <Search /> },
     { path: 'search/:id', element: <Pokemon /> },
     { path: 'ability', element: <Abilities /> },
