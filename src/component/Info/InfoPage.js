@@ -5,8 +5,7 @@ import Ability from './Ability';
 import Move from './Move';
 const InfoPage = () => {
   const [info, setInfo] = useState();
-  //fix: use the global state version or just use latest
-  const [version, setVersion] = useState('20');
+  //fixed: use the global state version or just use latest
   const infoType = useLocation().pathname.split('/')[1];
   let { id } = useParams();
 
@@ -22,9 +21,9 @@ const InfoPage = () => {
 
   return info ? (
     infoType === 'ability' ? (
-      <Ability ability={info} version={version} />
+      <Ability ability={info} />
     ) : (
-      <Move move={info} version={version} />
+      <Move move={info} />
     )
   ) : (
     <Loading />

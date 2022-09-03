@@ -3,7 +3,7 @@ import { MoveInfo, PokemonTable } from "../Results/Tables";
 import { useEffect } from "react";
 import HrLineBreak from "../HrLineBreak";
 
-const Move = ({ move, version }) => {
+const Move = ({ move }) => {
   const pokemonList = move.learned_by_pokemon
     .filter((poke) => parseInt(poke.url.slice(34).split("/")) < 899)
     .map((poke) => {
@@ -21,7 +21,7 @@ const Move = ({ move, version }) => {
         {capitalizer(move.name.charAt(0).toUpperCase() + move.name.slice(1))}
       </h1>
       <HrLineBreak />
-      <MoveInfo move={move} version={version} />
+      <MoveInfo move={move} />
       <HrLineBreak />
       <table className="table table-dark m-0">
         <thead className="text-center move-thead">

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { AbilityInfo, PokemonTable } from "../Results/Tables";
 import HrLineBreak from "../HrLineBreak";
 
-const Ability = ({ ability, version }) => {
+const Ability = ({ ability }) => {
   const pokemonList = ability.pokemon
     .filter((poke) => parseInt(poke.pokemon.url.slice(34).split("/")) < 899)
     .map((poke) => {
@@ -24,7 +24,7 @@ const Ability = ({ ability, version }) => {
         )}
       </h1>
       <HrLineBreak />
-      <AbilityInfo ability={ability} version={version} />
+      <AbilityInfo ability={ability} />
       <HrLineBreak />
       <table className="table table-dark m-0">
         <thead className="text-center move-thead">

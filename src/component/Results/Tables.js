@@ -453,7 +453,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
     <div className="d-flex justify-content-between">
       <div className="d-flex align-items-center">
         {/* fixed: add the previous pokemon as a link here with a sprite */
-        /* fix: try just invoking a function to update all the data with a fetch call and useEffect */}
+        /* fixed: try just invoking a function to update all the data with a fetch call and useEffect */}
         {id === 1 ? null : (
           <Link
             to={`/search/${nameGetter(id - 1, list)}`}
@@ -621,14 +621,14 @@ export const TypeMatchup = ({ types }) => {
   );
 };
 
-export const MoveInfo = ({ move, version }) => {
+export const MoveInfo = ({ move }) => {
   const effectEntries = effectEntryAdder(
     langFilter(move.effect_entries),
     move.effect_chance
   );
   const flavorText = versionFilter(
     move.flavor_text_entries,
-    version,
+    20, // 20 is sword/shield version-group; latest
     langFilter
   );
   return (
@@ -702,12 +702,12 @@ export const MoveInfo = ({ move, version }) => {
   );
 };
 
-export const AbilityInfo = ({ ability, version }) => {
+export const AbilityInfo = ({ ability }) => {
   const effectEntries = langFilter(ability.effect_entries);
 
   const flavorText = versionFilter(
     ability.flavor_text_entries,
-    version,
+    20, // 20 is sword/shield version-group; latest
     langFilter
   );
 
