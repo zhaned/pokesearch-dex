@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   generation: null, //for version groups
@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const getVersions = createAsyncThunk(
-  'version/getVersions',
+  "version/getVersions",
   async (generation) => {
     let versionObj = {
       generation: null,
@@ -33,7 +33,7 @@ export const getVersions = createAsyncThunk(
 );
 
 export const versionSlice = createSlice({
-  name: 'results',
+  name: "results",
   initialState,
   reducers: {
     selection: (state, action) => {
@@ -42,16 +42,16 @@ export const versionSlice = createSlice({
   },
   extraReducers: {
     [getVersions.pending]: (state) => {
-      state.status = 'loading';
+      state.status = "loading";
     },
     [getVersions.fulfilled]: (state, { payload }) => {
       state.versions = payload.versions;
       state.generation = payload.generation;
       state.version_group = payload.version_group;
-      state.status = 'success';
+      state.status = "success";
     },
     [getVersions.rejected]: (state) => {
-      state.status = 'failed';
+      state.status = "failed";
     },
   },
 });

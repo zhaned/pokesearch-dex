@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const getPokemon = createAsyncThunk('homepage/getPokemon', async () => {
-  //https://pokeapi.co/api/v2/pokemon?limit=898
-  return fetch("http://localhost:3001/pokemon")
+  return fetch("https://pokeapi.co/api/v2/pokemon?limit=898")
     .then((res) => res.json())
     .then((data) => data.results);
 });

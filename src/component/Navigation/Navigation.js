@@ -54,7 +54,7 @@ const Navigation = () => {
           <img
           className=''
             src={require('../../images/GitHub-Icon.png')}
-            alt={'GitHub'}
+            alt={'GitHub Link'}
             style={{ height: '2.5rem' }}
           />
         </a>

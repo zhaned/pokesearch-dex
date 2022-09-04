@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 const SearchBar = ({
   setOffset,
   setInputValue,
@@ -24,6 +26,10 @@ const SearchBar = ({
       e.preventDefault();
     }
   }
+
+  useEffect(()=> {
+    setInputValue('')
+  },[info])
 
   return (
     <form>

@@ -3,8 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const getAllPokemon = createAsyncThunk(
   "searchPage/getAllPokemon",
   async () => {
-    //https://pokeapi.co/api/v2/pokemon?limit=898
-    return fetch(`http://localhost:3001/pokemon`)
+    return fetch(`https://pokeapi.co/api/v2/pokemon?limit=898`)
       .then((res) => res.json())
       .then((data) =>
         data.results.map((item) => {
@@ -27,7 +26,6 @@ export const getPokedex = createAsyncThunk(
     needs aegislash-shield, which full list will provide)
     */
     const allPokemon = fullList.getState().pokedex.allPokemon;
-    //https://pokeapi.co/api/v2/pokedex/
     return fetch(`https://pokeapi.co/api/v2/pokedex/${dex}`)
       .then((res) => res.json())
       .then((data) => [
