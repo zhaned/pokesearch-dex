@@ -13,14 +13,8 @@ import HrLineBreak from '../HrLineBreak';
 
 //fixed: convert the number into a name so the search url is more consistent
 //fixed: dynamic background based on type
-//fix: refactor this place holy
+//fixed: refactor this place
 const Results = ({ pokemon, species, evolution, types }) => {
-  //this will be pulled from the url of the version group
-  //maybe put this in global state?
-  //version group affects moveset
-  //versions affect description
-  //possibly fetch generation with it and get pokedex for search filter?
-  // const [version, setVersion] = useState("20");
   const type = pokemon.types[0].type.name;
   const type2 = pokemon.types.length > 1 ? pokemon.types[1].type.name : null;
   const id = parseInt(pokemon.species.url.slice(42).split('/'));

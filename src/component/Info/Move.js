@@ -12,9 +12,11 @@ const Move = ({ move }) => {
         number: poke.url.slice(34).split("/"),
       };
     });
+
   useEffect(() => {
     document.title = document.getElementById("title").innerText;
   }, []);
+  
   return (
     <div style={{ color: "#f8f9fa", textShadow: "2px 2px #851bed" }}>
       <h1 className="display-3 text-center pt-1 pe-1" id="title">

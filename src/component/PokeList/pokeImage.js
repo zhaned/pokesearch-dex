@@ -1,6 +1,7 @@
 const PokeImage = (url) => {
-  let pokeId = url.url;
+  const pokeId = url.url;
   const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeId}.png`;
+
   return (
     <img
       className="rounded-circle"

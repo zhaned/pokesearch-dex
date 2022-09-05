@@ -5,6 +5,7 @@ import './Navigation.css';
 
 const Navigation = () => {
   const location = useLocation();
+  
   return (
     <nav
       className="navbar border-bottom border-2"

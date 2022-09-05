@@ -21,6 +21,7 @@ const InfoLookUp = ({ infoType }) => {
 
   useEffect(() => {
     setCurrentInfo(info);
+    setOffset(0);
   }, [info]);
 
   return (

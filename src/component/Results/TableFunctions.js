@@ -126,15 +126,6 @@ export const levelTmGetter = (moves, version, method, machine) => {
   if (method === 'tutor') return '-';
 };
 
-//takes you to the new location after clicking one of the links
-//to the previous or next pokemon and refreshes the page.
-//refresh is somewhat necessary because nothing will render since
-//its the same route
-export function updateLocation(navigate, url) {
-  navigate(url, { replace: true });
-  window.location.reload();
-}
-
 export const TypeMultiplyer = (types, TypeNames) => {
   let allTypes = TypeNames();
   let type1 = [];

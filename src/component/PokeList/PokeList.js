@@ -3,10 +3,6 @@ import PokeImage from './pokeImage';
 import './pokeList.css';
 
 export default function PokeList({ pokemon }) {
-  function urlToNumber(url) {
-    const num = url.slice(42).split('/');
-    return num[0];
-  }
   return (
     <div
       className="d-flex flex-wrap justify-content-center text-center fade-in-above shadow rounded"

@@ -55,6 +55,7 @@ const FilterSidebar = ({ location }) => {
     const value = e.target.value;
     dispatch(setSort(value));
   }
+
   return (
     <>
       <a

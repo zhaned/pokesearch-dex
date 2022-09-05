@@ -17,6 +17,7 @@ const ScrollTop = () => {
   }
 
   window.addEventListener("scroll", toggleVisible);
+
   return (
     <input
       className={visible ? "scroll-in" : "scroll-out"}
