@@ -4,7 +4,7 @@ import './footer.css';
 const Footer = () => {
   return (
     <footer
-      className="border-top d-flex justify-content-evenly"
+      className="border-top d-flex justify-content-evenly webkit-fix"
       style={{
         color: '#f8f9fa',
         textShadow: '2px 2px #851bed',

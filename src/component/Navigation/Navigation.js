@@ -25,7 +25,7 @@ const Navigation = () => {
           <span>PokéSearch Dex</span>
         </div>
       </Link>
-      <div>
+      <div className='webkit-fix'>
         {location.pathname !== '/search' && (
           <Link to="/search">
             <button className="btn btn-danger me-2">Pokémon</button>
@@ -49,11 +49,10 @@ const Navigation = () => {
           style={{
             padding: '1.5rem .5rem',
             background:
-              'linear-gradient(rgba(45,45,45, 0.35),rgba(45,45,45, 0.35) )',
+              'linear-gradient(rgba(45,45,45, 0.35),rgba(45,45,45, 0.35) )'
           }}
         >
           <img
-            className=""
             src={require('../../images/GitHub-Icon.png')}
             alt={'GitHub Link'}
             style={{ height: '2.5rem' }}

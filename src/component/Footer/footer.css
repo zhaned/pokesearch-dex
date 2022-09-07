@@ -6,6 +6,12 @@ footer {
   background-color: rgb(117, 27, 207);
 }
 
+/* adding this stops flickering on animations from ios safari*/
+.webkit-fix {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
 .underline:hover img {
   animation-name: hoveron;
   animation-duration: 0.1s;
