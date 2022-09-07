@@ -18,6 +18,8 @@ import {
   effectEntryAdder,
   EvoImage,
   nameGetter,
+  genderRate,
+  expGrowth,
 } from './TableFunctions';
 import './Results.css';
 import { useSelector, useDispatch } from 'react-redux/';
@@ -56,11 +58,8 @@ function GenDropDown() {
     setActionPayload(e.target.value);
   }
   return (
-    <div className='dropdown'>
-      <select
-        value={actionPayload}
-        onChange={handleChange}
-      >
+    <div className="dropdown">
+      <select value={actionPayload} onChange={handleChange}>
         <optgroup label="Generation 1">
           <option value={[1, 1]}>Red/Blue</option>
           <option value={[1, 2]}>Yellow</option>
@@ -114,7 +113,6 @@ export const Traits = ({ species, data }) => {
   //fixed: height near 12 inches aren't converted (.3m becomes 0"12)
   const height = data.height / 10; //in meters
   const weight = Math.round(2.20462 * data.weight) / 10; // in lbs
-
   return (
     <table className="col border-end">
       <tbody>
@@ -131,9 +129,22 @@ export const Traits = ({ species, data }) => {
           </td>
         </tr>
         <tr>
+          <th>Exp growth:</th>
+          <td>{expGrowth(species.growth_rate.name)}</td>
+        </tr>
+        <tr>
+          <th>Happiness:</th>
+          <td>{species.base_happiness}</td>
+        </tr>
+        <tr>
           <th>Capture Rate: </th>
           <td>{species.capture_rate}</td>
         </tr>
+        <tr>
+          <th>Gender Ratio:</th>
+          <td>{genderRate(species.gender_rate)}</td>
+        </tr>
+
         <tr>
           <th>Egg Groups: </th>
           <td>{species.egg_groups.map((group) => group.name + ' | ')}</td>

@@ -12,13 +12,13 @@ const Homepage = () => {
   // +1 because the result cannot be 0
   let pokeNumber = Math.floor(Math.random() * 897 + 1);
   let pokeNumber2 = Math.floor(Math.random() * 897 + 1);
-  
+
   if (status === null || status === 'failed') {
     dispatch(getPokemon());
   }
 
   useEffect(() => {
-    document.title = 'PokéAPI Dex';
+    document.title = 'PokéSearch Dex';
   }, []);
   return (
     <div>
@@ -30,7 +30,7 @@ const Homepage = () => {
           marginTop: '4rem',
         }}
       >
-        Welcome to PokéAPI Dex!
+        Welcome to PokéSearch Dex!
       </h1>
       <div
         className="d-flex justify-content-between align-items-center"

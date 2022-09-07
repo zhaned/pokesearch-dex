@@ -5,7 +5,7 @@ import './Navigation.css';
 
 const Navigation = () => {
   const location = useLocation();
-  
+
   return (
     <nav
       className="navbar border-bottom border-2"
@@ -22,7 +22,7 @@ const Navigation = () => {
             className="m-1"
             style={{ height: '2rem' }}
           />
-          <span>PokéAPI Dex</span>
+          <span>PokéSearch Dex</span>
         </div>
       </Link>
       <div>
@@ -53,7 +53,7 @@ const Navigation = () => {
           }}
         >
           <img
-          className=''
+            className=""
             src={require('../../images/GitHub-Icon.png')}
             alt={'GitHub Link'}
             style={{ height: '2.5rem' }}

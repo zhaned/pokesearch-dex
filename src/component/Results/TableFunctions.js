@@ -555,3 +555,39 @@ export function nameGetter(id, list) {
     list.find((obj) => obj.url === `https://pokeapi.co/api/v2/pokemon/${id}/`);
   return result.name;
 }
+
+export function genderRate(rate) {
+  if (rate === -1) return 'genderless';
+  return (
+    <>
+      {`${(1 - rate / 8) * 100}% `}
+      <span title="male">♂ </span> | {`${(rate / 8) * 100}% `}
+      <span title="female">♀</span>
+    </>
+  );
+}
+
+export function expGrowth(growth) {
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+  const x = 100; //max level
+  switch (growth) {
+    case 'slow':
+      return `slow (${numberWithCommas((5 * Math.pow(x, 3)) / 4)} exp)`;
+    case 'medium':
+      return `medium (${numberWithCommas(Math.pow(x, 3))} exp)`;
+    case 'fast':
+      return `fast (${numberWithCommas((4 * Math.pow(x, 3)) / 5)} exp)`;
+    case 'medium-slow':
+      return `medium-slow (${numberWithCommas(
+        (6 / 5) * Math.pow(x, 3) - 15 * Math.pow(x, 2) + (2 + 100 * x - 140)
+      )} exp)`;
+    case 'slow-then-very-fast':
+      return `erratic (${numberWithCommas(600000)} exp)`;
+    case 'fast-then-very-slow':
+      return `fluctuating (${numberWithCommas(1640000)} exp)`;
+    default:
+      break;
+  }
+}
