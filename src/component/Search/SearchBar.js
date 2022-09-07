@@ -15,7 +15,7 @@ const SearchBar = ({
     setInputValue(value);
     setCurrentList(
       info.filter((obj) => {
-        return obj.name.includes(value);
+        return obj.name.includes(value.toLowerCase());
       })
     );
   }
