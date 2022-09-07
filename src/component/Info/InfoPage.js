@@ -14,7 +14,7 @@ const InfoPage = () => {
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
       .then((data) => setInfo(data));
   }
-  
+
   useEffect(() => {
     fetchInfo();
   }, []);

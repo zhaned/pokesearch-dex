@@ -1,5 +1,5 @@
-import dexLogo from "../../images/pokeapi-dex-icon.png";
-import "./Loading.css";
+import dexLogo from '../../images/pokesearch-dex-icon.png';
+import './Loading.css';
 //fixed: add a looping gif here later
 export default function Loading() {
   return (
@@ -7,9 +7,9 @@ export default function Loading() {
       <h1
         className="display-2"
         style={{
-          color: "#f8f9fa",
+          color: '#f8f9fa',
           textShadow:
-            "0 0 6px #851bed, 0 0 6px #851bed, 0 0 6px #851bed, 0 0 6px #851bed",
+            '0 0 6px #851bed, 0 0 6px #851bed, 0 0 6px #851bed, 0 0 6px #851bed',
         }}
       >
         Loading <span className="blinking"> . . .</span>

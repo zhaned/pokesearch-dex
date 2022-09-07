@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 export default function Pagination({
   currentInfo,
@@ -8,7 +8,7 @@ export default function Pagination({
 }) {
   const [prevPageURL, setPrevPageURL] = useState(null);
   const [nextPageURL, setNextPageURL] = useState(1);
-  const info = currentInfo || "1";
+  const info = currentInfo || '1';
   useEffect(() => {
     if (info.length - offset > offsetAmount) {
       setNextPageURL(1);

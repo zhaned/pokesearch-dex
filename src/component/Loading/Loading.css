@@ -1,12 +1,12 @@
-.spinning{
+.spinning {
   animation: spinning 1s linear infinite;
 }
 
 @keyframes spinning {
-  from{
+  from {
     transform: rotate(0deg);
   }
-  to{
+  to {
     transform: rotate(360deg);
   }
 }
@@ -19,6 +19,6 @@
 
 @keyframes blinking {
   to {
-    clip-path: inset(0 -.8ch 0 0)
+    clip-path: inset(0 -0.8ch 0 0);
   }
 }

@@ -1,19 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
-import PokeList from "./PokeList";
-import Pagination from "../Search/Pagination";
-import Loading from "../Loading/Loading";
-import "./pokeList.css";
-import SearchBar from "../Search/SearchBar";
-import { useSelector, useDispatch } from "react-redux/";
+import React, { useState, useEffect, useRef } from 'react';
+import PokeList from './PokeList';
+import Pagination from '../Search/Pagination';
+import Loading from '../Loading/Loading';
+import './pokeList.css';
+import SearchBar from '../Search/SearchBar';
+import { useSelector, useDispatch } from 'react-redux/';
 import {
   getPokedex,
   getAllPokemon,
-} from "../../routes/SearchPage/SearchPageSlice";
-import { PageNumber } from "../Search/PageNumber";
+} from '../../routes/SearchPage/SearchPageSlice';
+import { PageNumber } from '../Search/PageNumber';
 
 function PokeLookUp() {
   const [currentList, setCurrentList] = useState(null);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
   const [offset, setOffset] = useState(0);
 
   const { allPokemon } = useSelector((state) => state.pokedex);
@@ -40,7 +40,7 @@ function PokeLookUp() {
     setCurrentList(pokedex);
     setOffset(0);
   }, [pokedex]);
-  
+
   return (
     <div>
       <div className="d-flex justify-content-between mb-1">

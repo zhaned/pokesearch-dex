@@ -11,10 +11,9 @@ const PokeImage = (url) => {
         border: '1px solid #f8f9fa',
         background:
           'linear-gradient(rgba(245, 245, 245, 0.7),rgba(245, 245, 245, 0.4) )',
-          objectFit: 'cover',
-          maxHeight: '100%'
+        objectFit: 'cover',
+        maxHeight: '100%',
       }}
-      
     />
   );
 };

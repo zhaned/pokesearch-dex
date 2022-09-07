@@ -3,7 +3,7 @@
 }
 
 .form-control::placeholder {
-  color: #8a8a8a
+  color: #8a8a8a;
 }
 
 .form-control {
@@ -19,7 +19,7 @@
 }
 
 .form-control:focus::placeholder {
-  color: #d4d4d4
+  color: #d4d4d4;
 }
 
 @keyframes fadeinabove {
@@ -33,7 +33,7 @@
   }
 }
 
-.card:hover{
+.card:hover {
   animation-name: hovercard;
   animation-duration: 0.1s;
   animation-fill-mode: forwards;
@@ -41,6 +41,6 @@
 
 @keyframes hovercard {
   100% {
-    transform: scale(1.10, 1.10);
+    transform: scale(1.1, 1.1);
   }
 }

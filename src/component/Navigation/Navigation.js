@@ -17,7 +17,7 @@ const Navigation = () => {
       >
         <div className="rounded-pill pe-2 home-link">
           <img
-            src={require('../../images/pokeapi-dex-icon.png')}
+            src={require('../../images/pokesearch-dex-icon.png')}
             alt=""
             className="m-1"
             style={{ height: '2rem' }}

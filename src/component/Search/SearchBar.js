@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 const SearchBar = ({
   setOffset,
@@ -27,9 +27,9 @@ const SearchBar = ({
     }
   }
 
-  useEffect(()=> {
-    setInputValue('')
-  },[info])
+  useEffect(() => {
+    setInputValue('');
+  }, [info]);
 
   return (
     <form>

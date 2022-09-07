@@ -70,7 +70,7 @@ const typeColor = {
   water: {
     name: 'water',
     color: '#1773d8',
-  }
+  },
 };
 
 export const TypeColor = (type) => {

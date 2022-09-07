@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux/";
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux/';
 import {
   ascending,
   aToZ,
@@ -7,8 +7,8 @@ import {
   getPokedex,
   setSort,
   zToA,
-} from "../../routes/SearchPage/SearchPageSlice";
-import "./FilterSidebar.css";
+} from '../../routes/SearchPage/SearchPageSlice';
+import './FilterSidebar.css';
 
 const FilterSidebar = ({ location }) => {
   const route = location;
@@ -22,22 +22,22 @@ const FilterSidebar = ({ location }) => {
   useEffect(() => {
     //checks location and checks if state exists so switch statement happens
     let routeCheck = false;
-    if (route === "/search") {
+    if (route === '/search') {
       routeCheck = allPokemon;
     } else {
       routeCheck = info;
     }
     switch (routeCheck && sort) {
-      case "ascending":
+      case 'ascending':
         dispatch(ascending(route));
         break;
-      case "descending":
+      case 'descending':
         dispatch(descending(route));
         break;
-      case "atoz":
+      case 'atoz':
         dispatch(aToZ(route));
         break;
-      case "ztoa":
+      case 'ztoa':
         dispatch(zToA(route));
         break;
       default:
@@ -65,11 +65,11 @@ const FilterSidebar = ({ location }) => {
         role="button"
         aria-controls="offcanvas"
         style={{
-          position: "fixed",
-          top: "5rem",
-          left: "1rem",
-          zIndex: "1",
-          color: "rgb(250,250,250)",
+          position: 'fixed',
+          top: '5rem',
+          left: '1rem',
+          zIndex: '1',
+          color: 'rgb(250,250,250)',
         }}
       >
         Filters
@@ -93,7 +93,7 @@ const FilterSidebar = ({ location }) => {
         </div>
         <div className="offcanvas-body">
           <div>Use these filters to make your search more precise!</div>
-          {route === "/search" && (
+          {route === '/search' && (
             <div className="dropdown">
               <label htmlFor="pokedex">Pokedex:</label>
               <select
