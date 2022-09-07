@@ -44,7 +44,7 @@
 .scroll-in {
   position: fixed;
   right: -72px;
-  bottom: 1rem;
+  bottom: 3rem;
   animation: fadeinabove 0.3s linear forwards;
   z-index: 1;
 }
@@ -67,7 +67,7 @@
 .scroll-out {
   position: fixed;
   right: -72px;
-  bottom: 1rem;
+  bottom: 3rem;
   animation: fadeoutabove 0.2s linear forwards;
 }
 

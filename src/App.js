@@ -8,6 +8,7 @@ import Abilities from './routes/Abilities';
 import InfoPage from './component/Info/InfoPage';
 import Moves from './routes/Moves';
 
+import Footer from './component/Footer/Footer';
 import Error from './routes/Error';
 import './App.css';
 
@@ -31,9 +32,10 @@ const RouteList = () =>
 
 function App() {
   return (
-    <div className="bg">
-      <div className="mb-1">{useNav()}</div>
-      <div className="container fade-in-above">{RouteList()}</div>
+    <div className="app-class" >
+      <div>{useNav()}</div>
+      <div className="container fade-in-above" style={{paddingBottom: '3rem'}}>{RouteList()}</div>
+      <Footer />
     </div>
   );
 }
