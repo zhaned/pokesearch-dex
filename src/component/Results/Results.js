@@ -43,7 +43,7 @@ const Results = ({ pokemon, species, evolution, types }) => {
               ') no-repeat center/100% 100%',
           }}
         >
-          <div className="d-flex justify-content-between ">
+          <div className="d-flex justify-content-between">
             <Traits species={species} data={pokemon} />
             <Stats data={pokemon} />
             <div

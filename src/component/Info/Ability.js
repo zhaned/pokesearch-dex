@@ -26,7 +26,9 @@ const Ability = ({ ability }) => {
         )}
       </h1>
       <HrLineBreak />
-      <AbilityInfo ability={ability} />
+      <div className="border rounded" style={{backgroundColor: '#212529'}}>
+        <AbilityInfo ability={ability} />
+      </div>
       <HrLineBreak />
       <table className="table table-dark m-0">
         <thead className="text-center move-thead">

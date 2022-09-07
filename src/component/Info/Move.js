@@ -23,7 +23,9 @@ const Move = ({ move }) => {
         {capitalizer(move.name.charAt(0).toUpperCase() + move.name.slice(1))}
       </h1>
       <HrLineBreak />
-      <MoveInfo move={move} />
+      <div className="border rounded" style={{backgroundColor: '#212529'}}>
+        <MoveInfo move={move} />
+      </div>
       <HrLineBreak />
       <table className="table table-dark m-0">
         <thead className="text-center move-thead">

@@ -643,8 +643,8 @@ export const MoveInfo = ({ move }) => {
     langFilter
   );
   return (
-    <div className="table table-dark">
-      <table className="border" style={{ width: '100%' }}>
+    <div>
+      <table className="border-bottom" style={{ width: '100%' }}>
         <thead>
           <tr className="border-bottom">
             <th>Category</th>
@@ -680,7 +680,7 @@ export const MoveInfo = ({ move }) => {
           </tr>
         </tbody>
       </table>
-      <table className="border border-top-0" style={{ width: '100%' }}>
+      <table className="border-bottom" style={{ width: '100%' }}>
         <tbody>
           <tr className="border-bottom">
             <th>Short Effect:</th>
@@ -699,7 +699,7 @@ export const MoveInfo = ({ move }) => {
           </tr>
         </tbody>
       </table>
-      <table className="border border-top-0" style={{ width: '100%' }}>
+      <table style={{ width: '100%' }}>
         <tbody>
           <tr className="border-bottom">
             <th>In-depth Effect:</th>
@@ -723,8 +723,8 @@ export const AbilityInfo = ({ ability }) => {
   );
 
   return (
-    <div className="table table-dark">
-      <table className="border" style={{ width: '100%' }}>
+    <div>
+      <table className="border-bottom" style={{ width: '100%' }}>
         <tbody>
           <tr className="border-bottom">
             <th>Short Description: </th>
@@ -742,7 +742,7 @@ export const AbilityInfo = ({ ability }) => {
           </tr>
         </tbody>
       </table>
-      <table className="border border-top-0" style={{ width: '100%' }}>
+      <table style={{ width: '100%' }}>
         <tbody>
           <tr className="border-bottom">
             <th>In-Depth Description:</th>
