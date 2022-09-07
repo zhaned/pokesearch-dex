@@ -12,13 +12,23 @@ const Footer = () => {
     >
       <div className="d-flex align-items-center justify-content-center">
         <span className="me-1">Powered By</span>
-        <a className="underline" href="https://pokeapi.co/">
+        <a
+          className="underline"
+          href="https://pokeapi.co/"
+          target={'_blank'}
+          rel="noreferrer noopener"
+        >
           <img src={pokeapiLogo} alt="PokeAPI" style={{ height: '2rem' }} />
         </a>
       </div>
       <div className="d-flex align-items-center justify-content-center">
         <span className="me-1">Designed by</span>
-        <a className="git-link" href="https://github.com/zhaned">
+        <a
+          className="git-link"
+          href="https://github.com/zhaned"
+          target={'_blank'}
+          rel="noreferrer noopener"
+        >
           <img src={githubLogo} alt="PokeAPI" style={{ height: '2rem' }} />{' '}
           zhaned
         </a>

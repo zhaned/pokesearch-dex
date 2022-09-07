@@ -770,7 +770,7 @@ export const PokemonTable = ({ list }) => {
           <th>{pokemonList[0].hidden ? 'is hidden?' : ''}</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="info-tbody">
         {pokemonList.map((poke) => (
           <tr key={poke.number}>
             <td className="align-middle">{poke.number}</td>
