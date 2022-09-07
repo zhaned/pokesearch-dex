@@ -13,6 +13,7 @@ const PokeImage = (url) => {
           'linear-gradient(rgba(245, 245, 245, 0.7),rgba(245, 245, 245, 0.4) )',
         objectFit: 'cover',
         maxHeight: '100%',
+        overflowY: 'hidden',
       }}
     />
   );
