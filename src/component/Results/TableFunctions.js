@@ -1,9 +1,7 @@
-//fixed: make it take in a region/group to choose which version to use
 export const regionFilter = (arr, versions) => {
   const oldArr = arr;
   let newArr;
   let noFlavorText = true;
-  //fixed: DBSP uses original DP flavor text, so need to look for that instead
   const versionRemakes = {
     'brilliant-diamond': 'diamond',
     'shining-pearl': 'pearl',

@@ -1,6 +1,5 @@
 import dexLogo from '../../images/pokesearch-dex-icon.png';
 import './Loading.css';
-//fixed: add a looping gif here later
 export default function Loading() {
   return (
     <div className="text-center">

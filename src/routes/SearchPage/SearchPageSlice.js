@@ -57,7 +57,6 @@ export const getInfo = createAsyncThunk('searchPage/getInfo', async (info) => {
     );
 });
 
-//fixed: include sort type
 //data states set to null instead of empty arrays so loading screen can happen
 const initialState = {
   id: '',

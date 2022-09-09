@@ -5,7 +5,6 @@ import Ability from './Ability';
 import Move from './Move';
 const InfoPage = () => {
   const [info, setInfo] = useState();
-  //fixed: use the global state version or just use latest
   const infoType = useLocation().pathname.split('/')[1];
   let { id } = useParams();
 

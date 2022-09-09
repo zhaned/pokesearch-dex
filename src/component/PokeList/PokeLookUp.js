@@ -27,7 +27,6 @@ function PokeLookUp() {
   if (!allStatus) {
     dispatch(getAllPokemon());
   }
-  //fixed: always triggers which causes sort to not work, useref only works if you dont leave the page so its useless
   useEffect(() => {
     if (firstUpdate.current !== 'success') {
       dispatch(getPokedex(id || 1, allPokemon));

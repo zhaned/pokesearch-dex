@@ -11,9 +11,6 @@ import {
 import { useEffect } from 'react';
 import HrLineBreak from '../HrLineBreak';
 
-//fixed: convert the number into a name so the search url is more consistent
-//fixed: dynamic background based on type
-//fixed: refactor this place
 const Results = ({ pokemon, species, evolution, types }) => {
   const type = pokemon.types[0].type.name;
   const type2 = pokemon.types.length > 1 ? pokemon.types[1].type.name : null;

@@ -18,7 +18,6 @@ const FilterSidebar = ({ location }) => {
   const { sort } = useSelector((state) => state.pokedex);
   const dispatch = useDispatch();
 
-  //fixed: sort type doesn't filter when setting a diff dex
   useEffect(() => {
     //checks location and checks if state exists so switch statement happens
     let routeCheck = false;

@@ -20,7 +20,7 @@ const Homepage = () => {
   useEffect(() => {
     document.title = 'PokéSearch Dex';
   }, []);
-  
+
   return (
     <div>
       <h1
@@ -28,7 +28,7 @@ const Homepage = () => {
         style={{
           color: '#f8f9fa',
           textShadow: '2px 2px #851bed',
-          paddingTop: '4rem'
+          paddingTop: '4rem',
         }}
       >
         Welcome to PokéSearch Dex!
@@ -45,7 +45,6 @@ const Homepage = () => {
             textShadow: '2px 2px #851bed',
           }}
         >
-          {/*fixed?: animations are in the way of the button so you can't click */}
           <ButtonIcon
             number={1}
             location={'search'}

@@ -110,7 +110,6 @@ function GenDropDown() {
 }
 
 export const Traits = ({ species, data }) => {
-  //fixed: height near 12 inches aren't converted (.3m becomes 0"12)
   const height = data.height / 10; //in meters
   const weight = Math.round(2.20462 * data.weight) / 10; // in lbs
   return (
@@ -252,7 +251,6 @@ export const Moveset = ({ moves, method }) => {
   const [machineInfo, setMachineInfo] = useState([]);
   const versionGroup = useSelector((state) => state.version.version_group);
   const moveList = moveFilter(moves, versionGroup, method);
-  //fixed: dynamically choose version and learn method
   const getMoveInfo = async () => {
     const responses = await Promise.all(
       moveList.map((move) => fetch(move.move.url).then((res) => res.json()))
@@ -279,8 +277,6 @@ export const Moveset = ({ moves, method }) => {
     getMoveInfo();
   }, [versionGroup, moves]);
 
-  //fixed: get moves from a single generation
-  //fixed: order moves via level up
   return moveInfo ? (
     <table className="table table-dark table-hover">
       <thead className="text-center move-thead"></thead>
@@ -343,7 +339,6 @@ export const Moveset = ({ moves, method }) => {
 };
 
 export const Evolutions = ({ evolution }) => {
-  //fixed: include requirement for evolving b/t species
   const list = GetPokemonList();
   return (
     <div className="d-flex flex-column" style={{ width: '50%' }}>
@@ -459,12 +454,9 @@ export const Evolutions = ({ evolution }) => {
 
 export const Header = ({ id, pokemon, type, type2 }) => {
   const list = GetPokemonList();
-  //fixed: get list of id with names redux
   return (
     <div className="d-flex justify-content-between">
       <div className="d-flex align-items-center">
-        {/* fixed: add the previous pokemon as a link here with a sprite */
-        /* fixed: try just invoking a function to update all the data with a fetch call and useEffect */}
         {id === 1 ? null : (
           <Link
             to={`/search/${nameGetter(id - 1, list)}`}
@@ -488,7 +480,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
         style={{ margin: '0px' }}
       >
         <h1 className="display-3 text-center pt-1 pe-1" id="title">
-          #{id} {/*fixed: change this to get the id from species.url later*/}
+          #{id}
           {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
         </h1>
         <p className="d-flex align-items-end px-1 mt-3">
@@ -509,7 +501,6 @@ export const Header = ({ id, pokemon, type, type2 }) => {
         </p>
       </div>
       <div className="d-flex align-items-center">
-        {/* fixed: add the next pokemon as a link here with a sprite */}
         {id === 898 ? null : (
           <Link
             to={`/search/${nameGetter(id + 1, list)}`}
