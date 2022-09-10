@@ -480,8 +480,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
         style={{ margin: '0px' }}
       >
         <h1 className="display-3 text-center pt-1 pe-1" id="title">
-          #{id}
-          {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+          #{id} {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
         </h1>
         <p className="d-flex align-items-end px-1 mt-3">
           <span
