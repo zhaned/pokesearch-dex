@@ -114,6 +114,7 @@ const FilterSidebar = ({ location }) => {
                 </optgroup>
                 <option value="21">Alola</option>
                 <option value="27">Galar</option>
+                <option value="31">Paldea</option>
               </select>
             </div>
           )}
