@@ -43,7 +43,11 @@ export const getPokedex = createAsyncThunk(
 );
 
 export const getInfo = createAsyncThunk('searchPage/getInfo', async (info) => {
-  const limit = info === 'ability' ? 267 : 826;
+  /*
+  numbers below are the number of abilities and moves available
+  874 should be 902 but there's weird duplicates in API right now, update when fixed  
+  */
+  const limit = info === 'ability' ? 298 : 874; 
   return fetch(`https://pokeapi.co/api/v2/${info}?limit=${limit}`)
     .then((res) => res.json())
     .then((data) =>
