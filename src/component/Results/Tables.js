@@ -41,7 +41,7 @@ function GenDropDown() {
   const dispatch = useDispatch();
   const { generation, version_group } = useSelector((state) => state.version);
   const [actionPayload, setActionPayload] = useState(
-    `${generation || 8},${version_group || 20}`
+    `${generation || 9},${version_group || 25}`
   );
 
   useEffect(() => {
@@ -103,6 +103,9 @@ function GenDropDown() {
         </optgroup>
         <optgroup label="Generation 8">
           <option value={[8, 20]}>Sword/Shield</option>
+        </optgroup>
+        <optgroup label="Generation 9">
+          <option value={[9, 25]}>Scarlet/Violet</option>
         </optgroup>
       </select>
     </div>
@@ -682,9 +685,9 @@ export const MoveInfo = ({ move }) => {
               style={{ minWidth: '40%' }}
             >{`${effectEntries.short_effect}`}</td>
             <td className="px-1">
-              {`(${capitalizer(flavorText[0].version_group.name)}) ${
+              {flavorText[0] ? `(${capitalizer(flavorText[0].version_group.name)}) ${
                 flavorText[0].flavor_text
-              }`}
+              }` : '-'}
             </td>
           </tr>
         </tbody>
@@ -708,7 +711,7 @@ export const AbilityInfo = ({ ability }) => {
 
   const flavorText = versionFilter(
     ability.flavor_text_entries,
-    20, // 20 is sword/shield version-group; latest
+    20, // 25 is sword/shield version-group; latest
     langFilter
   );
 
@@ -725,9 +728,9 @@ export const AbilityInfo = ({ ability }) => {
               effectEntries[0] ? effectEntries[0].short_effect : '-'
             }`}</td>
             <td className="px-1">
-              {`(${capitalizer(flavorText[0].version_group.name)}) ${
+              {flavorText[0] ? `(${capitalizer(flavorText[0].version_group.name)}) ${
                 flavorText[0].flavor_text
-              }`}
+              }` : '-'}
             </td>
           </tr>
         </tbody>

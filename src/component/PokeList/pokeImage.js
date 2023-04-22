@@ -6,7 +6,7 @@ const PokeImage = (url) => {
     <img
       className="rounded-circle"
       src={imageUrl}
-      alt={pokeId}
+      alt='Currently not available :('
       style={{
         border: '1px solid #f8f9fa',
         background:

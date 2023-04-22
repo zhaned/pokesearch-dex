@@ -4,8 +4,9 @@ import { AbilityInfo, PokemonTable } from '../Results/Tables';
 import HrLineBreak from '../HrLineBreak';
 
 const Ability = ({ ability }) => {
+  console.log(ability)
   const pokemonList = ability.pokemon
-    .filter((poke) => parseInt(poke.pokemon.url.slice(34).split('/')) < 899)
+    .filter((poke) => parseInt(poke.pokemon.url.slice(34).split('/')) < 1011)
     .map((poke) => {
       return {
         pokemon: capitalizer(poke.pokemon.name),

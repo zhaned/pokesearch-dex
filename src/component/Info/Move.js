@@ -5,7 +5,7 @@ import HrLineBreak from '../HrLineBreak';
 
 const Move = ({ move }) => {
   const pokemonList = move.learned_by_pokemon
-    .filter((poke) => parseInt(poke.url.slice(34).split('/')) < 899)
+    .filter((poke) => parseInt(poke.url.slice(34).split('/')) < 1011)
     .map((poke) => {
       return {
         pokemon: capitalizer(poke.name),
