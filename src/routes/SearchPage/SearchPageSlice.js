@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const getAllPokemon = createAsyncThunk(
   'searchPage/getAllPokemon',
   async () => {
-    return fetch(`https://pokeapi.co/api/v2/pokemon?limit=898`)
+    return fetch(`https://pokeapi.co/api/v2/pokemon?limit=1010`)
       .then((res) => res.json())
       .then((data) =>
         data.results.map((item) => {
@@ -13,7 +13,7 @@ export const getAllPokemon = createAsyncThunk(
             name: item.name,
             url: id[0],
           };
-        })
+        }),
       );
   }
 );
@@ -37,7 +37,7 @@ export const getPokedex = createAsyncThunk(
             name: allPokemon.find((obj) => obj.url === url[0]).name,
             url: url[0],
           };
-        }),
+        })
       ]);
   }
 );

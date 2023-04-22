@@ -23,7 +23,7 @@ function PokeLookUp() {
   const { allStatus } = useSelector((state) => state.pokedex);
   const dispatch = useDispatch();
   const firstUpdate = useRef(status);
-
+  
   if (!allStatus) {
     dispatch(getAllPokemon());
   }

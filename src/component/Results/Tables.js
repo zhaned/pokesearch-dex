@@ -469,7 +469,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${
                   id - 1
                 }.png`}
-                alt=""
+                alt=''
               />
             </h3>
           </Link>

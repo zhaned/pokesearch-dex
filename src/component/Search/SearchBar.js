@@ -42,7 +42,7 @@ const SearchBar = ({
         title={'Only letters, numbers, and hypens are accepted'}
         onInput={handleChange}
         onKeyDown={handleKeyDown}
-        spellcheck={'false'}
+        spellCheck={'false'}
       />
     </form>
   );
