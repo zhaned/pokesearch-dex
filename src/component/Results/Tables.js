@@ -632,7 +632,7 @@ export const MoveInfo = ({ move }) => {
   );
   const flavorText = versionFilter(
     move.flavor_text_entries,
-    20, // 20 is sword/shield version-group; latest
+    20, // 20 is sword/shield version-group; latest updated
     langFilter
   );
   return (
@@ -711,7 +711,7 @@ export const AbilityInfo = ({ ability }) => {
 
   const flavorText = versionFilter(
     ability.flavor_text_entries,
-    20, // 25 is sword/shield version-group; latest
+    20, // 20 is sword/shield version-group; latest updated
     langFilter
   );
 
