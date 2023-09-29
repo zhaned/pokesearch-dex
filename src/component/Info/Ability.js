@@ -4,9 +4,8 @@ import { AbilityInfo, PokemonTable } from '../Results/Tables';
 import HrLineBreak from '../HrLineBreak';
 
 const Ability = ({ ability }) => {
-  console.log(ability)
   const pokemonList = ability.pokemon
-    .filter((poke) => parseInt(poke.pokemon.url.slice(34).split('/')) < 1011)
+    .filter((poke) => parseInt(poke.pokemon.url.slice(34).split('/')) < 1018)
     .map((poke) => {
       return {
         pokemon: capitalizer(poke.pokemon.name),
@@ -27,7 +26,7 @@ const Ability = ({ ability }) => {
         )}
       </h1>
       <HrLineBreak />
-      <div className="border rounded" style={{backgroundColor: '#212529'}}>
+      <div className="border rounded" style={{ backgroundColor: '#212529' }}>
         <AbilityInfo ability={ability} />
       </div>
       <HrLineBreak />

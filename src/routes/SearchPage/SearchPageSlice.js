@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const getAllPokemon = createAsyncThunk(
   'searchPage/getAllPokemon',
   async () => {
-    return fetch(`https://pokeapi.co/api/v2/pokemon?limit=1010`)
+    return fetch(`https://pokeapi.co/api/v2/pokemon?limit=1017`)
       .then((res) => res.json())
       .then((data) =>
         data.results.map((item) => {
@@ -47,7 +47,7 @@ export const getInfo = createAsyncThunk('searchPage/getInfo', async (info) => {
   numbers below are the number of abilities and moves available
   874 should be 902 but there's weird duplicates in API right now, update when fixed  
   */
-  const limit = info === 'ability' ? 298 : 874; 
+  const limit = info === 'ability' ? 302 : 904; 
   return fetch(`https://pokeapi.co/api/v2/${info}?limit=${limit}`)
     .then((res) => res.json())
     .then((data) =>

@@ -11,7 +11,7 @@ const PokeCycler = ({ pokeNumber, side, list }) => {
   });
 
   function urlMaker() {
-    pokeNumber = Math.floor(Math.random() * 1009 + 1);
+    pokeNumber = Math.floor(Math.random() * 1016 + 1);
     art = {
       name: nameGetter(pokeNumber, list),
       url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber}.png`,

@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const getPokemon = createAsyncThunk('homepage/getPokemon', async () => {
-  return fetch('https://pokeapi.co/api/v2/pokemon?limit=1010')
+  // API currently does not have sprites for pokemon entries above 1010
+  return fetch('https://pokeapi.co/api/v2/pokemon?limit=1017')
     .then((res) => res.json())
     .then((data) => data.results);
 });

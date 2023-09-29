@@ -503,7 +503,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
         </p>
       </div>
       <div className="d-flex align-items-center">
-        {id === 1010 ? null : (
+        {id === 1017 ? null : (
           <Link
             to={`/search/${nameGetter(id + 1, list)}`}
             onClick={() => window.scrollTo(0, 0)}
