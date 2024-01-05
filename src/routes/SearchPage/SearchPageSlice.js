@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const getAllPokemon = createAsyncThunk(
   'searchPage/getAllPokemon',
   async () => {
-    return fetch(`https://pokeapi.co/api/v2/pokemon?limit=1010`)
+    return fetch(`https://pokeapi.co/api/v2/pokemon?limit=1025`)
       .then((res) => res.json())
       .then((data) =>
         data.results.map((item) => {
@@ -13,7 +13,7 @@ export const getAllPokemon = createAsyncThunk(
             name: item.name,
             url: id[0],
           };
-        }),
+        })
       );
   }
 );
@@ -37,7 +37,7 @@ export const getPokedex = createAsyncThunk(
             name: allPokemon.find((obj) => obj.url === url[0]).name,
             url: url[0],
           };
-        })
+        }),
       ]);
   }
 );
@@ -45,9 +45,9 @@ export const getPokedex = createAsyncThunk(
 export const getInfo = createAsyncThunk('searchPage/getInfo', async (info) => {
   /*
   numbers below are the number of abilities and moves available
-  874 should be 902 but there's weird duplicates in API right now, update when fixed  
+  currently 307 and 919 for abilities and moves as of SV DLC 
   */
-  const limit = info === 'ability' ? 298 : 874; 
+  const limit = info === 'ability' ? 307 : 919;
   return fetch(`https://pokeapi.co/api/v2/${info}?limit=${limit}`)
     .then((res) => res.json())
     .then((data) =>

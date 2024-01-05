@@ -472,7 +472,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${
                   id - 1
                 }.png`}
-                alt=''
+                alt=""
               />
             </h3>
           </Link>
@@ -503,7 +503,7 @@ export const Header = ({ id, pokemon, type, type2 }) => {
         </p>
       </div>
       <div className="d-flex align-items-center">
-        {id === 1010 ? null : (
+        {id === 1025 ? null : (
           <Link
             to={`/search/${nameGetter(id + 1, list)}`}
             onClick={() => window.scrollTo(0, 0)}
@@ -685,9 +685,11 @@ export const MoveInfo = ({ move }) => {
               style={{ minWidth: '40%' }}
             >{`${effectEntries.short_effect}`}</td>
             <td className="px-1">
-              {flavorText[0] ? `(${capitalizer(flavorText[0].version_group.name)}) ${
-                flavorText[0].flavor_text
-              }` : '-'}
+              {flavorText[0]
+                ? `(${capitalizer(flavorText[0].version_group.name)}) ${
+                    flavorText[0].flavor_text
+                  }`
+                : '-'}
             </td>
           </tr>
         </tbody>
@@ -728,9 +730,11 @@ export const AbilityInfo = ({ ability }) => {
               effectEntries[0] ? effectEntries[0].short_effect : '-'
             }`}</td>
             <td className="px-1">
-              {flavorText[0] ? `(${capitalizer(flavorText[0].version_group.name)}) ${
-                flavorText[0].flavor_text
-              }` : '-'}
+              {flavorText[0]
+                ? `(${capitalizer(flavorText[0].version_group.name)}) ${
+                    flavorText[0].flavor_text
+                  }`
+                : '-'}
             </td>
           </tr>
         </tbody>

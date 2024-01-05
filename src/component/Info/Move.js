@@ -5,7 +5,7 @@ import HrLineBreak from '../HrLineBreak';
 
 const Move = ({ move }) => {
   const pokemonList = move.learned_by_pokemon
-    .filter((poke) => parseInt(poke.url.slice(34).split('/')) < 1011)
+    .filter((poke) => parseInt(poke.url.slice(34).split('/')) < 1026)
     .map((poke) => {
       return {
         pokemon: capitalizer(poke.name),
@@ -23,7 +23,7 @@ const Move = ({ move }) => {
         {capitalizer(move.name.charAt(0).toUpperCase() + move.name.slice(1))}
       </h1>
       <HrLineBreak />
-      <div className="border rounded" style={{backgroundColor: '#212529'}}>
+      <div className="border rounded" style={{ backgroundColor: '#212529' }}>
         <MoveInfo move={move} />
       </div>
       <HrLineBreak />

@@ -10,13 +10,13 @@ const Homepage = () => {
   const pokemon = useSelector((state) => state.pokemon.list);
   const status = useSelector((state) => state.pokemon.status);
   // +1 because the result cannot be 0
-  let pokeNumber = Math.floor(Math.random() * 1009 + 1);
-  let pokeNumber2 = Math.floor(Math.random() * 1009 + 1);
+  let pokeNumber = Math.floor(Math.random() * 1016 + 1);
+  let pokeNumber2 = Math.floor(Math.random() * 1016 + 1);
 
   if (status === null || status === 'failed') {
     dispatch(getPokemon());
   }
-
+    
   useEffect(() => {
     document.title = 'PokéSearch Dex';
   }, []);
@@ -32,7 +32,7 @@ const Homepage = () => {
         }}
       >
         Welcome to PokéSearch Dex!
-      </h1>
+      </h1> 
       <div
         className="d-flex justify-content-between align-items-center"
         style={{ marginTop: '5%' }}
